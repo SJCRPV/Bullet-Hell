@@ -1,14 +1,8 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workspace />
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelDatabase.cs">
     <Files>
-      <File FileName="Bullet-Hell.sln" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\EnemySpawn.cs" Line="13" Column="34" />
-      <File FileName="Assets\Scripts\DamageHandler.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Ballistics.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerMovement.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\PlayerSpawn.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\LevelDatabase.cs" Line="6" Column="37" />
+      <File FileName="Assets\Scripts\LevelDatabase.cs" Line="15" Column="20" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
