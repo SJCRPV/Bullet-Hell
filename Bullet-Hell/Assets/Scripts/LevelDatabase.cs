@@ -3,11 +3,15 @@ using System.Collections;
 
 public class LevelDatabase : MonoBehaviour {
 
-	private int[] levelArray = new int[5];
+	public int currentLevel;
+	public int currentLevelPhase;
+
+	public int[] levelArray = new int[5];
 
 
-	public int[] Level1()
+	public void Level1()
 	{
+		currentLevel = 1;
 		levelArray[0] = 10;
 		levelArray[1] = 12;
 		levelArray[2] = 7;

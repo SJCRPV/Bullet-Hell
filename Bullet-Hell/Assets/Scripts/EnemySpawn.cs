@@ -4,6 +4,7 @@ using System.Collections;
 public class EnemySpawn : MonoBehaviour {
 
 	GameObject enemyInstance;
+	//GameObject levelObj;
 
 	public GameObject enemyPrefab;
 	public float speed = 1f;
@@ -17,12 +18,15 @@ public class EnemySpawn : MonoBehaviour {
 	private bool isLerping = true;
 	private float timeLerpStart;
 	private Vector3 endVector;
+	private int looper;
+	static LevelDatabase levelInfo;
 	
 	
 	// Use this for initialization
 	void Start () {
+		levelInfo = gameObject.GetComponent<LevelDatabase>();
+		Debug.Log (levelInfo);
 		SpawnEnemy();
-
 	}
 
 	public bool isItLerping()
@@ -42,7 +46,20 @@ public class EnemySpawn : MonoBehaviour {
 
 	void SpawnEnemy()
 	{
-		enemyInstance = (GameObject)Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+		//What you want is for the loop to go through each of the phase's lenght
+		for (looper = 0; looper <= levelInfo.levelArray[levelInfo.currentLevelPhase]; looper++) 
+		{
+			if(looper == levelInfo.levelArray[levelInfo.currentLevelPhase])
+			{
+				levelInfo.currentLevel++;
+			}
+			else
+			{
+				float addition = looper * 0.1f;
+				Vector3 addOn = new Vector3(addition, 0, 0);
+				enemyInstance = (GameObject)Instantiate (enemyPrefab, transform.position + addOn, Quaternion.identity);
+			}
+		}
 	}
 
 	void ChangePosition()
