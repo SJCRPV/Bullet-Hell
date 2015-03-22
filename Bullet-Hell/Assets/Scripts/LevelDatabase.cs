@@ -21,7 +21,8 @@ public class LevelDatabase : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
+		currentLevel = 0;
+		currentLevelPhase = 0;
 	}
 	
 	// Update is called once per frame

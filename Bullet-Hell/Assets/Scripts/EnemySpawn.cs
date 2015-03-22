@@ -4,30 +4,21 @@ using System.Collections;
 public class EnemySpawn : MonoBehaviour {
 
 	GameObject enemyInstance;
-	//GameObject levelObj;
-
-	public GameObject enemyPrefab;
-	public float speed = 1f;
-	public int health = 3;
-	public Transform endPosition;
-	public float lerpTime = 1.0f;
-	public float percentageComplete;
-
+	
+	static LevelDatabase levelInfoScript;
 
 	private Vector3 startPosition;
 	private bool isLerping = true;
 	private float timeLerpStart;
 	private Vector3 endVector;
+	private Vector3 addOn;
 	private int looper;
-	static LevelDatabase levelInfo;
 	
-	
-	// Use this for initialization
-	void Start () {
-		levelInfo = gameObject.GetComponent<LevelDatabase>();
-		Debug.Log (levelInfo);
-		SpawnEnemy();
-	}
+	public float speed = 1f;
+	public int health = 3;
+	public float lerpTime = 1.0f;
+	public float percentageComplete;
+	public GameObject enemyPrefab;
 
 	public bool isItLerping()
 	{
@@ -36,39 +27,38 @@ public class EnemySpawn : MonoBehaviour {
 			return isLerping;
 		}
 	}
-
+	
 	void StartLerping () {
 		isLerping = true;
+		percentageComplete = 0;
 		timeLerpStart = Time.time;
 		startPosition = transform.position;
-		endVector = new Vector3(endPosition.position.x, endPosition.position.y, endPosition.position.z);
+		endVector = GameObject.Find ("EnemyEndPoint1").transform.position;
+	}
+	
+	// Use this for initialization
+	void Start () {
+		levelInfoScript = GetComponent<LevelDatabase> ();
+		SpawnEnemy();
 	}
 
-	void SpawnEnemy()
-	{
-		//What you want is for the loop to go through each of the phase's lenght
-		for (looper = 0; looper <= levelInfo.levelArray[levelInfo.currentLevelPhase]; looper++) 
+	Vector3 addOnDeterminer(){
+		looper++;
+		if (looper > levelInfoScript.levelArray[levelInfoScript.currentLevelPhase]) 
 		{
-			if(looper == levelInfo.levelArray[levelInfo.currentLevelPhase])
-			{
-				levelInfo.currentLevel++;
-			}
-			else
-			{
-				float addition = looper * 0.1f;
-				Vector3 addOn = new Vector3(addition, 0, 0);
-				enemyInstance = (GameObject)Instantiate (enemyPrefab, transform.position + addOn, Quaternion.identity);
-			}
+			looper = 0;
 		}
+		addOn = new Vector3 (0.7f * looper, 0, 0);
+		
+		return addOn;
 	}
-
+	
 	void ChangePosition()
 	{
 		if(isLerping)
 		{
 			percentageComplete = timeLerpStart/lerpTime;
-			
-			enemyInstance.transform.position = Vector3.Lerp(startPosition, endVector, percentageComplete);
+			enemyInstance.transform.position = Vector3.Lerp(startPosition, endVector + addOnDeterminer(), percentageComplete);
 			
 			if(percentageComplete >= lerpTime)
 			{
@@ -76,7 +66,28 @@ public class EnemySpawn : MonoBehaviour {
 			}
 		}
 	}
+
+	void SpawnEnemy()
+	{
+
+		levelInfoScript.Level1 ();
 	
+		//What you want is for the loop to go through each of the phase's lenght
+		for (int i = 0; i < levelInfoScript.levelArray[levelInfoScript.currentLevelPhase]; i++) 
+		{
+			if (i == levelInfoScript.levelArray[levelInfoScript.currentLevelPhase]) 
+			{
+				levelInfoScript.currentLevelPhase++;
+			} 
+			else 
+			{
+				//Apparently, the engine doesn't know what to do after moving the first one. Check again to
+				//see if arrays REALLY don't work in this situation.
+				enemyInstance = (GameObject)Instantiate (enemyPrefab, transform.position, Quaternion.identity);
+			}
+		}
+	}
+
 	// Update is called once per frame
 	void Update () {
 		StartLerping();

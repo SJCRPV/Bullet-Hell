@@ -8,12 +8,13 @@ public class Ballistics : MonoBehaviour {
 	//public float timeUntilFire =
 	float realCooldownTimer;
 	Vector3 offset = new Vector3(0, 0.5f, 0);
-	static EnemySpawn enemyFireScript;
+	//static EnemySpawn enemyFireScript;
 
 	// Use this for initialization
 	void Start () {
 		realCooldownTimer = cooldownTimer;
-		enemyFireScript = gameObject.GetComponent<EnemySpawn>();
+		//enemyFireScript = gameObject.GetComponent<EnemySpawn>();
+		//Debug.Log (enemyFireScript);
 	}
 	
 	// Update is called once per frame
