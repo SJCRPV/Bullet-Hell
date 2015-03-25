@@ -12,10 +12,10 @@ public class LevelDatabase : MonoBehaviour {
 	public void Level1()
 	{
 		currentLevel = 1;
-		levelArray[0] = 10;
+		levelArray[0] = 14;
 		levelArray[1] = 12;
-		levelArray[2] = 7;
-		levelArray[3] = 12;
+		levelArray[2] = 11;
+		levelArray[3] = 8;
 		levelArray[4] = 1;
 	}
 
