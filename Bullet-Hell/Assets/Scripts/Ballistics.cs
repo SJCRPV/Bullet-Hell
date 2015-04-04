@@ -29,11 +29,14 @@ public class Ballistics : MonoBehaviour {
 		
 		if( realCooldownTimer <= 0)
 		{
+			//Player
 			if(gameObject.layer == 8)
 			{
 				Instantiate(bulletPrefab, transform.position + offset, Quaternion.identity);
 				realCooldownTimer = cooldownTimer;
 			}
+
+			//Enemy
 			else if(gameObject.layer == 9)
 			{
 				Instantiate(bulletPrefab, transform.position - offset, Quaternion.identity);

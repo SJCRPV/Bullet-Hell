@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 using System.Collections;
 
 public class EnemySpawn : MonoBehaviour {
@@ -16,64 +16,75 @@ public class EnemySpawn : MonoBehaviour {
 	//Time since the instance started lerping. Used to tell how close to the end it is
 	private float[] timeLerpStart = new float[50];
 	//End position
-	private Vector3[] endVector = new Vector3[50];
+	private Vector3[] endPosition = new Vector3[50];
 	private float[] percentageComplete = new float[50];
 	//How much it's added to the end position for the ship's position
 	private Vector3 addOn;
-	//It's what gets multiplied by a fixed ammount when deciding the ship's position
-	private int looper;
+	//It's the variable that gets added to the X axis when deciding a ship's position
+	private float looper = 0;
 	//Holds the value of the array at the index of the current phase
 	private int phaseTotal;
 	
 	public float speed = 1f;
-	public int health = 3;
 	//How long (1.0f = 1 second) should the lerp take?
 	public float lerpTime = 1.0f;
 	//Timer that ticks down until you run SpawnEnemy() again.
 	public float newSpawnTimer = 5.0f;
+	//Stores the value of newSpawnTimer for later use
+	float storeSpawnTimer;
 	public GameObject enemyPrefab;
 
 	public bool isItLerping(int i)
 	{
 		return isLerping[i];
 	}
-	
-	void StartLerping () {
-		//Setting all the info for the Lerp
-		for (int i = 0; i < phaseTotal; i++) {
-			isLerping [i] = true;
-			percentageComplete [i] = 0f;
-			timeLerpStart [i] = Time.time;
-			startPosition = transform.position;
+
+	void setEndPositions()
+	{
+		for(int i = 0; i < phaseTotal; i++)
+		{
 			if (i < phaseTotal/2) {
-				endVector [i] = GameObject.Find ("EnemyEndPoint1").transform.position + addOnDeterminer ();
+				endPosition [i] = GameObject.Find ("EnemyEndPoint1").transform.position + addOnDeterminer ();
 			}
 			else
 			{
-				endVector [i] = GameObject.Find ("EnemyEndPoint2").transform.position - addOnDeterminer ();
+				endPosition [i] = GameObject.Find ("EnemyEndPoint2").transform.position - addOnDeterminer ();
+			}
+		}
+	}
+	
+	void StartLerping () {
+		//Setting all the info for the Lerp
+		for (int i = 0; i < phaseTotal; i++) 
+		{
+			if(percentageComplete[i] < lerpTime)
+			{
+				isLerping [i] = true;
+				percentageComplete [i] = 0f;
+				timeLerpStart [i] = Time.time;
 			}
 		}
 	}
 
 	Vector3 addOnDeterminer(){
-		looper++;
-		if (looper > phaseTotal) 
+		looper += 0.8f;
+		if (looper >= 5) 
 		{
 			looper = 0;
 		}
-		addOn = new Vector3 (0.8f * looper, 0, 0);
+		addOn = new Vector3 (looper, 0, 0);
 		
 		return addOn;
 	}
 	
 	void ChangePosition()
 	{
-		for(int i = 0; i < phaseTotal; i++)
+		for(int i = 0; i <= phaseTotal; i++)
 		{
 			if (isLerping[i])
 			{
 				percentageComplete[i] = timeLerpStart[i]/lerpTime;
-				enemyInstance[i].transform.position = Vector3.Lerp(startPosition, endVector[i], percentageComplete[i]);
+				enemyInstance[i].transform.position = Vector3.Lerp(startPosition, endPosition[i], percentageComplete[i]);
 
 				if(percentageComplete[i] >= lerpTime)
 				{
@@ -126,10 +137,16 @@ public class EnemySpawn : MonoBehaviour {
 
 	void newPhase()
 	{
+		//If you've gone through all the level's phases.
 		if(levelInfoScript.currentLevelPhase > levelInfoScript.levelArray.Length)
 		{
 			levelInfoScript.currentLevel++;
 			levelInfoScript.currentLevelPhase = 0;
+
+			for(int i = 0; i < percentageComplete.Length; i++)
+			{
+				percentageComplete[i] = 0;
+			}
 			Debug.Log("New level!");
 			Debug.Log (phaseTotal = levelInfoScript.levelArray[levelInfoScript.currentLevelPhase]);
 		}
@@ -138,21 +155,32 @@ public class EnemySpawn : MonoBehaviour {
 			Debug.Log("New Phase!");
 			levelInfoScript.currentLevelPhase++;
 			Debug.Log(phaseTotal = levelInfoScript.levelArray[levelInfoScript.currentLevelPhase]);
-			newSpawnTimer = 5.0f;
+			startPosition = GameObject.Find("EnemySpawnPoint2").transform.position;
+			for(int i = 0; i < percentageComplete.Length; i++)
+			{
+				percentageComplete[i] = 0;
+			}
+
+			newSpawnTimer = storeSpawnTimer;
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
+		storeSpawnTimer = newSpawnTimer;
 		setLerps ();
 		levelInfoScript = GetComponent<LevelDatabase> ();
+		//This is temporary, remove after creating the menu!
 		levelInfoScript.currentLevel = 1;
+		startPosition = transform.position;
+		setEndPositions();
 		SpawnEnemy();
 	}
 
 	// Update is called once per frame
 	void Update () {
 		StartLerping();
+		setEndPositions();
 		ChangePosition();
 
 		//Run spawn enemy again after a certain time!
@@ -160,9 +188,8 @@ public class EnemySpawn : MonoBehaviour {
 		if(newSpawnTimer <= 0)
 		{
 			newPhase();
+			setEndPositions();
 			SpawnEnemy();
 		}
 	}
-
-
 }
