@@ -6,18 +6,23 @@ public class DamageHandler : MonoBehaviour {
 
 	//No idea what this is for
 	GameObject datObject;
-	static PlayerSpawn playerSpawnScript;
-	//public int healthPoints = 0;
+	//public PlayerSpawn playerSpawnScript;
+	public int healthPoints = 0;
 	public float invincibilityTime = 2.0f;
 	//public int numLives = 4;
 
 	// Use this for initialization
 	void Start () {
-		playerSpawnScript = GetComponent<PlayerSpawn>();
-		if(playerSpawnScript == null)
-		{
-			Debug.LogError("playerSpawnScript is Null!");
-		}
+//		playerSpawnScript = GetComponent<PlayerSpawn>();
+//		if(playerSpawnScript == null)
+//		{
+//			Debug.LogError("playerSpawnScript is Null!");
+//		}
+	}
+
+	public int getHealthPoints()
+	{
+		return healthPoints;
 	}
 
 	void OnTriggerEnter2D()
@@ -26,14 +31,14 @@ public class DamageHandler : MonoBehaviour {
 		if(gameObject.layer == 8 && invincibilityTime <= 0)
 		{
 			Debug.Log("Ow! ; _ ;");
-			playerSpawnScript.decreaseHealthPoints();
+			healthPoints--;
 			invincibilityTime = 2.0f;
 		}
 		//If it's on the enemy layer
 		else if (gameObject.layer == 9)
 		{
 			Debug.Log("Ow! ; _ ;");
-			playerSpawnScript.decreaseHealthPoints();
+			healthPoints--;
 		}
 	}
 
@@ -42,11 +47,13 @@ public class DamageHandler : MonoBehaviour {
 		Debug.Log("DEAD!");
 		Destroy(gameObject);
 	}
+	void Awake(){
+	}
 
 	// Update is called once per frame
 	void Update () {
 		invincibilityTime -= Time.deltaTime;
-		if(playerSpawnScript.getHealthPoints() <= 0 && gameObject != null)
+		if(healthPoints <= 0)
 		{
 			Die();
 		}

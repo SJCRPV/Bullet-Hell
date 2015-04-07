@@ -11,22 +11,26 @@ public class PlayerSpawn : MonoBehaviour {
 	//Stores the health points for later use
 	int healthPointsStore;
 	public float respawnTimer;
-	public int healthPoints = 0;
+	//public int healthPoints;
 	public int numLives = 4;
 
-	public int getHealthPoints()
+//	public int getHealthPoints()
+//	{
+//		//Debug.Log(healthPoints);
+//		return healthPoints;
+//	}
+//	public void decreaseHealthPoints()
+//	{
+//		healthPoints--;
+//	}
+	public int getNumLives()
 	{
-		Debug.Log(healthPoints);
-		return healthPoints;
-	}
-	public void decreaseHealthPoints()
-	{
-		healthPoints--;
+		return numLives;
 	}
 
 	void OnGUI()
 	{
-		GUI.Label(new Rect(10, 0, 100, 30), "Health: " + healthPoints);
+		//GUI.Label(new Rect(10, 0, 100, 30), "Health: " + damageScript.healthPoints);
 		GUI.Label(new Rect(10, 30, 100, 30), "Lives: " + numLives);
 	}
 
@@ -40,10 +44,16 @@ public class PlayerSpawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		healthPointsStore = healthPoints;
+		damageScript = GetComponent<DamageHandler>();
+		if(damageScript == null)
+		{
+			Debug.Log("damageScript is empty");
+		}
 		SpawnPlayer();
 	}
-	
+
+	void Awake() {
+	}
 	// Update is called once per frame
 	void Update () 
 	{
