@@ -38,8 +38,11 @@ public class PlayerSpawn : MonoBehaviour {
 	{
 		numLives--;
 		//Needs to be cast as a GameObject because Instantiate only returns an Object
-		playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
-		respawnTimer = 3f;
+		if(numLives >= 0)
+		{
+			playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
+			respawnTimer = 3f;
+		}
 	}
 
 	// Use this for initialization
