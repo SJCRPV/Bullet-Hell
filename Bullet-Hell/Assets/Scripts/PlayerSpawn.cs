@@ -31,7 +31,7 @@ public class PlayerSpawn : MonoBehaviour {
 	void OnGUI()
 	{
 		//GUI.Label(new Rect(10, 0, 100, 30), "Health: " + damageScript.healthPoints);
-		GUI.Label(new Rect(10, 30, 100, 30), "Lives: " + numLives);
+		GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + numLives);
 	}
 
 	public void SpawnPlayer()
@@ -50,7 +50,7 @@ public class PlayerSpawn : MonoBehaviour {
 		damageScript = GetComponent<DamageHandler>();
 		if(damageScript == null)
 		{
-			Debug.Log("damageScript is empty");
+			//Debug.Log("damageScript is empty");
 		}
 		SpawnPlayer();
 	}
