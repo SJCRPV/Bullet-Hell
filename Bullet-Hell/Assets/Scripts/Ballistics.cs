@@ -4,44 +4,46 @@ using System.Collections;
 public class Ballistics : MonoBehaviour {
 
 	public GameObject bulletPrefab;
-	public float cooldownTimer = 0.25f;
-	//public float timeUntilFire =
-	float realCooldownTimer;
+	public float cooldownTimerStore;
+	float cooldownTimer;
 	Vector3 offset = new Vector3(0, 0.5f, 0);
-	//static EnemySpawn enemyFireScript;
+
+	private GameObject bulletInstance;
+	private Transform objectParent;
 
 	// Use this for initialization
 	void Start () {
-		realCooldownTimer = cooldownTimer;
-		//enemyFireScript = gameObject.GetComponent<EnemySpawn>();
-		//Debug.Log (enemyFireScript);
+		cooldownTimer = cooldownTimerStore;
+		//objectParent = GameObject.Find(this.gameObject.name).transform;
 	}
 	
 	// Update is called once per frame
-	void Update () {
-		Fire();
+	void Update () 
+	{
+		cooldownTimer -= Time.deltaTime;
+		if( cooldownTimer <= 0)
+		{
+			Fire();
+		}
 	}
 
 	public void Fire()
 	{
 		//Debug.Log("Dakka Dakka");
-		realCooldownTimer -= Time.deltaTime;
-		
-		if( realCooldownTimer <= 0)
+		//Player
+		if(gameObject.layer == 8)
 		{
-			//Player
-			if(gameObject.layer == 8)
-			{
-				Instantiate(bulletPrefab, transform.position + offset, Quaternion.identity);
-				realCooldownTimer = cooldownTimer;
-			}
+			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position + offset, Quaternion.identity);
+			cooldownTimer = cooldownTimerStore;
+			bulletInstance.gameObject.layer = 10;
+		}
 
-			//Enemy
-			else if(gameObject.layer == 9)
-			{
-				Instantiate(bulletPrefab, transform.position - offset, Quaternion.identity);
-				realCooldownTimer = cooldownTimer;
-			}
+		//Enemy
+		else if(gameObject.layer == 9)
+		{
+			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset, new Quaternion(0,0,180,0));
+			cooldownTimer = cooldownTimerStore;
+			bulletInstance.gameObject.layer = 11;
 		}
 	}
 }

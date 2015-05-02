@@ -3,7 +3,7 @@ using System.Collections;
 
 public class MoveForward : MonoBehaviour {
 
-	public float bulletSpeed = 1f;
+	public float bulletSpeed;
 	float deathTimer = 2.5f;
 	
 	// Update is called once per frame
@@ -15,14 +15,10 @@ public class MoveForward : MonoBehaviour {
 		}
 
 		Vector3 newPos = transform.position;
-		if(gameObject.layer == 8)
-		{
-			newPos.y += bulletSpeed * Time.deltaTime;
-		}
-		else if(gameObject.layer == 9)
-		{
-			newPos.y -= bulletSpeed * Time.deltaTime;
-		}
+
+		Vector3 velocity = new Vector3(0, bulletSpeed * Time.deltaTime, 0);
+
+		newPos += transform.rotation * velocity;
 
 		transform.position = newPos;
 	}

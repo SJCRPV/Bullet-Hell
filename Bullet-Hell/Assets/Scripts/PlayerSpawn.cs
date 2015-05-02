@@ -3,26 +3,14 @@ using System.Collections;
 
 public class PlayerSpawn : MonoBehaviour {
 
-	//The prefab you drag on the Unity editor
-	public GameObject playerPrefab;
-	//The object itself
-	GameObject playerInstance;
-	static DamageHandler damageScript;
-	//Stores the health points for later use
-	int healthPointsStore;
-	public float respawnTimer;
-	//public int healthPoints;
-	public int numLives = 4;
+	private int healthPointsStore;
+	private GameObject playerInstance;
+	private DamageHandler damageHandlerScript;
 
-//	public int getHealthPoints()
-//	{
-//		//Debug.Log(healthPoints);
-//		return healthPoints;
-//	}
-//	public void decreaseHealthPoints()
-//	{
-//		healthPoints--;
-//	}
+	public GameObject playerPrefab;
+	public float respawnTimer;
+	public int numLives = 4;
+	
 	public int getNumLives()
 	{
 		return numLives;
@@ -30,7 +18,6 @@ public class PlayerSpawn : MonoBehaviour {
 
 	void OnGUI()
 	{
-		//GUI.Label(new Rect(10, 0, 100, 30), "Health: " + damageScript.healthPoints);
 		GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + numLives);
 	}
 
@@ -47,16 +34,19 @@ public class PlayerSpawn : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		damageScript = GetComponent<DamageHandler>();
-		if(damageScript == null)
+		damageHandlerScript = GetComponent<DamageHandler>();
+		if(damageHandlerScript == null)
 		{
 			//Debug.Log("damageScript is empty");
 		}
 		SpawnPlayer();
 	}
 
-	void Awake() {
+	void OnLevelWasLoaded()
+	{
+		playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
 	}
+
 	// Update is called once per frame
 	void Update () 
 	{

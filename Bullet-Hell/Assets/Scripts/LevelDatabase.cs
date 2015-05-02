@@ -6,6 +6,10 @@ public class LevelDatabase : MonoBehaviour {
 	public int currentLevel;
 	public int currentLevelPhase;
 
+	public GameObject enemyPrefabBasic;
+	public GameObject enemyPrefabCone;
+	public GameObject enemyPrefabBoss1;
+
 	public int[] levelArray = new int[5];
 
 	public void Level0()
@@ -31,10 +35,5 @@ public class LevelDatabase : MonoBehaviour {
 	void Start () {
 		currentLevel = 0;
 		currentLevelPhase = 0;
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

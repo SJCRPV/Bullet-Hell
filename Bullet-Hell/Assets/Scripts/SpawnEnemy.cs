@@ -4,7 +4,6 @@ using System.Collections;
 public class SpawnEnemy : MonoBehaviour {
 
 	LevelDatabase levelDatabaseScript;
-	public GameObject enemyPrefab;
 	public float newPhaseTimer;
 
 	private GameObject enemyInstance;
@@ -12,11 +11,12 @@ public class SpawnEnemy : MonoBehaviour {
 	private int currentPhase;
 	private int phaseTotal;
 	private float newPhaseTimerStore;
-	//Increments with enemy spawns.Resets at half-phase.Determines how much you add to endPos
-	//Look for a better name
+
+/*Increments with enemy spawns.Resets at half-phase.Determines how much you add to endPos
+Look for a better name*/
 	private int adjustment;
 
-	public Vector3 endPositionAdjustment()
+	public Vector3 adjustmentToEndPosition()
 	{
 		Vector3 addOn;
 		
@@ -52,10 +52,9 @@ public class SpawnEnemy : MonoBehaviour {
 			break;
 
 		default:
-			Debug.Log("Error!");
-			Debug.Log(levelDatabaseScript.levelArray.Length);
-			Debug.Log(levelDatabaseScript.currentLevel);
-			Debug.Log(levelDatabaseScript.currentLevelPhase);
+			Debug.LogError("Error!\n" + "Array Lenght: " + levelDatabaseScript.levelArray.Length 
+			               + "\n" + "Current Level: " + levelDatabaseScript.currentLevel
+			               + "\n" + "Current Level Phase: " + levelDatabaseScript.currentLevelPhase);
 			break;
 		}
 	}
@@ -68,6 +67,7 @@ public class SpawnEnemy : MonoBehaviour {
 			levelDatabaseScript.currentLevelPhase = 0;
 			Debug.Log("Level: " + levelDatabaseScript.currentLevel);
 			phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase];
+			Application.LoadLevel("Level2");
 		}
 		else
 		{
@@ -82,11 +82,26 @@ public class SpawnEnemy : MonoBehaviour {
 
 	void spawnEnemy()
 	{
-		Debug.Log("Entered spawnEnemy!");
+		//Debug.Log("Entered spawnEnemy!");
 		whichLevel();
 		for(int i = 0; i < phaseTotal/2; i++)
 		{
-			enemyInstance = (GameObject)Instantiate(enemyPrefab, transform.position, Quaternion.identity);
+			if(levelDatabaseScript.currentLevelPhase == levelDatabaseScript.levelArray.Length - 1)
+			{
+				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyPrefabBoss1, transform.position, Quaternion.identity);
+			}
+			else if(i < phaseTotal/2 - 1)
+			{
+				//Debug.Log("Spawned a basic!");
+				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyPrefabBasic, transform.position, Quaternion.identity);
+				enemyInstance.name = "Enemy01";
+			}
+			else
+			{
+				//Debug.Log ("Spawned a cone!");
+				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyPrefabCone, transform.position, Quaternion.identity);
+				enemyInstance.name = "Enemy02";
+			}
 			enemyInstance.transform.parent = transform;
 		}
 	}

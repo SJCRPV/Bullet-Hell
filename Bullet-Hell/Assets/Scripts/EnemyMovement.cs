@@ -5,6 +5,7 @@ public class EnemyMovement : MonoBehaviour {
 
 	SpawnEnemy spawnEnemyScript;
 	Ballistics ballisticsScript;
+	ConePattern conePatternScript;
 
 	public float speed;
 
@@ -22,7 +23,30 @@ public class EnemyMovement : MonoBehaviour {
 		else
 		{
 			isMoving = false;
-			ballisticsScript.enabled = true;
+			if(gameObject.name == GameObject.Find("Enemy01").name)
+			{
+				ballisticsScript.enabled = true;
+			}
+			else if(gameObject.name == GameObject.Find("Enemy02").name)
+			{
+				conePatternScript.enabled = true;
+			}
+		}
+	}
+
+	private void whichComponentsToGet()
+	{
+		if(gameObject.tag == "Basic")
+		{
+			//Debug.Log("Got a basic here!");
+			ballisticsScript = GetComponent<Ballistics>();
+			ballisticsScript.enabled = false;
+		}
+		else if(gameObject.tag == "Cone")
+		{
+			//Debug.Log("Got a cone here!");
+			conePatternScript = GetComponent<ConePattern>();
+			conePatternScript.enabled = false;
 		}
 	}
 
@@ -31,19 +55,19 @@ public class EnemyMovement : MonoBehaviour {
 		isMoving = true;
 		if(gameObject.transform.parent == GameObject.Find("EnemySpawnPoint1").transform)
 		{
-			endPosition = GameObject.Find("EnemyEndPoint1").transform.position + spawnEnemyScript.endPositionAdjustment();
+			endPosition = GameObject.Find("EnemyEndPoint1").transform.position + spawnEnemyScript.adjustmentToEndPosition();
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
 		else if(gameObject.transform.parent == GameObject.Find("EnemySpawnPoint2").transform)
 		{
-			endPosition = GameObject.Find("EnemyEndPoint2").transform.position - spawnEnemyScript.endPositionAdjustment();
+			endPosition = GameObject.Find("EnemyEndPoint2").transform.position - spawnEnemyScript.adjustmentToEndPosition();
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
 		else
 		{
-			Debug.Log("I didn't find my parent!");
+			Debug.LogError("I didn't find my parent!");
 		}
 	}
 
@@ -52,8 +76,7 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		startingPosition = transform.position;
 		spawnEnemyScript = GetComponentInParent<SpawnEnemy>();
-		ballisticsScript = GetComponent<Ballistics>();
-		ballisticsScript.enabled = false;
+		whichComponentsToGet();
 		whereTo();
 	}
 	
