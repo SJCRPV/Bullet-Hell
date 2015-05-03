@@ -7,27 +7,50 @@ public class Boss1Ballistics : MonoBehaviour {
 	public float cooldownTimer;
 	public int cooldownRoundLimiter;
 	public float innerCooldownTimer;
+	public float angleDispersion;
 
 	private float cooldownTimerStore;
 	private Vector3 offset = new Vector3(0, 0.5f, 0);
 	private float innerCooldownTimerStore;
 	private GameObject bulletInstance;
 	private Quaternion bulletRotation;
-
+	private int cooldownRoundLimiterStore;
+	
 	void Fire()
 	{
-		for(; cooldownRoundLimiter > 0; innerCooldownTimer -= Time.deltaTime)
+		Debug.Log("Fired!");
+		for(int i = 0; i < 15; i++)
 		{
-			if(innerCooldownTimer <= 0)
+			if(i == 7)
 			{
-				int angleJump = -160;
-				for(int i = 0; i <= 15; i++)
-				{
-					bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + angleJump, transform.rotation.w);
-					bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset , bulletRotation);
-				}
-				innerCooldownTimer = innerCooldownTimerStore;
-				cooldownRoundLimiter--;
+				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + 180, transform.rotation.w);
+			}
+			else if(i < 7)
+			{
+				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z - (angleDispersion + i), transform.rotation.w);
+			}
+			else if(i > 7)
+			{
+				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + (angleDispersion + (i - 7)), transform.rotation.w);
+			}
+
+			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset , bulletRotation);
+			bulletInstance.gameObject.layer = 11;
+		}
+	}
+
+	void FirePattern()
+	{
+		innerCooldownTimer -= Time.deltaTime;
+		if(innerCooldownTimer <= 0)
+		{
+			Fire();
+			cooldownRoundLimiter--;
+			innerCooldownTimer = innerCooldownTimerStore;
+			if(cooldownRoundLimiter <= 0)
+			{
+				cooldownRoundLimiter = cooldownRoundLimiterStore;
+				cooldownTimer = cooldownTimerStore;
 			}
 		}
 	}
@@ -36,15 +59,15 @@ public class Boss1Ballistics : MonoBehaviour {
 	void Start () {
 		cooldownTimerStore = cooldownTimer;
 		innerCooldownTimerStore = innerCooldownTimer;
+		cooldownRoundLimiterStore = cooldownRoundLimiter;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		cooldownTimer -= Time.deltaTime;
-
 		if(cooldownTimer <= 0)
 		{
-			Fire();
+			FirePattern();
 		}
 	}
 }
