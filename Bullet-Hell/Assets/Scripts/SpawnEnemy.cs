@@ -88,6 +88,7 @@ Look for a better name*/
 		{
 			if(levelDatabaseScript.currentLevelPhase == levelDatabaseScript.levelArray.Length - 1)
 			{
+				Debug.Log ("spawning boss1");
 				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyPrefabBoss1, transform.position, Quaternion.identity);
 			}
 			else if(i < phaseTotal/2 - 1)

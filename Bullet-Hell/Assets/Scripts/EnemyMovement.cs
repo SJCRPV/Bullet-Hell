@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour {
 	SpawnEnemy spawnEnemyScript;
 	Ballistics ballisticsScript;
 	ConePattern conePatternScript;
+	Boss1Ballistics boss1PatternScript;
 
 	public float speed;
 
@@ -48,6 +49,12 @@ public class EnemyMovement : MonoBehaviour {
 			conePatternScript = GetComponent<ConePattern>();
 			conePatternScript.enabled = false;
 		}
+		else if(gameObject.tag == "Boss")
+		{
+			//Debug.Log("Got a boss here!");
+			boss1PatternScript = GetComponent<Boss1Ballistics>();
+			boss1PatternScript.enabled = false;
+		}
 	}
 
 	private void whereTo()
@@ -62,6 +69,12 @@ public class EnemyMovement : MonoBehaviour {
 		else if(gameObject.transform.parent == GameObject.Find("EnemySpawnPoint2").transform)
 		{
 			endPosition = GameObject.Find("EnemyEndPoint2").transform.position - spawnEnemyScript.adjustmentToEndPosition();
+			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
+			//Debug.Log("isMoving is " + isMoving);
+		}
+		else if(gameObject.transform.parent = GameObject.Find("BossSpawnPoint").transform)
+		{
+			endPosition = GameObject.Find("BossEndPoint").transform.position;
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
