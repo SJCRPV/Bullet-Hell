@@ -4,6 +4,7 @@ using System.Collections;
 public class SpawnEnemy : MonoBehaviour {
 
 	LevelDatabase levelDatabaseScript;
+	SpawnBoss spawnBossScript;
 	public float newPhaseTimer;
 
 	private GameObject enemyInstance;
@@ -86,12 +87,7 @@ Look for a better name*/
 		whichLevel();
 		for(int i = 0; i < phaseTotal/2; i++)
 		{
-			if(levelDatabaseScript.currentLevelPhase == levelDatabaseScript.levelArray.Length - 1)
-			{
-				Debug.Log ("spawning boss1");
-				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyPrefabBoss1, transform.position, Quaternion.identity);
-			}
-			else if(i < phaseTotal/2 - 1)
+			if(i < phaseTotal/2 - 1)
 			{
 				//Debug.Log("Spawned a basic!");
 				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyPrefabBasic, transform.position, Quaternion.identity);
@@ -110,6 +106,7 @@ Look for a better name*/
 	// Use this for initialization
 	void Start () {
 		levelDatabaseScript = GetComponent<LevelDatabase>();
+		spawnBossScript = GetComponent<SpawnBoss> ();
 		//Temporary until you create the menu
 		currentLevel = 1;
 		newPhaseTimerStore = newPhaseTimer;
@@ -123,7 +120,14 @@ Look for a better name*/
 		if(newPhaseTimer <= 0)
 		{
 			moveToNextPhase();
-			spawnEnemy();
+			if(levelDatabaseScript.currentLevelPhase != levelDatabaseScript.levelArray.Length - 1)
+			{
+				spawnEnemy();
+			}
+			else
+			{
+				spawnBossScript.spawnBoss();
+			}
 		}
 	}
 }
