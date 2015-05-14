@@ -64,18 +64,20 @@ Look for a better name*/
 	{
 		if(levelDatabaseScript.currentLevelPhase > levelDatabaseScript.levelArray.Length)
 		{
-			levelDatabaseScript.currentLevel++;
-			levelDatabaseScript.currentLevelPhase = 0;
-			Debug.Log("Level: " + levelDatabaseScript.currentLevel);
-			phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase];
-			Application.LoadLevel("Level2");
+			if(this.transform.childCount == 0 && GameObject.Find("BosSpawnPoint").transform.childCount == 0)
+			{
+				levelDatabaseScript.currentLevel++;
+				levelDatabaseScript.currentLevelPhase = 0;
+				Debug.Log("Level: " + levelDatabaseScript.currentLevel);
+				phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase];
+				Application.LoadLevel("Level2");
+			}
 		}
 		else
 		{
 			levelDatabaseScript.currentLevelPhase++;
 			Debug.Log("Phase: " + levelDatabaseScript.currentLevelPhase);
 			phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase];
-
 		}
 
 		newPhaseTimer = newPhaseTimerStore;
@@ -123,10 +125,6 @@ Look for a better name*/
 			if(levelDatabaseScript.currentLevelPhase != levelDatabaseScript.levelArray.Length - 1)
 			{
 				spawnEnemy();
-			}
-			else
-			{
-				spawnBossScript.spawnBoss();
 			}
 		}
 	}

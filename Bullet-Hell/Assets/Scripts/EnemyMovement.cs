@@ -9,13 +9,40 @@ public class EnemyMovement : MonoBehaviour {
 	Boss1Ballistics boss1PatternScript;
 
 	public float speed;
+	public float timerUntilObjectLeaves;
 
 	private Vector3 startingPosition;
 	private Vector3 endPosition;
 	private bool isMoving;
+	private bool leftTheStage;
+	private bool isShooting;
+	private Transform spawnPoint1;
+	private Transform spawnPoint2;
+	private Transform leavingPoint1;
+	private Transform leavingPoint2;
+	private Transform endPoint1;
+	private Transform endPoint2;
+
+	private void swapShootingStatus()
+	{
+		isShooting = !isShooting;
+		if(gameObject.name == GameObject.Find("Enemy01").name)
+		{
+			ballisticsScript.enabled = isShooting;
+		}
+		else if(gameObject.name == GameObject.Find("Enemy02").name)
+		{
+			conePatternScript.enabled = isShooting;
+		}
+		else if(gameObject.name == GameObject.Find("Boss1").name)
+		{
+			boss1PatternScript.enabled = true;
+		}
+	}
 
 	private void moveObject()
 	{
+		swapShootingStatus();
 		startingPosition = transform.position;
 		if( transform.position != endPosition)
 		{
@@ -24,19 +51,13 @@ public class EnemyMovement : MonoBehaviour {
 		else
 		{
 			isMoving = false;
-			if(gameObject.name == GameObject.Find("Enemy01").name)
-			{
-				ballisticsScript.enabled = true;
-			}
-			else if(gameObject.name == GameObject.Find("Enemy02").name)
-			{
-				conePatternScript.enabled = true;
-			}
+			swapShootingStatus();
 		}
 	}
 
 	private void whichComponentsToGet()
 	{
+		isShooting = false;
 		if(gameObject.tag == "Basic")
 		{
 			//Debug.Log("Got a basic here!");
@@ -60,15 +81,15 @@ public class EnemyMovement : MonoBehaviour {
 	private void whereTo()
 	{
 		isMoving = true;
-		if(gameObject.transform.parent == GameObject.Find("EnemySpawnPoint1").transform)
+		if(gameObject.transform.parent == spawnPoint1)
 		{
-			endPosition = GameObject.Find("EnemyEndPoint1").transform.position + spawnEnemyScript.adjustmentToEndPosition();
+			endPosition = endPoint1.position + spawnEnemyScript.adjustmentToEndPosition();
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
-		else if(gameObject.transform.parent == GameObject.Find("EnemySpawnPoint2").transform)
+		else if(gameObject.transform.parent == spawnPoint2)
 		{
-			endPosition = GameObject.Find("EnemyEndPoint2").transform.position - spawnEnemyScript.adjustmentToEndPosition();
+			endPosition = endPoint2.position - spawnEnemyScript.adjustmentToEndPosition();
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
@@ -84,11 +105,31 @@ public class EnemyMovement : MonoBehaviour {
 		}
 	}
 
+	private void backTo()
+	{
+		isMoving = true;
+		leftTheStage = true;
+		if(gameObject.transform.parent == spawnPoint1)
+		{
+			endPosition = leavingPoint1.position;
+		}
+		if(gameObject.transform.parent == spawnPoint2)
+		{
+			endPosition = leavingPoint2.position;
+		}
+	}
+
 	// Use this for initialization
 	void Start () 
 	{
 		startingPosition = transform.position;
 		spawnEnemyScript = GetComponentInParent<SpawnEnemy>();
+		spawnPoint1 = GameObject.Find("EnemySpawnPoint1").transform;
+		spawnPoint2 = GameObject.Find("EnemySpawnPoint2").transform;
+		leavingPoint1 = GameObject.Find("LeavingPoint1").transform;
+		leavingPoint2 = GameObject.Find("LeavingPoint2").transform;
+		endPoint1 = GameObject.Find("EnemyEndPoint1").transform;
+		endPoint2 = GameObject.Find("EnemyEndPoint2").transform;
 		whichComponentsToGet();
 		whereTo();
 	}
@@ -99,6 +140,20 @@ public class EnemyMovement : MonoBehaviour {
 		if(isMoving)
 		{
 			moveObject();
+		}
+		else
+		{
+			timerUntilObjectLeaves -= Time.deltaTime;
+
+			if(timerUntilObjectLeaves <= 0)
+			{
+				backTo();
+			}
+		}
+
+		if(leftTheStage == true && isMoving == false)
+		{
+			Destroy(gameObject);
 		}
 	}
 }

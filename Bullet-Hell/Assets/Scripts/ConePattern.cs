@@ -17,6 +17,7 @@ public class ConePattern : MonoBehaviour {
 	{
 		for(int i = 0; i <= 6; i++)
 		{
+			//Redo this code. Boss1Ballistics is a good example.
 			switch(i)
 			{
 			case 0:
@@ -48,15 +49,15 @@ public class ConePattern : MonoBehaviour {
 				break;
 
 			default:
-				Debug.Log("You got a number you were not supposed to. It's: " + i);
+				Debug.LogError("You got a number you were not supposed to. It's: " + i);
 				break;
 			}
 			
 			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset, bulletRotation);
+			bulletInstance.gameObject.layer = 11;
 		}
 
 		cooldownTimer = cooldownTimerStore;
-		bulletInstance.gameObject.layer = 11;
 	}
 
 	// Use this for initialization
