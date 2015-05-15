@@ -4,7 +4,7 @@ using System.Collections;
 public class MoveForward : MonoBehaviour {
 
 	public float bulletSpeed;
-	float deathTimer = 2.5f;
+	public float deathTimer;
 	
 	// Update is called once per frame
 	void Update () {

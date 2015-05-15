@@ -18,20 +18,21 @@ public class Boss1Ballistics : MonoBehaviour {
 	
 	void Fire()
 	{
+		float degToRad = 180;
 		Debug.Log("Fired!");
 		for(int i = 0; i < 15; i++)
 		{
 			if(i == 7)
 			{
-				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + 180, transform.rotation.w);
+				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + degToRad * Mathf.Deg2Rad, transform.rotation.w);
 			}
 			else if(i < 7)
 			{
-				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z - (angleDispersion + i), transform.rotation.w);
+				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z - (Mathf.Sin(angleDispersion * i) + degToRad * Mathf.Deg2Rad), transform.rotation.w);
 			}
 			else if(i > 7)
 			{
-				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + (angleDispersion + (i - 7)), transform.rotation.w);
+				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + (Mathf.Sin(angleDispersion * (i - 7)) + degToRad * Mathf.Deg2Rad), transform.rotation.w);
 			}
 
 			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset , bulletRotation);

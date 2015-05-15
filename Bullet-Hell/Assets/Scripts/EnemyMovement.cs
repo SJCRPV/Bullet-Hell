@@ -22,19 +22,20 @@ public class EnemyMovement : MonoBehaviour {
 	private Transform leavingPoint2;
 	private Transform endPoint1;
 	private Transform endPoint2;
+	private float timerUntilObjectLeavesStore;
 
 	private void swapShootingStatus()
 	{
 		isShooting = !isShooting;
-		if(gameObject.name == GameObject.Find("Enemy01").name)
+		if(gameObject.tag == "Basic")
 		{
 			ballisticsScript.enabled = isShooting;
 		}
-		else if(gameObject.name == GameObject.Find("Enemy02").name)
+		else if(gameObject.tag == "Cone")
 		{
 			conePatternScript.enabled = isShooting;
 		}
-		else if(gameObject.name == GameObject.Find("Boss1").name)
+		else if(gameObject.tag == "Boss1")
 		{
 			boss1PatternScript.enabled = true;
 		}
@@ -42,11 +43,12 @@ public class EnemyMovement : MonoBehaviour {
 
 	private void moveObject()
 	{
-		swapShootingStatus();
 		startingPosition = transform.position;
 		if( transform.position != endPosition)
 		{
 			transform.position = Vector3.MoveTowards(startingPosition, endPosition, speed * Time.deltaTime);
+			isShooting = true;
+			swapShootingStatus();
 		}
 		else
 		{
@@ -57,7 +59,6 @@ public class EnemyMovement : MonoBehaviour {
 
 	private void whichComponentsToGet()
 	{
-		isShooting = false;
 		if(gameObject.tag == "Basic")
 		{
 			//Debug.Log("Got a basic here!");
@@ -130,6 +131,8 @@ public class EnemyMovement : MonoBehaviour {
 		leavingPoint2 = GameObject.Find("LeavingPoint2").transform;
 		endPoint1 = GameObject.Find("EnemyEndPoint1").transform;
 		endPoint2 = GameObject.Find("EnemyEndPoint2").transform;
+		timerUntilObjectLeavesStore = timerUntilObjectLeaves;
+		isShooting = false;
 		whichComponentsToGet();
 		whereTo();
 	}
@@ -148,6 +151,7 @@ public class EnemyMovement : MonoBehaviour {
 			if(timerUntilObjectLeaves <= 0)
 			{
 				backTo();
+				timerUntilObjectLeaves = timerUntilObjectLeavesStore;
 			}
 		}
 
