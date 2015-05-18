@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LevelDatabase : MonoBehaviour {
 
-	public int currentLevel;
+	public int currentLevel = 0;
 	public int currentLevelPhase;
 
 	public GameObject enemyPrefabBasic;
@@ -11,6 +11,11 @@ public class LevelDatabase : MonoBehaviour {
 	public GameObject enemyPrefabBoss1;
 
 	public int[] levelArray = new int[5];
+
+	void OnLevelWasLoaded(int currentLevel)
+	{
+
+	}
 
 	public void Level0()
 	{

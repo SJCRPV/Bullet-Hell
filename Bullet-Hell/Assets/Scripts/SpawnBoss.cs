@@ -15,6 +15,7 @@ public class SpawnBoss : MonoBehaviour {
 		Debug.Log ("spawning boss1");
 		enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyPrefabBoss1, GameObject.Find("BossSpawnPoint").transform.position, Quaternion.identity);
 		bossSpawned = true;
+		enemyInstance.name = "Boss";
 	}
 
 	// Use this for initialization

@@ -9,7 +9,6 @@ public class SpawnEnemy : MonoBehaviour {
 
 	private GameObject enemyInstance;
 	private int currentLevel;
-	private int currentPhase;
 	private int phaseTotal;
 	private float newPhaseTimerStore;
 
@@ -112,7 +111,6 @@ Look for a better name*/
 		//Temporary until you create the menu
 		currentLevel = 1;
 		newPhaseTimerStore = newPhaseTimer;
-		currentPhase = 0;
 		spawnEnemy();
 	}
 	

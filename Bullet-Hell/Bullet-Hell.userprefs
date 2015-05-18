@@ -1,8 +1,9 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\EnemyMovement.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\LevelDatabase.cs">
     <Files>
-      <File FileName="Assets\Scripts\EnemyMovement.cs" Line="101" Column="43" />
+      <File FileName="Assets\Scripts\CanMoveToNewLevel.cs" Line="14" Column="36" />
+      <File FileName="Assets\Scripts\LevelDatabase.cs" Line="17" Column="3" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>

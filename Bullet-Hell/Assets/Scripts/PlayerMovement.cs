@@ -5,11 +5,9 @@ public class PlayerMovement : MonoBehaviour {
 	
 	public float speed = 5f;
 	Renderer playerRend;
-	static PlayerBallistics playerBallisticsScript;
 
 	void Start()
 	{
-		playerBallisticsScript = gameObject.GetComponent<PlayerBallistics>();
 		playerRend = GetComponent<SpriteRenderer>();
 	}
 
