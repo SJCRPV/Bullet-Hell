@@ -5,11 +5,11 @@ public class PlayerMovement : MonoBehaviour {
 	
 	public float speed = 5f;
 	Renderer playerRend;
-	static Ballistics fireScript;
+	static PlayerBallistics playerBallisticsScript;
 
 	void Start()
 	{
-		fireScript = gameObject.GetComponent<Ballistics>();
+		playerBallisticsScript = gameObject.GetComponent<PlayerBallistics>();
 		playerRend = GetComponent<SpriteRenderer>();
 	}
 
@@ -60,19 +60,8 @@ public class PlayerMovement : MonoBehaviour {
 
 	}
 
-	void FireAtWill()
-	{
-		//Debug.Log("You rang?");
-		if(Input.GetButton("Fire1"))
-		{
-			//Debug.Log("Fired");
-			fireScript.Fire();
-		}
-	}
-
 	// Update is called once per frame
 	void Update () {
 		Movement();
-		FireAtWill();
 	}
 }

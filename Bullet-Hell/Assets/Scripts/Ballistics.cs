@@ -11,6 +11,14 @@ public class Ballistics : MonoBehaviour {
 	private GameObject bulletInstance;
 	private Transform objectParent;
 
+	public void Fire()
+	{
+		//Debug.Log("Dakka Dakka");
+		bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset, new Quaternion(0,0,180,0));
+		cooldownTimer = cooldownTimerStore;
+		bulletInstance.gameObject.layer = 11;
+	}
+
 	// Use this for initialization
 	void Start () {
 		cooldownTimer = cooldownTimerStore;
@@ -21,29 +29,9 @@ public class Ballistics : MonoBehaviour {
 	void Update () 
 	{
 		cooldownTimer -= Time.deltaTime;
-		if( cooldownTimer <= 0)
+		if(cooldownTimer <= 0)
 		{
 			Fire();
-		}
-	}
-
-	public void Fire()
-	{
-		//Debug.Log("Dakka Dakka");
-		//Player
-		if(gameObject.layer == 8)
-		{
-			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position + offset, Quaternion.identity);
-			cooldownTimer = cooldownTimerStore;
-			bulletInstance.gameObject.layer = 10;
-		}
-
-		//Enemy
-		else if(gameObject.layer == 9)
-		{
-			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset, new Quaternion(0,0,180,0));
-			cooldownTimer = cooldownTimerStore;
-			bulletInstance.gameObject.layer = 11;
 		}
 	}
 }
