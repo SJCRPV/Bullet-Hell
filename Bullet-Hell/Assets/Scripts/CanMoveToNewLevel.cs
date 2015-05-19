@@ -5,7 +5,7 @@ public class CanMoveToNewLevel : MonoBehaviour {
 
 	private bool detectedBoss;
 	private bool bossIsAlive;
-	private float timeUntilNextLevel;
+	public float timeUntilNextLevel;
 
 	void loadNextLevel()
 	{

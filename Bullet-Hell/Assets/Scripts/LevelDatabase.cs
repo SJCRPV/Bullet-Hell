@@ -50,8 +50,8 @@ public class LevelDatabase : MonoBehaviour {
 	}
 	public void Level2()
 	{
-		currentLevel = 2;
 		Debug.Log("You loaded level 2!");
+		currentLevel = 2;
 	}
 
 	// Use this for initialization

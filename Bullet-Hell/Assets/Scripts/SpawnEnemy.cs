@@ -34,30 +34,30 @@ Look for a better name*/
 		return addOn;
 	}
 
-	void whichLevel()
-	{
-		switch(currentLevel)
-		{
-		case 0:
-			levelDatabaseScript.Level0();
-			break;
-
-		case 1:
-			levelDatabaseScript.Level1();
-			phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase];
-			break;
-
-		case 2:
-			levelDatabaseScript.Level2();
-			break;
-
-		default:
-			Debug.LogError("Error!\n" + "Array Lenght: " + levelDatabaseScript.levelArray.Length 
-			               + "\n" + "Current Level: " + levelDatabaseScript.currentLevel
-			               + "\n" + "Current Level Phase: " + levelDatabaseScript.currentLevelPhase);
-			break;
-		}
-	}
+//	void whichLevel()
+//	{
+//		switch(currentLevel)
+//		{
+//		case 0:
+//			levelDatabaseScript.Level0();
+//			break;
+//
+//		case 1:
+//			levelDatabaseScript.Level1();
+//			phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase];
+//			break;
+//
+//		case 2:
+//			levelDatabaseScript.Level2();
+//			break;
+//
+//		default:
+//			Debug.LogError("Error!\n" + "Array Lenght: " + levelDatabaseScript.levelArray.Length 
+//			               + "\n" + "Current Level: " + levelDatabaseScript.currentLevel
+//			               + "\n" + "Current Level Phase: " + levelDatabaseScript.currentLevelPhase);
+//			break;
+//		}
+//	}
 
 	void moveToNextPhase()
 	{
@@ -85,7 +85,7 @@ Look for a better name*/
 	void spawnEnemy()
 	{
 		//Debug.Log("Entered spawnEnemy!");
-		whichLevel();
+		//whichLevel();
 		for(int i = 0; i < phaseTotal/2; i++)
 		{
 			if(i < phaseTotal/2 - 1)
@@ -109,7 +109,7 @@ Look for a better name*/
 		levelDatabaseScript = GetComponent<LevelDatabase>();
 		spawnBossScript = GetComponent<SpawnBoss> ();
 		//Temporary until you create the menu
-		currentLevel = 1;
+		//currentLevel = 1;
 		newPhaseTimerStore = newPhaseTimer;
 		spawnEnemy();
 	}
