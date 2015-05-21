@@ -6,12 +6,14 @@ public class CanMoveToNewLevel : MonoBehaviour {
 	private bool detectedBoss;
 	private bool bossIsAlive;
 	public float timeUntilNextLevel;
+	private int currentLevel;
 
 	void loadNextLevel()
 	{
+		currentLevel++;
 		if (timeUntilNextLevel <= 0) 
 		{
-			Application.LoadLevel("Level2");
+			Application.LoadLevel(currentLevel);
 		}
 	}
 
@@ -32,6 +34,7 @@ public class CanMoveToNewLevel : MonoBehaviour {
 	void Start () {
 		detectedBoss = false;
 		bossIsAlive = false;
+		currentLevel = 1;
 	}
 	
 	// Update is called once per frame

@@ -15,36 +15,18 @@ public class Boss1Ballistics : MonoBehaviour {
 	private GameObject bulletInstance;
 	private Quaternion bulletRotation;
 	private int cooldownRoundLimiterStore;
+	private float angleDispersionStore;
 	
 	void Fire()
 	{
-		float angleInDeg = 180;
-		for(int i = 0; i < 21; i++)
+		for (; angleDispersion <= 10; angleDispersion += angleDispersionStore) 
 		{
-			if(i >= 7 && i < 10)
-			{
-				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + angleDispersion * (i - 6), transform.rotation.w);
-			}
-			else if(i >= 11 && i < 14)
-			{
-				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z - angleDispersion * (i - 10), transform.rotation.w);
-			}
-			else if(i == 10)
-			{
-				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + angleInDeg, transform.rotation.w);
-			}
-			else if(i < 7)
-			{
-				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z - (Mathf.Sin(angleDispersion * i) + angleInDeg * Mathf.Deg2Rad), transform.rotation.w);
-			}
-			else if(i >= 14)
-			{
-				bulletRotation = new Quaternion(transform.rotation.x, transform.rotation.y, transform.rotation.z + (Mathf.Sin(angleDispersion * (i - 14)) + angleInDeg * Mathf.Deg2Rad), transform.rotation.w);
-			}
-
-			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset , bulletRotation);
+			bulletRotation = Quaternion.identity;
+			bulletRotation.eulerAngles = new Vector3(0,0,angleDispersion);
+			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset, bulletRotation);
 			bulletInstance.gameObject.layer = 11;
 		}
+		angleDispersion = angleDispersionStore;
 	}
 
 	void FirePattern()
@@ -68,6 +50,7 @@ public class Boss1Ballistics : MonoBehaviour {
 		cooldownTimerStore = cooldownTimer;
 		innerCooldownTimerStore = innerCooldownTimer;
 		cooldownRoundLimiterStore = cooldownRoundLimiter;
+		angleDispersionStore = angleDispersion;
 	}
 	
 	// Update is called once per frame
