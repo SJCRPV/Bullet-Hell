@@ -2,31 +2,20 @@
 using System.Collections;
 
 public class Boss1Ballistics : MonoBehaviour {
-
-	public GameObject bulletPrefab;
+	
 	public float cooldownTimer;
 	public int cooldownRoundLimiter;
 	public float innerCooldownTimer;
-	public float angleDispersion;
 
+	private Boss1_Pattern1 boss1_Pattern1Script;
 	private float cooldownTimerStore;
 	private Vector3 offset = new Vector3(0, 0.5f, 0);
 	private float innerCooldownTimerStore;
-	private GameObject bulletInstance;
-	private Quaternion bulletRotation;
 	private int cooldownRoundLimiterStore;
-	private float angleDispersionStore;
 	
 	void Fire()
 	{
-		for (; angleDispersion <= 10; angleDispersion += angleDispersionStore) 
-		{
-			bulletRotation = Quaternion.identity;
-			bulletRotation.eulerAngles = new Vector3(0,0,angleDispersion);
-			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset, bulletRotation);
-			bulletInstance.gameObject.layer = 11;
-		}
-		angleDispersion = angleDispersionStore;
+		boss1_Pattern1Script.Fire();
 	}
 
 	void FirePattern()
@@ -50,7 +39,7 @@ public class Boss1Ballistics : MonoBehaviour {
 		cooldownTimerStore = cooldownTimer;
 		innerCooldownTimerStore = innerCooldownTimer;
 		cooldownRoundLimiterStore = cooldownRoundLimiter;
-		angleDispersionStore = angleDispersion;
+		boss1_Pattern1Script = GetComponent<Boss1_Pattern1>();
 	}
 	
 	// Update is called once per frame
