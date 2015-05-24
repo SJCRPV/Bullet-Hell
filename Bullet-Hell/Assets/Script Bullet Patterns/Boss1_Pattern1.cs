@@ -5,10 +5,16 @@ public class Boss1_Pattern1 : MonoBehaviour {
 
 	public GameObject bulletPrefab;
 	public float angleDispersion;
+	public float cooldownTimer;
+	public int cooldownRoundLimiter;
+	public float innerCooldownTimer;
 
 	private float angleDispersionStore;
 	private GameObject bulletInstance;
 	private Quaternion bulletRotation;
+	private float cooldownTimerStore;
+	private float innerCooldownTimerStore;
+	private int cooldownRoundLimiterStore;
 
 	public void Fire()
 	{
@@ -22,13 +28,36 @@ public class Boss1_Pattern1 : MonoBehaviour {
 		angleDispersion = angleDispersionStore;
 	}
 
+	void FirePattern()
+	{
+		innerCooldownTimer -= Time.deltaTime;
+		if(innerCooldownTimer <= 0)
+		{
+			Fire();
+			cooldownRoundLimiter--;
+			innerCooldownTimer = innerCooldownTimerStore;
+			if(cooldownRoundLimiter <= 0)
+			{
+				cooldownRoundLimiter = cooldownRoundLimiterStore;
+				cooldownTimer = cooldownTimerStore;
+			}
+		}
+	}
+
 	// Use this for initialization
 	void Start () {
 		angleDispersionStore = angleDispersion;
+		cooldownTimerStore = cooldownTimer;
+		innerCooldownTimerStore = innerCooldownTimer;
+		cooldownRoundLimiterStore = cooldownRoundLimiter;
 	}
 	
 	// Update is called once per frame
 	void Update () {
-	
+		cooldownTimer -= Time.deltaTime;
+		if(cooldownTimer <= 0)
+		{
+			FirePattern();
+		}
 	}
 }

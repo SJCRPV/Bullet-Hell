@@ -6,9 +6,9 @@ public class LevelDatabase : MonoBehaviour {
 	public int currentLevel;
 	public int currentLevelPhase;
 
-	public GameObject enemyPrefabBasic;
-	public GameObject enemyPrefabCone;
-	public GameObject enemyPrefabBoss1;
+	public GameObject enemyBasic;
+	public GameObject enemyCone;
+	public GameObject enemyBoss1;
 
 	public int[] levelArray = new int[5];
 

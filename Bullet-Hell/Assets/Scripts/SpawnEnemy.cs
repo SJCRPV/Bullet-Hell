@@ -14,23 +14,23 @@ public class SpawnEnemy : MonoBehaviour {
 
 /*Increments with enemy spawns.Resets at half-phase.Determines how much you add to endPos
 Look for a better name*/
-	private int adjustment;
+	private int endPosAdjustment;
 
 	public Vector3 adjustmentToEndPosition()
 	{
 		Vector3 addOn;
 		
-		if(adjustment * 0.8f > 5)
+		if(endPosAdjustment * 0.8f > 5)
 		{
-			adjustment = 0;
-			addOn = new Vector3( 0.8f * adjustment, 0.8f, 0);
+			endPosAdjustment = 0;
+			addOn = new Vector3( 0.8f * endPosAdjustment, 0.8f, 0);
 		}
 		else
 		{
-			addOn = new Vector3( 0.8f * adjustment, 0, 0);
+			addOn = new Vector3( 0.8f * endPosAdjustment, 0, 0);
 		}
 		
-		adjustment++;
+		endPosAdjustment++;
 		return addOn;
 	}
 
@@ -63,7 +63,7 @@ Look for a better name*/
 	{
 		if(levelDatabaseScript.currentLevelPhase > levelDatabaseScript.levelArray.Length)
 		{
-			if(this.transform.childCount == 0 && GameObject.Find("BosSpawnPoint").transform.childCount == 0)
+			if(this.transform.childCount == 0 && GameObject.Find("BossSpawnPoint").transform.childCount == 0)
 			{
 				levelDatabaseScript.currentLevel++;
 				levelDatabaseScript.currentLevelPhase = 0;
@@ -91,13 +91,13 @@ Look for a better name*/
 			if(i < phaseTotal/2 - 1)
 			{
 				//Debug.Log("Spawned a basic!");
-				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyPrefabBasic, transform.position, Quaternion.identity);
+				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyBasic, transform.position, Quaternion.identity);
 				enemyInstance.name = "Enemy01";
 			}
 			else
 			{
 				//Debug.Log ("Spawned a cone!");
-				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyPrefabCone, transform.position, Quaternion.identity);
+				enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyCone, transform.position, Quaternion.identity);
 				enemyInstance.name = "Enemy02";
 			}
 			enemyInstance.transform.parent = transform;

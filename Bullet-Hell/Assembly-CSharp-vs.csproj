@@ -47,7 +47,9 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Script Bullet Patterns\Boss1_Pattern1.cs" />
+     <Compile Include="Assets\Script Bullet Patterns\Boss1_Pattern2.cs" />
      <Compile Include="Assets\Script Bullet Patterns\ConePattern.cs" />
+     <Compile Include="Assets\Script Bullet Patterns\SUperSecretMurderousPattern.cs" />
      <Compile Include="Assets\Scripts\Ballistics.cs" />
      <Compile Include="Assets\Scripts\Boss1Ballistics.cs" />
      <Compile Include="Assets\Scripts\CanMoveToNewLevel.cs" />
@@ -63,7 +65,9 @@
      <Compile Include="Assets\Scripts\PlayerSpawn.cs" />
      <Compile Include="Assets\Scripts\ShowHitbox.cs" />
      <Compile Include="Assets\Scripts\SpawnBoss.cs" />
+     <Compile Include="Assets\Scripts\SpawnEnemies.cs" />
      <Compile Include="Assets\Scripts\SpawnEnemy.cs" />
+     <Compile Include="Assets\Scripts\TimedMoveForward.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

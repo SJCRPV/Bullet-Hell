@@ -2,52 +2,38 @@
 using System.Collections;
 
 public class Boss1Ballistics : MonoBehaviour {
-	
-	public float cooldownTimer;
-	public int cooldownRoundLimiter;
-	public float innerCooldownTimer;
 
 	private Boss1_Pattern1 boss1_Pattern1Script;
-	private float cooldownTimerStore;
-	private Vector3 offset = new Vector3(0, 0.5f, 0);
-	private float innerCooldownTimerStore;
-	private int cooldownRoundLimiterStore;
+	private Boss1_Pattern2 boss1_Pattern2Script;
+	private DamageHandler damageHandlerScript;
+	private int bossHP;
 	
 	void Fire()
 	{
-		boss1_Pattern1Script.Fire();
-	}
-
-	void FirePattern()
-	{
-		innerCooldownTimer -= Time.deltaTime;
-		if(innerCooldownTimer <= 0)
+		if(damageHandlerScript.getHealthPoints() >= bossHP/2)
 		{
-			Fire();
-			cooldownRoundLimiter--;
-			innerCooldownTimer = innerCooldownTimerStore;
-			if(cooldownRoundLimiter <= 0)
-			{
-				cooldownRoundLimiter = cooldownRoundLimiterStore;
-				cooldownTimer = cooldownTimerStore;
-			}
+			boss1_Pattern1Script.enabled = true;
+			boss1_Pattern2Script.enabled = false;
+		}
+		else if(damageHandlerScript.getHealthPoints() >= bossHP/4 && damageHandlerScript.getHealthPoints() < bossHP/2)
+		{
+			boss1_Pattern1Script.enabled = false;
+			boss1_Pattern2Script.enabled = true;
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
-		cooldownTimerStore = cooldownTimer;
-		innerCooldownTimerStore = innerCooldownTimer;
-		cooldownRoundLimiterStore = cooldownRoundLimiter;
 		boss1_Pattern1Script = GetComponent<Boss1_Pattern1>();
+		boss1_Pattern2Script = GetComponent<Boss1_Pattern2>();
+		damageHandlerScript = GetComponent<DamageHandler>();
+		boss1_Pattern1Script.enabled = false;
+		boss1_Pattern2Script.enabled = false;
+		bossHP = damageHandlerScript.getHealthPoints();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		cooldownTimer -= Time.deltaTime;
-		if(cooldownTimer <= 0)
-		{
-			FirePattern();
-		}
+		Fire();
 	}
 }

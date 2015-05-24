@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1432316846
+timeCreated: 1432387485
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -14,6 +14,7 @@ TextureImporter:
     21300014: Boss1_Bullet
     21300016: New Game
     21300018: Enemy03
+    21300020: Boss1_Bullet2
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -156,6 +157,16 @@ TextureImporter:
         y: 420
         width: 104
         height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Boss1_Bullet2
+      rect:
+        serializedVersion: 2
+        x: 848
+        y: 249
+        width: 13
+        height: 37
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

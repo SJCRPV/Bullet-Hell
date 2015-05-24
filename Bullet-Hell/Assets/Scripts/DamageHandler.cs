@@ -7,7 +7,7 @@ public class DamageHandler : MonoBehaviour {
 	//No idea what this is for
 	GameObject datObject;
 
-	public int healthPoints = 0;
+	public int healthPoints;
 	public float invincibilityTime;
 
 	private float invincibilityTimeStore;
