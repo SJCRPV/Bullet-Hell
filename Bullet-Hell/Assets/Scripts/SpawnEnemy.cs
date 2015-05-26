@@ -16,6 +16,11 @@ public class SpawnEnemy : MonoBehaviour {
 Look for a better name*/
 	private int endPosAdjustment;
 
+	public int getEndPosAdjustment()
+	{
+		return endPosAdjustment;
+	}
+
 	public Vector3 adjustmentToEndPosition()
 	{
 		Vector3 addOn;
