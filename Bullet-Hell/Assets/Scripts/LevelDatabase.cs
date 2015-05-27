@@ -34,7 +34,7 @@ public class LevelDatabase : MonoBehaviour {
 		Boss8,
 	}
 
-	public int[] levelArray = new int[5,15];
+	public int[,] levelArray = new int[5, 15];
 
 	void fillArray()
 	{
@@ -54,21 +54,21 @@ public class LevelDatabase : MonoBehaviour {
 						//When you figure out which enemies show up in which levels, re-do this
 						if(i > levelArray[0,0])
 						{
-							levelArray[0, i] = null;
+							levelArray[0, i] = 99;
 						}
 						else if(i % 4 != 0)
 						{
-							levelArray[0, i] = enemyList.Basic;
+							levelArray[0, i] = (int)enemyList.Basic;
 						}
 						else
 						{
-							levelArray[0, i] = enemyList.Cone;
+							levelArray[0, i] = (int)enemyList.Cone;
 						}
 					}
 					break;
 
 				case 4:
-					levelArray[0, 1] = enemyList.Boss1;
+					levelArray[0, 1] = (int)enemyList.Boss1;
 					break;
 				}
 			}

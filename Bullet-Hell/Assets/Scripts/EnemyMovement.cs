@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyMovement : MonoBehaviour {
 
-	SpawnEnemy spawnEnemyScript;
+	SpawnEnemies spawnEnemiesScript;
 	Ballistics ballisticsScript;
 	ConePattern conePatternScript;
 	Boss1Ballistics boss1PatternScript;
@@ -84,13 +84,13 @@ public class EnemyMovement : MonoBehaviour {
 		isMoving = true;
 		if(gameObject.transform.parent == spawnPoint1)
 		{
-			endPosition = endPoint1.position + spawnEnemyScript.adjustmentToEndPosition();
+			endPosition = endPoint1.position + spawnEnemiesScript.adjustmentToEndPosition();
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
 		else if(gameObject.transform.parent == spawnPoint2)
 		{
-			endPosition = endPoint2.position - spawnEnemyScript.adjustmentToEndPosition();
+			endPosition = endPoint2.position - spawnEnemiesScript.adjustmentToEndPosition();
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
@@ -124,7 +124,7 @@ public class EnemyMovement : MonoBehaviour {
 	void Start () 
 	{
 		startingPosition = transform.position;
-		spawnEnemyScript = GetComponentInParent<SpawnEnemy>();
+		spawnEnemiesScript = GetComponentInParent<SpawnEnemies>();
 		spawnPoint1 = GameObject.Find("EnemySpawnPoint1").transform;
 		spawnPoint2 = GameObject.Find("EnemySpawnPoint2").transform;
 		leavingPoint1 = GameObject.Find("LeavingPoint1").transform;
