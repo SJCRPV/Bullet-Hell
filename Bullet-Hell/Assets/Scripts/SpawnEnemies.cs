@@ -6,36 +6,13 @@ public class SpawnEnemies : MonoBehaviour {
 	LevelDatabase levelDatabaseScript;
 	SpawnBoss spawnBossScript;
 	public float newPhaseTimer;
+	public Vector3 startPosition;
 	
 	private GameObject enemyInstance;
 	private int currentLevel;
 	private int phaseTotal;
 	private int positionInPhase;
 	private float newPhaseTimerStore;
-	private Vector3 endPosition;
-	private Vector3 startPosition;
-
-	/*Increments with enemy spawns.Resets at half-phase.Determines how much you add to endPos
-Look for a better name*/
-	private int endPosAdjustment;
-
-	public Vector3 adjustmentToEndPosition()
-	{
-		Vector3 addOn;
-		
-		if(endPosAdjustment * 0.8f > 5)
-		{
-			endPosAdjustment = 0;
-			addOn = new Vector3( 0.8f * endPosAdjustment, 0.8f, 0);
-		}
-		else
-		{
-			addOn = new Vector3( 0.8f * endPosAdjustment, 0, 0);
-		}
-		
-		endPosAdjustment++;
-		return addOn;
-	}
 
 	void spawnEnemy(int objectToSpawn)
 	{
@@ -66,35 +43,35 @@ Look for a better name*/
 		spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, positionInPhase]);
 	}
 
-	void setDestination()
-	{
-		if(startPosition == this.transform.position)
-		{
-			endPosition = GameObject.Find("EnemyEndPoint1").transform.position + adjustmentToEndPosition();
-			Debug.Log("Ship number " + endPosAdjustment + " is moving to: " + endPosition);
-		}
-		else if(startPosition == GameObject.Find("EnemySpawnPoint2").transform.position)
-		{
-			endPosition = GameObject.Find("EnemyEndPoint2").transform.position - adjustmentToEndPosition();
-			Debug.Log("Ship number " + endPosAdjustment + " is moving to: " + endPosition);
-		}
-		else if(levelDatabaseScript.currentLevelPhase == 4)
-		{
-			endPosition = GameObject.Find("BossEndPoint").transform.position;
-		}
-		else
-		{
-			Debug.LogError("Ship number " + endPosAdjustment + " does not have a destination");
-		}
-		spawnPattern();
-	}
+//	void setDestination()
+//	{
+//		if(startPosition == this.transform.position)
+//		{
+//			endPosition = GameObject.Find("EnemyEndPoint1").transform.position + adjustmentToEndPosition();
+//			Debug.Log("Ship number " + endPosAdjustment + " is moving to: " + endPosition);
+//		}
+//		else if(startPosition == GameObject.Find("EnemySpawnPoint2").transform.position)
+//		{
+//			endPosition = GameObject.Find("EnemyEndPoint2").transform.position - adjustmentToEndPosition();
+//			Debug.Log("Ship number " + endPosAdjustment + " is moving to: " + endPosition);
+//		}
+//		else if(levelDatabaseScript.currentLevelPhase == 4)
+//		{
+//			endPosition = GameObject.Find("BossEndPoint").transform.position;
+//		}
+//		else
+//		{
+//			Debug.LogError("Ship number " + endPosAdjustment + " does not have a destination");
+//		}
+//		spawnPattern();
+//	}
 
 	void setStartingPoint()
 	{
 		if(levelDatabaseScript.currentLevelPhase == 4)
 		{
 			startPosition = GameObject.Find("BossSpawnPoint").transform.position;
-			setDestination();
+			spawnPattern();
 			return;
 		}
 		for(positionInPhase = 0; positionInPhase < phaseTotal; positionInPhase++)
@@ -107,7 +84,7 @@ Look for a better name*/
 			{
 				startPosition = GameObject.Find("EnemySpawnPoint2").transform.position;
 			}
-			setDestination();
+			spawnPattern();
 		}
 	}
 
@@ -125,7 +102,6 @@ Look for a better name*/
 	// Use this for initialization
 	void Start () {
 		levelDatabaseScript = GetComponent<LevelDatabase>();
-		spawnBossScript = GetComponent<SpawnBoss>();
 		newPhaseTimerStore = newPhaseTimer;
 		setStartingPoint();
 	}
