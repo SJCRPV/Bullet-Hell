@@ -13,9 +13,9 @@ public class LevelDatabase : MonoBehaviour {
 	public enum enemyList
 	{
 		//Change the names when you figure out what to call them
-		Basic,
-		Cone,
-		Alternate,
+		Basic = 0,
+		Cone = 1,
+		Alternate = 2,
 		Enemy4,
 		Enemy5,
 		Enemy6,
@@ -24,7 +24,7 @@ public class LevelDatabase : MonoBehaviour {
 		Enemy9,
 		Enemy10,
 		Enemy11,
-		Boss1,
+		Boss1 = 12,
 		Boss2,
 		Boss3,
 		Boss4,

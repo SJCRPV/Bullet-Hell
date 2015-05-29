@@ -104,20 +104,19 @@ Look for a better name*/
 	private void whereTo()
 	{
 		isMoving = true;
-		Vector3 tempPosition = gameObject.transform.position;
-		if(tempPosition == spawnPoint1.position)
+		if(gameObject.transform.parent == spawnPoint1.transform)
 		{
 			endPosition = endPoint1.position + adjustmentToEndPosition();
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
-		else if(tempPosition == spawnPoint2.position)
+		else if(gameObject.transform.parent == spawnPoint2.transform)
 		{
 			endPosition = endPoint2.position - adjustmentToEndPosition();
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
-		else if(tempPosition == GameObject.Find("BossSpawnPoint").transform.position)
+		else if(gameObject.transform.parent == GameObject.Find("BossSpawnPoint").transform)
 		{
 			endPosition = GameObject.Find("BossEndPoint").transform.position;
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
@@ -155,7 +154,7 @@ Look for a better name*/
 		endPoint1 = GameObject.Find("EnemyEndPoint1").transform;
 		endPoint2 = GameObject.Find("EnemyEndPoint2").transform;
 		timerUntilObjectLeavesStore = timerUntilObjectLeaves;
-		startingPosition = spawnEnemiesScript.startPosition;
+		//startingPosition = spawnEnemiesScript.startPosition;
 		isShooting = false;
 		whichComponentsToGet();
 		whereTo();

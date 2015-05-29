@@ -9,10 +9,29 @@ public class SpawnEnemies : MonoBehaviour {
 	public Vector3 startPosition;
 	
 	private GameObject enemyInstance;
+    private GameObject spawnPoint1;
+    private GameObject spawnPoint2;
+    private GameObject bossSpawnPoint;
 	private int currentLevel;
 	private int phaseTotal;
 	private int positionInPhase;
 	private float newPhaseTimerStore;
+
+    void assignParent()
+    {
+        if (startPosition == spawnPoint1.transform.position)
+        {
+            enemyInstance.transform.parent = spawnPoint1.transform;
+        }
+        else if (startPosition == spawnPoint2.transform.position)
+        {
+            enemyInstance.transform.parent = spawnPoint2.transform;
+        }
+        else if (startPosition == bossSpawnPoint.transform.position)
+        {
+            enemyInstance.transform.parent = bossSpawnPoint.transform;
+        }
+    }
 
 	void spawnEnemy(int objectToSpawn)
 	{
@@ -35,7 +54,12 @@ public class SpawnEnemies : MonoBehaviour {
 			enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyBoss1, startPosition, Quaternion.identity);
 			enemyInstance.name = "Boss1";
 			break;
+
+        default:
+            Debug.LogError("I did not spawn anything with the number " + objectToSpawn);
+            break;
 		}
+        assignParent();
 	}
 
 	void spawnPattern()
@@ -102,6 +126,9 @@ public class SpawnEnemies : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		levelDatabaseScript = GetComponent<LevelDatabase>();
+        spawnPoint1 = GameObject.Find("EnemySpawnPoint1");
+        spawnPoint2 = GameObject.Find("EnemySpawnPoint2");
+        bossSpawnPoint = GameObject.Find("BossSpawnPoint");
 		newPhaseTimerStore = newPhaseTimer;
 		setStartingPoint();
 	}
