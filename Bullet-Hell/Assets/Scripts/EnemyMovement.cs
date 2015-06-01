@@ -30,6 +30,7 @@ Look for a better name*/
 	
 	public Vector3 adjustmentToEndPosition()
 	{
+        //Since endPosAdjustment now produces a copy of itself for each enemy it needs a new way to increment.
 		Vector3 addOn;
 		
 		if(endPosAdjustment * 0.8f > 5)
@@ -39,10 +40,13 @@ Look for a better name*/
 		}
 		else
 		{
+            Debug.Log(endPosAdjustment);
 			addOn = new Vector3( 0.8f * endPosAdjustment, 0, 0);
 		}
+        Debug.Log("addOn was given the value of: " + addOn);
 		
 		endPosAdjustment++;
+        Debug.Log(endPosAdjustment);
 		return addOn;
 	}
 
@@ -107,20 +111,20 @@ Look for a better name*/
 		if(gameObject.transform.parent == spawnPoint1.transform)
 		{
 			endPosition = endPoint1.position + adjustmentToEndPosition();
-			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
-			//Debug.Log("isMoving is " + isMoving);
+			Debug.Log(gameObject.name + " is moving to: " + endPosition);
+			Debug.Log("isMoving is " + isMoving);
 		}
 		else if(gameObject.transform.parent == spawnPoint2.transform)
 		{
 			endPosition = endPoint2.position - adjustmentToEndPosition();
-			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
-			//Debug.Log("isMoving is " + isMoving);
+			Debug.Log(gameObject.name + " is moving to: " + endPosition);
+			Debug.Log("isMoving is " + isMoving);
 		}
 		else if(gameObject.transform.parent == GameObject.Find("BossSpawnPoint").transform)
 		{
 			endPosition = GameObject.Find("BossEndPoint").transform.position;
-			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
-			//Debug.Log("isMoving is " + isMoving);
+			Debug.Log(gameObject.name + " is moving to: " + endPosition);
+			Debug.Log("isMoving is " + isMoving);
 		}
 		else
 		{

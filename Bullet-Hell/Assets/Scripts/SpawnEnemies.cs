@@ -67,29 +67,6 @@ public class SpawnEnemies : MonoBehaviour {
 		spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, positionInPhase]);
 	}
 
-//	void setDestination()
-//	{
-//		if(startPosition == this.transform.position)
-//		{
-//			endPosition = GameObject.Find("EnemyEndPoint1").transform.position + adjustmentToEndPosition();
-//			Debug.Log("Ship number " + endPosAdjustment + " is moving to: " + endPosition);
-//		}
-//		else if(startPosition == GameObject.Find("EnemySpawnPoint2").transform.position)
-//		{
-//			endPosition = GameObject.Find("EnemyEndPoint2").transform.position - adjustmentToEndPosition();
-//			Debug.Log("Ship number " + endPosAdjustment + " is moving to: " + endPosition);
-//		}
-//		else if(levelDatabaseScript.currentLevelPhase == 4)
-//		{
-//			endPosition = GameObject.Find("BossEndPoint").transform.position;
-//		}
-//		else
-//		{
-//			Debug.LogError("Ship number " + endPosAdjustment + " does not have a destination");
-//		}
-//		spawnPattern();
-//	}
-
 	void setStartingPoint()
 	{
 		if(levelDatabaseScript.currentLevelPhase == 4)
@@ -98,7 +75,7 @@ public class SpawnEnemies : MonoBehaviour {
 			spawnPattern();
 			return;
 		}
-		for(positionInPhase = 0; positionInPhase < phaseTotal; positionInPhase++)
+		for(positionInPhase = 1; positionInPhase < phaseTotal; positionInPhase++)
 		{
 			if(positionInPhase < phaseTotal/2)
 			{
