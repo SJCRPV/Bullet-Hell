@@ -23,30 +23,27 @@ public class EnemyMovement : MonoBehaviour {
 	private Transform endPoint1;
 	private Transform endPoint2;
 	private float timerUntilObjectLeavesStore;
+	private float endPosAdjustment;
 
-	/*Increments with enemy spawns.Resets at half-phase.Determines how much you add to endPos
-Look for a better name*/
-	private int endPosAdjustment;
+
 	
 	public Vector3 adjustmentToEndPosition()
 	{
-        //Since endPosAdjustment now produces a copy of itself for each enemy it needs a new way to increment.
+		endPosAdjustment = spawnEnemiesScript.endPosAdjustment;
+        //Since endPosAdjustment now produces a copy of itself for each enemy, it needs a new way to increment.
 		Vector3 addOn;
 		
 		if(endPosAdjustment * 0.8f > 5)
 		{
-			endPosAdjustment = 0;
-			addOn = new Vector3( 0.8f * endPosAdjustment, 0.8f, 0);
+			addOn = new Vector3( 0.8f * (endPosAdjustment - 5), 0.8f, 0);
 		}
 		else
 		{
-            Debug.Log(endPosAdjustment);
 			addOn = new Vector3( 0.8f * endPosAdjustment, 0, 0);
 		}
         Debug.Log("addOn was given the value of: " + addOn);
 		
-		endPosAdjustment++;
-        Debug.Log(endPosAdjustment);
+		spawnEnemiesScript.endPosAdjustment++;
 		return addOn;
 	}
 

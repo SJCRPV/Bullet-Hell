@@ -17,6 +17,10 @@ public class SpawnEnemies : MonoBehaviour {
 	private int positionInPhase;
 	private float newPhaseTimerStore;
 
+	/*Increments with enemy spawns.Resets at half-phase.Determines how much you add to endPos
+Look for a better name*/
+	public static float endPosAdjustment;
+
     void assignParent()
     {
         if (startPosition == spawnPoint1.transform.position)
