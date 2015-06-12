@@ -30,7 +30,6 @@ public class EnemyMovement : MonoBehaviour {
 	public Vector3 adjustmentToEndPosition()
 	{
 		endPosAdjustment = spawnEnemiesScript.endPosAdjustment;
-        //Since endPosAdjustment now produces a copy of itself for each enemy, it needs a new way to increment.
 		Vector3 addOn;
 		
 		if(endPosAdjustment * 0.8f > 99)
@@ -41,7 +40,7 @@ public class EnemyMovement : MonoBehaviour {
 		{
 			addOn = new Vector3( 0.8f * endPosAdjustment, 0, 0);
 		}
-        Debug.Log("addOn was given the value of: " + addOn);
+        //Debug.Log("addOn was given the value of: " + addOn);
 		
 		spawnEnemiesScript.endPosAdjustment++;
 		return addOn;
@@ -100,6 +99,10 @@ public class EnemyMovement : MonoBehaviour {
 			boss1PatternScript = GetComponent<Boss1Ballistics>();
 			boss1PatternScript.enabled = false;
 		}
+        else
+        {
+            Debug.LogError("I don't know what to get!");
+        }
 	}
 
 	private void whereTo()
@@ -108,19 +111,19 @@ public class EnemyMovement : MonoBehaviour {
 		if(gameObject.transform.position == spawnPoint1.position)
 		{
 			endPosition = endPoint1.position - adjustmentToEndPosition();
-			Debug.Log(gameObject.name + " is moving to: " + endPosition);
+			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
 		else if(gameObject.transform.position == spawnPoint2.position)
 		{
 			endPosition = endPoint2.position + adjustmentToEndPosition();
-			Debug.Log(gameObject.name + " is moving to: " + endPosition);
+			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
 		else if(gameObject.transform.parent == GameObject.Find("BossSpawnPoint").transform)
 		{
 			endPosition = GameObject.Find("BossEndPoint").transform.position;
-			Debug.Log(gameObject.name + " is moving to: " + endPosition);
+			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
 		else
@@ -133,16 +136,17 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		isMoving = true;
 		leftTheStage = true;
-		if(startingPosition == spawnPoint1.position)
+		if(transform.position.y == endPoint1.position.y)
 		{
 			endPosition = leavingPoint1.position;
 		}
-		if(startingPosition == spawnPoint2.position)
+        if (transform.position.y == endPoint2.position.y)
 		{
+
 			endPosition = leavingPoint2.position;
 		}
 
-		Debug.Log(gameObject.name + " is returning to " + endPosition);
+		//Debug.Log(gameObject.name + " is returning to " + endPosition);
 	}
 
 	// Use this for initialization
@@ -183,7 +187,6 @@ public class EnemyMovement : MonoBehaviour {
 
 		if(leftTheStage == true && isMoving == false)
 		{
-			Debug.Log("Destroyed because isMoving is " + isMoving);
 			Destroy(gameObject);
 		}
 	}
