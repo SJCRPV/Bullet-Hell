@@ -23,7 +23,6 @@ public class PlayerSpawn : MonoBehaviour {
 
 	public void SpawnPlayer()
 	{
-		numLives--;
 		//Needs to be cast as a GameObject because Instantiate only returns an Object
 		if(numLives >= 0)
 		{
@@ -39,12 +38,12 @@ public class PlayerSpawn : MonoBehaviour {
 		{
 			//Debug.Log("damageScript is empty");
 		}
-		SpawnPlayer();
 	}
 
 	void OnLevelWasLoaded()
 	{
-		playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
+		numLives--;
+		SpawnPlayer();
 	}
 
 	// Update is called once per frame
@@ -55,6 +54,7 @@ public class PlayerSpawn : MonoBehaviour {
 			respawnTimer -= Time.deltaTime;
 			if( respawnTimer <= 0)
 			{
+				numLives--;
 				SpawnPlayer();
 			}
 			/*else

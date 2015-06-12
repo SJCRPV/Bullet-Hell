@@ -95,7 +95,7 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		else if(gameObject.tag == "Boss")
 		{
-			//Debug.Log("Got a boss here!");
+			Debug.Log("Got a boss here!");
 			boss1PatternScript = GetComponent<Boss1Ballistics>();
 			boss1PatternScript.enabled = false;
 		}

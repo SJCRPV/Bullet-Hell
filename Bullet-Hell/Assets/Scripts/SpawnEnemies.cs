@@ -99,7 +99,12 @@ Look for a better name*/
 		if(levelDatabaseScript.currentLevelPhase < levelDatabaseScript.levelArray.Length)
 		{
 			levelDatabaseScript.currentLevelPhase++;
+			Debug.Log ("Loading phase: " + levelDatabaseScript.currentLevelPhase);
 			phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, 0];
+		}
+		else
+		{
+			Debug.Log("currentLevelPhase is currently at " + levelDatabaseScript.currentLevelPhase + " and the lenght of the array is " + levelDatabaseScript.levelArray.Length);
 		}
 		
 		newPhaseTimer = newPhaseTimerStore;
