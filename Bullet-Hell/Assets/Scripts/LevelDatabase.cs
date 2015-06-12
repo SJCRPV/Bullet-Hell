@@ -49,26 +49,27 @@ public class LevelDatabase : MonoBehaviour {
 				case 1:
 				case 2:
 				case 3:
-					for(int i = 0; i < 15; i++)
+					for(int i = 1; i < 15; i++)
 					{
-						//When you figure out which enemies show up in which levels, re-do this
-						if(i > levelArray[0,0])
+						//TASK: When you figure out which enemies show up in which levels, re-do this
+						if(i > levelArray[j,0])
 						{
-							levelArray[0, i] = 99;
+							levelArray[j, i] = 99;
 						}
-						else if(i % 4 != 0)
+						else if(i % 4 == 0)
 						{
-							levelArray[0, i] = (int)enemyList.Basic;
+							//Debug.Log("Added a Cone in level " + j + " and position " + i);
+							levelArray[j, i] = (int)enemyList.Cone;
 						}
 						else
 						{
-							levelArray[0, i] = (int)enemyList.Cone;
+							levelArray[j, i] = (int)enemyList.Basic;
 						}
 					}
 					break;
 
 				case 4:
-					levelArray[0, 1] = (int)enemyList.Boss1;
+					levelArray[4, 1] = (int)enemyList.Boss1;
 					break;
 				}
 			}
@@ -124,6 +125,6 @@ public class LevelDatabase : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		currentLevel = 0;
-		currentLevelPhase = 0;
+		currentLevelPhase = -1;
 	}
 }

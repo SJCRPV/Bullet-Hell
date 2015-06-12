@@ -19,7 +19,7 @@ public class SpawnEnemies : MonoBehaviour {
 
 	/*Increments with enemy spawns.Resets at half-phase.Determines how much you add to endPos
 Look for a better name*/
-	public static float endPosAdjustment;
+	public float endPosAdjustment;
 
     void assignParent()
     {
@@ -29,7 +29,7 @@ Look for a better name*/
         }
         else if (startPosition == spawnPoint2.transform.position)
         {
-            enemyInstance.transform.parent = spawnPoint2.transform;
+            enemyInstance.transform.parent = spawnPoint1.transform;
         }
         else if (startPosition == bossSpawnPoint.transform.position)
         {
@@ -79,9 +79,9 @@ Look for a better name*/
 			spawnPattern();
 			return;
 		}
-		for(positionInPhase = 1; positionInPhase < phaseTotal; positionInPhase++)
+		for(positionInPhase = 1; positionInPhase <= phaseTotal; positionInPhase++)
 		{
-			if(positionInPhase < phaseTotal/2)
+			if(positionInPhase <= phaseTotal/2)
 			{
 				startPosition = this.transform.position;
 			}
@@ -95,6 +95,7 @@ Look for a better name*/
 
 	void moveToNextPhase()
 	{
+		endPosAdjustment = 0;
 		if(levelDatabaseScript.currentLevelPhase < levelDatabaseScript.levelArray.Length)
 		{
 			levelDatabaseScript.currentLevelPhase++;
