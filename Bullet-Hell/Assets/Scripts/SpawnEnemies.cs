@@ -57,6 +57,7 @@ Look for a better name*/
 			//Debug.Log("Spawned boss1");
 			enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyBoss1, startPosition, Quaternion.identity);
 			enemyInstance.name = "Boss1";
+			this.enabled = false;
 			break;
 
         default:
@@ -68,6 +69,8 @@ Look for a better name*/
 
 	void spawnPattern()
 	{
+		Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
+		Debug.Log("Current position in phase: " + positionInPhase);
 		spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, positionInPhase]);
 	}
 
@@ -75,11 +78,12 @@ Look for a better name*/
 	{
 		if(levelDatabaseScript.currentLevelPhase == 4)
 		{
+			positionInPhase = 1;
 			startPosition = GameObject.Find("BossSpawnPoint").transform.position;
 			spawnPattern();
 			return;
 		}
-		for(positionInPhase = 1; positionInPhase <= phaseTotal; positionInPhase++)
+		for(positionInPhase = 1; positionInPhase < phaseTotal; positionInPhase++)
 		{
 			if(positionInPhase <= phaseTotal/2)
 			{
@@ -96,7 +100,7 @@ Look for a better name*/
 	void moveToNextPhase()
 	{
 		endPosAdjustment = 0;
-		if(levelDatabaseScript.currentLevelPhase < levelDatabaseScript.levelArray.Length)
+		if(levelDatabaseScript.currentLevelPhase < 4)
 		{
 			levelDatabaseScript.currentLevelPhase++;
 			Debug.Log ("Loading phase: " + levelDatabaseScript.currentLevelPhase);

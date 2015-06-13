@@ -93,7 +93,7 @@ public class EnemyMovement : MonoBehaviour {
 			conePatternScript = GetComponent<ConePattern>();
 			conePatternScript.enabled = false;
 		}
-		else if(gameObject.tag == "Boss")
+		else if(gameObject.tag == "Boss1")
 		{
 			Debug.Log("Got a boss here!");
 			boss1PatternScript = GetComponent<Boss1Ballistics>();

@@ -69,7 +69,7 @@ public class LevelDatabase : MonoBehaviour {
 					break;
 
 				case 4:
-					levelArray[3, 1] = (int)enemyList.Boss1;
+					levelArray[4, 1] = (int)enemyList.Boss1;
 					break;
 				}
 			}
@@ -88,10 +88,9 @@ public class LevelDatabase : MonoBehaviour {
 	{
 		Debug.Log("You loaded level 1!");
 		currentLevel = 1;
-		currentLevelPhase = 0;
-		levelArray[0,0] = 8;
-		levelArray[1,0] = 10;
-		levelArray[2,0] = 10;
+		levelArray[0,0] = 9;
+		levelArray[1,0] = 11;
+		levelArray[2,0] = 11;
 		levelArray[3,0] = 15;
 		levelArray[4,0] = 1;
 		fillArray();
