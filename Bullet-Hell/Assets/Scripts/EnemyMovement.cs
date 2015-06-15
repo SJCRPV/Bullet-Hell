@@ -31,16 +31,18 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		endPosAdjustment = spawnEnemiesScript.endPosAdjustment;
 		Vector3 addOn;
-		
-		if(endPosAdjustment * 0.8f > 99)
+
+		//Have the endPosition depend on whether the current phase is even or pair
+		if(spawnEnemiesScript.levelDatabaseScript.currentLevelPhase % 2 == 0)
 		{
-			addOn = new Vector3( 0.8f * (endPosAdjustment - 5), 1.5f, 0);
+			addOn = new Vector3( 0.8f * endPosAdjustment, 0, 0);
+			//Debug.Log("addOn was given the value of: " + addOn);
 		}
 		else
 		{
-			addOn = new Vector3( 0.8f * endPosAdjustment, 0, 0);
+			addOn = new Vector3( 0.8f * endPosAdjustment + 1, 1, 0);
+			//Debug.Log("addOn was given the value of: " + addOn);
 		}
-        //Debug.Log("addOn was given the value of: " + addOn);
 		
 		spawnEnemiesScript.endPosAdjustment++;
 		return addOn;
@@ -136,13 +138,12 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		isMoving = true;
 		leftTheStage = true;
-		if(transform.position.y == endPoint1.position.y)
+		if(transform.position.y == endPoint1.position.y || transform.position.y == endPoint1.position.y - 1)
 		{
 			endPosition = leavingPoint1.position;
 		}
-        if (transform.position.y == endPoint2.position.y)
+		if (transform.position.y == endPoint2.position.y || transform.position.y == endPoint2.position.y + 1)
 		{
-
 			endPosition = leavingPoint2.position;
 		}
 

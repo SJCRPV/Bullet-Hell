@@ -49,7 +49,7 @@ public class LevelDatabase : MonoBehaviour {
 				case 1:
 				case 2:
 				case 3:
-					for(int i = 1; i < 15; i++)
+					for(int i = 1; i < levelArray[j, 0]; i++)
 					{
 						//TASK: When you figure out which enemies show up in which levels, re-do this
 						if(i > levelArray[j,0])

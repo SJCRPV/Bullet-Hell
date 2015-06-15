@@ -18,11 +18,19 @@ public class PlayerSpawn : MonoBehaviour {
 
 	void OnGUI()
 	{
-		GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + numLives);
+		if(numLives >= 0)
+		{
+			GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + numLives);
+		}
+		else
+		{
+			GUI.Label(new Rect(Screen.width/2 - 50, Screen.height/2 - 25, 100, 50), "Game Over!");
+		}
 	}
 
 	public void SpawnPlayer()
 	{
+		numLives--;
 		//Needs to be cast as a GameObject because Instantiate only returns an Object
 		if(numLives >= 0)
 		{
@@ -42,7 +50,6 @@ public class PlayerSpawn : MonoBehaviour {
 
 	void OnLevelWasLoaded()
 	{
-		numLives--;
 		SpawnPlayer();
 	}
 
@@ -54,14 +61,8 @@ public class PlayerSpawn : MonoBehaviour {
 			respawnTimer -= Time.deltaTime;
 			if( respawnTimer <= 0)
 			{
-				numLives--;
 				SpawnPlayer();
 			}
-			/*else
-			{
-				GUI.Label(new Rect(Screen.width/2 - 50, Screen.height/2 - 25, 100, 50), "Game Over!");
-				Debug.Log ("Destroyed!");
-			}*/
 		}
 	}
 }

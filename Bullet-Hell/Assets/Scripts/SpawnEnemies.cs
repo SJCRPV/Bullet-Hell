@@ -3,7 +3,7 @@ using System.Collections;
 
 public class SpawnEnemies : MonoBehaviour {
 
-	LevelDatabase levelDatabaseScript;
+	public LevelDatabase levelDatabaseScript;
 	SpawnBoss spawnBossScript;
 	public float newPhaseTimer;
 	public Vector3 startPosition;
@@ -23,18 +23,14 @@ Look for a better name*/
 
     void assignParent()
     {
-        if (startPosition == spawnPoint1.transform.position)
-        {
-            enemyInstance.transform.parent = spawnPoint1.transform;
-        }
-        else if (startPosition == spawnPoint2.transform.position)
-        {
-            enemyInstance.transform.parent = spawnPoint1.transform;
-        }
-        else if (startPosition == bossSpawnPoint.transform.position)
+        if (startPosition == bossSpawnPoint.transform.position)
         {
             enemyInstance.transform.parent = bossSpawnPoint.transform;
         }
+		else
+		{
+			enemyInstance.transform.parent = spawnPoint1.transform;
+		}
     }
 
 	void spawnEnemy(int objectToSpawn)
