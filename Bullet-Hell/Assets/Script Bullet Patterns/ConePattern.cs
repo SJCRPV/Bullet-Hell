@@ -9,7 +9,6 @@ public class ConePattern : MonoBehaviour {
 	public float angleDispersion;
 
 	private float cooldownTimerStore;
-	private Vector3 offset = new Vector3(0, 0.5f, 0);
 	private GameObject bulletInstance;
 	private Quaternion bulletRotation;
 	private float angleDispersionStore;
