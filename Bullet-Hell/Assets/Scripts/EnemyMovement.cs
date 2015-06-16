@@ -6,6 +6,7 @@ public class EnemyMovement : MonoBehaviour {
 	SpawnEnemies spawnEnemiesScript;
 	Ballistics ballisticsScript;
 	ConePattern conePatternScript;
+	GrazePattern grazePatternScript;
 	Boss1Ballistics boss1PatternScript;
 
 	public float speed;
@@ -59,6 +60,10 @@ public class EnemyMovement : MonoBehaviour {
 		{
 			conePatternScript.enabled = isShooting;
 		}
+		else if(gameObject.tag == "Graze")
+		{
+			grazePatternScript.enabled = isShooting;
+		}
 		else if(gameObject.tag == "Boss1")
 		{
 			boss1PatternScript.enabled = true;
@@ -95,6 +100,12 @@ public class EnemyMovement : MonoBehaviour {
 			conePatternScript = GetComponent<ConePattern>();
 			conePatternScript.enabled = false;
 		}
+		else if(gameObject.tag == "Graze")
+		{
+			//Debug.Log("Got a graze here!");
+			grazePatternScript = GetComponent<GrazePattern>();
+			grazePatternScript.enabled = false;
+		}
 		else if(gameObject.tag == "Boss1")
 		{
 			Debug.Log("Got a boss here!");
@@ -103,7 +114,7 @@ public class EnemyMovement : MonoBehaviour {
 		}
         else
         {
-            Debug.LogError("I don't know what to get!");
+            Debug.LogError("I don't know what component to get!");
         }
 	}
 

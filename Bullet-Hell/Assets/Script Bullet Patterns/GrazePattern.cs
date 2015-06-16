@@ -5,7 +5,7 @@ public class GrazePattern : MonoBehaviour {
 
     public GameObject bulletPrefab;
     public float cooldownTimer;
-    //The smaller the number, the bigger the spacing
+	public float flipCooldownTimer;
     public float innerCooldownTimer;
 
     private float cooldownTimerStore;
@@ -13,31 +13,81 @@ public class GrazePattern : MonoBehaviour {
     private Quaternion bulletRotation;
     private Vector3 correction;
     private float innerCooldownTimerStore;
+	private float flipCooldownTimerStore;
+	private bool? flipFlag;
 
     void Fire()
     {
-        bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position + correction, new Quaternion(0, 0, 180, 0));
+		//Debug.Log("Fire!");
+        bulletInstance = (GameObject)Instantiate(bulletPrefab, correction, new Quaternion(0, 0, 180, 0));
+		bulletInstance.gameObject.layer = 11;
     }
 
     void FirePattern()
     {
-        for (float i = transform.position.x - 0.5f; i < transform.position.x + 0.5f;)
-        {
-            innerCooldownTimer -= Time.deltaTime;
-            if (innerCooldownTimer <= 0)
-            {
-                correction.x += 0.1f;
-                i += 0.1f;
-                Fire();
-            }
-        }
-        cooldownTimer = cooldownTimerStore;
+		if(flipFlag == false)
+		{
+	        if(correction.x <= transform.position.x + 0.7f)
+	        {
+	            innerCooldownTimer -= Time.deltaTime;
+				//Debug.Log(innerCooldownTimer);
+	            if (innerCooldownTimer <= 0)
+	            {
+					Fire();
+	                correction.x += 0.2f;
+					innerCooldownTimer = innerCooldownTimerStore;
+	            }
+	        }
+	        else
+			{
+				correction = transform.position;
+				correction.x = transform.position.x + 0.5f;
+				correction.y = transform.position.y - 0.5f;
+				flipFlag = true;
+			}
+		}
+		else if(flipFlag == true)
+		{
+			flipCooldownTimer -= Time.deltaTime;
+			if(flipCooldownTimer <= 0)
+			{
+				if(correction.x >= transform.position.x - 0.7f)
+				{
+					innerCooldownTimer -= Time.deltaTime;
+					//Debug.Log(innerCooldownTimer);
+					if (innerCooldownTimer <= 0)
+					{
+						Fire();
+						correction.x -= 0.2f;
+						innerCooldownTimer = innerCooldownTimerStore;
+					}
+				}
+				else
+				{
+					correction = transform.position;
+					correction.x = transform.position.x - 0.5f;
+					correction.y = transform.position.y - 0.5f;
+					flipFlag = null;
+				}
+			}
+		}
+		else
+		{
+			cooldownTimer = cooldownTimerStore;
+			flipCooldownTimer = flipCooldownTimerStore;
+			flipFlag = false;
+		}
     }
 
 	// Use this for initialization
 	void Start () {
+		flipFlag = false;
         cooldownTimerStore = cooldownTimer;
         innerCooldownTimerStore = innerCooldownTimer;
+		flipCooldownTimerStore = flipCooldownTimer;
+		correction = transform.position;
+		correction.x = transform.position.x - 0.5f;
+		correction.y = transform.position.y - 0.5f;
 	}
 	
 	// Update is called once per frame

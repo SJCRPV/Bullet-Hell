@@ -49,6 +49,12 @@ Look for a better name*/
 			enemyInstance.name = "Cone";
 			break;
 
+		case 2:
+			//Debug.Log ("Spawned a graze!");
+			enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyGraze, startPosition, Quaternion.identity);
+			enemyInstance.name = "Graze";
+			break;
+
 		case 12:
 			//Debug.Log("Spawned boss1");
 			enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyBoss1, startPosition, Quaternion.identity);

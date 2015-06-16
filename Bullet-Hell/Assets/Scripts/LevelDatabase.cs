@@ -9,13 +9,14 @@ public class LevelDatabase : MonoBehaviour {
 	public GameObject enemyBasic;
 	public GameObject enemyCone;
 	public GameObject enemyBoss1;
+	public GameObject enemyGraze;
 
 	public enum enemyList
 	{
 		//Change the names when you figure out what to call them
 		Basic = 0,
 		Cone = 1,
-		Alternate = 2,
+		Graze = 2,
 		Enemy4,
 		Enemy5,
 		Enemy6,
@@ -61,8 +62,14 @@ public class LevelDatabase : MonoBehaviour {
 							//Debug.Log("Added a Cone in level " + j + " and position " + i);
 							levelArray[j, i] = (int)enemyList.Cone;
 						}
+						else if(i % 3 == 0)
+						{
+							//Debug.Log("Added a Graze in level " + j + " and position " + i);
+							levelArray[j, i] = (int)enemyList.Graze;
+						}
 						else
 						{
+							//Debug.Log("Added a Basic in level " + j + " and position " + i);
 							levelArray[j, i] = (int)enemyList.Basic;
 						}
 					}

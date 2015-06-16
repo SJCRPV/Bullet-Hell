@@ -1,11 +1,13 @@
 ﻿<Properties>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\PlayerSpawn.cs">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="MonoDevelop.Default" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Script Bullet Patterns\GrazePattern.cs">
     <Files>
-      <File FileName="Assets\Scripts\SpawnEnemies.cs" Line="6" Column="9" />
-      <File FileName="Assets\Scripts\LevelDatabase.cs" Line="52" Column="41" />
-      <File FileName="Assets\Scripts\EnemyMovement.cs" Line="147" Column="35" />
+      <File FileName="Assets\Scripts\SpawnEnemies.cs" Line="55" Column="31" />
+      <File FileName="Assets\Scripts\LevelDatabase.cs" Line="72" Column="34" />
+      <File FileName="Assets\Scripts\EnemyMovement.cs" Line="61" Column="43" />
       <File FileName="Assets\Scripts\PlayerSpawn.cs" Line="52" Column="3" />
+      <File FileName="Assets\Script Bullet Patterns\GrazePattern.cs" Line="84" Column="19" />
+      <File FileName="Assets\Script Bullet Patterns\Boss1_Pattern2.cs" Line="46" Column="17" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
