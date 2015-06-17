@@ -15,6 +15,7 @@ public class GrazePattern : MonoBehaviour {
     private float innerCooldownTimerStore;
 	private float flipCooldownTimerStore;
 	private bool? flipFlag;
+	private bool startPattern;
 
     void Fire()
     {
@@ -64,30 +65,29 @@ public class GrazePattern : MonoBehaviour {
 				}
 				else
 				{
-					correction = transform.position;
-					correction.x = transform.position.x - 0.5f;
-					correction.y = transform.position.y - 0.5f;
 					flipFlag = null;
 				}
 			}
 		}
 		else
 		{
-			cooldownTimer = cooldownTimerStore;
 			flipCooldownTimer = flipCooldownTimerStore;
+			cooldownTimer = cooldownTimerStore;
 			flipFlag = false;
+			startPattern = false;
+			correction = transform.position;
+			correction.x = transform.position.x - 0.5f;
+			correction.y = transform.position.y - 0.5f;
 		}
     }
 
 	// Use this for initialization
 	void Start () {
 		flipFlag = false;
+		startPattern = false;
         cooldownTimerStore = cooldownTimer;
         innerCooldownTimerStore = innerCooldownTimer;
 		flipCooldownTimerStore = flipCooldownTimer;
-		correction = transform.position;
-		correction.x = transform.position.x - 0.5f;
-		correction.y = transform.position.y - 0.5f;
 	}
 	
 	// Update is called once per frame
@@ -96,6 +96,13 @@ public class GrazePattern : MonoBehaviour {
 
         if (cooldownTimer <= 0)
         {
+			if(startPattern == false)
+			{
+				correction = transform.position;
+				correction.x = transform.position.x - 0.5f;
+				correction.y = transform.position.y - 0.5f;
+				startPattern = true;
+			}
             FirePattern();
         }
 	}

@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1432387485
+timeCreated: 1434562789
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -15,6 +15,7 @@ TextureImporter:
     21300016: New Game
     21300018: Enemy03
     21300020: Boss1_Bullet2
+    21300022: spawnSprite
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -167,6 +168,16 @@ TextureImporter:
         y: 249
         width: 13
         height: 37
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: spawnSprite
+      rect:
+        serializedVersion: 2
+        x: 434
+        y: 699
+        width: 91
+        height: 91
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

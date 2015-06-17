@@ -108,7 +108,7 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		else if(gameObject.tag == "Boss1")
 		{
-			Debug.Log("Got a boss here!");
+			//Debug.Log("Got a boss here!");
 			boss1PatternScript = GetComponent<Boss1Ballistics>();
 			boss1PatternScript.enabled = false;
 		}
@@ -149,6 +149,7 @@ public class EnemyMovement : MonoBehaviour {
 	{
 		isMoving = true;
 		leftTheStage = true;
+		//This is dirty. See if you can find a way to fix it
 		if(transform.position.y == endPoint1.position.y || transform.position.y == endPoint1.position.y - 1)
 		{
 			endPosition = leavingPoint1.position;
@@ -173,7 +174,6 @@ public class EnemyMovement : MonoBehaviour {
 		endPoint1 = GameObject.Find("EnemyEndPoint1").transform;
 		endPoint2 = GameObject.Find("EnemyEndPoint2").transform;
 		timerUntilObjectLeavesStore = timerUntilObjectLeaves;
-		//startingPosition = spawnEnemiesScript.startPosition;
 		isShooting = false;
 		whichComponentsToGet();
 		whereTo();

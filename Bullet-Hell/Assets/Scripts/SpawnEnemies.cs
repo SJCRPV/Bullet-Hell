@@ -71,8 +71,8 @@ Look for a better name*/
 
 	void spawnPattern()
 	{
-		Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
-		Debug.Log("Current position in phase: " + positionInPhase);
+		//Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
+		//Debug.Log("Current position in phase: " + positionInPhase);
 		spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, positionInPhase]);
 	}
 

@@ -59,17 +59,17 @@ public class LevelDatabase : MonoBehaviour {
 						}
 						else if(i % 4 == 0)
 						{
-							//Debug.Log("Added a Cone in level " + j + " and position " + i);
+							//Debug.Log("Added a Cone in phase " + j + " and position " + i);
 							levelArray[j, i] = (int)enemyList.Cone;
 						}
-						else if(i % 3 == 0)
+						else if(i % 5 == 0)
 						{
-							//Debug.Log("Added a Graze in level " + j + " and position " + i);
+							Debug.Log("Added a Graze in phase " + j + " and position " + i);
 							levelArray[j, i] = (int)enemyList.Graze;
 						}
 						else
 						{
-							//Debug.Log("Added a Basic in level " + j + " and position " + i);
+							//Debug.Log("Added a Basic in phase " + j + " and position " + i);
 							levelArray[j, i] = (int)enemyList.Basic;
 						}
 					}
