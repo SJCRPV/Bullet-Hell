@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1434562789
+timeCreated: 1434987785
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -16,6 +16,9 @@ TextureImporter:
     21300018: Enemy03
     21300020: Boss1_Bullet2
     21300022: spawnSprite
+    21300024: blockPoints
+    21300026: blockPower
+    21300028: blockExtraLife
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -178,6 +181,36 @@ TextureImporter:
         y: 699
         width: 91
         height: 91
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blockPoints
+      rect:
+        serializedVersion: 2
+        x: 776
+        y: 96
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blockPower
+      rect:
+        serializedVersion: 2
+        x: 774
+        y: 14
+        width: 33
+        height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: blockExtraLife
+      rect:
+        serializedVersion: 2
+        x: 651
+        y: 501
+        width: 33
+        height: 33
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

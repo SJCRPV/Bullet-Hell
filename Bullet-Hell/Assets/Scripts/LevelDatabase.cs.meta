@@ -1,13 +1,17 @@
 fileFormatVersion: 2
 guid: 3383929d208385a4aae4959d3f5fff9e
-timeCreated: 1431100290
+timeCreated: 1435082211
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
   defaultReferences:
-  - enemyPrefabBasic: {fileID: 113126, guid: e95b5d9c9e1fb4049a36e3996161c177, type: 2}
-  - enemyPrefabCone: {fileID: 106796, guid: 0836b1b65b9cdc942a8d59e77ade7311, type: 2}
-  - enemyPrefabBoss1: {fileID: 166410, guid: 70a51915b75dc324b8c73c9a6ebce46e, type: 2}
+  - enemyBasic: {fileID: 113126, guid: e95b5d9c9e1fb4049a36e3996161c177, type: 2}
+  - enemyCone: {fileID: 106796, guid: 0836b1b65b9cdc942a8d59e77ade7311, type: 2}
+  - enemyBoss1: {fileID: 166410, guid: 70a51915b75dc324b8c73c9a6ebce46e, type: 2}
+  - enemyGraze: {fileID: 132046, guid: ba6d29ff684ecb04fa4215e3f42226b4, type: 2}
+  - pointsBlock: {fileID: 166194, guid: 5acd64bdc8257dc468532f989af7322f, type: 2}
+  - powerBlock: {fileID: 139752, guid: e98deddd4dda7f04abc14ad7b82f9341, type: 2}
+  - extraLifeBlock: {fileID: 136234, guid: 9e8f391e9b585c049b9d64986099b102, type: 2}
   executionOrder: -100
   icon: {instanceID: 0}
   userData: 

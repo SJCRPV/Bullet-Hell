@@ -4,14 +4,18 @@ using UnityEngine.UI;
 
 public class DamageHandler : MonoBehaviour {
 
-	//No idea what this is for
-	GameObject datObject;
+	BlockInteraction blockInteractionScript;
 
 	public int healthPoints;
 	public float invincibilityTime;
+	public GameObject pointsBlock;
+	public GameObject powerBlock;
+	public GameObject extraLifeBlock;
 
 	private float invincibilityTimeStore;
-	private int objectLayer;
+	private int oppositeLayer;
+	private GameObject blockInstance;
+	private Vector3 
 	
 	public int getHealthPoints()
 	{
@@ -20,7 +24,7 @@ public class DamageHandler : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		if(objectLayer == gameObject.layer && invincibilityTime <= 0)
+		if((oppositeLayer == 19 || oppositeLayer == 20) && invincibilityTime <= 0)
 		{
 			Debug.Log("Ow! ; _ ;");
 			healthPoints--;
@@ -28,15 +32,40 @@ public class DamageHandler : MonoBehaviour {
 		}
 	}
 
+	void explode()
+	{
+		if(gameObject.tag == "Player")
+		{
+			for(int i = 0; i < 5; i++)
+			{
+				blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
+			}
+		}
+	}
+
 	void Die()
 	{
 		Debug.Log("DEAD!");
+		explode();
 		Destroy(gameObject);
 	}
 	
 	// Use this for initialization
 	void Start () {
-		objectLayer = gameObject.layer;
+		blockInteractionScript = GetComponent<BlockInteraction>();
+		if(gameObject.layer == 10 || gameObject.layer == 8)
+		{
+			oppositeLayer = 19;
+		}
+		else if(gameObject.layer == 11 || gameObject.layer == 9)
+		{
+			oppositeLayer = 20;
+		}
+		else
+		{
+			oppositeLayer = gameObject.layer;
+			Debug.Log("Unexpected layer. oppositeLayer has a value of: " + oppositeLayer);
+		}
 		invincibilityTimeStore = invincibilityTime;
 	}
 

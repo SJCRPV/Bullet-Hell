@@ -62,7 +62,7 @@ public class LevelDatabase : MonoBehaviour {
 							//Debug.Log("Added a Cone in phase " + j + " and position " + i);
 							levelArray[j, i] = (int)enemyList.Cone;
 						}
-						else if(i % 5 == 0)
+						else if(i % 3 == 0)
 						{
 							Debug.Log("Added a Graze in phase " + j + " and position " + i);
 							levelArray[j, i] = (int)enemyList.Graze;
