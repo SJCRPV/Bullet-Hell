@@ -15,6 +15,7 @@ public class DamageHandler : MonoBehaviour {
 	private float invincibilityTimeStore;
 	private int oppositeLayer;
 	private GameObject blockInstance;
+    private Vector3 positionOnDeath;
 
 	public int getHealthPoints()
 	{
@@ -31,24 +32,51 @@ public class DamageHandler : MonoBehaviour {
 		}
 	}
 
+	void Die()
+	{
+		Debug.Log("DEAD!");
+		Destroy(gameObject);
+	}
+
 	void explode()
 	{
+        positionOnDeath = transform.position;
 		if(gameObject.tag == "Player")
 		{
 			for(int i = 0; i < 5; i++)
 			{
 				blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
-				blockInstance.gameObject.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-2.5f + i, Vector2.up), transform.position);
+				blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-50f + i*20, 150), transform.position);
 			}
 		}
+        if(gameObject.layer == 9)
+        {
+            for(int i = 0; i < 10; i++)
+            {
+                switch(i)
+                {
+                    case 0:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                    case 9:
+                        blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
+                        break;
+
+                    case 1:
+                    case 8:
+                        blockInstance = (GameObject)Instantiate(pointsBlock, transform.position, Quaternion.identity);
+                        break;
+                }
+                blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-100f + i * 40, 150), transform.position);
+            }
+        }
+        Die();
 	}
 
-	void Die()
-	{
-		Debug.Log("DEAD!");
-		explode();
-		Destroy(gameObject);
-	}
 	
 	// Use this for initialization
 	void Start () {
@@ -74,7 +102,7 @@ public class DamageHandler : MonoBehaviour {
 		invincibilityTime -= Time.deltaTime;
 		if(healthPoints <= 0)
 		{
-			Die();
+			explode();
 		}
 	}
 }
