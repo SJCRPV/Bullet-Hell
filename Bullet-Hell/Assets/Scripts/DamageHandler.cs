@@ -15,8 +15,7 @@ public class DamageHandler : MonoBehaviour {
 	private float invincibilityTimeStore;
 	private int oppositeLayer;
 	private GameObject blockInstance;
-	private Vector3 
-	
+
 	public int getHealthPoints()
 	{
 		return healthPoints;
@@ -39,6 +38,7 @@ public class DamageHandler : MonoBehaviour {
 			for(int i = 0; i < 5; i++)
 			{
 				blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
+				blockInstance.gameObject.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-2.5f + i, Vector2.up), transform.position);
 			}
 		}
 	}
