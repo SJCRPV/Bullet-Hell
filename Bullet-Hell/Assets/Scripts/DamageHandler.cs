@@ -24,6 +24,7 @@ public class DamageHandler : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
+		//Player is colliding with the block and getting damaged.
 		if((oppositeLayer == 19 || oppositeLayer == 20) && invincibilityTime <= 0)
 		{
 			Debug.Log("Ow! ; _ ;");

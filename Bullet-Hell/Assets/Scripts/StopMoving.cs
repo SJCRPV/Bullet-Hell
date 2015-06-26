@@ -16,9 +16,10 @@ public class StopMoving : MonoBehaviour {
 	void Update () {
 	    if(transform.position.y >= startPosition.y + 3)
         {
-            this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+			//Make the volicity change gradual
+            this.GetComponent<Rigidbody2D>().velocity = -Vector2.up;
             this.GetComponent<Rigidbody2D>().angularVelocity = 0;
-            this.GetComponent<Rigidbody2D>().gravityScale = gravityScale;
+            //this.GetComponent<Rigidbody2D>().gravityScale = gravityScale;
         }
 	}
 }

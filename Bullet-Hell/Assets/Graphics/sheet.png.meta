@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1434987785
+timeCreated: 1435341138
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -19,6 +19,7 @@ TextureImporter:
     21300024: blockPoints
     21300026: blockPower
     21300028: blockExtraLife
+    21300030: Thrower
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -211,6 +212,16 @@ TextureImporter:
         y: 501
         width: 33
         height: 33
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: Thrower
+      rect:
+        serializedVersion: 2
+        x: 133
+        y: 529
+        width: 104
+        height: 81
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
