@@ -7,8 +7,8 @@ public class BlockInteraction : MonoBehaviour {
 
 	public float powerIncrement;
 	public int pointIncrement;
-	public int score;
-	public float power;
+	public float powerDecrement;
+	public int pointDecrement;
 
 	private int objectLayer;
 
@@ -20,18 +20,18 @@ public class BlockInteraction : MonoBehaviour {
 		}
 		else if(collider.tag == "Power")
 		{
-			power += powerIncrement;
+			playerSpawnScript.power += powerIncrement;
 		}
 		else if(collider.tag == "Points")
 		{
-			score += pointIncrement;
+			playerSpawnScript.points += pointIncrement;
 		}
 	}
 
 	// Use this for initialization
 	void Start () {
 		objectLayer = gameObject.layer;
-		playerSpawnScript = GetComponent<PlayerSpawn>();
+		playerSpawnScript = GetComponentInParent<PlayerSpawn>();
 	}
 	
 	// Update is called once per frame

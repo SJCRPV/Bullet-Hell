@@ -2,8 +2,8 @@
 using System.Collections;
 
 public class PlayerBallistics : MonoBehaviour {
-
-	BlockInteraction blockInteractionScript;
+	
+	PlayerSpawn playerSpawnScript;
 
 	public GameObject bulletPrefab;
 	public float cooldownTimerStore;
@@ -23,16 +23,13 @@ public class PlayerBallistics : MonoBehaviour {
 	}
 	void firePattern()
 	{
-		if(blockInteractionScript.power >= 0)
-		{
-			fire();
-		}
+		fire();
 	}
 
 	// Use this for initialization
 	void Start () {
 		cooldownTimer = cooldownTimerStore;
-		blockInteractionScript = GetComponent<BlockInteraction>();
+		playerSpawnScript = GetComponentInParent<PlayerSpawn>();
 	}
 	
 	// Update is called once per frame

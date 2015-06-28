@@ -6,10 +6,13 @@ public class PlayerSpawn : MonoBehaviour {
 	private int healthPointsStore;
 	private GameObject playerInstance;
 	private DamageHandler damageHandlerScript;
+	private BlockInteraction blockInteractionScript;
 
 	public GameObject playerPrefab;
 	public float respawnTimer;
 	public int numLives = 4;
+	public int points;
+	public float power;
 	
 	public int getNumLives()
 	{
@@ -21,11 +24,18 @@ public class PlayerSpawn : MonoBehaviour {
 		if(numLives >= 0)
 		{
 			GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + numLives);
+			GUI.Label(new Rect(10, 20, 100, 30), "Score: " + points);
+			GUI.Label(new Rect(10, 40, 100, 30), "Power: " + power);
 		}
 		else
 		{
 			GUI.Label(new Rect(Screen.width/2 - 50, Screen.height/2 - 25, 100, 50), "Game Over!");
 		}
+	}
+
+	private void assignChild()
+	{
+		playerInstance.transform.parent = this.transform;
 	}
 
 	public void SpawnPlayer()
@@ -37,6 +47,7 @@ public class PlayerSpawn : MonoBehaviour {
 			playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
 			respawnTimer = 3f;
 		}
+		assignChild();
 	}
 
 	// Use this for initialization

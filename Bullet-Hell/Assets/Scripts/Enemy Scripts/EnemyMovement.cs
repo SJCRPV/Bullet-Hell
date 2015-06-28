@@ -11,12 +11,12 @@ public class EnemyMovement : MonoBehaviour {
 
 	public float speed;
 	public float timerUntilObjectLeaves;
+	public bool isMoving;
+	public bool leftTheStage;
+	public bool isShooting;
 
 	private Vector3 startingPosition;
 	private Vector3 endPosition;
-	private bool isMoving;
-	private bool leftTheStage;
-	private bool isShooting;
 	private Transform spawnPoint1;
 	private Transform spawnPoint2;
 	private Transform leavingPoint1;

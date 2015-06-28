@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class DamageHandler : MonoBehaviour {
 
 	BlockInteraction blockInteractionScript;
+	PlayerSpawn playerSpawnScript;
 
 	public int healthPoints;
 	public float invincibilityTime;
@@ -24,8 +25,12 @@ public class DamageHandler : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
+		if(collider.gameObject.layer == 12)
+		{
+
+		}
 		//Player is colliding with the block and getting damaged.
-		if((oppositeLayer == 19 || oppositeLayer == 20) && invincibilityTime <= 0)
+		else if((oppositeLayer == 19 || oppositeLayer == 20) && invincibilityTime <= 0)
 		{
 			Debug.Log("Ow! ; _ ;");
 			healthPoints--;
@@ -49,6 +54,8 @@ public class DamageHandler : MonoBehaviour {
 				blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
 				blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-50f + i*20, 150), transform.position);
 			}
+			playerSpawnScript.power -= blockInteractionScript.powerDecrement;
+			playerSpawnScript.points -= blockInteractionScript.pointDecrement;
 		}
         if(gameObject.layer == 9)
         {
@@ -64,12 +71,12 @@ public class DamageHandler : MonoBehaviour {
                     case 6:
                     case 7:
                     case 9:
-                        blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
+                        blockInstance = (GameObject)Instantiate(pointsBlock, transform.position, Quaternion.identity);
                         break;
 
                     case 1:
                     case 8:
-                        blockInstance = (GameObject)Instantiate(pointsBlock, transform.position, Quaternion.identity);
+                        blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
                         break;
                 }
                 blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-100f + i * 40, 150), transform.position);
@@ -82,10 +89,13 @@ public class DamageHandler : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		blockInteractionScript = GetComponent<BlockInteraction>();
+		playerSpawnScript = GetComponentInParent<PlayerSpawn>();
+		//Player layers
 		if(gameObject.layer == 10 || gameObject.layer == 8)
 		{
 			oppositeLayer = 19;
 		}
+		//Enemy layers
 		else if(gameObject.layer == 11 || gameObject.layer == 9)
 		{
 			oppositeLayer = 20;
