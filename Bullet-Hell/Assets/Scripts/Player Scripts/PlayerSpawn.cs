@@ -35,7 +35,10 @@ public class PlayerSpawn : MonoBehaviour {
 
 	private void assignChild()
 	{
-		playerInstance.transform.parent = this.transform;
+		if(playerInstance != null)
+		{
+			playerInstance.transform.parent = this.transform;
+		}
 	}
 
 	public void SpawnPlayer()

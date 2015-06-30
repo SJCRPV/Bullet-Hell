@@ -19,6 +19,8 @@ public class TimedMoveForward : MonoBehaviour {
 		moveTimer -= Time.deltaTime;
 		if(moveTimer <= 0)
 		{
+			this.transform.parent = null;
+
 			deathTimer -= Time.deltaTime;
 
 			Vector3 newPos = transform.position;
@@ -28,11 +30,6 @@ public class TimedMoveForward : MonoBehaviour {
 			newPos += transform.rotation * velocity;
 			
 			transform.position = newPos;
-		}
-		else
-		{
-			//Have the bullets follow the their spawn point until they move
-			transform.position = boss1MovementScript.transform.position;
 		}
 
 		if(deathTimer <= 0)

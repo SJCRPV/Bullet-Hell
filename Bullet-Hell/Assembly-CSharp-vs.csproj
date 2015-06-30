@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\MoveForward.cs" />
      <Compile Include="Assets\Scripts\NewGame.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\BlockInteraction.cs" />
+     <Compile Include="Assets\Scripts\Player Scripts\BlockInteractionChild.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\PlayerBallistics.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\PlayerMovement.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\PlayerSpawn.cs" />
