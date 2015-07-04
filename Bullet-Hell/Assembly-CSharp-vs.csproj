@@ -51,6 +51,7 @@
      <Compile Include="Assets\Script Bullet Patterns\ConePattern.cs" />
      <Compile Include="Assets\Script Bullet Patterns\GrazePattern.cs" />
      <Compile Include="Assets\Script Bullet Patterns\SUperSecretMurderousPattern.cs" />
+     <Compile Include="Assets\Scripts\BulletCollision.cs" />
      <Compile Include="Assets\Scripts\CanMoveToNewLevel.cs" />
      <Compile Include="Assets\Scripts\DamageHandler.cs" />
      <Compile Include="Assets\Scripts\DisplayText.cs" />

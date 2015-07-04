@@ -6,6 +6,8 @@ public class DamageHandler : MonoBehaviour {
 
 	BlockInteraction blockInteractionScript;
 	PlayerSpawn playerSpawnScript;
+	CircleCollider2D circleCollider;
+	CircleCollider2D circleColliderChild;
 
 	public int healthPoints;
 	public float invincibilityTime;
@@ -17,6 +19,7 @@ public class DamageHandler : MonoBehaviour {
 	private int oppositeLayer;
 	private GameObject blockInstance;
     private Vector3 positionOnDeath;
+	private int blockLayer;
 
 	public int getHealthPoints()
 	{
@@ -25,16 +28,12 @@ public class DamageHandler : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		if(collider.gameObject.layer == 12)
+		Debug.Log("Triggered: " + collider.gameObject.layer);
+		if((oppositeLayer == 19 || oppositeLayer == 20) && invincibilityTime <= 0)
 		{
-
-		}
-		//Player is colliding with the block and getting damaged.
-		else if((oppositeLayer == 19 || oppositeLayer == 20) && invincibilityTime <= 0)
-		{
-			Debug.Log("Ow! ; _ ;");
-			healthPoints--;
-			invincibilityTime = invincibilityTimeStore;
+				Debug.Log("Ow! ; _ ;");
+				healthPoints--;
+				invincibilityTime = invincibilityTimeStore;
 		}
 	}
 
@@ -90,6 +89,9 @@ public class DamageHandler : MonoBehaviour {
 	void Start () {
 		blockInteractionScript = GetComponent<BlockInteraction>();
 		playerSpawnScript = GetComponentInParent<PlayerSpawn>();
+		//circleCollider = this.GetComponent<CircleCollider2D>();
+		//circleColliderChild = GetComponentInChildren<CircleCollider2D>();
+		//Physics2D.IgnoreCollision(circleCollider, circleColliderChild, true);
 		//Player layers
 		if(gameObject.layer == 10 || gameObject.layer == 8)
 		{
