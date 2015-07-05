@@ -28,8 +28,8 @@ public class DamageHandler : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
-		Debug.Log("Triggered: " + collider.gameObject.layer);
-		if((oppositeLayer == 19 || oppositeLayer == 20) && invincibilityTime <= 0)
+		//if((oppositeLayer == 19 || oppositeLayer == 20) && invincibilityTime <= 0)
+		if((collider.gameObject.layer == 8 || collider.gameObject.layer == 9 || collider.gameObject.layer == 10 || collider.gameObject.layer == 11 ) && invincibilityTime <= 0)
 		{
 				Debug.Log("Ow! ; _ ;");
 				healthPoints--;

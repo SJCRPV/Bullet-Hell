@@ -51,6 +51,7 @@
      <Compile Include="Assets\Script Bullet Patterns\ConePattern.cs" />
      <Compile Include="Assets\Script Bullet Patterns\GrazePattern.cs" />
      <Compile Include="Assets\Script Bullet Patterns\SUperSecretMurderousPattern.cs" />
+     <Compile Include="Assets\Scripts\BlockMovement.cs" />
      <Compile Include="Assets\Scripts\BulletCollision.cs" />
      <Compile Include="Assets\Scripts\CanMoveToNewLevel.cs" />
      <Compile Include="Assets\Scripts\DamageHandler.cs" />
@@ -73,7 +74,6 @@
      <Compile Include="Assets\Scripts\Player Scripts\PlayerSpawn.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\ShowHitbox.cs" />
      <Compile Include="Assets\Scripts\SelfDestruct.cs" />
-     <Compile Include="Assets\Scripts\StopMoving.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
