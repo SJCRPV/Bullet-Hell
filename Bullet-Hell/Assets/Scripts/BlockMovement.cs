@@ -14,6 +14,7 @@ public class BlockMovement : MonoBehaviour {
 	void moveToPlayer()
 	{
 		transform.position = Vector3.MoveTowards(transform.position, playerPosition, speed*Time.deltaTime);
+        this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		if(transform.position == playerPosition)
 		{
 			selfDesctructionScript.obliteration();
@@ -43,7 +44,7 @@ public class BlockMovement : MonoBehaviour {
 		}
 	    if(transform.position.y >= startPosition.y + 3)
         {
-			//Make the volicity change gradual. Slows down positive
+			//Make the volicity change gradual. Slows down positive all the way until it gets to this value
             this.GetComponent<Rigidbody2D>().velocity = -Vector2.up;
             this.GetComponent<Rigidbody2D>().angularVelocity = 0;
             //this.GetComponent<Rigidbody2D>().gravityScale = gravityScale;
