@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1435341138
+timeCreated: 1436235546
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -20,6 +20,7 @@ TextureImporter:
     21300026: blockPower
     21300028: blockExtraLife
     21300030: Thrower
+    21300032: shiftColliderArea
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -222,6 +223,16 @@ TextureImporter:
         y: 529
         width: 104
         height: 81
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: shiftColliderArea
+      rect:
+        serializedVersion: 2
+        x: 444
+        y: 842
+        width: 91
+        height: 91
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}
