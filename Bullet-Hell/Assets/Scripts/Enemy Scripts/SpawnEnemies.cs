@@ -4,7 +4,6 @@ using System.Collections;
 public class SpawnEnemies : MonoBehaviour {
 
 	public LevelDatabase levelDatabaseScript;
-	SpawnBoss spawnBossScript;
 	public float newPhaseTimer;
 	public Vector3 startPosition;
 	

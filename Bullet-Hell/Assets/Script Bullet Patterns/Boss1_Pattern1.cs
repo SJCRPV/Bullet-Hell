@@ -16,6 +16,18 @@ public class Boss1_Pattern1 : MonoBehaviour {
 	private float innerCooldownTimerStore;
 	private int cooldownRoundLimiterStore;
 
+	public void Fire(int extra)
+	{
+		for (angleDispersion = 111 - extra; angleDispersion <= 249 + extra; angleDispersion += angleDispersionStore) 
+		{
+			bulletRotation = Quaternion.identity;
+			bulletRotation.eulerAngles = new Vector3(0,0,angleDispersion);
+			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, bulletRotation);
+			bulletInstance.gameObject.layer = 11;
+		}
+		angleDispersion = angleDispersionStore;
+	}
+
 	public void Fire()
 	{
 		for (angleDispersion = 111; angleDispersion <= 249; angleDispersion += angleDispersionStore) 
@@ -33,7 +45,18 @@ public class Boss1_Pattern1 : MonoBehaviour {
 		innerCooldownTimer -= Time.deltaTime;
 		if(innerCooldownTimer <= 0)
 		{
-			Fire();
+			if(cooldownRoundLimiter == 2)
+			{
+				Fire(11);
+			}
+			else if(cooldownRoundLimiter == 1)
+			{
+				Fire (7);
+			}
+			else
+			{
+				Fire();
+			}
 			cooldownRoundLimiter--;
 			innerCooldownTimer = innerCooldownTimerStore;
 			if(cooldownRoundLimiter <= 0)
