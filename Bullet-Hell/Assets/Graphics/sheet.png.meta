@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1436235546
+timeCreated: 1436292089
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -21,6 +21,9 @@ TextureImporter:
     21300028: blockExtraLife
     21300030: Thrower
     21300032: shiftColliderArea
+    21300034: circularBullet
+    21300036: extraBulletSource
+    21300038: PlayerBeam02
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -233,6 +236,36 @@ TextureImporter:
         y: 842
         width: 91
         height: 91
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: circularBullet
+      rect:
+        serializedVersion: 2
+        x: 606
+        y: 25
+        width: 28
+        height: 29
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: extraBulletSource
+      rect:
+        serializedVersion: 2
+        x: 505
+        y: 35
+        width: 91
+        height: 91
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: PlayerBeam02
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 549
+        width: 9
+        height: 54
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

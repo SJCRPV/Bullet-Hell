@@ -4,10 +4,12 @@ using System.Collections;
 public class ShowEnlargedCollider : MonoBehaviour {
 
 	CircleCollider2D circleCollider;
+	SpriteRenderer spriteRenderer;
 
 	// Use this for initialization
 	void Start () {
 		circleCollider = GetComponent<CircleCollider2D>();
+		spriteRenderer = GetComponent<SpriteRenderer>();
 	}
 	
 	// Update is called once per frame
@@ -17,11 +19,13 @@ public class ShowEnlargedCollider : MonoBehaviour {
 			if(circleCollider != null)
 			{
 				circleCollider.enabled = true;
+				spriteRenderer.enabled = true;
 			}
 		}
 		else
 		{
 			circleCollider.enabled = false;
+			spriteRenderer.enabled = false;
 		}
 	}
 }

@@ -14,6 +14,10 @@ public class PlayerBallistics : MonoBehaviour {
 	
 	private GameObject bulletInstance;
 	private Transform objectParent;
+	private GameObject extraBullerSource1;
+	private GameObject extraBullerSource2;
+	private GameObject extraBullerSource3;
+	private GameObject extraBullerSource4;
 
 	void fire()
 	{
@@ -24,6 +28,7 @@ public class PlayerBallistics : MonoBehaviour {
 	void firePattern()
 	{
 		fire();
+
 	}
 
 	// Use this for initialization

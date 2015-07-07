@@ -9,6 +9,7 @@ public class BlockInteraction : MonoBehaviour {
 	public int pointIncrement;
 	public float powerDecrement;
 	public int pointDecrement;
+	public float powerCap;
 
 	private int objectLayer;
 
@@ -20,7 +21,10 @@ public class BlockInteraction : MonoBehaviour {
 		}
 		else if(collider.tag == "Power")
 		{
-			playerSpawnScript.power += powerIncrement;
+			if(playerSpawnScript.power <= powerCap)
+			{
+				playerSpawnScript.power += powerIncrement;
+			}
 		}
 		else if(collider.tag == "Points")
 		{

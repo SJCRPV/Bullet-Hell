@@ -15,6 +15,7 @@ public class BulletCollision : MonoBehaviour {
 		temp = GameObject.Find("WhenShiftPressedCollider");
 		if(temp != null)
 		{
+			Physics2D.IgnoreCollision(this.GetComponent<CircleCollider2D>(), temp.GetComponent<CircleCollider2D>(), true);
 			Physics2D.IgnoreCollision(this.GetComponent<BoxCollider2D>(), temp.GetComponent<CircleCollider2D>(), true);
 		}
 	}
