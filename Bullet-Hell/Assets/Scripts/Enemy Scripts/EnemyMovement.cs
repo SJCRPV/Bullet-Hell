@@ -17,6 +17,8 @@ public class EnemyMovement : MonoBehaviour {
 
 	private Vector3 startingPosition;
 	private Vector3 endPosition;
+    private Vector3 direction;
+    private Vector3 movement;
 	private Transform spawnPoint1;
 	private Transform spawnPoint2;
 	private Transform leavingPoint1;
@@ -25,6 +27,7 @@ public class EnemyMovement : MonoBehaviour {
 	private Transform endPoint2;
 	private float timerUntilObjectLeavesStore;
 	private float endPosAdjustment;
+    private Rigidbody2D rigidBody;
 
 
 	
@@ -70,21 +73,39 @@ public class EnemyMovement : MonoBehaviour {
 		}
 	}
 
-	private void moveObject()
-	{
-		startingPosition = transform.position;
-		if(transform.position != endPosition)
-		{
-			transform.position = Vector3.MoveTowards(startingPosition, endPosition, speed * Time.deltaTime);
-			isShooting = true;
-			swapShootingStatus();
-		}
-		else
-		{
-			isMoving = false;
-			swapShootingStatus();
-		}
-	}
+    //private void moveObject()
+    //{
+    //    startingPosition = transform.position;
+    //    if(transform.position != endPosition)
+    //    {
+    //        transform.position = Vector3.MoveTowards(startingPosition, endPosition, speed * Time.deltaTime);
+    //        isShooting = true;
+    //        swapShootingStatus();
+    //    }
+    //    else
+    //    {
+    //        isMoving = false;
+    //        swapShootingStatus();
+    //    }
+    //}
+
+    private void moveObject()
+    {
+        startingPosition = transform.position;
+        direction = endPosition - startingPosition;
+        movement = direction.normalized * speed * Time.deltaTime;
+        if (transform.position != endPosition)
+        {
+            transform.position += movement;
+            isShooting = true;
+            swapShootingStatus();
+        }
+        else
+        {
+            isMoving = false;
+            swapShootingStatus();
+        }
+    }
 
 	private void whichComponentsToGet()
 	{
@@ -173,6 +194,7 @@ public class EnemyMovement : MonoBehaviour {
 		leavingPoint2 = GameObject.Find("LeavingPoint2").transform;
 		endPoint1 = GameObject.Find("EnemyEndPoint1").transform;
 		endPoint2 = GameObject.Find("EnemyEndPoint2").transform;
+        rigidBody = GetComponent<Rigidbody2D>();
 		timerUntilObjectLeavesStore = timerUntilObjectLeaves;
 		isShooting = false;
 		whichComponentsToGet();
