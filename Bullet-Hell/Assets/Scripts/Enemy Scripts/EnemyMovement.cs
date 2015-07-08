@@ -17,8 +17,10 @@ public class EnemyMovement : MonoBehaviour {
 
 	private Vector3 startingPosition;
 	private Vector3 endPosition;
-    private Vector3 direction;
-    private Vector3 movement;
+    private Vector2 velocity;
+	private Vector2 steering;
+    private Vector2 directLine;
+	private Vector2 actualMovement;
 	private Transform spawnPoint1;
 	private Transform spawnPoint2;
 	private Transform leavingPoint1;
@@ -91,20 +93,27 @@ public class EnemyMovement : MonoBehaviour {
 
     private void moveObject()
     {
-        startingPosition = transform.position;
-        direction = endPosition - startingPosition;
-        movement = direction.normalized * speed * Time.deltaTime;
-        if (transform.position != endPosition)
-        {
-            transform.position += movement;
-            isShooting = true;
-            swapShootingStatus();
-        }
-        else
-        {
-            isMoving = false;
-            swapShootingStatus();
-        }
+//		startingPosition = transform.position;
+//		directLine =  endPosition - startingPosition;
+//		velocity = (startingPosition - endPosition) * speed * Time.deltaTime;
+//		rigidBody.AddForce(-velocity);
+
+		velocity = endPosition - transform.position;
+		velocity = velocity.normalized * speed;
+		startingPosition = transform.position + velocity;
+		steering = 
+
+		if(transform.position != endPosition)
+	    {
+			transform.position += velocity;
+	        isShooting = true;
+	        swapShootingStatus();
+	    }
+	    else
+	    {
+	        isMoving = false;
+	        swapShootingStatus();
+	    }
     }
 
 	private void whichComponentsToGet()
@@ -204,6 +213,14 @@ public class EnemyMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
 	{
+		if(leftTheStage == true && isMoving == false)
+		{
+			Destroy(gameObject);
+		}
+	}
+
+	void FixedUpdate()
+	{
 		if(isMoving)
 		{
 			moveObject();
@@ -211,17 +228,12 @@ public class EnemyMovement : MonoBehaviour {
 		else
 		{
 			timerUntilObjectLeaves -= Time.deltaTime;
-
+			
 			if(timerUntilObjectLeaves <= 0)
 			{
 				backTo();
 				timerUntilObjectLeaves = timerUntilObjectLeavesStore;
 			}
-		}
-
-		if(leftTheStage == true && isMoving == false)
-		{
-			Destroy(gameObject);
 		}
 	}
 }
