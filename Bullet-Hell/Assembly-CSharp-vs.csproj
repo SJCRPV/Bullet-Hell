@@ -46,6 +46,7 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Pixelplacement\iTweenPath\iTweenPath.cs" />
      <Compile Include="Assets\Script Bullet Patterns\Boss1_Pattern1.cs" />
      <Compile Include="Assets\Script Bullet Patterns\Boss1_Pattern2.cs" />
      <Compile Include="Assets\Script Bullet Patterns\ConePattern.cs" />
@@ -74,6 +75,7 @@
      <Compile Include="Assets\Scripts\Player Scripts\ShowEnlargedCollider.cs" />
      <Compile Include="Assets\Scripts\Player Scripts\ShowHitbox.cs" />
      <Compile Include="Assets\Scripts\SelfDestruct.cs" />
+     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -86,6 +88,10 @@
  <Reference Include="UnityEditor.iOS.Extensions.Xcode">
  <HintPath>C:/Program Files/Unity/Editor/Data/PlaybackEngines/iOSSupport/UnityEditor.iOS.Extensions.Xcode.dll</HintPath>
  </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass-vs.csproj">
+      <Project>{4A3CAD27-0BAA-7A42-FFBB-65B50DA847E2}</Project>      <Name>Assembly-CSharp-firstpass-vs</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

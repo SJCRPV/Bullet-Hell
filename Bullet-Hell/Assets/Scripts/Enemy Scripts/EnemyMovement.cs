@@ -26,6 +26,7 @@ public class EnemyMovement : MonoBehaviour {
 	private float timerUntilObjectLeavesStore;
 	private float endPosAdjustment;
     private Rigidbody2D rigidBody;
+	private string pathName;
 
 
 	
@@ -136,56 +137,64 @@ public class EnemyMovement : MonoBehaviour {
 //	    }
 //    }
 
-	float distance;
-	float distanceStore;
-	float relativePercentage;
-	Vector3 distanceVector;
-	Vector3 force;
+//	float distance;
+//	float distanceStore;
+//	float relativePercentage;
+//	Vector3 distanceVector;
+//	Vector3 force;
+//
+//	private void storeDistance()
+//	{
+//		distance = Vector3.Distance(startingPosition, endPosition);
+//		distanceStore = distance;
+//	}
+//
+//	private Vector3 seek()
+//	{
+//		Vector3 temp;
+//
+//		temp = distanceVector + Vector3.up;
+//		temp.Normalize();
+//		temp *= speed;
+//		return temp;
+//	}
+//
+//	private void moveObject()
+//	{
+//		startingPosition = transform.position;
+//		distance = Vector3.Distance(startingPosition, endPosition);
+//		distanceVector = endPosition - startingPosition;
+//		force = seek();
+//
+//		if(distance >= 10)
+//	    {
+//			rigidBody.AddForce(force);
+//			//rigidBody.AddForce(force - force * relativePercentage);
+//	        isShooting = true;
+//	        swapShootingStatus();
+//	    }
+//		else if(distance == 0)
+//		{
+//			isMoving = false;
+//			swapShootingStatus();
+//		}
+//	    else
+//	    {
+//			Debug.Log("Hi!");
+//			rigidBody.velocity = Vector3.zero;
+//			rigidBody.angularVelocity = 0;
+//			transform.position = Vector3.MoveTowards(transform.position, endPosition, speed*Time.deltaTime);
+//			isShooting = true;
+//			swapShootingStatus();
+//	    }
+//	}
 
-	private void storeDistance()
-	{
-		distance = Vector3.Distance(startingPosition, endPosition);
-		distanceStore = distance;
-	}
 
-	private Vector3 seek()
-	{
-		Vector3 temp;
 
-		temp = distanceVector + Vector3.up;
-		temp.Normalize();
-		temp *= speed;
-		return temp;
-	}
 
 	private void moveObject()
 	{
-		startingPosition = transform.position;
-		distance = Vector3.Distance(startingPosition, endPosition);
-		distanceVector = endPosition - startingPosition;
-		force = seek();
-
-		if(distance >= 10)
-	    {
-			rigidBody.AddForce(force);
-			//rigidBody.AddForce(force - force * relativePercentage);
-	        isShooting = true;
-	        swapShootingStatus();
-	    }
-		else if(distance == 0)
-		{
-			isMoving = false;
-			swapShootingStatus();
-		}
-	    else
-	    {
-			Debug.Log("Hi!");
-			rigidBody.velocity = Vector3.zero;
-			rigidBody.angularVelocity = 0;
-			transform.position = Vector3.MoveTowards(transform.position, endPosition, speed*Time.deltaTime);
-			isShooting = true;
-			swapShootingStatus();
-	    }
+		iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(pathName), "time", speed, "easetype", iTween.EaseType.linear));
 	}
 
 	private void whichComponentsToGet()
@@ -226,12 +235,14 @@ public class EnemyMovement : MonoBehaviour {
 		if(gameObject.transform.position == spawnPoint1.position)
 		{
 			endPosition = endPoint1.position - adjustmentToEndPosition();
+			pathName = "EnemySpawnPath1";
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
 		else if(gameObject.transform.position == spawnPoint2.position)
 		{
 			endPosition = endPoint2.position + adjustmentToEndPosition();
+			pathName = "EnemySpawnPath2";
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}
@@ -245,8 +256,6 @@ public class EnemyMovement : MonoBehaviour {
 		{
 			Debug.LogError("I didn't find my destination!");
 		}
-
-		storeDistance();
 	}
 
 	private void backTo()
@@ -262,8 +271,6 @@ public class EnemyMovement : MonoBehaviour {
 		{
 			endPosition = leavingPoint2.position;
 		}
-
-		storeDistance();
 		//Debug.Log(gameObject.name + " is returning to " + endPosition);
 	}
 
