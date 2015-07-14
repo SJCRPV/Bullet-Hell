@@ -190,11 +190,21 @@ public class EnemyMovement : MonoBehaviour {
 //	}
 
 
-
+    private void startMovement()
+    {
+        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(pathName), "time", speed*2, "easetype", iTween.EaseType.linear, "oncomplete", "moveObject"));
+    }
 
 	private void moveObject()
 	{
-		iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(pathName), "time", speed, "easetype", iTween.EaseType.linear));
+        transform.position = Vector3.MoveTowards(transform.position, endPosition, speed * Time.deltaTime);
+        isShooting = true;
+        swapShootingStatus();
+        if(transform.position == endPosition)
+        {
+            isMoving = false;
+            swapShootingStatus();
+        }
 	}
 
 	private void whichComponentsToGet()
@@ -290,6 +300,7 @@ public class EnemyMovement : MonoBehaviour {
 		isShooting = false;
 		whichComponentsToGet();
 		whereTo();
+        startMovement();
 	}
 	
 	// Update is called once per frame
@@ -301,7 +312,7 @@ public class EnemyMovement : MonoBehaviour {
 		}
 		if(isMoving)
 		{
-			moveObject();
+            moveObject();
 		}
 		else
 		{
