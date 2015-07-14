@@ -72,127 +72,9 @@ public class EnemyMovement : MonoBehaviour {
 		}
 	}
 
-    //private void moveObject()
-    //{
-    //    startingPosition = transform.position;
-    //    if(transform.position != endPosition)
-    //    {
-    //        transform.position = Vector3.MoveTowards(startingPosition, endPosition, speed * Time.deltaTime);
-    //        isShooting = true;
-    //        swapShootingStatus();
-    //    }
-    //    else
-    //    {
-    //        isMoving = false;
-    //        swapShootingStatus();
-    //    }
-    //}
-
-//	Vector3 desired;
-//	Vector3 steering;
-//	Vector3 velocity;
-//
-//	private Vector3 truncateVector(Vector3 vector)
-//	{
-//		vector.x = (float)System.Math.Round(vector.x, 1);
-//		vector.y = (float)System.Math.Round(vector.y, 1);
-//		vector.z = (float)System.Math.Round(vector.z, 1);
-//
-//		return vector;
-//	}
-//
-//	private Vector3 seek(Vector3 target)
-//	{
-//		Vector3 force;
-//
-//		desired = target - transform.position;
-//		desired.Normalize();
-//		desired *= speed;
-//
-//		force = desired - velocity;
-//		return force;
-//	}
-//
-//    private void moveObject()
-//    {
-//		//StartingPosition is StartingPosition
-//		steering = seek(endPosition);
-//
-//		velocity += steering;
-//		//velocity = truncateVector(velocity);
-//
-//		if(transform.position != endPosition)
-//	    {
-//			//Debug.Log(steering);
-//			rigidBody.AddForce(velocity);
-//			//transform.position += velocity;
-//			//transform.position = startingPosition;
-//	        isShooting = true;
-//	        swapShootingStatus();
-//	    }
-//	    else
-//	    {
-//	        isMoving = false;
-//	        swapShootingStatus();
-//	    }
-//    }
-
-//	float distance;
-//	float distanceStore;
-//	float relativePercentage;
-//	Vector3 distanceVector;
-//	Vector3 force;
-//
-//	private void storeDistance()
-//	{
-//		distance = Vector3.Distance(startingPosition, endPosition);
-//		distanceStore = distance;
-//	}
-//
-//	private Vector3 seek()
-//	{
-//		Vector3 temp;
-//
-//		temp = distanceVector + Vector3.up;
-//		temp.Normalize();
-//		temp *= speed;
-//		return temp;
-//	}
-//
-//	private void moveObject()
-//	{
-//		startingPosition = transform.position;
-//		distance = Vector3.Distance(startingPosition, endPosition);
-//		distanceVector = endPosition - startingPosition;
-//		force = seek();
-//
-//		if(distance >= 10)
-//	    {
-//			rigidBody.AddForce(force);
-//			//rigidBody.AddForce(force - force * relativePercentage);
-//	        isShooting = true;
-//	        swapShootingStatus();
-//	    }
-//		else if(distance == 0)
-//		{
-//			isMoving = false;
-//			swapShootingStatus();
-//		}
-//	    else
-//	    {
-//			Debug.Log("Hi!");
-//			rigidBody.velocity = Vector3.zero;
-//			rigidBody.angularVelocity = 0;
-//			transform.position = Vector3.MoveTowards(transform.position, endPosition, speed*Time.deltaTime);
-//			isShooting = true;
-//			swapShootingStatus();
-//	    }
-//	}
-
-
     private void startMovement()
     {
-        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(pathName), "time", speed*2, "easetype", iTween.EaseType.linear, "oncomplete", "moveObject"));
+        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(pathName), "time", speed*2, "easetype", iTween.EaseType.easeInQuart, "oncomplete", "moveObject"));
     }
 
 	private void moveObject()
@@ -310,6 +192,7 @@ public class EnemyMovement : MonoBehaviour {
 		{
 			Destroy(gameObject);
 		}
+
 		if(isMoving)
 		{
             moveObject();

@@ -5,6 +5,7 @@ public class SpawnEnemies : MonoBehaviour {
 
 	public LevelDatabase levelDatabaseScript;
 	public float newPhaseTimer;
+	public float inbetweenSpawnTimer;
 	public Vector3 startPosition;
 	
 	private GameObject enemyInstance;
@@ -15,6 +16,7 @@ public class SpawnEnemies : MonoBehaviour {
 	private int phaseTotal;
 	private int positionInPhase;
 	private float newPhaseTimerStore;
+	private float inbetweenSpawnTimerStore;
 	
 	public float endPosAdjustment;
 
@@ -68,8 +70,8 @@ public class SpawnEnemies : MonoBehaviour {
 
 	void spawnPattern()
 	{
-		//Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
-		//Debug.Log("Current position in phase: " + positionInPhase);
+		Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
+		Debug.Log("Current position in phase: " + positionInPhase);
 		spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, positionInPhase]);
 	}
 
@@ -82,18 +84,16 @@ public class SpawnEnemies : MonoBehaviour {
 			spawnPattern();
 			return;
 		}
-		for(positionInPhase = 1; positionInPhase < phaseTotal; positionInPhase++)
+		if(positionInPhase <= phaseTotal/2)
 		{
-			if(positionInPhase <= phaseTotal/2)
-			{
-				startPosition = this.transform.position;
-			}
-			else
-			{
-				startPosition = GameObject.Find("EnemySpawnPoint2").transform.position;
-			}
-			spawnPattern();
+			startPosition = this.transform.position;
 		}
+		else
+		{
+			startPosition = GameObject.Find("EnemySpawnPoint2").transform.position;
+		}
+		spawnPattern();
+		positionInPhase++;
 	}
 
 	void moveToNextPhase()
@@ -102,7 +102,7 @@ public class SpawnEnemies : MonoBehaviour {
 		if(levelDatabaseScript.currentLevelPhase < 4)
 		{
 			levelDatabaseScript.currentLevelPhase++;
-			Debug.Log ("Loading phase: " + levelDatabaseScript.currentLevelPhase);
+			//Debug.Log ("Loading phase: " + levelDatabaseScript.currentLevelPhase);
 			phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, 0];
 		}
 		else
@@ -111,6 +111,7 @@ public class SpawnEnemies : MonoBehaviour {
 		}
 		
 		newPhaseTimer = newPhaseTimerStore;
+		positionInPhase = 1;
 	}
 
 	// Use this for initialization
@@ -120,7 +121,8 @@ public class SpawnEnemies : MonoBehaviour {
         spawnPoint2 = GameObject.Find("EnemySpawnPoint2");
         bossSpawnPoint = GameObject.Find("BossSpawnPoint");
 		newPhaseTimerStore = newPhaseTimer;
-		setStartingPoint();
+		inbetweenSpawnTimerStore = inbetweenSpawnTimer;
+		positionInPhase = 1;
 	}
 	
 	// Update is called once per frame
@@ -129,7 +131,15 @@ public class SpawnEnemies : MonoBehaviour {
 		if(newPhaseTimer <= 0)
 		{
 			moveToNextPhase();
-			setStartingPoint();
+		}
+		inbetweenSpawnTimer -= Time.deltaTime;
+		if(positionInPhase < phaseTotal)
+		{
+			if(inbetweenSpawnTimer <= 0)
+			{
+				setStartingPoint();
+				inbetweenSpawnTimer = inbetweenSpawnTimerStore;
+			}
 		}
 	}
 }

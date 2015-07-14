@@ -64,7 +64,7 @@ public class LevelDatabase : MonoBehaviour {
 						}
 						else if(i % 3 == 0)
 						{
-							Debug.Log("Added a Graze in phase " + j + " and position " + i);
+							//Debug.Log("Added a Graze in phase " + j + " and position " + i);
 							levelArray[j, i] = (int)enemyList.Graze;
 						}
 						else
