@@ -55,7 +55,7 @@ public class SpawnEnemies : MonoBehaviour {
 			break;
 
 		case 12:
-			//Debug.Log("Spawned boss1");
+			Debug.Log("Spawned boss1");
 			enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyBoss1, startPosition, Quaternion.identity);
 			enemyInstance.name = "Boss1";
 			this.enabled = false;
@@ -70,8 +70,8 @@ public class SpawnEnemies : MonoBehaviour {
 
 	void spawnPattern()
 	{
-		Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
-		Debug.Log("Current position in phase: " + positionInPhase);
+		//Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
+		//Debug.Log("Current position in phase: " + positionInPhase);
 		spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, positionInPhase]);
 	}
 
@@ -79,6 +79,7 @@ public class SpawnEnemies : MonoBehaviour {
 	{
 		if(levelDatabaseScript.currentLevelPhase == 4)
 		{
+            Debug.Log("HI");
 			positionInPhase = 1;
 			startPosition = GameObject.Find("BossSpawnPoint").transform.position;
 			spawnPattern();
@@ -92,8 +93,6 @@ public class SpawnEnemies : MonoBehaviour {
 		{
 			startPosition = GameObject.Find("EnemySpawnPoint2").transform.position;
 		}
-		spawnPattern();
-		positionInPhase++;
 	}
 
 	void moveToNextPhase()
@@ -107,11 +106,10 @@ public class SpawnEnemies : MonoBehaviour {
 		}
 		else
 		{
-			Debug.Log("currentLevelPhase is currently at " + levelDatabaseScript.currentLevelPhase + " and the lenght of the array is " + levelDatabaseScript.levelArray.Length);
+			Debug.LogError("currentLevelPhase is currently at " + levelDatabaseScript.currentLevelPhase + " and the lenght of the array is " + levelDatabaseScript.levelArray.Length);
 		}
 		
 		newPhaseTimer = newPhaseTimerStore;
-		positionInPhase = 1;
 	}
 
 	// Use this for initialization
@@ -131,13 +129,16 @@ public class SpawnEnemies : MonoBehaviour {
 		if(newPhaseTimer <= 0)
 		{
 			moveToNextPhase();
+		    positionInPhase = 1;
 		}
 		inbetweenSpawnTimer -= Time.deltaTime;
-		if(positionInPhase < phaseTotal)
+		if(positionInPhase < phaseTotal || levelDatabaseScript.currentLevelPhase == 4)
 		{
+			setStartingPoint();
 			if(inbetweenSpawnTimer <= 0)
 			{
-				setStartingPoint();
+                spawnPattern();
+                positionInPhase++;
 				inbetweenSpawnTimer = inbetweenSpawnTimerStore;
 			}
 		}
