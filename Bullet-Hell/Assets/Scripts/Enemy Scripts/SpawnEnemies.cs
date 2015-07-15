@@ -3,6 +3,7 @@ using System.Collections;
 
 public class SpawnEnemies : MonoBehaviour {
 
+	[HideInInspector]
 	public LevelDatabase levelDatabaseScript;
 	public float newPhaseTimer;
 	public float inbetweenSpawnTimer;
@@ -82,7 +83,6 @@ public class SpawnEnemies : MonoBehaviour {
             Debug.Log("HI");
 			positionInPhase = 1;
 			startPosition = GameObject.Find("BossSpawnPoint").transform.position;
-			spawnPattern();
 			return;
 		}
 		if(positionInPhase <= phaseTotal/2)
@@ -134,10 +134,10 @@ public class SpawnEnemies : MonoBehaviour {
 		inbetweenSpawnTimer -= Time.deltaTime;
 		if(positionInPhase < phaseTotal || levelDatabaseScript.currentLevelPhase == 4)
 		{
-			setStartingPoint();
 			if(inbetweenSpawnTimer <= 0)
 			{
-                spawnPattern();
+				setStartingPoint();
+				spawnPattern();
                 positionInPhase++;
 				inbetweenSpawnTimer = inbetweenSpawnTimerStore;
 			}
