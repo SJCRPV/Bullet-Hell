@@ -19,7 +19,7 @@ public class CanMoveToNewLevel : MonoBehaviour {
 
 	void canMoveToNextLevel()
 	{
-		if (GameObject.Find ("Boss") == true) 
+		if (GameObject.Find ("Boss1") == true) 
 		{
 			detectedBoss = true;
 			bossIsAlive = true;

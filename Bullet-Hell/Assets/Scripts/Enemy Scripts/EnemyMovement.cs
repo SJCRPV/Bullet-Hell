@@ -74,7 +74,10 @@ public class EnemyMovement : MonoBehaviour {
 
     private void startMovement()
     {
-        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(pathName), "time", speed*2, "easetype", iTween.EaseType.easeInQuart, "oncomplete", "moveObject"));
+        if (pathName != "ignore")
+        {
+            iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(pathName), "time", speed * 2, "easetype", iTween.EaseType.easeInQuart, "oncomplete", "moveObject"));
+        }
     }
 
 	private void moveObject()
@@ -141,6 +144,7 @@ public class EnemyMovement : MonoBehaviour {
 		else if(gameObject.transform.parent == GameObject.Find("BossSpawnPoint").transform)
 		{
 			endPosition = GameObject.Find("BossEndPoint").transform.position;
+            pathName = "ignore";
 			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 			//Debug.Log("isMoving is " + isMoving);
 		}

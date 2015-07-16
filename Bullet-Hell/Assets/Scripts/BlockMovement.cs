@@ -10,6 +10,7 @@ public class BlockMovement : MonoBehaviour {
 
     public float gravityScale;
 	public float speed;
+    public float timerUntilDestruction;
 
 	void moveToPlayer()
 	{
@@ -38,6 +39,7 @@ public class BlockMovement : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        timerUntilDestruction -= Time.deltaTime;
 		if(GameObject.FindGameObjectWithTag("Player") == true)
 		{
 			playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
@@ -53,5 +55,9 @@ public class BlockMovement : MonoBehaviour {
 		{
 			moveToPlayer();
 		}
+        if(timerUntilDestruction <= 0)
+        {
+            selfDesctructionScript.obliteration();
+        }
 	}
 }

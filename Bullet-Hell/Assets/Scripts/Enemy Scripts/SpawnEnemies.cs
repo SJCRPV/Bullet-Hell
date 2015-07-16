@@ -80,7 +80,6 @@ public class SpawnEnemies : MonoBehaviour {
 	{
 		if(levelDatabaseScript.currentLevelPhase == 4)
 		{
-            Debug.Log("HI");
 			positionInPhase = 1;
 			startPosition = GameObject.Find("BossSpawnPoint").transform.position;
 			return;
