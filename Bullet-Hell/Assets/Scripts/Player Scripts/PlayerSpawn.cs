@@ -78,5 +78,9 @@ public class PlayerSpawn : MonoBehaviour {
 				SpawnPlayer();
 			}
 		}
+        if(power < 0)
+        {
+            power = 0;
+        }
 	}
 }

@@ -10,10 +10,13 @@ public class CanMoveToNewLevel : MonoBehaviour {
 
 	void loadNextLevel()
 	{
-		currentLevel++;
 		if (timeUntilNextLevel <= 0) 
 		{
+		    currentLevel++;
+            Debug.Log(currentLevel);
 			Application.LoadLevel(currentLevel);
+            bossIsAlive = false;
+            detectedBoss = false;
 		}
 	}
 

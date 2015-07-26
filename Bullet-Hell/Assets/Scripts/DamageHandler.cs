@@ -18,7 +18,6 @@ public class DamageHandler : MonoBehaviour {
 	private float invincibilityTimeStore;
 	private int oppositeLayer;
 	private GameObject blockInstance;
-    private Vector3 positionOnDeath;
 	private int blockLayer;
 
 	public int getHealthPoints()
@@ -45,7 +44,6 @@ public class DamageHandler : MonoBehaviour {
 
 	void explode()
 	{
-        positionOnDeath = transform.position;
 		if(gameObject.tag == "Player")
 		{
 			for(int i = 0; i < 5; i++)
