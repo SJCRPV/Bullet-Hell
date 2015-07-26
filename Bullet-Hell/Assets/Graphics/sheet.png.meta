@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1436292089
+timeCreated: 1437922611
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -24,6 +24,8 @@ TextureImporter:
     21300034: circularBullet
     21300036: extraBulletSource
     21300038: PlayerBeam02
+    21300040: miniBoss1
+    21300042: EndPoint
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -266,6 +268,26 @@ TextureImporter:
         y: 549
         width: 9
         height: 54
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: miniBoss1
+      rect:
+        serializedVersion: 2
+        x: 425
+        y: 388
+        width: 93
+        height: 82
+      alignment: 0
+      pivot: {x: .5, y: .5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+    - name: EndPoint
+      rect:
+        serializedVersion: 2
+        x: 327
+        y: 476
+        width: 98
+        height: 96
       alignment: 0
       pivot: {x: .5, y: .5}
       border: {x: 0, y: 0, z: 0, w: 0}

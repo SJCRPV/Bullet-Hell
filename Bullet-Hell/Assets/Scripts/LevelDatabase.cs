@@ -8,8 +8,9 @@ public class LevelDatabase : MonoBehaviour {
 
 	public GameObject enemyBasic;
 	public GameObject enemyCone;
-	public GameObject enemyBoss1;
 	public GameObject enemyGraze;
+	public GameObject enemyMiniBoss1;
+	public GameObject enemyBoss1;
 
 	public enum enemyList
 	{
@@ -22,10 +23,15 @@ public class LevelDatabase : MonoBehaviour {
 		Enemy6,
 		Enemy7,
 		Enemy8,
-		Enemy9,
-		Enemy10,
-		Enemy11,
-		Boss1 = 12,
+		MiniBoss1 = 9,
+		MiniBoss2,
+		MiniBoss3,
+		MiniBoss4,
+		MiniBoss5,
+		MiniBoss6,
+		MiniBoss7,
+		MiniBoss8,
+		Boss1 = 16,
 		Boss2,
 		Boss3,
 		Boss4,
@@ -35,14 +41,14 @@ public class LevelDatabase : MonoBehaviour {
 		Boss8,
 	}
 
-	public int[,] levelArray = new int[5, 15];
+	public int[,] levelArray = new int[10, 15];
 
 	void fillArray()
 	{
 		switch(currentLevel)
 		{
 		case 1:
-			for(int j = 0; j < 5; j++)
+			for(int j = 0; j < 10; j++)
 			{
 				switch(j)
 				{
@@ -50,6 +56,10 @@ public class LevelDatabase : MonoBehaviour {
 				case 1:
 				case 2:
 				case 3:
+				case 5:
+				case 6:
+				case 7:
+				case 8:
 					for(int i = 1; i < levelArray[j, 0]; i++)
 					{
 						//TASK: When you figure out which enemies show up in which levels, re-do this
@@ -76,7 +86,10 @@ public class LevelDatabase : MonoBehaviour {
 					break;
 
 				case 4:
-					levelArray[4, 1] = (int)enemyList.Boss1;
+					levelArray[4, 1] = (int)enemyList.MiniBoss1;
+					break;
+				case 9:
+					levelArray[9, 1] = (int)enemyList.Boss1;
 					break;
 				}
 			}
@@ -100,12 +113,27 @@ public class LevelDatabase : MonoBehaviour {
 		levelArray[2,0] = 11;
 		levelArray[3,0] = 15;
 		levelArray[4,0] = 1;
+		levelArray[5,0] = 18;
+		levelArray[6,0] = 20;
+		levelArray[7,0] = 24;
+		levelArray[8,0] = 24;
+		levelArray[9,0] = 1;
 		fillArray();
 	}
 	public void Level2()
 	{
 		Debug.Log("You loaded level 2!");
 		currentLevel = 2;
+		levelArray[0,0] = 5;
+		levelArray[1,0] = 18;
+		levelArray[2,0] = 18;
+		levelArray[3,0] = 14;
+		levelArray[4,0] = 1;
+		levelArray[5,0] = 18;
+		levelArray[6,0] = 20;
+		levelArray[7,0] = 24;
+		levelArray[8,0] = 28;
+		levelArray[9,0] = 1;
 	}
 
 	void OnLevelWasLoaded(int level)
