@@ -19,10 +19,20 @@ public class EnemyMovement : MonoBehaviour {
 	private Vector3 endPosition;
 	private Transform spawnPoint1;
 	private Transform spawnPoint2;
+	private Transform spawnPoint3;
+	private Transform spawnPoint4;
+	private Transform spawnPoint5;
+	private Transform spawnPoint6;
+	private Transform spawnPoint7;
+	private Transform spawnPoint8;
 	private Transform leavingPoint1;
 	private Transform leavingPoint2;
-	private Transform endPoint1;
-	private Transform endPoint2;
+	private Transform endPoint1_3;
+	private Transform endPoint2_4;
+	private Transform endPoint5;
+	private Transform endPoint6;
+	private Transform endPoint7;
+	private Transform endPoint8;
 	private float timerUntilObjectLeavesStore;
 	private float endPosAdjustment;
     private Rigidbody2D rigidBody;
@@ -123,35 +133,63 @@ public class EnemyMovement : MonoBehaviour {
             Debug.LogError("I don't know what component to get!");
         }
 	}
-
+	
 	private void whereTo()
 	{
 		isMoving = true;
-		if(gameObject.transform.position == spawnPoint1.position)
+		switch(gameObject.transform.position)
 		{
-			endPosition = endPoint1.position - adjustmentToEndPosition();
+		case spawnPoint1.position:
+			endPosition = endPoint1_3.position - adjustmentToEndPosition();
 			pathName = "EnemySpawnPath1";
-			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
-			//Debug.Log("isMoving is " + isMoving);
-		}
-		else if(gameObject.transform.position == spawnPoint2.position)
-		{
-			endPosition = endPoint2.position + adjustmentToEndPosition();
+			break;
+
+		case spawnPoint2.position:
+			endPosition = endPoint2_4.position + adjustmentToEndPosition();
 			pathName = "EnemySpawnPath2";
-			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
-			//Debug.Log("isMoving is " + isMoving);
-		}
-		else if(gameObject.transform.parent == GameObject.Find("BossSpawnPoint").transform)
-		{
+			break;
+
+		case spawnPoint3.position:
+			endPosition = endPoint1_3.position - adjustmentToEndPosition();
+			pathName = "EnemySpawnPath3";
+			break;
+
+		case spawnPoint4.position:
+			endPosition = endPoint2_4.position - adjustmentToEndPosition();
+			pathName = "EnemySpawnPath4";
+			break;
+
+		case spawnPoint5.position:
+			endPosition = endPoint5.position - adjustmentToEndPosition();
+			pathName = "EnemySpawnPath5";
+			break;
+
+		case spawnPoint6.position:
+			endPosition = endPoint6.position - adjustmentToEndPosition();
+			pathName = "EnemySpawnPath6";
+			break;
+
+		case spawnPoint7.position:
+			endPosition = endPoint7.position - adjustmentToEndPosition();
+			pathName = "EnemySpawnPath7";
+			break;
+
+		case spawnPoint8.position:
+			endPosition = endPoint8.position - adjustmentToEndPosition();
+			pathName = "EnemySpawnPath8";
+			break;
+
+		case GameObject.Find("BossSpawnPoint").transform.position:
 			endPosition = GameObject.Find("BossEndPoint").transform.position;
-            pathName = "ignore";
-			//Debug.Log(gameObject.name + " is moving to: " + endPosition);
-			//Debug.Log("isMoving is " + isMoving);
-		}
-		else
-		{
+			pathName = "ignore";
+			break;
+
+		default:
 			Debug.LogError("I didn't find my destination!");
+			break;
 		}
+		//Debug.Log(gameObject.name + " is moving to: " + endPosition);
+		//Debug.Log("isMoving is " + isMoving);
 	}
 
 	private void backTo()
@@ -159,14 +197,31 @@ public class EnemyMovement : MonoBehaviour {
 		isMoving = true;
 		leftTheStage = true;
 		//This is dirty. See if you can find a way to fix it
-		if(transform.position.y == endPoint1.position.y || transform.position.y == endPoint1.position.y - 1)
+		if(transform.position.y == endPoint1_3.position.y || transform.position.y == endPoint1_3.position.y - 1)
 		{
 			endPosition = leavingPoint1.position;
 		}
-		if (transform.position.y == endPoint2.position.y || transform.position.y == endPoint2.position.y + 1)
+		if (transform.position.y == endPoint2_4.position.y || transform.position.y == endPoint2_4.position.y + 1)
 		{
 			endPosition = leavingPoint2.position;
 		}
+		if (transform.position.y == endPoint5.position.y || transform.position.y == endPoint5.position.y + 1)
+		{
+			endPosition = leavingPoint1.position;
+		}
+		if (transform.position.y == endPoint6.position.y || transform.position.y == endPoint6.position.y + 1)
+		{
+			endPosition = leavingPoint2.position;
+		}
+		if (transform.position.y == endPoint7.position.y || transform.position.y == endPoint7.position.y + 1)
+		{
+			endPosition = leavingPoint2.position;
+		}
+		if (transform.position.y == endPoint8.position.y || transform.position.y == endPoint8.position.y + 1)
+		{
+			endPosition = leavingPoint1.position;
+		}
+
 		//Debug.Log(gameObject.name + " is returning to " + endPosition);
 	}
 
@@ -177,10 +232,16 @@ public class EnemyMovement : MonoBehaviour {
 		spawnEnemiesScript = GetComponentInParent<SpawnEnemies>();
 		spawnPoint1 = GameObject.Find("EnemySpawnPoint1").transform;
 		spawnPoint2 = GameObject.Find("EnemySpawnPoint2").transform;
+		spawnPoint3 = GameObject.Find("EnemySpawnPoint3").transform;
+		spawnPoint4 = GameObject.Find("EnemySpawnPoint4").transform;
+		spawnPoint5 = GameObject.Find("EnemySpawnPoint5").transform;
+		spawnPoint6 = GameObject.Find("EnemySpawnPoint6").transform;
+		spawnPoint7 = GameObject.Find("EnemySpawnPoint7").transform;
+		spawnPoint8 = GameObject.Find("EnemySpawnPoint8").transform;
 		leavingPoint1 = GameObject.Find("LeavingPoint1").transform;
 		leavingPoint2 = GameObject.Find("LeavingPoint2").transform;
-		endPoint1 = GameObject.Find("EnemyEndPoint1").transform;
-		endPoint2 = GameObject.Find("EnemyEndPoint2").transform;
+		endPoint1_3 = GameObject.Find("EnemyEndPoint1/3").transform;
+		endPoint2_4 = GameObject.Find("EnemyEndPoint2/4").transform;
         rigidBody = GetComponent<Rigidbody2D>();
 		timerUntilObjectLeavesStore = timerUntilObjectLeaves;
 		isShooting = false;

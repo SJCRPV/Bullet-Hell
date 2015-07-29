@@ -12,6 +12,12 @@ public class SpawnEnemies : MonoBehaviour {
 	private GameObject enemyInstance;
     private GameObject spawnPoint1;
     private GameObject spawnPoint2;
+	private GameObject spawnPoint3;
+	private GameObject spawnPoint4;
+	private GameObject spawnPoint5;
+	private GameObject spawnPoint6;
+	private GameObject spawnPoint7;
+	private GameObject spawnPoint8;
     private GameObject bossSpawnPoint;
 	private int currentLevel;
 	private int phaseTotal;
@@ -98,6 +104,8 @@ public class SpawnEnemies : MonoBehaviour {
 		{
 			startPosition = GameObject.Find("EnemySpawnPoint2").transform.position;
 		}
+
+
 	}
 
 	void moveToNextPhase()
