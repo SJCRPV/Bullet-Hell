@@ -61,7 +61,7 @@ public class SpawnEnemies : MonoBehaviour {
 			enemyInstance.name = "Graze";
 			break;
 
-		case 9:
+		case 8:
 			Debug.Log ("Spawned a miniBoss1!");
 			enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyMiniBoss1, startPosition, Quaternion.identity);
 			enemyInstance.name = "MiniBoss1";

@@ -23,7 +23,7 @@ public class LevelDatabase : MonoBehaviour {
 		Enemy6,
 		Enemy7,
 		Enemy8,
-		MiniBoss1 = 9,
+		MiniBoss1 = 8,
 		MiniBoss2,
 		MiniBoss3,
 		MiniBoss4,
