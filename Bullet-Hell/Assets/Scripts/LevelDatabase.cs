@@ -41,7 +41,7 @@ public class LevelDatabase : MonoBehaviour {
 		Boss8,
 	}
 
-	public int[,] levelArray = new int[10, 15];
+	public int[,] levelArray = new int[10, 30];
 
 	void fillArray()
 	{

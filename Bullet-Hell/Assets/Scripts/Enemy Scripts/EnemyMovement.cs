@@ -104,90 +104,95 @@ public class EnemyMovement : MonoBehaviour {
 
 	private void whichComponentsToGet()
 	{
-		if(gameObject.tag == "Basic")
-		{
-			//Debug.Log("Got a basic here!");
-			ballisticsScript = GetComponent<Ballistics>();
-			ballisticsScript.enabled = false;
-		}
-		else if(gameObject.tag == "Cone")
-		{
-			//Debug.Log("Got a cone here!");
-			conePatternScript = GetComponent<ConePattern>();
-			conePatternScript.enabled = false;
-		}
-		else if(gameObject.tag == "Graze")
-		{
-			//Debug.Log("Got a graze here!");
-			grazePatternScript = GetComponent<GrazePattern>();
-			grazePatternScript.enabled = false;
-		}
-		else if(gameObject.tag == "Boss1")
-		{
-			//Debug.Log("Got a boss here!");
-			boss1PatternScript = GetComponent<Boss1Ballistics>();
-			boss1PatternScript.enabled = false;
-		}
-        else
+        switch (gameObject.tag)
         {
-            Debug.LogError("I don't know what component to get!");
+            case "Basic":
+                //Debug.Log("Got a basic here!");
+                ballisticsScript = GetComponent<Ballistics>();
+                ballisticsScript.enabled = false;
+                break;
+
+            case "Cone":
+                //Debug.Log("Got a cone here!");
+                conePatternScript = GetComponent<ConePattern>();
+                conePatternScript.enabled = false;
+                break;
+
+            case "Graze":
+                //Debug.Log("Got a graze here!");
+                grazePatternScript = GetComponent<GrazePattern>();
+                grazePatternScript.enabled = false;
+                break;
+
+            case "MiniBoss1":
+                //NEEDS PATTERNS
+                break;
+
+            case "Boss1":
+                //Debug.Log("Got a boss here!");
+                boss1PatternScript = GetComponent<Boss1Ballistics>();
+                boss1PatternScript.enabled = false;
+                break;
+
+            default:
+                Debug.LogError("I don't know what component to get!");
+                break;
         }
 	}
-	
-	private void whereTo()
-	{
-		isMoving = true;
-		switch(gameObject.transform.position)
-		{
-		case spawnPoint1.position:
-			endPosition = endPoint1_3.position - adjustmentToEndPosition();
-			pathName = "EnemySpawnPath1";
-			break;
 
-		case spawnPoint2.position:
-			endPosition = endPoint2_4.position + adjustmentToEndPosition();
-			pathName = "EnemySpawnPath2";
-			break;
+    private void whereTo()
+    {
+        isMoving = true;
 
-		case spawnPoint3.position:
-			endPosition = endPoint1_3.position - adjustmentToEndPosition();
-			pathName = "EnemySpawnPath3";
-			break;
-
-		case spawnPoint4.position:
-			endPosition = endPoint2_4.position - adjustmentToEndPosition();
-			pathName = "EnemySpawnPath4";
-			break;
-
-		case spawnPoint5.position:
-			endPosition = endPoint5.position - adjustmentToEndPosition();
-			pathName = "EnemySpawnPath5";
-			break;
-
-		case spawnPoint6.position:
-			endPosition = endPoint6.position - adjustmentToEndPosition();
-			pathName = "EnemySpawnPath6";
-			break;
-
-		case spawnPoint7.position:
-			endPosition = endPoint7.position - adjustmentToEndPosition();
-			pathName = "EnemySpawnPath7";
-			break;
-
-		case spawnPoint8.position:
-			endPosition = endPoint8.position - adjustmentToEndPosition();
-			pathName = "EnemySpawnPath8";
-			break;
-
-		case GameObject.Find("BossSpawnPoint").transform.position:
-			endPosition = GameObject.Find("BossEndPoint").transform.position;
-			pathName = "ignore";
-			break;
-
-		default:
-			Debug.LogError("I didn't find my destination!");
-			break;
-		}
+        if (gameObject.transform.position == spawnPoint1.position)
+        {
+            endPosition = endPoint1_3.position - adjustmentToEndPosition();
+            pathName = "EnemySpawnPath1";
+        }
+        else if (gameObject.transform.position == spawnPoint2.position)
+        {
+            endPosition = endPoint2_4.position + adjustmentToEndPosition();
+            pathName = "EnemySpawnPath2";
+        }
+        else if (gameObject.transform.position == spawnPoint3.position)
+        {
+            endPosition = endPoint1_3.position - adjustmentToEndPosition();
+            pathName = "EnemySpawnPath3";
+        }
+        else if (gameObject.transform.position == spawnPoint4.position)
+        {
+            endPosition = endPoint2_4.position - adjustmentToEndPosition();
+            pathName = "EnemySpawnPath4";
+        }
+        else if (gameObject.transform.position == spawnPoint5.position)
+        {
+            endPosition = endPoint5.position - adjustmentToEndPosition();
+            pathName = "EnemySpawnPath5";
+        }
+        else if (gameObject.transform.position == spawnPoint6.position)
+        {
+            endPosition = endPoint6.position - adjustmentToEndPosition();
+            pathName = "EnemySpawnPath6";
+        }
+        else if (gameObject.transform.position == spawnPoint7.position)
+        {
+            endPosition = endPoint7.position - adjustmentToEndPosition();
+            pathName = "EnemySpawnPath7";
+        }
+        else if (gameObject.transform.position == spawnPoint8.position)
+        {
+            endPosition = endPoint8.position - adjustmentToEndPosition();
+            pathName = "EnemySpawnPath8";
+        }
+        else if (gameObject.transform.position == GameObject.Find("BossSpawnPoint").transform.position)
+        {
+            endPosition = GameObject.Find("BossEndPoint").transform.position;
+            pathName = "ignore";
+        }
+        else
+        {
+            Debug.LogError("I didn't find my destination!");
+        }
 		//Debug.Log(gameObject.name + " is moving to: " + endPosition);
 		//Debug.Log("isMoving is " + isMoving);
 	}
@@ -242,6 +247,10 @@ public class EnemyMovement : MonoBehaviour {
 		leavingPoint2 = GameObject.Find("LeavingPoint2").transform;
 		endPoint1_3 = GameObject.Find("EnemyEndPoint1/3").transform;
 		endPoint2_4 = GameObject.Find("EnemyEndPoint2/4").transform;
+        endPoint5 = GameObject.Find("EnemyEndPoint5").transform;
+        endPoint6 = GameObject.Find("EnemyEndPoint6").transform;
+        endPoint7 = GameObject.Find("EnemyEndPoint7").transform;
+        endPoint8 = GameObject.Find("EnemyEndPoint8").transform;
         rigidBody = GetComponent<Rigidbody2D>();
 		timerUntilObjectLeavesStore = timerUntilObjectLeaves;
 		isShooting = false;
