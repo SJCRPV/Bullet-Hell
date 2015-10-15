@@ -15,7 +15,6 @@ public class EnemyMovement : MonoBehaviour {
 	public bool leftTheStage;
 	public bool isShooting;
 
-	private Vector3 startingPosition;
 	private Vector3 endPosition;
 	private Transform spawnPoint1;
 	private Transform spawnPoint2;
@@ -35,7 +34,6 @@ public class EnemyMovement : MonoBehaviour {
 	private Transform endPoint8;
 	private float timerUntilObjectLeavesStore;
 	private float endPosAdjustment;
-    private Rigidbody2D rigidBody;
 	private string pathName;
 
 
@@ -233,7 +231,6 @@ public class EnemyMovement : MonoBehaviour {
 	// Use this for initialization
 	void Start () 
 	{
-		startingPosition = transform.position;
 		spawnEnemiesScript = GetComponentInParent<SpawnEnemies>();
 		spawnPoint1 = GameObject.Find("EnemySpawnPoint1").transform;
 		spawnPoint2 = GameObject.Find("EnemySpawnPoint2").transform;
@@ -251,7 +248,6 @@ public class EnemyMovement : MonoBehaviour {
         endPoint6 = GameObject.Find("EnemyEndPoint6").transform;
         endPoint7 = GameObject.Find("EnemyEndPoint7").transform;
         endPoint8 = GameObject.Find("EnemyEndPoint8").transform;
-        rigidBody = GetComponent<Rigidbody2D>();
 		timerUntilObjectLeavesStore = timerUntilObjectLeaves;
 		isShooting = false;
 		whichComponentsToGet();

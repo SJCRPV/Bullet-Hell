@@ -11,7 +11,6 @@ public class PlayerBallistics : MonoBehaviour {
 
 	float cooldownTimerStore;
 	Vector3 verticalOffset = new Vector3(0, 0.5f, 0);
-	Vector3 horizontalOffset = new Vector3(0.5f, 0, 0);
 	Vector3 bulletPosition;
 	
 	private GameObject bulletInstance;

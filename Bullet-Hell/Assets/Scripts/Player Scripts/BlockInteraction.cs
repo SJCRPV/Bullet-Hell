@@ -11,7 +11,7 @@ public class BlockInteraction : MonoBehaviour {
 	public int pointDecrement;
 	public float powerCap;
 
-	private int objectLayer;
+	//private int objectLayer;
 
 	void OnTriggerEnter2D(Collider2D collider)
 	{
@@ -34,7 +34,7 @@ public class BlockInteraction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		objectLayer = gameObject.layer;
+		//objectLayer = gameObject.layer;
 		playerSpawnScript = GetComponentInParent<PlayerSpawn>();
 	}
 	

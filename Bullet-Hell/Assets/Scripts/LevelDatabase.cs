@@ -41,102 +41,99 @@ public class LevelDatabase : MonoBehaviour {
 		Boss8,
 	}
 
-	public int[,] levelArray = new int[10, 30];
+    public int[][] levelArray = new int[10][];
 
-	void fillArray()
-	{
-		switch(currentLevel)
-		{
-		case 1:
-			for(int j = 0; j < 10; j++)
-			{
-				switch(j)
-				{
-				case 0:
-				case 1:
-				case 2:
-				case 3:
-				case 5:
-				case 6:
-				case 7:
-				case 8:
-					for(int i = 1; i < levelArray[j, 0]; i++)
-					{
-						//TASK: When you figure out which enemies show up in which levels, re-do this
-						if(i > levelArray[j,0])
-						{
-							levelArray[j, i] = 99;
-						}
-						else if(i % 4 == 0)
-						{
-							//Debug.Log("Added a Cone in phase " + j + " and position " + i);
-							levelArray[j, i] = (int)enemyList.Cone;
-						}
-						else if(i % 3 == 0)
-						{
-							//Debug.Log("Added a Graze in phase " + j + " and position " + i);
-							levelArray[j, i] = (int)enemyList.Graze;
-						}
-						else
-						{
-							//Debug.Log("Added a Basic in phase " + j + " and position " + i);
-							levelArray[j, i] = (int)enemyList.Basic;
-						}
-					}
-					break;
+    void fillArray()
+    {
+        switch(currentLevel)
+        {
+            case 1:
+                for(int j = 0; j < 10; j++)
+                {
+                    switch(j)
+                    {
+                        case 0:
+                        case 1:
+                        case 2:
+                        case 3:
+                        case 5:
+                        case 6:
+                        case 7:
+                        case 8:
+                            for(int i = 0; i < levelArray[j].Length; i++)
+                            {
+                                //TASK: When you figure out which enemies show up in which levels, re-do this
+                                if (i % 4 == 0)
+                                {
+                                    //Debug.Log("Added a Cone in phase " + j + " and position " + i);
+                                    levelArray[j][i] = (int)enemyList.Cone;
+                                }
+                                else if (i % 3 == 0)
+                                {
+                                    //Debug.Log("Added a Graze in phase " + j + " and position " + i);
+                                    levelArray[j][i] = (int)enemyList.Graze;
+                                }
+                                else
+                                {
+                                    //Debug.Log("Added a Basic in phase " + j + " and position " + i);
+                                    levelArray[j][i] = (int)enemyList.Basic;
+                                }
+                            }
+                            break;
 
-				case 4:
-					levelArray[4, 1] = (int)enemyList.MiniBoss1;
-					break;
-				case 9:
-					levelArray[9, 1] = (int)enemyList.Boss1;
-					break;
-				}
-			}
-		break;
+                        case 4:
+                            //Debug.Log("Added MiniBoss1 in phase " + j + " and position " + i ");
+                            levelArray[j][0] = (int)enemyList.MiniBoss1;
+                            break;
 
-
-		}
-	}
+                        case 9:
+                            //Debug.Log("Added Boss1 in phase " + j + " and position " + i ");
+                            levelArray[j][0] = (int)enemyList.Boss1;
+                            break;
+                    }
+                }
+            break;
+        }
+    }
 
 	public void Level0()
 	{
 		currentLevel = 0;
 		Debug.Log ("You loaded level 0!");
 	}
-	public void Level1()
-	{
-		Debug.Log("You loaded level 1!");
-		currentLevel = 1;
-		levelArray[0,0] = 9;
-		levelArray[1,0] = 11;
-		levelArray[2,0] = 11;
-		levelArray[3,0] = 15;
-		levelArray[4,0] = 1;
-		levelArray[5,0] = 18;
-		levelArray[6,0] = 20;
-		levelArray[7,0] = 24;
-		levelArray[8,0] = 24;
-		levelArray[9,0] = 1;
-		fillArray();
-	}
-	public void Level2()
-	{
-		Debug.Log("You loaded level 2!");
-		currentLevel = 2;
-		levelArray[0,0] = 5;
-		levelArray[1,0] = 18;
-		levelArray[2,0] = 18;
-		levelArray[3,0] = 14;
-		levelArray[4,0] = 1;
-		levelArray[5,0] = 18;
-		levelArray[6,0] = 20;
-		levelArray[7,0] = 24;
-		levelArray[8,0] = 28;
-		levelArray[9,0] = 1;
-	}
+    public void Level1()
+    {
+        Debug.Log("You loaded level 1!");
+        currentLevel = 1;
+        levelArray[0] = new int[8];
+        levelArray[1] = new int[10];
+        levelArray[2] = new int[10];
+        levelArray[3] = new int[14];
+        levelArray[4] = new int[1];
+        levelArray[5] = new int[18];
+        levelArray[6] = new int[20];
+        levelArray[7] = new int[24];
+        levelArray[8] = new int[24];
+        levelArray[9] = new int[1];
+        fillArray();
+    }
+    public void Level2()
+    {
+        Debug.Log("You loaded level 2!");
+        currentLevel = 2;
+        /*levelArray[0] = 5;
+		levelArray[1] = 18;
+		levelArray[2] = 18;
+		levelArray[3] = 14;
+		levelArray[4] = 1;
+		levelArray[5] = 18;
+		levelArray[6] = 20;
+		levelArray[7] = 24;
+		levelArray[8] = 28;
+		levelArray[9] = 1;*/
+    }
 
-	void OnLevelWasLoaded(int level)
+    void OnLevelWasLoaded(int level)
 	{
 		switch(level)
 		{

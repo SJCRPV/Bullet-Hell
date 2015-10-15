@@ -3,7 +3,7 @@ using System.Collections;
 
 public class TimedMoveForward : MonoBehaviour {
 
-	Boss1Movement boss1MovementScript;
+	//Boss1Movement boss1MovementScript;
 
 	public float bulletSpeed;
 	public float deathTimer;
@@ -11,7 +11,7 @@ public class TimedMoveForward : MonoBehaviour {
 
 	void Start()
 	{
-		boss1MovementScript = GetComponent<Boss1Movement>();
+		//boss1MovementScript = GetComponent<Boss1Movement>();
 	}
 
 	// Update is called once per frame

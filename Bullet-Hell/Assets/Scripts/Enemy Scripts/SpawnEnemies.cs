@@ -83,16 +83,15 @@ public class SpawnEnemies : MonoBehaviour {
 
 	void spawnPattern()
 	{
-		//Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
-		//Debug.Log("Current position in phase: " + positionInPhase);
-		spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, positionInPhase]);
+		Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
+		Debug.Log("Current position in phase: " + positionInPhase);
+		spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase][positionInPhase]);
 	}
 
 	void setStartingPoint()
 	{
 		if(levelDatabaseScript.currentLevelPhase == 4)
 		{
-			positionInPhase = 1;
 			startPosition = GameObject.Find("BossSpawnPoint").transform.position;
 			return;
 		}
@@ -115,11 +114,11 @@ public class SpawnEnemies : MonoBehaviour {
 		{
 			levelDatabaseScript.currentLevelPhase++;
 			//Debug.Log ("Loading phase: " + levelDatabaseScript.currentLevelPhase);
-			phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase, 0];
+			phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase].Length;
 		}
 		else
 		{
-			Debug.LogError("currentLevelPhase is currently at " + levelDatabaseScript.currentLevelPhase + " and the lenght of the array is " + levelDatabaseScript.levelArray.Length);
+			Debug.LogError("currentLevelPhase is currently at " + levelDatabaseScript.currentLevelPhase + " and the lenght of the array is " + levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase].Length + ". I tried to use the position: " + positionInPhase);
 		}
 		
 		newPhaseTimer = newPhaseTimerStore;
@@ -133,7 +132,7 @@ public class SpawnEnemies : MonoBehaviour {
         bossSpawnPoint = GameObject.Find("BossSpawnPoint");
 		newPhaseTimerStore = newPhaseTimer;
 		inbetweenSpawnTimerStore = inbetweenSpawnTimer;
-		positionInPhase = 1;
+		positionInPhase = 0;
 	}
 	
 	// Update is called once per frame
@@ -142,10 +141,10 @@ public class SpawnEnemies : MonoBehaviour {
 		if(newPhaseTimer <= 0)
 		{
 			moveToNextPhase();
-		    positionInPhase = 1;
+		    positionInPhase = 0;
 		}
 		inbetweenSpawnTimer -= Time.deltaTime;
-		if(positionInPhase < phaseTotal || levelDatabaseScript.currentLevelPhase == 4)
+		if(positionInPhase < phaseTotal)
 		{
 			if(inbetweenSpawnTimer <= 0)
 			{
