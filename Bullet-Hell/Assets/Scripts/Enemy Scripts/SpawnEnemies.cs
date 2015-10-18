@@ -110,7 +110,7 @@ public class SpawnEnemies : MonoBehaviour {
 	void moveToNextPhase()
 	{
 		endPosAdjustment = 0;
-		if(levelDatabaseScript.currentLevelPhase < 4)
+		if(levelDatabaseScript.currentLevelPhase < 10)
 		{
 			levelDatabaseScript.currentLevelPhase++;
 			//Debug.Log ("Loading phase: " + levelDatabaseScript.currentLevelPhase);
