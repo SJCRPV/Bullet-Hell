@@ -11,7 +11,8 @@ public class MiniBoss1_Pattern1 : MonoBehaviour {
     public float cooldownTimer;
     public float innerCooldownMovingTimer;
     public float innerCooldownStillTimer;
-    public int roundsBeforeCooldown;
+    public int roundsBeforeCooldownMoving;
+    public int roundsBeforeCooldownStill;
 
     private GameObject bulletInstance;
     private float angleDispersionStore;
@@ -19,7 +20,8 @@ public class MiniBoss1_Pattern1 : MonoBehaviour {
     private Quaternion bulletRotation;
     private float innerCooldownMovingTimerStore;
     private float innerCooldownStillTimerStore;
-    private int roundsBeforeCooldownStore;
+    private int roundsBeforeCooldownMovingStore;
+    private int roundsBeforeCooldownStillStore;
     private Vector3 offset = new Vector3(0.25f, 0, 0);
 
     void Fire()
@@ -35,33 +37,32 @@ public class MiniBoss1_Pattern1 : MonoBehaviour {
 
     void FirePattern()
     {
-        innerCooldownMovingTimer -= Time.deltaTime;
-        if(innerCooldownMovingTimer <= 0)
+        if (enemyMovementScript.isMoving && roundsBeforeCooldownMoving >= 0)
         {
-            if (enemyMovementScript.isMoving)
+            innerCooldownMovingTimer -= Time.deltaTime;
+            if (innerCooldownMovingTimer <= 0)
             {
-                innerCooldownMovingTimer -= Time.deltaTime;
-                if (innerCooldownMovingTimer <= 0)
+                for (angleDispersion = 111; angleDispersion <= 249; angleDispersion += angleDispersionStore)
                 {
-                    for (angleDispersion = 111; angleDispersion <= 249; angleDispersion += angleDispersionStore)
-                    {
-                        bulletRotation = Quaternion.identity;
-                        bulletRotation.eulerAngles = new Vector3(0, 0, angleDispersion);
-                        Fire();
-                    }
+                    bulletRotation = Quaternion.identity;
+                    bulletRotation.eulerAngles = new Vector3(0, 0, angleDispersion);
+                    Fire();
                 }
-                angleDispersion = angleDispersionStore;
-                innerCooldownMovingTimer = innerCooldownMovingTimerStore;
+                roundsBeforeCooldownMoving--;
             }
-            else
+            angleDispersion = angleDispersionStore;
+            innerCooldownMovingTimer = innerCooldownMovingTimerStore;
+            roundsBeforeCooldownMoving = roundsBeforeCooldownMovingStore;
+        }
+        else
+        {
+            innerCooldownStillTimer -= Time.deltaTime;
+            if (innerCooldownStillTimer <= 0 && roundsBeforeCooldownStill >= 0)
             {
-                innerCooldownStillTimer -= Time.deltaTime;
-                if (innerCooldownStillTimer <= 0)
-                {
-                    Fire(offset);
-                    Fire(-offset);
-                    innerCooldownStillTimer = innerCooldownMovingTimerStore;
-                }
+                Fire(offset);
+                Fire(-offset);
+                innerCooldownStillTimer = innerCooldownMovingTimerStore;
+                roundsBeforeCooldownStill--;
             }
         }
     }
@@ -72,7 +73,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour {
         cooldownTimerStore = cooldownTimer;
         innerCooldownMovingTimerStore = innerCooldownMovingTimer;
         innerCooldownStillTimerStore = innerCooldownStillTimer;
-        roundsBeforeCooldownStore = roundsBeforeCooldown;
+        roundsBeforeCooldownMovingStore = roundsBeforeCooldownMoving;
 	}
 	
 	// Update is called once per frame
