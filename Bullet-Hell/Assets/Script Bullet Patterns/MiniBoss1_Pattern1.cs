@@ -8,7 +8,9 @@ public class MiniBoss1_Pattern1 : MonoBehaviour {
     [HideInInspector]
     public EnemyMovement enemyMovementScript;
     public float angleDispersion;
-    public float cooldownTimer;
+    public float timeUntilMove;
+    public float cooldownMovingTimer;
+    public float cooldownStillTimer;
     public float innerCooldownMovingTimer;
     public float innerCooldownStillTimer;
     public int roundsBeforeCooldownMoving;
@@ -16,8 +18,10 @@ public class MiniBoss1_Pattern1 : MonoBehaviour {
 
     private GameObject bulletInstance;
     private float angleDispersionStore;
-    private float cooldownTimerStore;
+    private float timeUntilMoveStore;
     private Quaternion bulletRotation;
+    private float cooldownMovingTimerStore;
+    private float cooldownStillTimerStore;
     private float innerCooldownMovingTimerStore;
     private float innerCooldownStillTimerStore;
     private int roundsBeforeCooldownMovingStore;
@@ -35,53 +39,82 @@ public class MiniBoss1_Pattern1 : MonoBehaviour {
         bulletInstance.gameObject.layer = 11;
     }
 
-    void FirePattern()
+    void FirePatternMoving()
     {
-        if (enemyMovementScript.isMoving && roundsBeforeCooldownMoving >= 0)
+        innerCooldownMovingTimer -= Time.deltaTime;
+        if(roundsBeforeCooldownMoving >= 0 && innerCooldownMovingTimer <= 0)
         {
-            innerCooldownMovingTimer -= Time.deltaTime;
-            if (innerCooldownMovingTimer <= 0)
+            for(angleDispersion = 111; angleDispersion <= 249; angleDispersion += angleDispersionStore)
             {
-                for (angleDispersion = 111; angleDispersion <= 249; angleDispersion += angleDispersionStore)
-                {
-                    bulletRotation = Quaternion.identity;
-                    bulletRotation.eulerAngles = new Vector3(0, 0, angleDispersion);
-                    Fire();
-                }
-                roundsBeforeCooldownMoving--;
+                bulletRotation = Quaternion.identity;
+                bulletRotation.eulerAngles = new Vector3(0, 0, angleDispersion);
+                Fire();
             }
-            angleDispersion = angleDispersionStore;
+            roundsBeforeCooldownMoving--;
             innerCooldownMovingTimer = innerCooldownMovingTimerStore;
-            roundsBeforeCooldownMoving = roundsBeforeCooldownMovingStore;
+            angleDispersion = angleDispersionStore;
         }
-        else
+
+        if(roundsBeforeCooldownMoving < 0)
         {
-            innerCooldownStillTimer -= Time.deltaTime;
-            if (innerCooldownStillTimer <= 0 && roundsBeforeCooldownStill >= 0)
-            {
-                Fire(offset);
-                Fire(-offset);
-                innerCooldownStillTimer = innerCooldownMovingTimerStore;
-                roundsBeforeCooldownStill--;
-            }
+            cooldownMovingTimer = cooldownMovingTimerStore;
+        }
+    }
+
+    void FirePatternStill()
+    {
+        innerCooldownStillTimer -= Time.deltaTime;
+        if (innerCooldownStillTimer <= 0 && roundsBeforeCooldownStill >= 0)
+        {
+            Fire(offset);
+            Fire(-offset);
+            cooldownStillTimer = cooldownMovingTimerStore;
+            roundsBeforeCooldownStill--;
+        }
+
+        if(roundsBeforeCooldownStill < 0)
+        {
+            cooldownStillTimer = cooldownStillTimerStore;
         }
     }
 
 	// Use this for initialization
 	void Start () {
-        angleDispersionStore = angleDispersion;
-        cooldownTimerStore = cooldownTimer;
-        innerCooldownMovingTimerStore = innerCooldownMovingTimer;
-        innerCooldownStillTimerStore = innerCooldownStillTimer;
-        roundsBeforeCooldownMovingStore = roundsBeforeCooldownMoving;
-	}
+    angleDispersionStore = angleDispersion;
+    timeUntilMoveStore = timeUntilMove;
+    cooldownMovingTimerStore = cooldownMovingTimer;
+    cooldownStillTimerStore = cooldownStillTimer;
+    innerCooldownMovingTimerStore = innerCooldownMovingTimer;
+    innerCooldownStillTimerStore = innerCooldownStillTimer;
+    roundsBeforeCooldownMovingStore = roundsBeforeCooldownMoving;
+    roundsBeforeCooldownStillStore = roundsBeforeCooldownStill;
+}
 	
 	// Update is called once per frame
 	void Update () {
-        cooldownTimer -= Time.deltaTime;
-        if(cooldownTimer <= 0)
+        if(enemyMovementScript.isMoving)
         {
-            FirePattern();
+            cooldownMovingTimer -= Time.deltaTime;
+            if(cooldownMovingTimer <= 0)
+            {
+                FirePatternMoving();
+            }
+        }
+        else
+        {
+            cooldownStillTimer -= Time.deltaTime;
+            timeUntilMove -= Time.deltaTime;
+            if(cooldownStillTimer <= 0)
+            {
+                FirePatternStill();
+                cooldownStillTimer = cooldownStillTimerStore;
+            }
+            
+            //I don't think I quite need this on this particular script?
+            //if(timeUntilMove <= 0)
+            //{
+            //    moveToNextPos(nextPos);
+            //}
         }
 	}
 }
