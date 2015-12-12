@@ -25,3 +25,6 @@ C:\Users\Corredor\Documents\GitHub\Unity-Stuff\Bullet-Hell\Temp\bin\Debug\UnityE
 C:\Users\Corredor\Documents\GitHub\Unity-Stuff\Bullet-Hell\Temp\bin\Debug\UnityEngine.Analytics.xml
 C:\Users\Corredor\Documents\GitHub\Unity-Stuff\Bullet-Hell\obj\Debug\Assembly-CSharp.dll
 C:\Users\Corredor\Documents\GitHub\Unity-Stuff\Bullet-Hell\obj\Debug\Assembly-CSharp.pdb
+C:\Users\sebas\Documents\GitHub\Unity-Stuff\Bullet-Hell\obj\Debug\Assembly-CSharp.csprojResolveAssemblyReference.cache
+C:\Users\sebas\Documents\GitHub\Unity-Stuff\Bullet-Hell\obj\Debug\Assembly-CSharp.dll
+C:\Users\sebas\Documents\GitHub\Unity-Stuff\Bullet-Hell\obj\Debug\Assembly-CSharp.pdb
