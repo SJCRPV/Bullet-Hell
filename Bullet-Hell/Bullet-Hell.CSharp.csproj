@@ -57,14 +57,14 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>Assets\UnityTestTools\IntegrationTestsFramework\Libs\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>Assets\UnityTestTools\IntegrationTestsFramework\Libs\Mono.Cecil.Mdb.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -76,38 +76,100 @@
   <ItemGroup>
     <Compile Include="Assets\ASuperSecretMurderousPattern.cs" />
     <Compile Include="Assets\Game\BulletCollision.cs" />
+    <Compile Include="Assets\Game\Characters\Character.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\SpawnEnemies.cs" />
+    <Compile Include="Assets\Game\Characters\Player\BlockInteraction.cs" />
+    <Compile Include="Assets\Game\Characters\Player\PlayerSpawn.cs" />
+    <Compile Include="Assets\Game\Characters\Player\ShowEnlargedCollider.cs" />
+    <Compile Include="Assets\Game\Characters\Player\ShowHitbox.cs" />
     <Compile Include="Assets\Game\DamageHandler.cs" />
-    <Compile Include="Assets\Game\Enemies\ACone\ConePattern.cs" />
-    <Compile Include="Assets\Game\Enemies\AGraze\GrazePattern.cs" />
-    <Compile Include="Assets\Game\Enemies\BMiniBoss1\MiniBoss1Movement.cs" />
-    <Compile Include="Assets\Game\Enemies\BMiniBoss1\MiniBoss1_Pattern1.cs" />
-    <Compile Include="Assets\Game\Enemies\Ballistics.cs" />
-    <Compile Include="Assets\Game\Enemies\CBoss1\Boss1Ballistics.cs" />
-    <Compile Include="Assets\Game\Enemies\CBoss1\Boss1Movement.cs" />
-    <Compile Include="Assets\Game\Enemies\CBoss1\Boss1_Pattern1.cs" />
-    <Compile Include="Assets\Game\Enemies\CBoss1\Boss1_Pattern2.cs" />
-    <Compile Include="Assets\Game\Enemies\EnemyMovement.cs" />
-    <Compile Include="Assets\Game\Enemies\SpawnEnemies.cs" />
-    <Compile Include="Assets\Game\Enemies\TimedMoveForward.cs" />
-    <Compile Include="Assets\Game\Items\BlockMovement.cs" />
+    <Compile Include="Assets\Game\FirePatterns\Boss1_Pattern1.cs" />
+    <Compile Include="Assets\Game\FirePatterns\Boss1_Pattern2.cs" />
+    <Compile Include="Assets\Game\FirePatterns\FireBasic.cs" />
+    <Compile Include="Assets\Game\FirePatterns\FireBoss1.cs" />
+    <Compile Include="Assets\Game\FirePatterns\FireCone.cs" />
+    <Compile Include="Assets\Game\FirePatterns\FireExtraBulletSource.cs" />
+    <Compile Include="Assets\Game\FirePatterns\FireGraze.cs" />
+    <Compile Include="Assets\Game\FirePatterns\IFire.cs" />
+    <Compile Include="Assets\Game\FirePatterns\MiniBoss1_Pattern1.cs" />
+    <Compile Include="Assets\Game\FirePatterns\PlayerBallistics.cs" />
     <Compile Include="Assets\Game\LevelDatabase.cs" />
     <Compile Include="Assets\Game\Misc\CanMoveToNewLevel.cs" />
     <Compile Include="Assets\Game\Misc\DisplayText.cs" />
     <Compile Include="Assets\Game\Misc\DontDestroyOnLoad.cs" />
     <Compile Include="Assets\Game\Misc\NewGame.cs" />
-    <Compile Include="Assets\Game\MoveForward.cs" />
-    <Compile Include="Assets\Game\Player\BlockInteraction.cs" />
-    <Compile Include="Assets\Game\Player\ExtraBulletSourceBallistics.cs" />
-    <Compile Include="Assets\Game\Player\PlayerBallistics.cs" />
-    <Compile Include="Assets\Game\Player\PlayerMovement.cs" />
-    <Compile Include="Assets\Game\Player\PlayerSpawn.cs" />
-    <Compile Include="Assets\Game\Player\ShowEnlargedCollider.cs" />
-    <Compile Include="Assets\Game\Player\ShowHitbox.cs" />
+    <Compile Include="Assets\Game\Movement\BlockMovement.cs" />
+    <Compile Include="Assets\Game\Movement\Boss1Movement.cs" />
+    <Compile Include="Assets\Game\Movement\EnemyMovement.cs" />
+    <Compile Include="Assets\Game\Movement\MiniBoss1Movement.cs" />
+    <Compile Include="Assets\Game\Movement\MoveForward.cs" />
+    <Compile Include="Assets\Game\Movement\Movement.cs" />
+    <Compile Include="Assets\Game\Movement\Movement_Generic.cs" />
+    <Compile Include="Assets\Game\Movement\PlayerMovement.cs" />
+    <Compile Include="Assets\Game\Movement\TimedMoveForward.cs" />
     <Compile Include="Assets\Game\SelfDestruct.cs" />
     <Compile Include="Assets\Pixelplacement\iTweenPath\iTweenPath.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\AssertionException.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Assertions.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\CheckMethod.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\ActionBase.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\BoolComparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\ColliderComparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\ComparerBase.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\FloatComparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\GeneralComparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\IntComparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\IsRenderedByCamera.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\StringComparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\TransformComparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\ValueDoesNotChange.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\Vector2Comparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\Vector3Comparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\Vector4Comparer.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\Comparers\VectorComparerBase.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\InvalidPathException.cs" />
+    <Compile Include="Assets\UnityTestTools\Assertions\MemberResolver.cs" />
+    <Compile Include="Assets\UnityTestTools\Common\ITestResult.cs" />
+    <Compile Include="Assets\UnityTestTools\Common\TestResultState.cs" />
+    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Scripts\GameScore.cs" />
+    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\CodeBasedAssertionExample.cs" />
+    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\CustomComponent.cs" />
+    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\DynamicIntegrationTest.cs" />
+    <Compile Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\ThrowCustomException.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\DTOFormatter.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\ITestRunnerCallback.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\IntegrationTest.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\IntegrationTestAttribute.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\IntegrationTestsProvider.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\NetworkResultSender.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\ResultDTO.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\TestComponent.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\TestResult.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\TestResultRenderer.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\TestRunner.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\TestRunnerCallbackList.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestRunner\TestRunnerConfigurator.cs" />
+    <Compile Include="Assets\UnityTestTools\IntegrationTestsFramework\TestingAssets\CallTesting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\Plugins\Pixelplacement\iTween\ReadMe!\ReadMe!.txt" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\AngryInclude.cginc" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\CharacterSelfIlluminationReflective.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\EnemySelfIlluminationReflective.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\Fallback.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\PlanarRealtimeReflection.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\ReflectiveBackgroundPlanar.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\SuperSimpleSelfIllumination.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\Additive.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\Cursor.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\LaserScope.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\Multiply.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\ParticleAdditive.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\ParticleAdditiveBlend.shader" />
+    <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\ParticleBlend.shader" />
+    <None Include="Assets\UnityTestTools\LICENSE.txt" />
+    <None Include="Assets\UnityTestTools\changelog.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\SyntaxTree\UnityVS\2015\UnityVS.CSharp.targets" />
 </Project>
