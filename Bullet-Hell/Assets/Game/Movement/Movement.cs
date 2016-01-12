@@ -4,6 +4,8 @@ using System.Collections;
 public abstract class Movement : MonoBehaviour {
 
     public GameObject spawnPoint;
+    public GameObject leavePoint;
+    [HideInInspector]
     public Vector3[] path;
     public string pathName;
     public float speed;
@@ -14,7 +16,7 @@ public abstract class Movement : MonoBehaviour {
     private bool isMoving;
 
     public abstract void setPath();
-    public abstract void moveObject();
+    //public abstract void moveObject();
 
     public void setIsMoving(bool state)
     {

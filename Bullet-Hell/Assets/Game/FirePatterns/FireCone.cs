@@ -9,6 +9,7 @@ public class FireCone : MonoBehaviour, IFire {
 	//The smaller the number, the bigger the spacing
 	public float angleDispersion;
 
+    private Movement movement;
 	private float cooldownTimerStore;
 	private GameObject bulletInstance;
 	private Quaternion bulletRotation;
@@ -31,6 +32,11 @@ public class FireCone : MonoBehaviour, IFire {
     public void firePattern()
     {
         Fire();
+    }
+
+    public void assignMovement()
+    {
+
     }
 
 	// Use this for initialization

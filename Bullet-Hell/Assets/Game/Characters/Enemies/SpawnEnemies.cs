@@ -35,7 +35,7 @@ public class SpawnEnemies : MonoBehaviour {
         }
 		else
 		{
-			enemyInstance.transform.parent = spawnPoint1.transform;
+            enemyInstance.transform.parent = enemyInstance.GetComponent<Movement>().spawnPoint.transform;
 		}
     }
 
@@ -103,8 +103,6 @@ public class SpawnEnemies : MonoBehaviour {
 		{
 			startPosition = GameObject.Find("EnemySpawnPoint2").transform.position;
 		}
-
-
 	}
 
 	void moveToNextPhase()

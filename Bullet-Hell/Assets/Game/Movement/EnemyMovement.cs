@@ -4,7 +4,7 @@ using System.Collections;
 public class EnemyMovement : MonoBehaviour {
 
 	SpawnEnemies spawnEnemiesScript;
-	Ballistics ballisticsScript;
+	FireBasic FireBasicScript;
 	FireCone conePatternScript;
 	FireGraze grazePatternScript;
 	FireBoss1 boss1PatternScript;
@@ -70,7 +70,7 @@ public class EnemyMovement : MonoBehaviour {
 		isShooting = !isShooting;
 		if(gameObject.tag == "Basic")
 		{
-			ballisticsScript.enabled = isShooting;
+			FireBasicScript.enabled = isShooting;
 		}
 		else if(gameObject.tag == "Cone")
 		{
@@ -161,8 +161,8 @@ public class EnemyMovement : MonoBehaviour {
         {
             case "Basic":
                 //Debug.Log("Got a basic here!");
-                ballisticsScript = GetComponent<Ballistics>();
-                ballisticsScript.enabled = false;
+                FireBasicScript = GetComponent<FireBasic>();
+                FireBasicScript.enabled = false;
                 break;
 
             case "Cone":

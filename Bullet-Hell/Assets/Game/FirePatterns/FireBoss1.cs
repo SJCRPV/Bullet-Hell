@@ -4,6 +4,7 @@ using System;
 
 public class FireBoss1 : MonoBehaviour, IFire {
 
+    private Movement movement;
 	private Boss1_Pattern1 boss1_Pattern1Script;
 	private Boss1_Pattern2 boss1_Pattern2Script;
 	private Boss1Movement boss1MovementScript;
@@ -29,6 +30,11 @@ public class FireBoss1 : MonoBehaviour, IFire {
     public void firePattern()
     {
         Fire();
+    }
+
+    public void assignMovement()
+    {
+
     }
 
 	// Use this for initialization

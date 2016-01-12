@@ -3,22 +3,35 @@ using System.Collections;
 using System;
 
 public class Movement_Generic : Movement {
-    public override void moveObject()
-    {
-        transform.position = Vector3.MoveTowards(transform.position, path[path.Length], speed * Time.deltaTime);
 
-        if(transform.position == path[path.Length])
+    private void selfDestruct()
+    {
+        Destroy(gameObject);
+    }
+
+    public void isStillMoving()
+    {
+        if (transform.position == path[path.Length - 1])
         {
             setIsMoving(false);
         }
+
     }
 
     public override void setPath()
     {
         path = iTweenPath.GetPath(spawnPoint.gameObject.GetComponent<iTweenPath>().pathName);
-        path[path.Length].x += scriptCount * offset;
+        path[path.Length-1].x += scriptCount * offset;
+        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(spawnPoint.gameObject.GetComponent<iTweenPath>().pathName), "time", speed * 2, "easetype", iTween.EaseType.easeOutSine));
 
-        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(spawnPoint.gameObject.GetComponent<iTweenPath>().pathName), "time", speed * 2, "easetype", iTween.EaseType.easeInQuart, "oncomplete", "moveObject"));
+        setIsMoving(true);
+    }
+    public void setLeavePath()
+    {
+        path = iTweenPath.GetPath(leavePoint.gameObject.GetComponent<iTweenPath>().pathName);
+        path[path.Length - 1].x += scriptCount * offset;
+        //iTween.PutOnPath(gameObject, path, 0);
+        iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(leavePoint.gameObject.GetComponent<iTweenPath>().pathName), "time", speed * 2, "easetype", iTween.EaseType.easeOutSine, "oncomplete","selfDestruct"));
 
         setIsMoving(true);
     }
@@ -31,6 +44,16 @@ public class Movement_Generic : Movement {
 	
 	// Update is called once per frame
 	void Update () {
-        moveObject();
+        isStillMoving();
+        if(getIsMoving() == false)
+        {
+            timerUntilObjectLeaves -= Time.deltaTime;
+        }
+
+        if(timerUntilObjectLeaves <= 0)
+        {
+            setLeavePath();
+            timerUntilObjectLeaves = 999;
+        }
 	}
 }

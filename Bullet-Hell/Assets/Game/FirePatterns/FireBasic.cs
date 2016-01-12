@@ -7,6 +7,7 @@ public class FireBasic : MonoBehaviour, IFire {
     public GameObject bulletPrefab;
     public float cooldownTimer;
 
+    private Movement movement;
     private GameObject bulletInstance;
     private float cooldownTimerStore;
     private Vector3 offset;
@@ -24,17 +25,23 @@ public class FireBasic : MonoBehaviour, IFire {
         fire();
     }
 
+    public void assignMovement()
+    {
+        movement = gameObject.GetComponent<Movement_Generic>();
+    }
+
 	// Use this for initialization
 	void Start () {
         offset = new Vector2(0, 0.5f);
         cooldownTimerStore = cooldownTimer;
+        assignMovement();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         cooldownTimer -= Time.deltaTime;
 
-        if(cooldownTimer <= 0)
+        if(cooldownTimer <= 0 && movement.getIsMoving() == false)
         {
             fire();
             cooldownTimer = cooldownTimerStore;

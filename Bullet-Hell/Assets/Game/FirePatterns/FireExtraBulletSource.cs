@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class FireExtraBulletSource : MonoBehaviour, IFire {
+public class FireExtraBulletSource : MonoBehaviour {
 
 	public GameObject bulletPrefab;
 	public float cooldownTimerStore;

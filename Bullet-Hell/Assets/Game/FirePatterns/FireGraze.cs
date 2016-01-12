@@ -8,6 +8,7 @@ public class FireGraze : MonoBehaviour, IFire {
 	public float flipCooldownTimer;
     public float innerCooldownTimer;
 
+    private Movement movement;
     private float cooldownTimerStore;
     private GameObject bulletInstance;
     private Quaternion bulletRotation;
@@ -79,6 +80,11 @@ public class FireGraze : MonoBehaviour, IFire {
 			correction.x = transform.position.x - 0.5f;
 			correction.y = transform.position.y - 0.5f;
 		}
+    }
+
+    public void assignMovement()
+    {
+
     }
 
 	// Use this for initialization

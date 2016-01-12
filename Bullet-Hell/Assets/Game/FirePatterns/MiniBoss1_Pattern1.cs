@@ -17,6 +17,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
     public int roundsBeforeCooldownMoving;
     public int roundsBeforeCooldownStill;
 
+    private Movement movement;
     private GameObject bulletInstance;
     private float angleDispersionStore;
     private float timeUntilMoveStore;
@@ -106,6 +107,11 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
             //    moveToNextPos(nextPos);
             //}
         }
+    }
+
+    public void assignMovement()
+    {
+
     }
 
     // Use this for initialization
