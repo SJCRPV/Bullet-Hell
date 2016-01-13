@@ -9,7 +9,7 @@ public class FireCone : MonoBehaviour, IFire {
 	//The smaller the number, the bigger the spacing
 	public float angleDispersion;
 
-    private Movement movement;
+    private Movement_Generic movement;
 	private float cooldownTimerStore;
 	private GameObject bulletInstance;
 	private Quaternion bulletRotation;
@@ -36,21 +36,22 @@ public class FireCone : MonoBehaviour, IFire {
 
     public void assignMovement()
     {
-
+        movement = gameObject.GetComponent<Movement_Generic>();
     }
 
 	// Use this for initialization
 	void Start () {
 		cooldownTimerStore = cooldownTimer;
 		angleDispersionStore = angleDispersion;
+        assignMovement();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		cooldownTimer -= Time.deltaTime;
-		if(cooldownTimer <= 0)
+        if (cooldownTimer <= 0 && movement.getIsMoving() == false)
 		{
-			Fire();
+			firePattern();
 		}
 	}
 }

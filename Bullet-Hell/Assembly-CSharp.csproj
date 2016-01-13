@@ -48,7 +48,7 @@
      <Compile Include="Assets\ASuperSecretMurderousPattern.cs" />
      <Compile Include="Assets\Game\BulletCollision.cs" />
      <Compile Include="Assets\Game\Characters\Character.cs" />
-     <Compile Include="Assets\Game\Characters\Enemies\SpawnEnemies.cs" />
+     <Compile Include="Assets\Game\Characters\Enemies\EnemySpawnManager.cs" />
      <Compile Include="Assets\Game\Characters\Player\BlockInteraction.cs" />
      <Compile Include="Assets\Game\Characters\Player\PlayerSpawn.cs" />
      <Compile Include="Assets\Game\Characters\Player\ShowEnlargedCollider.cs" />
@@ -71,7 +71,6 @@
      <Compile Include="Assets\Game\Misc\NewGame.cs" />
      <Compile Include="Assets\Game\Movement\BlockMovement.cs" />
      <Compile Include="Assets\Game\Movement\Boss1Movement.cs" />
-     <Compile Include="Assets\Game\Movement\EnemyMovement.cs" />
      <Compile Include="Assets\Game\Movement\MiniBoss1Movement.cs" />
      <Compile Include="Assets\Game\Movement\MoveForward.cs" />
      <Compile Include="Assets\Game\Movement\Movement.cs" />
@@ -146,10 +145,10 @@
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
- <HintPath>C:/Users/r2014525/Unity-Temp-Dir/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.dll</HintPath>
+ <HintPath>C:/Users/r2014525/Unity-temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil.Mdb">
- <HintPath>C:/Users/r2014525/Unity-Temp-Dir/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.Mdb.dll</HintPath>
+ <HintPath>C:/Users/r2014525/Unity-temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.Mdb.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

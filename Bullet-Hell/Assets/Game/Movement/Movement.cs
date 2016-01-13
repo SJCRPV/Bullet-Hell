@@ -9,14 +9,13 @@ public abstract class Movement : MonoBehaviour {
     public Vector3[] path;
     public string pathName;
     public float speed;
-    public float offset;
+    public static float offset;
     public float timerUntilObjectLeaves;
     public static int scriptCount;
 
     private bool isMoving;
 
     public abstract void setPath();
-    //public abstract void moveObject();
 
     public void setIsMoving(bool state)
     {
@@ -30,14 +29,4 @@ public abstract class Movement : MonoBehaviour {
     {
         return gameObject.name;
     }
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
 }

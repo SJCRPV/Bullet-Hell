@@ -6,8 +6,6 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
 
     public GameObject bulletPrefab;
     public GameObject bulletPrefabExplode;
-    [HideInInspector]
-    public EnemyMovement enemyMovementScript;
     public float angleDispersion;
     public float timeUntilMove;
     public float cooldownMovingTimer;
@@ -17,7 +15,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
     public int roundsBeforeCooldownMoving;
     public int roundsBeforeCooldownStill;
 
-    private Movement movement;
+    private Movement_Generic movement;
     private GameObject bulletInstance;
     private float angleDispersionStore;
     private float timeUntilMoveStore;
@@ -83,7 +81,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
 
     public void firePattern()
     {
-        if (enemyMovementScript.isMoving)
+        if (movement.getIsMoving())
         {
             cooldownMovingTimer -= Time.deltaTime;
             if (cooldownMovingTimer <= 0)

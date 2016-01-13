@@ -7,7 +7,7 @@ public class FireBasic : MonoBehaviour, IFire {
     public GameObject bulletPrefab;
     public float cooldownTimer;
 
-    private Movement movement;
+    private Movement_Generic movement;
     private GameObject bulletInstance;
     private float cooldownTimerStore;
     private Vector3 offset;

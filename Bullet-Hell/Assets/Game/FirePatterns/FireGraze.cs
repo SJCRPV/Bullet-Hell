@@ -8,7 +8,7 @@ public class FireGraze : MonoBehaviour, IFire {
 	public float flipCooldownTimer;
     public float innerCooldownTimer;
 
-    private Movement movement;
+    private Movement_Generic movement;
     private float cooldownTimerStore;
     private GameObject bulletInstance;
     private Quaternion bulletRotation;
@@ -84,7 +84,7 @@ public class FireGraze : MonoBehaviour, IFire {
 
     public void assignMovement()
     {
-
+        movement = gameObject.GetComponent<Movement_Generic>();
     }
 
 	// Use this for initialization
@@ -94,13 +94,14 @@ public class FireGraze : MonoBehaviour, IFire {
         cooldownTimerStore = cooldownTimer;
         innerCooldownTimerStore = innerCooldownTimer;
 		flipCooldownTimerStore = flipCooldownTimer;
+        assignMovement();
 	}
 	
 	// Update is called once per frame
 	void Update () {
         cooldownTimer -= Time.deltaTime;
 
-        if (cooldownTimer <= 0)
+        if (cooldownTimer <= 0 && movement.getIsMoving() == false)
         {
 			if(startPattern == false)
 			{
