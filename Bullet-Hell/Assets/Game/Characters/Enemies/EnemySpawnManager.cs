@@ -5,6 +5,8 @@ public class EnemySpawnManager : MonoBehaviour {
 
     [HideInInspector]
     public LevelDatabase levelDatabaseScript;
+    [HideInInspector]
+    public Movement movementScript;
     public float newPhaseTimer;
     public float inbetweenSpawnTimer;
 
@@ -65,8 +67,12 @@ public class EnemySpawnManager : MonoBehaviour {
 
     void spawnPattern()
     {
-        Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase);
+        Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase + "\nPhase total: " + phaseTotal);
         Debug.Log("Current position in phase: " + positionInPhase);
+        if(positionInPhase > phaseTotal / 2)
+        {
+            movementScript.resetOffset();
+        }
         spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase][positionInPhase]);
     }
 
@@ -149,7 +155,6 @@ public class EnemySpawnManager : MonoBehaviour {
             levelDatabaseScript.enemyCone.GetComponent<Movement>().leavePoint = tempLeavePoint1;
             levelDatabaseScript.enemyGraze.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
             levelDatabaseScript.enemyGraze.GetComponent<Movement>().leavePoint = tempLeavePoint1;
-            Debug.Log(tempSpawnPoint1);
         }
         else
         {
@@ -159,7 +164,6 @@ public class EnemySpawnManager : MonoBehaviour {
             levelDatabaseScript.enemyCone.GetComponent<Movement>().leavePoint = tempLeavePoint2;
             levelDatabaseScript.enemyGraze.GetComponent<Movement>().spawnPoint = tempSpawnPoint2;
             levelDatabaseScript.enemyGraze.GetComponent<Movement>().leavePoint = tempLeavePoint2;
-            Debug.Log(tempSpawnPoint2);
         }
     }
 
@@ -168,6 +172,7 @@ public class EnemySpawnManager : MonoBehaviour {
         if (levelDatabaseScript.currentLevelPhase < 10)
         {
             levelDatabaseScript.currentLevelPhase++;
+            movementScript.resetOffset();
             //Debug.Log ("Loading phase: " + levelDatabaseScript.currentLevelPhase);
             phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase].Length;
         }
@@ -182,6 +187,7 @@ public class EnemySpawnManager : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         levelDatabaseScript = GetComponent<LevelDatabase>();
+        movementScript = levelDatabaseScript.enemyBasic.GetComponent<Movement>();
         newPhaseTimerStore = newPhaseTimer;
         inbetweenSpawnTimerStore = inbetweenSpawnTimer;
         positionInPhase = 0;

@@ -9,14 +9,9 @@ public class Movement_Generic : Movement {
         Destroy(gameObject);
     }
 
-    public void resetOffset()
-    {
-        offset = 1;
-    }
-
     public void isStillMoving()
     {
-        if (transform.position == path[path.Length - 1])
+        if (transform.position == path.nodes[path.nodeCount - 1])
         {
             setIsMoving(false);
         }
@@ -33,16 +28,18 @@ public class Movement_Generic : Movement {
             offset *= -1;
             offset++;
         }
-        path = iTweenPath.GetPath(spawnPoint.gameObject.GetComponent<iTweenPath>().pathName);
-        path[path.Length-1].x += scriptCount * (offset * 0.1f);
-        Debug.Log(path[path.Length - 1].x);
+        Debug.Log("Offset: " + offset);
+        path = spawnPoint.gameObject.GetComponent<iTweenPath>();
+        Vector3 temp = path.nodes[path.nodeCount - 1];
+        temp.x += scriptCount * (offset * 0.3f);
+        path.nodes[path.nodeCount - 1] = temp;
         iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(spawnPoint.gameObject.GetComponent<iTweenPath>().pathName), "time", speed * 2, "easetype", iTween.EaseType.easeOutSine));
 
         setIsMoving(true);
     }
     public void setLeavePath()
     {
-        path = iTweenPath.GetPath(leavePoint.gameObject.GetComponent<iTweenPath>().pathName);
+        path = leavePoint.gameObject.GetComponent<iTweenPath>();
         iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(leavePoint.gameObject.GetComponent<iTweenPath>().pathName), "time", speed * 2, "easetype", iTween.EaseType.easeOutSine, "oncomplete","selfDestruct"));
 
         setIsMoving(true);
