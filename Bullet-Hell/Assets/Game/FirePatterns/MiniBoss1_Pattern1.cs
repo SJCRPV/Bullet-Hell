@@ -15,7 +15,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
     public int roundsBeforeCooldownMoving;
     public int roundsBeforeCooldownStill;
 
-    private Movement_Generic movement;
+    private Movement_Generic movementScript;
     private GameObject bulletInstance;
     private float angleDispersionStore;
     private float timeUntilMoveStore;
@@ -81,7 +81,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
 
     public void firePattern()
     {
-        if (movement.getIsMoving())
+        if (movementScript.getIsMoving())
         {
             cooldownMovingTimer -= Time.deltaTime;
             if (cooldownMovingTimer <= 0)
@@ -109,7 +109,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
 
     public void assignMovement()
     {
-
+        movementScript = gameObject.GetComponent<Movement_Generic>();
     }
 
     // Use this for initialization
@@ -123,6 +123,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
         innerCooldownStillTimerStore = innerCooldownStillTimer;
         roundsBeforeCooldownMovingStore = roundsBeforeCooldownMoving;
         roundsBeforeCooldownStillStore = roundsBeforeCooldownStill;
+        assignMovement();
     }
 	
 	// Update is called once per frame

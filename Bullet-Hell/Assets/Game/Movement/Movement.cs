@@ -28,7 +28,7 @@ public abstract class Movement : MonoBehaviour {
     public void resetOffset()
     {
         Debug.Log("Offset reset!");
-        offset = 1;
+        offset = 0;
     }
     public float getOffset()
     {

@@ -5,7 +5,7 @@ public abstract class Character : MonoBehaviour {
 
     public int health;
 
-    private int layer;
+    //private int layer;
 
     public int getLayer()
     {

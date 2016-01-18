@@ -64,12 +64,11 @@ public class EnemySpawnManager : MonoBehaviour {
         assignParent();
     }
 
-
     void spawnPattern()
     {
         Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase + "\nPhase total: " + phaseTotal);
         Debug.Log("Current position in phase: " + positionInPhase);
-        if(positionInPhase > phaseTotal / 2)
+        if(positionInPhase > phaseTotal / 2 && movementScript.getOffset() > phaseTotal / 4)
         {
             movementScript.resetOffset();
         }
@@ -78,6 +77,7 @@ public class EnemySpawnManager : MonoBehaviour {
 
     void setStartingPoint()
     {
+        //This may not be future proof depending on how you design the levels. It implies you won't have more spawn points than these per level.
         GameObject tempSpawnPoint1 = null;
         GameObject tempSpawnPoint2 = null;
         GameObject tempLeavePoint1 = null;
@@ -147,7 +147,7 @@ public class EnemySpawnManager : MonoBehaviour {
             levelDatabaseScript.enemyMiniBoss1.GetComponent<Movement>().leavePoint = tempLeavePoint1;
             return;
         }
-        if (positionInPhase <= phaseTotal / 2)
+        if (positionInPhase < phaseTotal / 2)
         {
             levelDatabaseScript.enemyBasic.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
             levelDatabaseScript.enemyBasic.GetComponent<Movement>().leavePoint = tempLeavePoint1;
