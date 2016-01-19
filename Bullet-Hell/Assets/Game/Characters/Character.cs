@@ -7,10 +7,10 @@ public abstract class Character : MonoBehaviour {
 
     //private int layer;
 
-    public int getLayer()
-    {
-        return layer;
-    }
+    //public int getLayer()
+    //{
+    //    return layer;
+    //}
 
     public void decreaseHealth()
     {

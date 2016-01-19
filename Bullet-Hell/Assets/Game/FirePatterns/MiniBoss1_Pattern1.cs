@@ -5,129 +5,77 @@ using System;
 public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
 
     public GameObject bulletPrefab;
-    public GameObject bulletPrefabExplode;
-    public float angleDispersion;
-    public float timeUntilMove;
-    public float cooldownMovingTimer;
-    public float cooldownStillTimer;
-    public float innerCooldownMovingTimer;
-    public float innerCooldownStillTimer;
-    public int roundsBeforeCooldownMoving;
-    public int roundsBeforeCooldownStill;
+    public GameObject explodingBulletPrefab;
+    public float startingDegrees;
+    public float maxDegrees;
+    public float degreeIncreasePerIteration;
+    public float movingTimeBetweenBursts;
+    public float stillTimeBetweenBursts;
 
-    private Movement_Generic movementScript;
+    private Movement_Generic genericMovementScript;
+    private Movement_Boss bossMovementScript;
+    private float cooldownTimer;
+    private float startingDegreesStore;
     private GameObject bulletInstance;
-    private float angleDispersionStore;
-    private float timeUntilMoveStore;
     private Quaternion bulletRotation;
-    private float cooldownMovingTimerStore;
-    private float cooldownStillTimerStore;
-    private float innerCooldownMovingTimerStore;
-    private float innerCooldownStillTimerStore;
-    private int roundsBeforeCooldownMovingStore;
-    private int roundsBeforeCooldownStillStore;
-    private Vector3 offset = new Vector3(0.25f, 0, 0);
 
-    void Fire()
+    void FireMoving()
     {
-        bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, bulletRotation);
-        bulletInstance.gameObject.layer = 11;
+        for (; startingDegrees <= maxDegrees; startingDegrees += degreeIncreasePerIteration)
+        {
+            bulletRotation = Quaternion.identity;
+            bulletRotation.eulerAngles = new Vector3(0, 0, startingDegrees);
+            bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, bulletRotation);
+            bulletInstance.gameObject.layer = 11;
+        }
+        startingDegrees = startingDegreesStore;
+        cooldownTimer = stillTimeBetweenBursts * 6;
     }
-    void Fire(Vector3 positionOffset)
+    void FireStill()
     {
-        bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position + positionOffset, bulletRotation);
-        bulletInstance.gameObject.layer = 11;
-    }
-
-    void FirePatternMoving()
-    {
-        innerCooldownMovingTimer -= Time.deltaTime;
-        if(roundsBeforeCooldownMoving >= 0 && innerCooldownMovingTimer <= 0)
-        {
-            for(angleDispersion = angleDispersionStore; angleDispersion <= 249; angleDispersion += angleDispersionStore)
-            {
-                bulletRotation = Quaternion.identity;
-                bulletRotation.eulerAngles = new Vector3(0, 0, angleDispersion);
-                Fire();
-            }
-            roundsBeforeCooldownMoving--;
-            innerCooldownMovingTimer = innerCooldownMovingTimerStore;
-        }
-
-        if(roundsBeforeCooldownMoving < 0)
-        {
-            cooldownMovingTimer = cooldownMovingTimerStore;
-            roundsBeforeCooldownMoving = roundsBeforeCooldownMovingStore;
-        }
-    }
-
-    void FirePatternStill()
-    {
-        innerCooldownStillTimer -= Time.deltaTime;
-        if (innerCooldownStillTimer <= 0 && roundsBeforeCooldownStill >= 0)
-        {
-            Fire(offset);
-            Fire(-offset);
-            innerCooldownStillTimer = innerCooldownStillTimerStore;
-            roundsBeforeCooldownStill--;
-        }
-
-        if(roundsBeforeCooldownStill < 0)
-        {
-            cooldownStillTimer = cooldownStillTimerStore;
-            roundsBeforeCooldownStill = roundsBeforeCooldownStillStore;
-        }
+        bulletInstance = (GameObject)Instantiate(explodingBulletPrefab, transform.position - Vector3.up/2 - Vector3.left/2, new Quaternion(0, 0, 180, 0));
+        bulletInstance = (GameObject)Instantiate(explodingBulletPrefab, transform.position - Vector3.up/2 - Vector3.right/2, new Quaternion(0, 0, 180, 0));
+        cooldownTimer = stillTimeBetweenBursts;
     }
 
     public void firePattern()
     {
-        if (movementScript.getIsMoving())
+        if(bossMovementScript.getIsMoving() == true)
         {
-            cooldownMovingTimer -= Time.deltaTime;
-            if (cooldownMovingTimer <= 0)
-            {
-                FirePatternMoving();
-            }
+            FireMoving();
+            Invoke("FireMoving", movingTimeBetweenBursts);
+            Invoke("FireMoving", movingTimeBetweenBursts * 2);
         }
         else
         {
-            cooldownStillTimer -= Time.deltaTime;
-            timeUntilMove -= Time.deltaTime;
-            if (cooldownStillTimer <= 0)
-            {
-                FirePatternStill();
-                cooldownStillTimer = cooldownStillTimerStore;
-            }
-
-            //I don't think I quite need this on this particular script?
-            //if(timeUntilMove <= 0)
-            //{
-            //    moveToNextPos(nextPos);
-            //}
+            FireStill();
         }
     }
 
     public void assignMovement()
     {
-        movementScript = gameObject.GetComponent<Movement_Generic>();
+        genericMovementScript = gameObject.GetComponent<Movement_Generic>();
+        bossMovementScript = gameObject.GetComponent<Movement_Boss>();
     }
 
     // Use this for initialization
-    void Start ()
+    void Start()
     {
-        angleDispersionStore = angleDispersion;
-        timeUntilMoveStore = timeUntilMove;
-        cooldownMovingTimerStore = cooldownMovingTimer;
-        cooldownStillTimerStore = cooldownStillTimer;
-        innerCooldownMovingTimerStore = innerCooldownMovingTimer;
-        innerCooldownStillTimerStore = innerCooldownStillTimer;
-        roundsBeforeCooldownMovingStore = roundsBeforeCooldownMoving;
-        roundsBeforeCooldownStillStore = roundsBeforeCooldownStill;
+        startingDegreesStore = startingDegrees;
         assignMovement();
     }
-	
-	// Update is called once per frame
-	void Update () {
-        firePattern();
-	}
+
+    // Update is called once per frame
+    void Update()
+    {
+        if (genericMovementScript.getIsMoving() == false)
+        {
+            cooldownTimer -= Time.deltaTime;
+        }
+
+        if (cooldownTimer <= 0)
+        {
+            firePattern();
+        }
+    }
 }

@@ -71,9 +71,9 @@
      <Compile Include="Assets\Game\Misc\NewGame.cs" />
      <Compile Include="Assets\Game\Movement\BlockMovement.cs" />
      <Compile Include="Assets\Game\Movement\Boss1Movement.cs" />
-     <Compile Include="Assets\Game\Movement\MiniBoss1Movement.cs" />
      <Compile Include="Assets\Game\Movement\MoveForward.cs" />
      <Compile Include="Assets\Game\Movement\Movement.cs" />
+     <Compile Include="Assets\Game\Movement\Movement_Boss.cs" />
      <Compile Include="Assets\Game\Movement\Movement_Generic.cs" />
      <Compile Include="Assets\Game\Movement\PlayerMovement.cs" />
      <Compile Include="Assets\Game\Movement\TimedMoveForward.cs" />
