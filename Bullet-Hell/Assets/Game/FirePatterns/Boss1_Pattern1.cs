@@ -24,6 +24,7 @@ public class Boss1_Pattern1 : MonoBehaviour {
 			bulletRotation.eulerAngles = new Vector3(0,0,angleDispersion);
 			bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, bulletRotation);
 			bulletInstance.gameObject.layer = 11;
+            bulletInstance.transform.parent = gameObject.transform;
 		}
 		angleDispersion = angleDispersionStore;
 	}

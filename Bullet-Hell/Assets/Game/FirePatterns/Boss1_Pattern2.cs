@@ -29,6 +29,7 @@ public class Boss1_Pattern2 : MonoBehaviour {
 		bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, bulletRotation);
 		bulletInstance.gameObject.layer = 11;
 		bulletInstance.transform.parent = this.transform;
+        bulletInstance.transform.parent = gameObject.transform;
 	}
 
 	public void FirePattern()
