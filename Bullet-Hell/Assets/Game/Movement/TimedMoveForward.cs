@@ -9,6 +9,11 @@ public class TimedMoveForward : MonoBehaviour {
 	public float deathTimer;
 	public float moveTimer;
 
+    public void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
 	void Start()
 	{
 		//boss1MovementScript = GetComponent<Boss1Movement>();

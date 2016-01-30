@@ -12,7 +12,12 @@ public class BlockMovement : MonoBehaviour {
 	public float speed;
     public float timerUntilDestruction;
 
-	void moveToPlayer()
+    public void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
+    void moveToPlayer()
 	{
 		transform.position = Vector3.MoveTowards(transform.position, playerPosition, speed*Time.deltaTime);
         this.GetComponent<Rigidbody2D>().velocity = Vector2.zero;

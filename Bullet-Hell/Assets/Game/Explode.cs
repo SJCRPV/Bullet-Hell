@@ -12,7 +12,7 @@ public class Explode : MonoBehaviour {
 
     public void explode()
     {
-        for(int i = 0; i <= 360; i += 45)
+        for(float i = 0; i <= 360; i += 22.5f)
         {
             bulletRotation = Quaternion.identity;
             bulletRotation.eulerAngles = new Vector3(0, 0, i);

@@ -6,6 +6,11 @@ public class MoveForward : MonoBehaviour {
 	public float bulletSpeed;
 	public float deathTimer;
 	
+    public void OnBecameInvisible()
+    {
+        Destroy(gameObject);
+    }
+
 	// Update is called once per frame
 	void Update () {
 		deathTimer -= Time.deltaTime;
