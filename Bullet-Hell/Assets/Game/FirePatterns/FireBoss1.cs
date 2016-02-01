@@ -7,7 +7,7 @@ public class FireBoss1 : MonoBehaviour, IFire {
     private Movement movement;
 	private Boss1_Pattern1 boss1_Pattern1Script;
 	private Boss1_Pattern2 boss1_Pattern2Script;
-	private Boss1Movement boss1MovementScript;
+	private Movement_Boss boss1MovementScript;
 	private DamageHandler damageHandlerScript;
 	private int bossHP;
 	
@@ -41,7 +41,7 @@ public class FireBoss1 : MonoBehaviour, IFire {
 	void Start () {
 		boss1_Pattern1Script = GetComponent<Boss1_Pattern1>();
 		boss1_Pattern2Script = GetComponent<Boss1_Pattern2>();
-		boss1MovementScript = GetComponent<Boss1Movement>();
+		boss1MovementScript = GetComponent<Movement_Boss>();
 		damageHandlerScript = GetComponent<DamageHandler>();
 		boss1_Pattern1Script.enabled = false;
 		boss1_Pattern2Script.enabled = false;

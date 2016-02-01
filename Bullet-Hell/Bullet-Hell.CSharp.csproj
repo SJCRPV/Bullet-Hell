@@ -55,12 +55,6 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
-    <Reference Include="UnityEngine.Networking">
-      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
-    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -103,6 +97,7 @@
     <Compile Include="Assets\Game\FirePatterns\FireGraze.cs" />
     <Compile Include="Assets\Game\FirePatterns\IFire.cs" />
     <Compile Include="Assets\Game\FirePatterns\MiniBoss1_Pattern1.cs" />
+    <Compile Include="Assets\Game\FirePatterns\MiniBoss1_Pattern2.cs" />
     <Compile Include="Assets\Game\FirePatterns\PlayerBallistics.cs" />
     <Compile Include="Assets\Game\LevelDatabase.cs" />
     <Compile Include="Assets\Game\Misc\CanMoveToNewLevel.cs" />
@@ -110,7 +105,6 @@
     <Compile Include="Assets\Game\Misc\DontDestroyOnLoad.cs" />
     <Compile Include="Assets\Game\Misc\NewGame.cs" />
     <Compile Include="Assets\Game\Movement\BlockMovement.cs" />
-    <Compile Include="Assets\Game\Movement\Boss1Movement.cs" />
     <Compile Include="Assets\Game\Movement\MoveForward.cs" />
     <Compile Include="Assets\Game\Movement\Movement.cs" />
     <Compile Include="Assets\Game\Movement\Movement_Boss.cs" />

@@ -14,7 +14,7 @@ public class Movement_Boss : Movement {
     private Movement movementScript;
     private Vector3[] currentPath;
     private Vector3[] currentNodePair;
-    private int currentNodePairInUse;
+    private int currentNodePairInUse = 0;
     private int currentPathNum = 0;
     private float currentNodePairComplete = 0f;
     private float timeUntilNextNodeStore;
@@ -27,7 +27,7 @@ public class Movement_Boss : Movement {
         {
             Debug.LogError("Didn't find anything for the number: " + currentPathNum);
         }
-        currentNodePair = new Vector3[] {currentPath[0], currentPath[1]};
+        currentNodePair = new Vector3[] {currentPath[currentNodePairInUse++], currentPath[currentNodePairInUse]};
     }
     
     void preparePaths()
@@ -49,6 +49,7 @@ public class Movement_Boss : Movement {
     public void moveToNextPath()
     {
         currentPathNum++;
+        currentNodePairInUse = 0;
         setPath();
     }
 

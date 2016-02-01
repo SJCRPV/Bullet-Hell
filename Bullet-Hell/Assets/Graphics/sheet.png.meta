@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1454176514
+timeCreated: 1454344325
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -27,6 +27,7 @@ TextureImporter:
     21300040: miniBoss1
     21300042: EndPoint
     21300044: explodingBullet
+    21300046: zigzagBullet
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -1629,9 +1630,9 @@ TextureImporter:
     - name: circularBullet
       rect:
         serializedVersion: 2
-        x: 606
+        x: 605
         y: 25
-        width: 28
+        width: 29
         height: 29
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -5535,6 +5536,21 @@ TextureImporter:
         - {x: 23.5, y: -10}
         - {x: 23.5, y: 20}
         - {x: 15.5, y: 23}
+    - name: zigzagBullet
+      rect:
+        serializedVersion: 2
+        x: 760
+        y: 796
+        width: 37
+        height: 36
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -18.5, y: 18}
+        - {x: -18.5, y: -18}
+        - {x: 18.5, y: -18}
+        - {x: 18.5, y: 18}
     outline: []
   spritePackingTag: 
   userData: 
