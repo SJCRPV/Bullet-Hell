@@ -19,6 +19,10 @@ public class Movement_Boss : Movement {
     private float currentNodePairComplete = 0f;
     private float timeUntilNextNodeStore;
 
+    public int getCurrentPathNum()
+    {
+        return currentPathNum;
+    }
 
     public override void setPath()
     {

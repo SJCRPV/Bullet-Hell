@@ -1,9 +1,13 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public abstract class Character : MonoBehaviour {
 
-    public int health;
+    public int healthPoints;
+    public float invincibilityTime;
+    public GameObject powerBlock;
+    public GameObject pointBlock;
+    public GameObject extraLifeBlock;
 
     //private int layer;
 
@@ -12,13 +16,25 @@ public abstract class Character : MonoBehaviour {
     //    return layer;
     //}
 
+    public abstract void explode();
+
+    public void die()
+    {
+        Debug.Log("DEAD!");
+        Destroy(gameObject);
+    }
+
     public void decreaseHealth()
     {
-        health--;
+        healthPoints--;
     }
     public void decreaseHealth(int amount)
     {
-        health -= amount;
+        healthPoints -= amount;
+    }
+    public int getHealth()
+    {
+        return healthPoints;
     }
 
 	// Use this for initialization

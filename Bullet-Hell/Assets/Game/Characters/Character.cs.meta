@@ -1,10 +1,13 @@
 fileFormatVersion: 2
 guid: 42e3f865db2d62549b7bc078ad8b9dbc
-timeCreated: 1452142009
+timeCreated: 1454949395
 licenseType: Free
 MonoImporter:
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - powerBlock: {fileID: 139752, guid: e98deddd4dda7f04abc14ad7b82f9341, type: 2}
+  - pointBlock: {fileID: 166194, guid: 5acd64bdc8257dc468532f989af7322f, type: 2}
+  - extraLifeBlock: {fileID: 136234, guid: 9e8f391e9b585c049b9d64986099b102, type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
