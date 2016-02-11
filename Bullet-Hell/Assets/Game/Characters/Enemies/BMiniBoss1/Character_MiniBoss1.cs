@@ -1,10 +1,14 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
 
 public class Character_MiniBoss1 : Character {
 
     BlockInteraction blockInteractionScript;
     Movement_Boss bossMovementScript;
+    MiniBoss1_Pattern1 pattern1Script;
+    MiniBoss1_Pattern2 pattern2Script;
+
+    public List<IFire> firePatternList;
 
     private float invincibilityTimeStore;
     private GameObject blockInstance;
@@ -25,12 +29,20 @@ public class Character_MiniBoss1 : Character {
         die();
     }
 
+    void swapPatterns()
+    {
+        pattern1Script.enabled = false;
+        pattern2Script.enabled = true;
+    }
+
     // Use this for initialization
     void Start()
     {
         invincibilityTime = invincibilityTimeStore;
         blockInteractionScript = GetComponent<BlockInteraction>();
         bossMovementScript = GetComponent<Movement_Boss>();
+        pattern1Script = GetComponentInChildren<MiniBoss1_Pattern1>();
+        pattern2Script = GetComponentInChildren<MiniBoss1_Pattern2>();
     }
 
     void Update()
@@ -43,7 +55,8 @@ public class Character_MiniBoss1 : Character {
         }
         else if(getHealth() <= 50 && bossMovementScript.getCurrentPathNum() == 0)
         {
-            SendMessage("moveToNextPath");
+            moveToNextPhase();
+            swapPatterns();
         }
     }
 }

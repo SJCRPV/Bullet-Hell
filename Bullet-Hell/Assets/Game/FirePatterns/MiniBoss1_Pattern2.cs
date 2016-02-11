@@ -6,11 +6,11 @@ public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
 
     public GameObject bulletPrefab;
     public GameObject zigzagBulletPrefab;
-    public Movement bossMovementScript;
     public float timeBetweenBursts;
 
     private GameObject bulletInstance;
     private GameObject zigzagBulletInstance;
+    private Movement bossMovementScript;
     private bool spawnZigZag = false;
     private float timeBetweenBurstsStore;
 
@@ -57,7 +57,7 @@ public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
 
     public void assignMovement()
     {
-        bossMovementScript = GetComponent<Movement_Boss>();
+        bossMovementScript = GetComponentInParent<Movement_Boss>();
     }
 
     // Use this for initialization

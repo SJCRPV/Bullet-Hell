@@ -114,6 +114,7 @@
     <Compile Include="Assets\Game\Movement\Movement_Generic.cs" />
     <Compile Include="Assets\Game\Movement\PlayerMovement.cs" />
     <Compile Include="Assets\Game\Movement\TimedMoveForward.cs" />
+    <Compile Include="Assets\Game\Movement\ZigZag.cs" />
     <Compile Include="Assets\Game\SelfDestruct.cs" />
     <Compile Include="Assets\Pixelplacement\iTweenPath\iTweenPath.cs" />
     <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />

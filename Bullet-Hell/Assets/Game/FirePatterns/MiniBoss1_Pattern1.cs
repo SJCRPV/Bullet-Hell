@@ -56,8 +56,8 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
 
     public void assignMovement()
     {
-        genericMovementScript = gameObject.GetComponent<Movement_Generic>();
-        bossMovementScript = gameObject.GetComponent<Movement_Boss>();
+        genericMovementScript = gameObject.GetComponentInParent<Movement_Generic>();
+        bossMovementScript = gameObject.GetComponentInParent<Movement_Boss>();
     }
 
     // Use this for initialization

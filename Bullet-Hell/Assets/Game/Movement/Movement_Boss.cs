@@ -9,8 +9,6 @@ public class Movement_Boss : Movement {
 
     iTweenPath[] bossPaths;
 
-    //You will most likely want to rethink this using the Character script
-    private MiniBoss1_Pattern1 MiniBoss1_Pattern1Script;
     private Movement movementScript;
     private Vector3[] currentPath;
     private Vector3[] currentNodePair;
@@ -53,6 +51,7 @@ public class Movement_Boss : Movement {
     public void moveToNextPath()
     {
         currentPathNum++;
+        Debug.Log("Moving to path " + (currentPathNum + 1));
         currentNodePairInUse = 0;
         setPath();
     }
@@ -82,7 +81,6 @@ public class Movement_Boss : Movement {
 	// Use this for initialization
 	void Start () {
         iTween.Init(gameObject);
-        MiniBoss1_Pattern1Script = GetComponent<MiniBoss1_Pattern1>();
         movementScript = GetComponent<Movement_Generic>();
         timeUntilNextNodeStore = nextNodeTime;
         preparePaths();
