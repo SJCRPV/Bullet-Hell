@@ -21,6 +21,10 @@ public class Movement_Boss : Movement {
     {
         return currentPathNum;
     }
+    public int getCurrentNodePairInUse()
+    {
+        return currentNodePairInUse;
+    }
 
     public override void setPath()
     {

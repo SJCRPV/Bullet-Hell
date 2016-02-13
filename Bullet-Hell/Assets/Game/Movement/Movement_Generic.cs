@@ -11,14 +11,14 @@ public class Movement_Generic : Movement {
 
     public override void setPath()
     {
-        Debug.Log("Offset: " + offset);
+        //Debug.Log("Offset: " + offset);
         
         //This is how you change an iTween path node value
         path = spawnPoint.gameObject.GetComponent<iTweenPath>();
         Vector3 temp = path.nodes[path.nodeCount - 1];
         temp.x += offset;
         path.nodes[path.nodeCount - 1] = temp;
-        Debug.Log("Coordinates of last node: " + path.nodes[path.nodeCount - 1]);
+        //Debug.Log("Coordinates of last node: " + path.nodes[path.nodeCount - 1]);
         
         iTween.MoveTo(gameObject, iTween.Hash("path", iTweenPath.GetPath(spawnPoint.gameObject.GetComponent<iTweenPath>().pathName), "time", speed * 2, "easetype", iTween.EaseType.easeOutSine, "oncomplete", "setIsMoving", "oncompleteparams", false));
 

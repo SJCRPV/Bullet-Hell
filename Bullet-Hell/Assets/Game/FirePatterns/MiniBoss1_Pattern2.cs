@@ -10,12 +10,14 @@ public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
 
     private GameObject bulletInstance;
     private GameObject zigzagBulletInstance;
-    private Movement bossMovementScript;
+    private Movement_Boss bossMovementScript;
     private bool spawnZigZag = false;
     private float timeBetweenBurstsStore;
 
     void fireLong()
     {
+        //Debug.Log("Long");
+        //Debug.Log("Coordinates: " + transform.position);
         bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - Vector3.up / 2, new Quaternion(0, 0, 180, 0));
         bulletInstance.gameObject.layer = 11;
         zigzagBulletInstance = (GameObject)Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 2 - Vector3.left / 2, new Quaternion(0, 0, 180, 0));
@@ -26,6 +28,9 @@ public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
 
     void fireQuick()
     {
+        //Debug.Log("Quick");
+        //Debug.Log("Coordinates: " + transform.position);
+        //Debug.Log(spawnZigZag);
         if(spawnZigZag)
         {
             zigzagBulletInstance = (GameObject)Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 2 - Vector3.left / 2, new Quaternion(0, 0, 180, 0));
@@ -45,13 +50,17 @@ public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
 
     public void firePattern()
     {
-        if(transform.position.y == 6)
+        if(bossMovementScript.getCurrentNodePairInUse() == 1 || bossMovementScript.getCurrentNodePairInUse() == 2 || bossMovementScript.getCurrentNodePairInUse() == 5)
         {
             fireLong();
         }
-        else if(transform.position.y == 4)
+        else if(bossMovementScript.getCurrentNodePairInUse() == 3 || bossMovementScript.getCurrentNodePairInUse() == 4)
         {
             fireQuick();
+        }
+        else
+        {
+            Debug.LogError("I don't know what to fire with the number " + bossMovementScript.getCurrentNodePairInUse());
         }
     }
 
