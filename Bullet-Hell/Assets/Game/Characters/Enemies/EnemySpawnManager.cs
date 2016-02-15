@@ -195,7 +195,10 @@ public class EnemySpawnManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        newPhaseTimer -= Time.deltaTime;
+        if (levelDatabaseScript.currentLevelPhase != 4 || levelDatabaseScript.currentLevelPhase != 9)
+        {
+            newPhaseTimer -= Time.deltaTime;
+        }
         if (newPhaseTimer <= 0)
         {
             moveToNextPhase();
