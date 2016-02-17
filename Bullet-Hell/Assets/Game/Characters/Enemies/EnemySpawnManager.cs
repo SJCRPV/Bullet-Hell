@@ -66,13 +66,13 @@ public class EnemySpawnManager : MonoBehaviour {
 
     void spawnPattern()
     {
-        Debug.Log("Current phase: " + levelDatabaseScript.currentLevelPhase + "\nPhase total: " + phaseTotal);
-        Debug.Log("Current position in phase: " + positionInPhase);
+        //Debug.Log("Current phase: " + levelDatabaseScript.getCurrentLevelPhase() + "\nPhase total: " + phaseTotal);
+        //Debug.Log("Current position in phase: " + positionInPhase);
         if(positionInPhase > phaseTotal / 2 && movementScript.getOffset() > phaseTotal / 4)
         {
             movementScript.resetOffset();
         }
-        spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase][positionInPhase]);
+        spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.getCurrentLevelPhase()][positionInPhase]);
     }
 
     void setStartingPoint()
@@ -82,7 +82,7 @@ public class EnemySpawnManager : MonoBehaviour {
         GameObject tempSpawnPoint2 = null;
         GameObject tempLeavePoint1 = null;
         GameObject tempLeavePoint2 = null;
-        switch(levelDatabaseScript.currentLevelPhase)
+        switch(levelDatabaseScript.getCurrentLevelPhase())
         {
             case 0:
                 tempSpawnPoint1 = GameObject.Find("AEnemySpawnPoint1");
@@ -141,7 +141,7 @@ public class EnemySpawnManager : MonoBehaviour {
                 tempLeavePoint1 = GameObject.Find("ABossLeavePoint");
                 break;
         }
-        if (levelDatabaseScript.currentLevelPhase == 4)
+        if (levelDatabaseScript.getCurrentLevelPhase() == 4)
         {
             levelDatabaseScript.enemyMiniBoss1.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
             levelDatabaseScript.enemyMiniBoss1.GetComponent<Movement>().leavePoint = tempLeavePoint1;
@@ -169,16 +169,16 @@ public class EnemySpawnManager : MonoBehaviour {
 
     private void moveToNextPhase()
     {
-        if (levelDatabaseScript.currentLevelPhase < 10)
+        if (levelDatabaseScript.getCurrentLevelPhase() < 10)
         {
-            levelDatabaseScript.currentLevelPhase++;
+            levelDatabaseScript.incrementCurrentLevelPhase();
             movementScript.resetOffset();
             //Debug.Log ("Loading phase: " + levelDatabaseScript.currentLevelPhase);
-            phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase].Length;
+            phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.getCurrentLevelPhase()].Length;
         }
         else
         {
-            Debug.LogError("currentLevelPhase is currently at " + levelDatabaseScript.currentLevelPhase + " and the lenght of the array is " + levelDatabaseScript.levelArray[levelDatabaseScript.currentLevelPhase].Length + ". I tried to use the position: " + positionInPhase);
+            Debug.LogError("currentLevelPhase is currently at " + levelDatabaseScript.getCurrentLevelPhase() + " and the lenght of the array is " + levelDatabaseScript.levelArray[levelDatabaseScript.getCurrentLevelPhase()].Length + ". I tried to use the position: " + positionInPhase);
         }
 
         newPhaseTimer = newPhaseTimerStore;
@@ -195,9 +195,13 @@ public class EnemySpawnManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (levelDatabaseScript.currentLevelPhase != 4 || levelDatabaseScript.currentLevelPhase != 9)
+        if (levelDatabaseScript.getCurrentLevelPhase() != 4 || levelDatabaseScript.getCurrentLevelPhase() != 9)
         {
             newPhaseTimer -= Time.deltaTime;
+        }
+        else if ( (levelDatabaseScript.getCurrentLevelPhase() == 4 && !GameObject.Find("MiniBoss1")) || (levelDatabaseScript.getCurrentLevelPhase() == 9 && !GameObject.Find("ABoss1")) )
+        {
+            levelDatabaseScript.incrementCurrentLevelPhase();
         }
         if (newPhaseTimer <= 0)
         {

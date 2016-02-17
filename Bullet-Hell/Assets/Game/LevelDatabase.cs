@@ -3,14 +3,32 @@ using System.Collections;
 
 public class LevelDatabase : MonoBehaviour {
 
-	public int currentLevel;
-	public int currentLevelPhase;
 
 	public GameObject enemyBasic;
 	public GameObject enemyCone;
 	public GameObject enemyGraze;
 	public GameObject enemyMiniBoss1;
 	public GameObject enemyBoss1;
+
+    [SerializeField]
+	private int currentLevel;
+    [SerializeField]
+	private int currentLevelPhase;
+
+    public int getCurrentLevel()
+    {
+        return currentLevel;
+    }
+
+    public int getCurrentLevelPhase()
+    {
+        return currentLevelPhase;
+    }
+
+    public void incrementCurrentLevelPhase()
+    {
+        currentLevelPhase++;
+    }
 
 	public enum enemyList
 	{

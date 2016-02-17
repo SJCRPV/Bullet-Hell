@@ -6,13 +6,14 @@ public class Character_Player : Character {
 
     BlockInteraction blockInteractionScript;
 
-    public float power;
-    public float points;
-    //The power cap variable may be of better use in the BlockInteractionScript
-    //public float powerCap;
-
+    [SerializeField]
+    private float power;
+    [SerializeField]
+    private float points;
     private float invincibilityTimeStore;
     private GameObject blockInstance;
+    //The power cap variable may be of better use in the BlockInteractionScript
+    //public float powerCap;
 
     public void increasePower(float amount)
     {
@@ -21,6 +22,10 @@ public class Character_Player : Character {
     public void decreasePower(float amount)
     {
         power -= amount;
+    }
+    public float getPower()
+    {
+        return power;
     }
 
     public void increasePoints(float amount)
@@ -31,10 +36,15 @@ public class Character_Player : Character {
     {
         points -= amount;
     }
+    public float getPoints()
+    {
+        return points;
+    }
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (invincibilityTime <= 0)
+        Debug.Log(collider.name);
+        if (invincibilityTime <= 0 && collider.gameObject.layer != 12)
         {
             Debug.Log("Ow! ; _ ;");
             decreaseHealth();
@@ -58,7 +68,7 @@ public class Character_Player : Character {
 
     // Use this for initialization
     void Start () {
-        invincibilityTime = invincibilityTimeStore;
+        invincibilityTimeStore = invincibilityTime;
         blockInteractionScript = GetComponent<BlockInteraction>();
 	}
 
