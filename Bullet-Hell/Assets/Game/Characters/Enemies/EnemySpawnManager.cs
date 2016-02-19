@@ -203,12 +203,15 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             levelDatabaseScript.incrementCurrentLevelPhase();
         }
+
         if (newPhaseTimer <= 0)
         {
             moveToNextPhase();
             positionInPhase = 0;
         }
+
         inbetweenSpawnTimer -= Time.deltaTime;
+
         if (positionInPhase < phaseTotal)
         {
             if (inbetweenSpawnTimer <= 0)

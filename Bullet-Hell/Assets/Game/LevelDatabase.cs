@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class LevelDatabase : MonoBehaviour {
+public class LevelDatabase {
 
 
 	public GameObject enemyBasic;
@@ -9,6 +9,7 @@ public class LevelDatabase : MonoBehaviour {
 	public GameObject enemyGraze;
 	public GameObject enemyMiniBoss1;
 	public GameObject enemyBoss1;
+    public Level levelBase;
 
     [SerializeField]
 	private int currentLevel;
