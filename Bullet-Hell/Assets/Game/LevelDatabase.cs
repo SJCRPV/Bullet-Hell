@@ -62,58 +62,58 @@ public class LevelDatabase {
 
     public int[][] levelArray = new int[10][];
 
-    void fillArray()
-    {
-        switch(currentLevel)
-        {
-            case 1:
-                for(int j = 0; j < 10; j++)
-                {
-                    switch(j)
-                    {
-                        case 0:
-                        case 1:
-                        case 2:
-                        case 3:
-                        case 5:
-                        case 6:
-                        case 7:
-                        case 8:
-                            for(int i = 0; i < levelArray[j].Length; i++)
-                            {
-                                //TASK: When you figure out which enemies show up in which levels, re-do this
-                                if (i % 4 == 0)
-                                {
-                                    //Debug.Log("Added a Cone in phase " + j + " and position " + i);
-                                    levelArray[j][i] = (int)enemyList.Cone;
-                                }
-                                else if (i % 3 == 0)
-                                {
-                                    //Debug.Log("Added a Graze in phase " + j + " and position " + i);
-                                    levelArray[j][i] = (int)enemyList.Graze;
-                                }
-                                else
-                                {
-                                    //Debug.Log("Added a Basic in phase " + j + " and position " + i);
-                                    levelArray[j][i] = (int)enemyList.Basic;
-                                }
-                            }
-                            break;
+    //void fillArray()
+    //{
+    //    switch(currentLevel)
+    //    {
+    //        case 1:
+    //            for(int j = 0; j < 10; j++)
+    //            {
+    //                switch(j)
+    //                {
+    //                    case 0:
+    //                    case 1:
+    //                    case 2:
+    //                    case 3:
+    //                    case 5:
+    //                    case 6:
+    //                    case 7:
+    //                    case 8:
+    //                        for(int i = 0; i < levelArray[j].Length; i++)
+    //                        {
+    //                            //TASK: When you figure out which enemies show up in which levels, re-do this
+    //                            if (i % 4 == 0)
+    //                            {
+    //                                //Debug.Log("Added a Cone in phase " + j + " and position " + i);
+    //                                levelArray[j][i] = (int)enemyList.Cone;
+    //                            }
+    //                            else if (i % 3 == 0)
+    //                            {
+    //                                //Debug.Log("Added a Graze in phase " + j + " and position " + i);
+    //                                levelArray[j][i] = (int)enemyList.Graze;
+    //                            }
+    //                            else
+    //                            {
+    //                                //Debug.Log("Added a Basic in phase " + j + " and position " + i);
+    //                                levelArray[j][i] = (int)enemyList.Basic;
+    //                            }
+    //                        }
+    //                        break;
 
-                        case 4:
-                            //Debug.Log("Added MiniBoss1 in phase " + j + " and position " + i ");
-                            levelArray[j][0] = (int)enemyList.MiniBoss1;
-                            break;
+    //                    case 4:
+    //                        //Debug.Log("Added MiniBoss1 in phase " + j + " and position " + i ");
+    //                        levelArray[j][0] = (int)enemyList.MiniBoss1;
+    //                        break;
 
-                        case 9:
-                            //Debug.Log("Added Boss1 in phase " + j + " and position " + i ");
-                            levelArray[j][0] = (int)enemyList.Boss1;
-                            break;
-                    }
-                }
-            break;
-        }
-    }
+    //                    case 9:
+    //                        //Debug.Log("Added Boss1 in phase " + j + " and position " + i ");
+    //                        levelArray[j][0] = (int)enemyList.Boss1;
+    //                        break;
+    //                }
+    //            }
+    //        break;
+    //    }
+    //}
 
 	public void Level0()
 	{
@@ -124,17 +124,30 @@ public class LevelDatabase {
     {
         Debug.Log("You loaded level 1!");
         currentLevel = 1;
-        levelArray[0] = new int[8];
-        levelArray[1] = new int[10];
-        levelArray[2] = new int[10];
-        levelArray[3] = new int[14];
-        levelArray[4] = new int[1];
-        levelArray[5] = new int[18];
-        levelArray[6] = new int[20];
-        levelArray[7] = new int[24];
-        levelArray[8] = new int[24];
-        levelArray[9] = new int[1];
-        fillArray();
+        //levelArray[0] = new int[8];
+        //levelArray[1] = new int[10];
+        //levelArray[2] = new int[10];
+        //levelArray[3] = new int[14];
+        //levelArray[4] = new int[1];
+        //levelArray[5] = new int[18];
+        //levelArray[6] = new int[20];
+        //levelArray[7] = new int[24];
+        //levelArray[8] = new int[24];
+        //levelArray[9] = new int[1];
+
+        //levelContent = new int[levelBase.getNumberOfPhases()];
+        //levelContent[0] = 8;
+        //levelContent[1] = 10;
+        //levelContent[2] = 10;
+        //levelContent[3] = 14;
+        //levelContent[4] = 1;
+        //levelContent[5] = 18;
+        //levelContent[6] = 20;
+        //levelContent[7] = 24;
+        //levelContent[8] = 24;
+        //levelContent[9] = 1;
+        //levelBase.prepareArray(levelContent.Length, levelContent);
+        //fillArray();
     }
     public void Level2()
     {
