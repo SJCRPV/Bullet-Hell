@@ -102,7 +102,7 @@
     <Compile Include="Assets\Game\FirePatterns\MiniBoss1_Pattern1.cs" />
     <Compile Include="Assets\Game\FirePatterns\MiniBoss1_Pattern2.cs" />
     <Compile Include="Assets\Game\FirePatterns\PlayerBallistics.cs" />
-    <Compile Include="Assets\Game\LevelDatabase.cs" />
+    <Compile Include="Assets\Game\GameDatabase.cs" />
     <Compile Include="Assets\Game\Levels\Level.cs" />
     <Compile Include="Assets\Game\Misc\CanMoveToNewLevel.cs" />
     <Compile Include="Assets\Game\Misc\DisplayText.cs" />

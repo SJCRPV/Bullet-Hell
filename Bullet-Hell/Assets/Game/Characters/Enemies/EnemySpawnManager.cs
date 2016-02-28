@@ -4,9 +4,11 @@ using System.Collections;
 public class EnemySpawnManager : MonoBehaviour {
 
     [HideInInspector]
-    public LevelDatabase levelDatabaseScript;
+    public GameDatabase gameDatabaseScript;
     [HideInInspector]
     public Movement movementScript;
+    [HideInInspector]
+    public Level levelScript;
     public float newPhaseTimer;
     public float inbetweenSpawnTimer;
 
@@ -28,31 +30,31 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             case 0:
                 //Debug.Log("Spawned a basic!");
-                enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyBasic, levelDatabaseScript.enemyBasic.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyBasic, gameDatabaseScript.enemyBasic.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
                 enemyInstance.name = "Basic";
                 break;
 
             case 1:
                 //Debug.Log ("Spawned a cone!");
-                enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyCone, levelDatabaseScript.enemyCone.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyCone, gameDatabaseScript.enemyCone.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
                 enemyInstance.name = "Cone";
                 break;
 
             case 2:
                 //Debug.Log ("Spawned a graze!");
-                enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyGraze, levelDatabaseScript.enemyGraze.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyGraze, gameDatabaseScript.enemyGraze.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
                 enemyInstance.name = "Graze";
                 break;
 
             case 8:
                 Debug.Log("Spawned a miniBoss1!");
-                enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyMiniBoss1, levelDatabaseScript.enemyMiniBoss1.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyMiniBoss1, gameDatabaseScript.enemyMiniBoss1.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
                 enemyInstance.name = "MiniBoss1";
                 break;
 
             case 16:
                 Debug.Log("Spawned boss1");
-                enemyInstance = (GameObject)Instantiate(levelDatabaseScript.enemyBoss1, levelDatabaseScript.enemyBoss1.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyBoss1, gameDatabaseScript.enemyBoss1.GetComponent<Movement>().spawnPoint.transform.position, Quaternion.identity);
                 enemyInstance.name = "Boss1";
                 this.enabled = false;
                 break;
@@ -72,7 +74,7 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             movementScript.resetOffset();
         }
-        spawnEnemy(levelDatabaseScript.levelArray[levelDatabaseScript.getCurrentLevelPhase()][positionInPhase]);
+        spawnEnemy(levelScript.getSpecificContentAtIndex(gameDatabaseScript.getCurrentLevelPhase(), positionInPhase));
     }
 
     void setStartingPoint()
@@ -82,7 +84,7 @@ public class EnemySpawnManager : MonoBehaviour {
         GameObject tempSpawnPoint2 = null;
         GameObject tempLeavePoint1 = null;
         GameObject tempLeavePoint2 = null;
-        switch(levelDatabaseScript.getCurrentLevelPhase())
+        switch(gameDatabaseScript.getCurrentLevelPhase())
         {
             case 0:
                 tempSpawnPoint1 = GameObject.Find("AEnemySpawnPoint1");
@@ -141,44 +143,44 @@ public class EnemySpawnManager : MonoBehaviour {
                 tempLeavePoint1 = GameObject.Find("ABossLeavePoint");
                 break;
         }
-        if (levelDatabaseScript.getCurrentLevelPhase() == 4)
+        if (gameDatabaseScript.getCurrentLevelPhase() == 4)
         {
-            levelDatabaseScript.enemyMiniBoss1.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
-            levelDatabaseScript.enemyMiniBoss1.GetComponent<Movement>().leavePoint = tempLeavePoint1;
+            gameDatabaseScript.enemyMiniBoss1.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
+            gameDatabaseScript.enemyMiniBoss1.GetComponent<Movement>().leavePoint = tempLeavePoint1;
             return;
         }
         if (positionInPhase < phaseTotal / 2)
         {
-            levelDatabaseScript.enemyBasic.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
-            levelDatabaseScript.enemyBasic.GetComponent<Movement>().leavePoint = tempLeavePoint1;
-            levelDatabaseScript.enemyCone.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
-            levelDatabaseScript.enemyCone.GetComponent<Movement>().leavePoint = tempLeavePoint1;
-            levelDatabaseScript.enemyGraze.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
-            levelDatabaseScript.enemyGraze.GetComponent<Movement>().leavePoint = tempLeavePoint1;
+            gameDatabaseScript.enemyBasic.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
+            gameDatabaseScript.enemyBasic.GetComponent<Movement>().leavePoint = tempLeavePoint1;
+            gameDatabaseScript.enemyCone.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
+            gameDatabaseScript.enemyCone.GetComponent<Movement>().leavePoint = tempLeavePoint1;
+            gameDatabaseScript.enemyGraze.GetComponent<Movement>().spawnPoint = tempSpawnPoint1;
+            gameDatabaseScript.enemyGraze.GetComponent<Movement>().leavePoint = tempLeavePoint1;
         }
         else
         {
-            levelDatabaseScript.enemyBasic.GetComponent<Movement>().spawnPoint = tempSpawnPoint2;
-            levelDatabaseScript.enemyBasic.GetComponent<Movement>().leavePoint = tempLeavePoint2;
-            levelDatabaseScript.enemyCone.GetComponent<Movement>().spawnPoint = tempSpawnPoint2;
-            levelDatabaseScript.enemyCone.GetComponent<Movement>().leavePoint = tempLeavePoint2;
-            levelDatabaseScript.enemyGraze.GetComponent<Movement>().spawnPoint = tempSpawnPoint2;
-            levelDatabaseScript.enemyGraze.GetComponent<Movement>().leavePoint = tempLeavePoint2;
+            gameDatabaseScript.enemyBasic.GetComponent<Movement>().spawnPoint = tempSpawnPoint2;
+            gameDatabaseScript.enemyBasic.GetComponent<Movement>().leavePoint = tempLeavePoint2;
+            gameDatabaseScript.enemyCone.GetComponent<Movement>().spawnPoint = tempSpawnPoint2;
+            gameDatabaseScript.enemyCone.GetComponent<Movement>().leavePoint = tempLeavePoint2;
+            gameDatabaseScript.enemyGraze.GetComponent<Movement>().spawnPoint = tempSpawnPoint2;
+            gameDatabaseScript.enemyGraze.GetComponent<Movement>().leavePoint = tempLeavePoint2;
         }
     }
 
     private void moveToNextPhase()
     {
-        if (levelDatabaseScript.getCurrentLevelPhase() < 10)
+        if (gameDatabaseScript.getCurrentLevelPhase() < 10)
         {
-            levelDatabaseScript.incrementCurrentLevelPhase();
+            gameDatabaseScript.incrementCurrentLevelPhase();
             movementScript.resetOffset();
-            //Debug.Log ("Loading phase: " + levelDatabaseScript.currentLevelPhase);
-            phaseTotal = levelDatabaseScript.levelArray[levelDatabaseScript.getCurrentLevelPhase()].Length;
+            //Debug.Log ("Loading phase: " + levelDatabaseScript.getCurrentLevelPhase());
+            phaseTotal = levelScript.getPhaseLenght(gameDatabaseScript.getCurrentLevelPhase());
         }
         else
         {
-            Debug.LogError("currentLevelPhase is currently at " + levelDatabaseScript.getCurrentLevelPhase() + " and the lenght of the array is " + levelDatabaseScript.levelArray[levelDatabaseScript.getCurrentLevelPhase()].Length + ". I tried to use the position: " + positionInPhase);
+            Debug.LogError("currentLevelPhase is currently at " + gameDatabaseScript.getCurrentLevelPhase() + " and the lenght of the array is " + levelScript.getPhaseLenght(gameDatabaseScript.getCurrentLevelPhase()) + ". I tried to use the position: " + positionInPhase);
         }
 
         newPhaseTimer = newPhaseTimerStore;
@@ -186,8 +188,9 @@ public class EnemySpawnManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        levelDatabaseScript = GetComponent<LevelDatabase>();
-        movementScript = levelDatabaseScript.enemyBasic.GetComponent<Movement>();
+        gameDatabaseScript = GetComponent<GameDatabase>();
+        movementScript = gameDatabaseScript.enemyBasic.GetComponent<Movement>();
+        levelScript = GetComponent<Level>();
         newPhaseTimerStore = newPhaseTimer;
         inbetweenSpawnTimerStore = inbetweenSpawnTimer;
         positionInPhase = 0;
@@ -195,13 +198,13 @@ public class EnemySpawnManager : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        if (levelDatabaseScript.getCurrentLevelPhase() != 4 || levelDatabaseScript.getCurrentLevelPhase() != 9)
+        if (gameDatabaseScript.getCurrentLevelPhase() != 4 || gameDatabaseScript.getCurrentLevelPhase() != 9)
         {
             newPhaseTimer -= Time.deltaTime;
         }
-        else if ( (levelDatabaseScript.getCurrentLevelPhase() == 4 && !GameObject.Find("MiniBoss1")) || (levelDatabaseScript.getCurrentLevelPhase() == 9 && !GameObject.Find("ABoss1")) )
+        else if ( (gameDatabaseScript.getCurrentLevelPhase() == 4 && !GameObject.Find("MiniBoss1")) || (gameDatabaseScript.getCurrentLevelPhase() == 9 && !GameObject.Find("ABoss1")) )
         {
-            levelDatabaseScript.incrementCurrentLevelPhase();
+            gameDatabaseScript.incrementCurrentLevelPhase();
         }
 
         if (newPhaseTimer <= 0)
