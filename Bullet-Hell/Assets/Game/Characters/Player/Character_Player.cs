@@ -57,11 +57,14 @@ public class Character_Player : Character {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log("You were killed by: " + collider.name);
         if (invincibilityTime <= 0 && collider.gameObject.layer != 12)
         {
             //Debug.Log("Ow! ; _ ;");
             decreaseHealth();
+            if (getHealth() <= 0)
+            {
+                Debug.Log("You were killed by: " + collider.name);
+            }
             invincibilityTime = invincibilityTimeStore;
         }
     }

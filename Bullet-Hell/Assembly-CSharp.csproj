@@ -48,8 +48,11 @@
      <Compile Include="Assets\ASuperSecretMurderousPattern.cs" />
      <Compile Include="Assets\Game\BulletCollision.cs" />
      <Compile Include="Assets\Game\Characters\Character.cs" />
+     <Compile Include="Assets\Game\Characters\Enemies\BMiniBoss1\Character_MiniBoss1.cs" />
+     <Compile Include="Assets\Game\Characters\Enemies\Character_StandardEnemy.cs" />
      <Compile Include="Assets\Game\Characters\Enemies\EnemySpawnManager.cs" />
      <Compile Include="Assets\Game\Characters\Player\BlockInteraction.cs" />
+     <Compile Include="Assets\Game\Characters\Player\Character_Player.cs" />
      <Compile Include="Assets\Game\Characters\Player\PlayerSpawn.cs" />
      <Compile Include="Assets\Game\Characters\Player\ShowEnlargedCollider.cs" />
      <Compile Include="Assets\Game\Characters\Player\ShowHitbox.cs" />
@@ -64,20 +67,22 @@
      <Compile Include="Assets\Game\FirePatterns\FireGraze.cs" />
      <Compile Include="Assets\Game\FirePatterns\IFire.cs" />
      <Compile Include="Assets\Game\FirePatterns\MiniBoss1_Pattern1.cs" />
+     <Compile Include="Assets\Game\FirePatterns\MiniBoss1_Pattern2.cs" />
      <Compile Include="Assets\Game\FirePatterns\PlayerBallistics.cs" />
-     <Compile Include="Assets\Game\LevelDatabase.cs" />
+     <Compile Include="Assets\Game\GameDatabase.cs" />
+     <Compile Include="Assets\Game\Levels\Level.cs" />
      <Compile Include="Assets\Game\Misc\CanMoveToNewLevel.cs" />
      <Compile Include="Assets\Game\Misc\DisplayText.cs" />
      <Compile Include="Assets\Game\Misc\DontDestroyOnLoad.cs" />
      <Compile Include="Assets\Game\Misc\NewGame.cs" />
      <Compile Include="Assets\Game\Movement\BlockMovement.cs" />
-     <Compile Include="Assets\Game\Movement\Boss1Movement.cs" />
      <Compile Include="Assets\Game\Movement\MoveForward.cs" />
      <Compile Include="Assets\Game\Movement\Movement.cs" />
      <Compile Include="Assets\Game\Movement\Movement_Boss.cs" />
      <Compile Include="Assets\Game\Movement\Movement_Generic.cs" />
      <Compile Include="Assets\Game\Movement\PlayerMovement.cs" />
      <Compile Include="Assets\Game\Movement\TimedMoveForward.cs" />
+     <Compile Include="Assets\Game\Movement\ZigZag.cs" />
      <Compile Include="Assets\Game\SelfDestruct.cs" />
      <Compile Include="Assets\Pixelplacement\iTweenPath\iTweenPath.cs" />
      <Compile Include="Assets\UnityTestTools\Assertions\AssertionComponent.cs" />
@@ -146,10 +151,10 @@
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/Networking/UnityEngine.Networking.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
- <HintPath>C:/Users/TEMP/Unity-Temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil.Mdb">
- <HintPath>C:/Users/TEMP/Unity-Temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.Mdb.dll</HintPath>
+ <HintPath>C:/Users/user/Documents/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.Mdb.dll</HintPath>
  </Reference>
   </ItemGroup>
   <ItemGroup>

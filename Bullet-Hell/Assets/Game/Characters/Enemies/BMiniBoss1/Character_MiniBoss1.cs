@@ -17,7 +17,7 @@ public class Character_MiniBoss1 : Character {
     {
         if (invincibilityTime <= 0)
         {
-            Debug.Log("Ow! ; _ ;");
+            //Debug.Log("Ow! ; _ ;");
             decreaseHealth();
             invincibilityTime = invincibilityTimeStore;
         }

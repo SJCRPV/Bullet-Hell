@@ -19,6 +19,14 @@ public class EnemySpawnManager : MonoBehaviour {
     private float newPhaseTimerStore;
     private float inbetweenSpawnTimerStore;
 
+    //private bool canBossStart()
+    //{
+    //    if(gameDatabaseScript.getCurrentLevelPhase() == 3)
+    //    {
+    //        if()
+    //    }
+    //}
+
     void assignParent()
     {
         enemyInstance.transform.parent = enemyInstance.GetComponent<Movement>().spawnPoint.transform;
@@ -209,7 +217,18 @@ public class EnemySpawnManager : MonoBehaviour {
 
         if (newPhaseTimer <= 0)
         {
-            moveToNextPhase();
+            if (gameDatabaseScript.getCurrentLevelPhase() == 3 || gameDatabaseScript.getCurrentLevelPhase() == 8)
+            {
+                //if (canBossStart() == true)
+                //{
+                //    moveToNextPhase();
+                //}
+            }
+            else
+            {
+                moveToNextPhase();
+            }
+            
             positionInPhase = 0;
         }
 

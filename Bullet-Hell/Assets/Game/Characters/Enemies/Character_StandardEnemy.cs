@@ -13,7 +13,7 @@ public class Character_StandardEnemy : Character
     {
         if (invincibilityTime <= 0)
         {
-            Debug.Log("Ow! ; _ ;");
+            //Debug.Log("Ow! ; _ ;");
             decreaseHealth();
             invincibilityTime = invincibilityTimeStore;
         }
