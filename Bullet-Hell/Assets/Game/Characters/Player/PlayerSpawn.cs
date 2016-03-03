@@ -5,15 +5,20 @@ public class PlayerSpawn : MonoBehaviour {
 
 	private int healthPointsStore;
 	private GameObject playerInstance;
-	private DamageHandler damageHandlerScript;
+	private Character_Player playerCharacterScript;
 	private BlockInteraction blockInteractionScript;
+    [SerializeField]
+	private int numLives = 4;
 
 	public GameObject playerPrefab;
 	public float respawnTimer;
-	public int numLives = 4;
 	public int points;
 	public float power;
 	
+    public void incrementNumLives()
+    {
+        numLives++;
+    }
 	public int getNumLives()
 	{
 		return numLives;
@@ -24,8 +29,8 @@ public class PlayerSpawn : MonoBehaviour {
 		if(numLives >= 0)
 		{
 			GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + numLives);
-			GUI.Label(new Rect(10, 20, 100, 30), "Score: " + points);
-			GUI.Label(new Rect(10, 40, 100, 30), "Power: " + power);
+			GUI.Label(new Rect(10, 20, 100, 30), "Score: " + playerCharacterScript.getPoints());
+			GUI.Label(new Rect(10, 40, 100, 30), "Power: " + playerCharacterScript.getPower());
 		}
 		else
 		{
@@ -44,22 +49,18 @@ public class PlayerSpawn : MonoBehaviour {
 	public void SpawnPlayer()
 	{
 		numLives--;
-		//Needs to be cast as a GameObject because Instantiate only returns an Object
 		if(numLives >= 0)
 		{
 			playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
+            playerInstance.name = "Player";
 			respawnTimer = 3f;
+            playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
+            if (playerCharacterScript == null)
+            {
+                Debug.Log("playerCharacterScript is empty");
+            }
 		}
-		assignChild();
-	}
-
-	// Use this for initialization
-	void Start () {
-		damageHandlerScript = GetComponent<DamageHandler>();
-		if(damageHandlerScript == null)
-		{
-			//Debug.Log("damageScript is empty");
-		}
+        assignChild();
 	}
 
 	void OnLevelWasLoaded()

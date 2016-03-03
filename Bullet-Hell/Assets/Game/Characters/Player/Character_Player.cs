@@ -7,9 +7,9 @@ public class Character_Player : Character {
     BlockInteraction blockInteractionScript;
 
     [SerializeField]
-    private float power;
+    private static float power;
     [SerializeField]
-    private float points;
+    private static float points;
     private float invincibilityTimeStore;
     private GameObject blockInstance;
     //The power cap variable may be of better use in the BlockInteractionScript
@@ -21,7 +21,14 @@ public class Character_Player : Character {
     }
     public void decreasePower(float amount)
     {
-        power -= amount;
+        if (power - amount >= 0)
+        {
+            power -= amount;
+        }
+        else
+        {
+            power = 0;
+        }
     }
     public float getPower()
     {
@@ -34,7 +41,14 @@ public class Character_Player : Character {
     }
     public void decreasePoints(float amount)
     {
-        points -= amount;
+        if (points - amount >= 0)
+        {
+            points -= amount;
+        }
+        else
+        {
+            points = 0;
+        }
     }
     public float getPoints()
     {
@@ -43,10 +57,10 @@ public class Character_Player : Character {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        Debug.Log(collider.name);
+        Debug.Log("You were killed by: " + collider.name);
         if (invincibilityTime <= 0 && collider.gameObject.layer != 12)
         {
-            Debug.Log("Ow! ; _ ;");
+            //Debug.Log("Ow! ; _ ;");
             decreaseHealth();
             invincibilityTime = invincibilityTimeStore;
         }

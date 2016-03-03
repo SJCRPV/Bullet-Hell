@@ -4,6 +4,7 @@ using System.Collections;
 public class BlockInteraction : MonoBehaviour {
 
 	PlayerSpawn playerSpawnScript;
+    Character_Player playerCharacterScript;
 
 	public float powerIncrement;
 	public int pointIncrement;
@@ -17,18 +18,18 @@ public class BlockInteraction : MonoBehaviour {
 	{
 		if(collider.tag == "Life")
 		{
-			playerSpawnScript.numLives++;
+			playerSpawnScript.incrementNumLives();
 		}
 		else if(collider.tag == "Power")
 		{
 			if(playerSpawnScript.power <= powerCap)
 			{
-				playerSpawnScript.power += powerIncrement;
+                playerCharacterScript.increasePower(powerIncrement);
 			}
 		}
 		else if(collider.tag == "Points")
 		{
-			playerSpawnScript.points += pointIncrement;
+            playerCharacterScript.increasePoints(pointIncrement);
 		}
 	}
 
@@ -36,10 +37,6 @@ public class BlockInteraction : MonoBehaviour {
 	void Start () {
 		//objectLayer = gameObject.layer;
 		playerSpawnScript = GetComponentInParent<PlayerSpawn>();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
+        playerCharacterScript = GetComponent<Character_Player>();
 	}
 }
