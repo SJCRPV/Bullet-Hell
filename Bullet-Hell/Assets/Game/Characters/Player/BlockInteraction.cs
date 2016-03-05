@@ -3,7 +3,6 @@ using System.Collections;
 
 public class BlockInteraction : MonoBehaviour {
 
-	PlayerSpawn playerSpawnScript;
     Character_Player playerCharacterScript;
 
 	public float powerIncrement;
@@ -18,11 +17,11 @@ public class BlockInteraction : MonoBehaviour {
 	{
 		if(collider.tag == "Life")
 		{
-			playerSpawnScript.incrementNumLives();
+			playerCharacterScript.incrementLives();
 		}
 		else if(collider.tag == "Power")
 		{
-			if(playerSpawnScript.power <= powerCap)
+			if(playerCharacterScript.getPower() <= powerCap)
 			{
                 playerCharacterScript.increasePower(powerIncrement);
 			}
@@ -35,8 +34,6 @@ public class BlockInteraction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		//objectLayer = gameObject.layer;
-		playerSpawnScript = GetComponentInParent<PlayerSpawn>();
         playerCharacterScript = GetComponent<Character_Player>();
 	}
 }

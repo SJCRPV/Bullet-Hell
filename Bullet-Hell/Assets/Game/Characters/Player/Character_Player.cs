@@ -7,6 +7,8 @@ public class Character_Player : Character {
     BlockInteraction blockInteractionScript;
 
     [SerializeField]
+    private static int lives;
+    [SerializeField]
     private static float power;
     [SerializeField]
     private static float points;
@@ -14,6 +16,19 @@ public class Character_Player : Character {
     private GameObject blockInstance;
     //The power cap variable may be of better use in the BlockInteractionScript
     //public float powerCap;
+
+    public void incrementLives()
+    {
+        lives++;
+    }
+    public void decrementLives()
+    {
+        lives--;
+    }
+    public int getLives()
+    {
+        return lives;
+    }
 
     public void increasePower(float amount)
     {

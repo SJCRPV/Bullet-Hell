@@ -18,11 +18,6 @@ public abstract class Character : MonoBehaviour {
 
     public abstract void explode();
 
-    public void moveToNextPhase()
-    {
-        SendMessage("moveToNextPath");
-    }
-
     public void die()
     {
         Debug.Log("DEAD!");

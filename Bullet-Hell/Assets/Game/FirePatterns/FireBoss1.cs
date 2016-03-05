@@ -4,22 +4,21 @@ using System;
 
 public class FireBoss1 : MonoBehaviour, IFire {
 
-    private Movement movement;
 	private Boss1_Pattern1 boss1_Pattern1Script;
 	private Boss1_Pattern2 boss1_Pattern2Script;
 	private Movement_Boss boss1MovementScript;
-	private DamageHandler damageHandlerScript;
+    private Character_Boss1 boss1CharacterScript;
 	private int bossHP;
 	
 	void Fire()
 	{
-		if(damageHandlerScript.getHealthPoints() >= bossHP/2)
+		if(boss1CharacterScript.getHealth() >= bossHP/2)
 		{
 			boss1_Pattern1Script.enabled = true;
 			boss1_Pattern2Script.enabled = false;
 			boss1MovementScript.enabled = false;
 		}
-		else if(damageHandlerScript.getHealthPoints() >= bossHP/4 && damageHandlerScript.getHealthPoints() < bossHP/2)
+		else if(boss1CharacterScript.getHealth() >= bossHP/4 && boss1CharacterScript.getHealth() < bossHP/2)
 		{
 			boss1_Pattern1Script.enabled = false;
 			boss1_Pattern2Script.enabled = true;
@@ -34,18 +33,18 @@ public class FireBoss1 : MonoBehaviour, IFire {
 
     public void assignMovement()
     {
-
+        boss1MovementScript = GetComponent<Movement_Boss>();
     }
 
 	// Use this for initialization
 	void Start () {
 		boss1_Pattern1Script = GetComponent<Boss1_Pattern1>();
 		boss1_Pattern2Script = GetComponent<Boss1_Pattern2>();
-		boss1MovementScript = GetComponent<Movement_Boss>();
-		damageHandlerScript = GetComponent<DamageHandler>();
+        boss1CharacterScript = GetComponent<Character_Boss1>();
+        assignMovement();
 		boss1_Pattern1Script.enabled = false;
 		boss1_Pattern2Script.enabled = false;
-		bossHP = damageHandlerScript.getHealthPoints();
+		bossHP = boss1CharacterScript.getHealth();
 	}
 	
 	// Update is called once per frame

@@ -55,6 +55,12 @@
     <Reference Include="UnityEngine.Networking">
       <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
     </Reference>
+    <Reference Include="UnityEngine.Networking">
+      <HintPath>Library\UnityAssemblies\UnityEngine.Networking.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>Library\UnityAssemblies\UnityEngine.UI.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEditor">
       <HintPath>Library\UnityAssemblies\UnityEditor.dll</HintPath>
     </Reference>
@@ -81,7 +87,9 @@
     <Compile Include="Assets\ASuperSecretMurderousPattern.cs" />
     <Compile Include="Assets\Game\BulletCollision.cs" />
     <Compile Include="Assets\Game\Characters\Character.cs" />
+    <Compile Include="Assets\Game\Characters\Character_Boss.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\BMiniBoss1\Character_MiniBoss1.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\CBoss1\Character_Boss1.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\Character_StandardEnemy.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\EnemySpawnManager.cs" />
     <Compile Include="Assets\Game\Characters\Player\BlockInteraction.cs" />
@@ -89,7 +97,6 @@
     <Compile Include="Assets\Game\Characters\Player\PlayerSpawn.cs" />
     <Compile Include="Assets\Game\Characters\Player\ShowEnlargedCollider.cs" />
     <Compile Include="Assets\Game\Characters\Player\ShowHitbox.cs" />
-    <Compile Include="Assets\Game\DamageHandler.cs" />
     <Compile Include="Assets\Game\Explode.cs" />
     <Compile Include="Assets\Game\FirePatterns\Boss1_Pattern1.cs" />
     <Compile Include="Assets\Game\FirePatterns\Boss1_Pattern2.cs" />
