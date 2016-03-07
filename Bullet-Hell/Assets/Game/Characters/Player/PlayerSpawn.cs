@@ -32,26 +32,41 @@ public class PlayerSpawn : MonoBehaviour {
 		}
 	}
 
+    private void initialPlayerSpawn()
+    {
+        playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        playerInstance.name = "Player";
+        respawnTimer = 3f;
+        playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
+        playerCharacterScript.decrementLives();
+        Debug.Log(playerCharacterScript.getLives() + "lives left.");
+        assignChild();
+        if (playerCharacterScript == null)
+        {
+            Debug.Log("playerCharacterScript is empty");
+        }
+    }
 	public void SpawnPlayer()
 	{
+        if (playerCharacterScript == null)
+        {
+            Debug.Log("playerCharacterScript is empty");
+        }
         playerCharacterScript.decrementLives();
+        Debug.Log(playerCharacterScript.getLives() + "lives left.");
 		if(playerCharacterScript.getLives() >= 0)
 		{
 			playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
             playerInstance.name = "Player";
 			respawnTimer = 3f;
             playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
-            if (playerCharacterScript == null)
-            {
-                Debug.Log("playerCharacterScript is empty");
-            }
 		}
         assignChild();
 	}
 
 	void OnLevelWasLoaded()
 	{
-		SpawnPlayer();
+		initialPlayerSpawn();
 	}
 
 	// Update is called once per frame

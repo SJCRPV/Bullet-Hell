@@ -7,11 +7,14 @@ public class Character_Player : Character {
     BlockInteraction blockInteractionScript;
 
     [SerializeField]
-    private static int lives;
+    private int setLives;
+    private static int staticLives;
     [SerializeField]
-    private static float power;
+    private float setPower;
+    private static float staticPower;
     [SerializeField]
-    private static float points;
+    private int setPoints;
+    private static float staticPoints;
     private float invincibilityTimeStore;
     private GameObject blockInstance;
     //The power cap variable may be of better use in the BlockInteractionScript
@@ -19,55 +22,67 @@ public class Character_Player : Character {
 
     public void incrementLives()
     {
-        lives++;
+        staticLives++;
     }
     public void decrementLives()
     {
-        lives--;
+        staticLives--;
+    }
+    public void setLives(int amount)
+    {
+        staticLives = amount;
     }
     public int getLives()
     {
-        return lives;
+        return staticLives;
     }
 
     public void increasePower(float amount)
     {
-        power += amount;
+        staticPower += amount;
     }
     public void decreasePower(float amount)
     {
-        if (power - amount >= 0)
+        if (staticPower - amount >= 0)
         {
-            power -= amount;
+            staticPower -= amount;
         }
         else
         {
-            power = 0;
+            staticPower = 0;
         }
+    }
+    public void setPower(float amount)
+    {
+        staticPower = amount;
     }
     public float getPower()
     {
-        return power;
+        return staticPower;
     }
 
     public void increasePoints(float amount)
     {
-        points += amount;
+        staticPoints += amount;
     }
     public void decreasePoints(float amount)
     {
-        if (points - amount >= 0)
+        if (staticPoints - amount >= 0)
         {
-            points -= amount;
+            staticPoints -= amount;
         }
         else
         {
-            points = 0;
+            staticPoints = 0;
         }
+    }
+    public void setPoints(float amount)
+    {
+        staticPoints = amount;
     }
     public float getPoints()
     {
-        return points;
+        return staticPoints;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
