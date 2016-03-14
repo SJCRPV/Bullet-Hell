@@ -101,7 +101,7 @@
      <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\BackgroundAndCharacters\SuperSimpleSelfIllumination.shader" />
      <None Include="Assets\UnityTestTools\Examples\IntegrationTestsFrameworkExamples\AngryBotsTests\Shaders\Fx\ParticleBlend.shader" />
  <Reference Include="Assembly-UnityScript">
- <HintPath>C:/Users/r2014525/Documents/Unity-temp/Unity-Stuff/Bullet-Hell/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
+ <HintPath>C:/Users/TEMP.ISEGI.000/Documents/Unity-temp/Unity-Stuff/Bullet-Hell/Library/ScriptAssemblies/Assembly-UnityScript.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Advertisements">
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/Advertisements/Editor/UnityEditor.Advertisements.dll</HintPath>
@@ -128,13 +128,13 @@
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/TreeEditor/Editor/UnityEditor.TreeEditor.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil">
- <HintPath>C:/Users/r2014525/Documents/Unity-temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.dll</HintPath>
+ <HintPath>C:/Users/TEMP.ISEGI.000/Documents/Unity-temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.dll</HintPath>
  </Reference>
  <Reference Include="Mono.Cecil.Mdb">
- <HintPath>C:/Users/r2014525/Documents/Unity-temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.Mdb.dll</HintPath>
+ <HintPath>C:/Users/TEMP.ISEGI.000/Documents/Unity-temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/IntegrationTestsFramework/Libs/Mono.Cecil.Mdb.dll</HintPath>
  </Reference>
  <Reference Include="NSubstitute">
- <HintPath>C:/Users/r2014525/Documents/Unity-temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/UnitTesting/Editor/NSubstitute/NSubstitute.dll</HintPath>
+ <HintPath>C:/Users/TEMP.ISEGI.000/Documents/Unity-temp/Unity-Stuff/Bullet-Hell/Assets/UnityTestTools/UnitTesting/Editor/NSubstitute/NSubstitute.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.Graphs">
  <HintPath>E:/Unity/Editor/Data/Managed/UnityEditor.Graphs.dll</HintPath>

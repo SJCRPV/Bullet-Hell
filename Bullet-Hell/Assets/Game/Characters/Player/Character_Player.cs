@@ -7,13 +7,13 @@ public class Character_Player : Character {
     BlockInteraction blockInteractionScript;
 
     [SerializeField]
-    private int setLives;
+    private int numLives;
     private static int staticLives;
     [SerializeField]
-    private float setPower;
+    private float numPower;
     private static float staticPower;
     [SerializeField]
-    private int setPoints;
+    private float numPoints;
     private static float staticPoints;
     private float invincibilityTimeStore;
     private GameObject blockInstance;
@@ -22,11 +22,11 @@ public class Character_Player : Character {
 
     public void incrementLives()
     {
-        staticLives++;
+        numLives++;
     }
     public void decrementLives()
     {
-        staticLives--;
+        numLives--;
     }
     public void setLives(int amount)
     {
@@ -34,22 +34,26 @@ public class Character_Player : Character {
     }
     public int getLives()
     {
+        return numLives;
+    }
+    public int getStaticLives()
+    {
         return staticLives;
     }
 
     public void increasePower(float amount)
     {
-        staticPower += amount;
+        numPower += amount;
     }
     public void decreasePower(float amount)
     {
-        if (staticPower - amount >= 0)
+        if (numPower - amount >= 0)
         {
-            staticPower -= amount;
+            numPower -= amount;
         }
         else
         {
-            staticPower = 0;
+            numPower = 0;
         }
     }
     public void setPower(float amount)
@@ -58,22 +62,26 @@ public class Character_Player : Character {
     }
     public float getPower()
     {
+        return numPower;
+    }
+    public float getStaticPower()
+    {
         return staticPower;
     }
 
     public void increasePoints(float amount)
     {
-        staticPoints += amount;
+        numPoints += amount;
     }
     public void decreasePoints(float amount)
     {
-        if (staticPoints - amount >= 0)
+        if (numPoints - amount >= 0)
         {
-            staticPoints -= amount;
+            numPoints -= amount;
         }
         else
         {
-            staticPoints = 0;
+            numPoints = 0;
         }
     }
     public void setPoints(float amount)
@@ -81,6 +89,10 @@ public class Character_Player : Character {
         staticPoints = amount;
     }
     public float getPoints()
+    {
+        return numPoints;
+    }
+    public float getStaticPoints()
     {
         return staticPoints;
     }
@@ -109,6 +121,11 @@ public class Character_Player : Character {
 
         decreasePower(blockInteractionScript.powerDecrement);
         decreasePoints(blockInteractionScript.pointDecrement);
+        decrementLives();
+
+        setPower(getPower());
+        setPoints(getPoints());
+        setLives(getLives());
 
         die();
     }

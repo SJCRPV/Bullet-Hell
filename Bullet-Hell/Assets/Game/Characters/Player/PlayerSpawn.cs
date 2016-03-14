@@ -38,8 +38,7 @@ public class PlayerSpawn : MonoBehaviour {
         playerInstance.name = "Player";
         respawnTimer = 3f;
         playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
-        playerCharacterScript.decrementLives();
-        Debug.Log(playerCharacterScript.getLives() + "lives left.");
+        Debug.Log(playerCharacterScript.getLives() + " lives left.");
         assignChild();
         if (playerCharacterScript == null)
         {
@@ -48,19 +47,21 @@ public class PlayerSpawn : MonoBehaviour {
     }
 	public void SpawnPlayer()
 	{
-        if (playerCharacterScript == null)
-        {
-            Debug.Log("playerCharacterScript is empty");
-        }
-        playerCharacterScript.decrementLives();
-        Debug.Log(playerCharacterScript.getLives() + "lives left.");
+        Debug.Log(playerCharacterScript.getLives() + " lives left.");
 		if(playerCharacterScript.getLives() >= 0)
 		{
 			playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
             playerInstance.name = "Player";
 			respawnTimer = 3f;
             playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
+            playerCharacterScript.setLives(playerCharacterScript.getStaticLives());
+            playerCharacterScript.setPower(playerCharacterScript.getStaticPower());
+            playerCharacterScript.setPoints(playerCharacterScript.getStaticPoints());
 		}
+        if (playerCharacterScript == null)
+        {
+            Debug.Log("playerCharacterScript is empty");
+        }
         assignChild();
 	}
 
