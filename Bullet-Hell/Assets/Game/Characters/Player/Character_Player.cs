@@ -6,6 +6,7 @@ public class Character_Player : Character {
 
     BlockInteraction blockInteractionScript;
 
+    private static int playerCount;
     [SerializeField]
     private int numLives;
     private static int staticLives;
@@ -22,14 +23,15 @@ public class Character_Player : Character {
 
     public void incrementLives()
     {
-        numLives++;
+        playerCount--;
     }
-    public void decrementLives()
-    {
-        numLives--;
-    }
+    //public void decrementLives()
+    //{
+    //    numLives--;
+    //}
     public void setLives(int amount)
     {
+        Debug.Log("Setting staticLives to " + amount);
         staticLives = amount;
     }
     public int getLives()
@@ -121,7 +123,7 @@ public class Character_Player : Character {
 
         decreasePower(blockInteractionScript.powerDecrement);
         decreasePoints(blockInteractionScript.pointDecrement);
-        decrementLives();
+        //decrementLives();
 
         setPower(getPower());
         setPoints(getPoints());
@@ -134,6 +136,7 @@ public class Character_Player : Character {
     void Start () {
         invincibilityTimeStore = invincibilityTime;
         blockInteractionScript = GetComponent<BlockInteraction>();
+        setLives(getLives() - playerCount++);
 	}
 
     void Update()

@@ -12,9 +12,9 @@ public class PlayerSpawn : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if(playerCharacterScript.getLives() >= 0)
+		if(playerCharacterScript.getStaticLives() >= 0)
 		{
-			GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + playerCharacterScript.getLives());
+			GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + playerCharacterScript.getStaticLives());
 			GUI.Label(new Rect(10, 20, 100, 30), "Score: " + playerCharacterScript.getPoints());
 			GUI.Label(new Rect(10, 40, 100, 30), "Power: " + playerCharacterScript.getPower());
 		}
@@ -47,17 +47,17 @@ public class PlayerSpawn : MonoBehaviour {
     }
 	public void SpawnPlayer()
 	{
-        Debug.Log(playerCharacterScript.getLives() + " lives left.");
-		if(playerCharacterScript.getLives() >= 0)
+        Debug.Log(playerCharacterScript.getStaticLives() + " lives left.");
+		if(playerCharacterScript.getStaticLives() >= 0)
 		{
 			playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
             playerInstance.name = "Player";
 			respawnTimer = 3f;
             playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
-            playerCharacterScript.setLives(playerCharacterScript.getStaticLives());
+            //playerCharacterScript.setLives(playerCharacterScript.getStaticLives());
             playerCharacterScript.setPower(playerCharacterScript.getStaticPower());
             playerCharacterScript.setPoints(playerCharacterScript.getStaticPoints());
-		}
+        }
         if (playerCharacterScript == null)
         {
             Debug.Log("playerCharacterScript is empty");
