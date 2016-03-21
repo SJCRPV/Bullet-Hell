@@ -1,0 +1,626 @@
+﻿
+# Please enter the commit message for your changes. Lines starting
+# with '#' will be ignored, and an empty message aborts the commit.
+# On branch master
+# Your branch is up-to-date with 'origin/master'.
+#
+# Changes to be committed:
+#	modified:   Bullet-Hell/.vs/Bullet-Hell/v14/.suo
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player.meta -> Bullet-Hell/Assets/Game/Player.meta
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/APlayer01.prefab -> Bullet-Hell/Assets/Game/Player/APlayer01.prefab
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/APlayer01.prefab.meta -> Bullet-Hell/Assets/Game/Player/APlayer01.prefab.meta
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/APlayerBeam01.prefab -> Bullet-Hell/Assets/Game/Player/APlayerBeam01.prefab
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/APlayerBeam01.prefab.meta -> Bullet-Hell/Assets/Game/Player/APlayerBeam01.prefab.meta
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/APlayerBeam02.prefab -> Bullet-Hell/Assets/Game/Player/APlayerBeam02.prefab
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/APlayerBeam02.prefab.meta -> Bullet-Hell/Assets/Game/Player/APlayerBeam02.prefab.meta
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/APlayerSpawnPoint.prefab -> Bullet-Hell/Assets/Game/Player/APlayerSpawnPoint.prefab
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/APlayerSpawnPoint.prefab.meta -> Bullet-Hell/Assets/Game/Player/APlayerSpawnPoint.prefab.meta
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/BlockInteraction.cs -> Bullet-Hell/Assets/Game/Player/BlockInteraction.cs
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/BlockInteraction.cs.meta -> Bullet-Hell/Assets/Game/Player/BlockInteraction.cs.meta
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/Character_Player.cs -> Bullet-Hell/Assets/Game/Player/Character_Player.cs
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/Character_Player.cs.meta -> Bullet-Hell/Assets/Game/Player/Character_Player.cs.meta
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/PlayerSpawn.cs -> Bullet-Hell/Assets/Game/Player/PlayerSpawn.cs
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/PlayerSpawn.cs.meta -> Bullet-Hell/Assets/Game/Player/PlayerSpawn.cs.meta
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/ShowEnlargedCollider.cs -> Bullet-Hell/Assets/Game/Player/ShowEnlargedCollider.cs
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/ShowEnlargedCollider.cs.meta -> Bullet-Hell/Assets/Game/Player/ShowEnlargedCollider.cs.meta
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/ShowHitbox.cs -> Bullet-Hell/Assets/Game/Player/ShowHitbox.cs
+#	renamed:    Bullet-Hell/Assets/Game/Characters/Player/ShowHitbox.cs.meta -> Bullet-Hell/Assets/Game/Player/ShowHitbox.cs.meta
+#	modified:   Bullet-Hell/Bullet-Hell.CSharp.Editor.csproj
+#	modified:   Bullet-Hell/Bullet-Hell.CSharp.Plugins.csproj
+#	modified:   Bullet-Hell/Bullet-Hell.CSharp.csproj
+#	modified:   Bullet-Hell/Bullet-Hell.userprefs
+#	modified:   Bullet-Hell/Library/AssetServerCacheV3
+#	modified:   Bullet-Hell/Library/CurrentLayout.dwlt
+#	modified:   Bullet-Hell/Library/assetDatabase3
+#	modified:   Bullet-Hell/Library/expandedItems
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000002000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000003000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000004000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000004100000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000005000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000005100000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000006000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000006100000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000007000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000007100000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000008000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000008100000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/00000000000000009000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/0000000000000000a000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/0000000000000000a100000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/0000000000000000b000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/0000000000000000c000000000000000
+#	modified:   Bullet-Hell/Library/metadata/00/0076bfa6073f17546b3535ac1b456b0b
+#	modified:   Bullet-Hell/Library/metadata/00/00a2c2298d1f54f909674141edb1041b
+#	modified:   Bullet-Hell/Library/metadata/01/01a4676f80a3044a0a7082b6086b8eba
+#	modified:   Bullet-Hell/Library/metadata/01/01a4676f80a3044a0a7082b6086b8eba.info
+#	modified:   Bullet-Hell/Library/metadata/01/01bffa8aa898b437183cd5617f7b5303
+#	modified:   Bullet-Hell/Library/metadata/02/026976e57ed244642aa5de4510239bea
+#	modified:   Bullet-Hell/Library/metadata/02/026976e57ed244642aa5de4510239bea.info
+#	modified:   Bullet-Hell/Library/metadata/03/0314e59f90ffc854ca090496bd5cbce0
+#	modified:   Bullet-Hell/Library/metadata/03/03f3b4747259a364b800508ac27e1c17
+#	modified:   Bullet-Hell/Library/metadata/03/03f3b4747259a364b800508ac27e1c17.info
+#	modified:   Bullet-Hell/Library/metadata/05/0589e866f6e934e0ab0b2e8fd77f31f3
+#	modified:   Bullet-Hell/Library/metadata/05/059f9630194553b4bb2eff3efd0a8510
+#	modified:   Bullet-Hell/Library/metadata/05/05aae864572254e478ed2f0489cdd335
+#	modified:   Bullet-Hell/Library/metadata/05/05e003ab536fe9d43b54dae2e0a3bb47
+#	modified:   Bullet-Hell/Library/metadata/06/066426564ad673f42a30d1f697fbb541
+#	modified:   Bullet-Hell/Library/metadata/06/066426564ad673f42a30d1f697fbb541.info
+#	modified:   Bullet-Hell/Library/metadata/06/06ffe9b1fe24bd447acd9b5cb01e85bc
+#	modified:   Bullet-Hell/Library/metadata/07/0723fdd1d7ab0e447bf8a9f28e4a19a1
+#	modified:   Bullet-Hell/Library/metadata/07/0723fdd1d7ab0e447bf8a9f28e4a19a1.info
+#	modified:   Bullet-Hell/Library/metadata/07/0779b2d562248e146bfd23d2d910e0bf
+#	modified:   Bullet-Hell/Library/metadata/08/080591fda7eb7d24cbe458aafca0b041
+#	modified:   Bullet-Hell/Library/metadata/08/080591fda7eb7d24cbe458aafca0b041.info
+#	modified:   Bullet-Hell/Library/metadata/08/082b2be1e7c0c4b46943bb10f4c7378a
+#	modified:   Bullet-Hell/Library/metadata/08/082b2be1e7c0c4b46943bb10f4c7378a.info
+#	modified:   Bullet-Hell/Library/metadata/08/0836b1b65b9cdc942a8d59e77ade7311
+#	modified:   Bullet-Hell/Library/metadata/08/0836b1b65b9cdc942a8d59e77ade7311.info
+#	modified:   Bullet-Hell/Library/metadata/09/091dc32dcb64c2c489c5b3d96b052d67
+#	modified:   Bullet-Hell/Library/metadata/0a/0a0928d2ccc16f84faacff785430b418
+#	modified:   Bullet-Hell/Library/metadata/0a/0a41ff31c2eaff04fbbe042a0b1fc1c2
+#	modified:   Bullet-Hell/Library/metadata/0a/0a63f6719ec820c48a7342d03e33ee41
+#	modified:   Bullet-Hell/Library/metadata/0b/0b333964df5fb68459b423c90b9f1680
+#	modified:   Bullet-Hell/Library/metadata/0b/0bda01568744dd444a0413703e71d353
+#	modified:   Bullet-Hell/Library/metadata/0c/0cdf562647f9346c492d3a7329db1756
+#	modified:   Bullet-Hell/Library/metadata/0d/0d3e3e18fa5d7451c8af78156975a0c0
+#	modified:   Bullet-Hell/Library/metadata/0d/0d3e3e18fa5d7451c8af78156975a0c0.info
+#	modified:   Bullet-Hell/Library/metadata/0d/0d545b1288d5fc74d8e6c961fb67ab18
+#	modified:   Bullet-Hell/Library/metadata/0d/0d5b4501bf773f349ad95ec34491dc61
+#	modified:   Bullet-Hell/Library/metadata/0d/0d9ca0c66e3ba47f7aa60403bd613485
+#	modified:   Bullet-Hell/Library/metadata/0e/0e28554b1d63f2945b90ee1bfdae9045
+#	modified:   Bullet-Hell/Library/metadata/0f/0f5671d6ceae3417cba7097cfa4aa290
+#	modified:   Bullet-Hell/Library/metadata/11/119eb33d363818d4eb68e8ce601856f0
+#	modified:   Bullet-Hell/Library/metadata/12/1228dff762eab21488cfefd42792c37b
+#	modified:   Bullet-Hell/Library/metadata/15/15e8834927ec3e445a626ae399fd97db
+#	modified:   Bullet-Hell/Library/metadata/15/15e9f6c9f302e4f4f89b1c745fc59c29
+#	modified:   Bullet-Hell/Library/metadata/16/160889f21f4d5944b9f6fcaf9c33f684
+#	modified:   Bullet-Hell/Library/metadata/17/17458b9eace2ba540ada69f9e1883a8a
+#	modified:   Bullet-Hell/Library/metadata/17/176cb82da2d4b47209bf74dccc47f86c
+#	modified:   Bullet-Hell/Library/metadata/17/17c6d1d46ed4a4cd19bb7f7a231386ba
+#	modified:   Bullet-Hell/Library/metadata/19/19a648c5bce3e6840b4de5082de91b69
+#	modified:   Bullet-Hell/Library/metadata/1a/1a1e855053e7e2f46ace1dc93f2036f2
+#	modified:   Bullet-Hell/Library/metadata/1a/1aa7f26097c5c8a4ab7b61afe0ccee09
+#	modified:   Bullet-Hell/Library/metadata/1b/1b1bf49e3d3e34f32aeae829cbd4be43
+#	modified:   Bullet-Hell/Library/metadata/1b/1b6efec96f2de41a9b93752f8e4dfa6f
+#	modified:   Bullet-Hell/Library/metadata/1c/1c24f2e67576bec4d938784b3001c81a
+#	modified:   Bullet-Hell/Library/metadata/1c/1c7157a4661cd5d4abbe874389774602
+#	modified:   Bullet-Hell/Library/metadata/1c/1c8cd5939d07e1a4688b6b8d54a89437
+#	modified:   Bullet-Hell/Library/metadata/1d/1d1ccbd729921544dbd71f7e80c405b6
+#	modified:   Bullet-Hell/Library/metadata/1d/1d89c00039fa543dcb9ccc5deb4aaf03
+#	modified:   Bullet-Hell/Library/metadata/1d/1da85f72a7a82bc4eabdbd8f0683bde2
+#	modified:   Bullet-Hell/Library/metadata/1d/1da85f72a7a82bc4eabdbd8f0683bde2.info
+#	modified:   Bullet-Hell/Library/metadata/21/212be02e4a7da194688b08ab0c946fbd
+#	modified:   Bullet-Hell/Library/metadata/21/219cdb080b08741948fc5deb8c7d47f0
+#	modified:   Bullet-Hell/Library/metadata/21/21d32637b19ee51489062a66ad922193
+#	modified:   Bullet-Hell/Library/metadata/22/22221d1942e66451b8d06811bff21613
+#	modified:   Bullet-Hell/Library/metadata/22/22b43c3aa0097483d92b4cca9adbb7f3
+#	modified:   Bullet-Hell/Library/metadata/22/22b43c3aa0097483d92b4cca9adbb7f3.info
+#	modified:   Bullet-Hell/Library/metadata/24/241054a0fe63fbb4bb51609fce9b3112
+#	modified:   Bullet-Hell/Library/metadata/24/24b406bea89b34ec582aae7babb277ba
+#	modified:   Bullet-Hell/Library/metadata/25/2586c8e41f35d2f4fadde53020bf4207
+#	modified:   Bullet-Hell/Library/metadata/25/25a41887c1f614a99bbf5dd2c3ede1d5
+#	modified:   Bullet-Hell/Library/metadata/27/276dcbe5660b78e4cb1253cd4ad8d999
+#	modified:   Bullet-Hell/Library/metadata/27/27c365583b4af467a9b085c4b2c18f37
+#	modified:   Bullet-Hell/Library/metadata/28/282bb665344fe014f957fd7922c70f30
+#	modified:   Bullet-Hell/Library/metadata/28/284a2502d0525ad45a00d66cfcaee7b3
+#	modified:   Bullet-Hell/Library/metadata/28/28f1b62e1364e5a4e88f7bb94dbcf183
+#	modified:   Bullet-Hell/Library/metadata/28/28f1b62e1364e5a4e88f7bb94dbcf183.info
+#	modified:   Bullet-Hell/Library/metadata/28/28fc22990733f8f4ea1137f15e363609
+#	modified:   Bullet-Hell/Library/metadata/29/29b770d9107643740b69cb98b00430aa
+#	modified:   Bullet-Hell/Library/metadata/29/29d4fb050362c5b43aea52342045543a
+#	modified:   Bullet-Hell/Library/metadata/29/29ddf4444ca8645d681e4ca451421c8d
+#	modified:   Bullet-Hell/Library/metadata/2a/2a6221eb1b1c50a4cb69a62e2f264e58
+#	modified:   Bullet-Hell/Library/metadata/2a/2a6221eb1b1c50a4cb69a62e2f264e58.info
+#	modified:   Bullet-Hell/Library/metadata/2a/2aa4d88eb4eed41fd915afa70498e1a7
+#	modified:   Bullet-Hell/Library/metadata/2a/2ab0dadae0ad24c4c9ab8db71212a73f
+#	modified:   Bullet-Hell/Library/metadata/2a/2ad21cc5b2a724b64ba4c729939d59d9
+#	modified:   Bullet-Hell/Library/metadata/2a/2ad21cc5b2a724b64ba4c729939d59d9.info
+#	modified:   Bullet-Hell/Library/metadata/2b/2b4957ecfb9d44cb59b99d2305c1848c
+#	modified:   Bullet-Hell/Library/metadata/2c/2c898357efb599944818326bb43ba879
+#	modified:   Bullet-Hell/Library/metadata/2d/2d2cb0af9aa924b12bd57127320643a3
+#	modified:   Bullet-Hell/Library/metadata/2d/2d7e594d401a7524e82695dcd66c2bc0
+#	modified:   Bullet-Hell/Library/metadata/2d/2d7e594d401a7524e82695dcd66c2bc0.info
+#	modified:   Bullet-Hell/Library/metadata/2d/2dd326d33d99a491289f9402ad97bcc1
+#	modified:   Bullet-Hell/Library/metadata/2e/2e300d81f30b1fb42abe0642ea104037
+#	modified:   Bullet-Hell/Library/metadata/2e/2e7cf9cc5b3527f4bb1813f185f7b4d9
+#	modified:   Bullet-Hell/Library/metadata/2e/2e8d592978491b44dbc307eaa276a47c
+#	modified:   Bullet-Hell/Library/metadata/30/3049dffabc5225d40b27675901977fdd
+#	modified:   Bullet-Hell/Library/metadata/30/3049dffabc5225d40b27675901977fdd.info
+#	modified:   Bullet-Hell/Library/metadata/30/307555a881d4f724387a6a5881a11537
+#	modified:   Bullet-Hell/Library/metadata/31/31a2431552d506445af31d7322ccb758
+#	modified:   Bullet-Hell/Library/metadata/31/31f7928179ee46d4690d274579efb037
+#	modified:   Bullet-Hell/Library/metadata/33/3383929d208385a4aae4959d3f5fff9e
+#	modified:   Bullet-Hell/Library/metadata/33/339fa1d8314854a40b8d0a9c9726a6d5
+#	modified:   Bullet-Hell/Library/metadata/33/33bf96aa461ea1d478bb757c52f51c95
+#	modified:   Bullet-Hell/Library/metadata/34/34d2a757378419e49ab78361570904b6
+#	modified:   Bullet-Hell/Library/metadata/35/35af7d395e501a348ae1a0aa3c91dee4
+#	modified:   Bullet-Hell/Library/metadata/35/35f997237860cc2489cbd6eb54755a7d
+#	modified:   Bullet-Hell/Library/metadata/36/36b403cf6ad9c1f4483de5a96245cd1b
+#	modified:   Bullet-Hell/Library/metadata/36/36eb46c771e52864e9f81fa648c3d500
+#	modified:   Bullet-Hell/Library/metadata/37/373c2c2682efb424e9c667738eaee503
+#	modified:   Bullet-Hell/Library/metadata/37/37c6983b7e907804cba246931bb5f8fa
+#	modified:   Bullet-Hell/Library/metadata/37/37c772b6d1ba4274aa96c83710cb27e8
+#	modified:   Bullet-Hell/Library/metadata/37/37d43fa7d421646219d39ea5722cfe68
+#	modified:   Bullet-Hell/Library/metadata/38/3819282b0887bc742911b89745080acb
+#	modified:   Bullet-Hell/Library/metadata/38/382c8acec5676c047a67ed73ff0597f2
+#	modified:   Bullet-Hell/Library/metadata/38/383a85a79f164d04b8a56b0ff4e04cb7
+#	modified:   Bullet-Hell/Library/metadata/38/38a148d20bb184d4797f99fa972a6d97
+#	modified:   Bullet-Hell/Library/metadata/38/38a148d20bb184d4797f99fa972a6d97.info
+#	modified:   Bullet-Hell/Library/metadata/38/38f2946e5dd7e4fcf8deb05e72f915dc
+#	modified:   Bullet-Hell/Library/metadata/39/390ab932f74c9bd429a0353c6b3628ac
+#	modified:   Bullet-Hell/Library/metadata/3b/3b85786dfd1aef544bf8bb873d6a4ebb
+#	modified:   Bullet-Hell/Library/metadata/3b/3bc8e13a6337a4127830231edb1c17c1
+#	modified:   Bullet-Hell/Library/metadata/3c/3c0ad459c1534645b5d603b7cc258f97
+#	modified:   Bullet-Hell/Library/metadata/3c/3c5e1afc6e0d68849ae6639aff58cfc7
+#	modified:   Bullet-Hell/Library/metadata/3c/3c5ea3d1cf5d1de438d71ed957d6740e
+#	modified:   Bullet-Hell/Library/metadata/3d/3daa66d28163141a98814c55ab93f9ed
+#	modified:   Bullet-Hell/Library/metadata/3f/3f188108c17750f4ead11b616a846266
+#	modified:   Bullet-Hell/Library/metadata/40/401b5794a8abba3469fca8b361f91bd3
+#	modified:   Bullet-Hell/Library/metadata/40/40ddda021ce77480d8a47a41b57bbb6a
+#	modified:   Bullet-Hell/Library/metadata/40/40ddda021ce77480d8a47a41b57bbb6a.info
+#	modified:   Bullet-Hell/Library/metadata/41/41488feb372865440b7c01773f04c0cf
+#	modified:   Bullet-Hell/Library/metadata/42/42948b8c903d84cca9ae54d9f2a1a1d6
+#	modified:   Bullet-Hell/Library/metadata/42/42e3f865db2d62549b7bc078ad8b9dbc
+#	modified:   Bullet-Hell/Library/metadata/43/4341aba9dbf1e514f8efbdb1e95b583e
+#	modified:   Bullet-Hell/Library/metadata/43/436a8033c36e41c47a6e2a1cfd0dcb04
+#	modified:   Bullet-Hell/Library/metadata/43/436a8033c36e41c47a6e2a1cfd0dcb04.info
+#	modified:   Bullet-Hell/Library/metadata/43/43c3af1d49001417996af5e8a36cd699
+#	modified:   Bullet-Hell/Library/metadata/43/43c3af1d49001417996af5e8a36cd699.info
+#	modified:   Bullet-Hell/Library/metadata/43/43da3275cd08d41429f56675d70c58df
+#	modified:   Bullet-Hell/Library/metadata/43/43da3275cd08d41429f56675d70c58df.info
+#	modified:   Bullet-Hell/Library/metadata/46/462a1e41fb13c944786d6be29b56af01
+#	modified:   Bullet-Hell/Library/metadata/46/463d57bb50a73f44ea5a92f4b07ec3ff
+#	modified:   Bullet-Hell/Library/metadata/46/46765d09f742af44cbddeb81eb98a0f5
+#	modified:   Bullet-Hell/Library/metadata/48/488e68dd22b7cdf44992d2d01fcad015
+#	modified:   Bullet-Hell/Library/metadata/48/48cdb930df2e54565971b0f4c9e3ceb2
+#	modified:   Bullet-Hell/Library/metadata/49/494f6290dbdcce44a82137e220465ddd
+#	modified:   Bullet-Hell/Library/metadata/49/49d183629522f456981418447438c869
+#	modified:   Bullet-Hell/Library/metadata/4a/4aad2dd0064f6bf4482e0c26048ce7c2
+#	modified:   Bullet-Hell/Library/metadata/4a/4ad3c97b882594f91a676c3445e487db
+#	modified:   Bullet-Hell/Library/metadata/4b/4b9053fd574e4e94e8c44312c58f6792
+#	modified:   Bullet-Hell/Library/metadata/4d/4d2f99df718ae9943b7a0f320c60e431
+#	modified:   Bullet-Hell/Library/metadata/4e/4e5e1964cf638d1418429b74c3d35091
+#	modified:   Bullet-Hell/Library/metadata/4e/4eff45b2ac4067b469d7994298341db6
+#	modified:   Bullet-Hell/Library/metadata/4f/4ffbf5a07740aa5479651bd415f52ebb
+#	modified:   Bullet-Hell/Library/metadata/52/520a2b60096ec40d38a3dfa179f784a8
+#	modified:   Bullet-Hell/Library/metadata/52/521257714fc9e437a9163df2d37f2ea2
+#	modified:   Bullet-Hell/Library/metadata/52/52152dd6c99c14e64a97087106b52477
+#	modified:   Bullet-Hell/Library/metadata/52/5231caf19bce04df29d48d73a92356f2
+#	modified:   Bullet-Hell/Library/metadata/52/5231caf19bce04df29d48d73a92356f2.info
+#	modified:   Bullet-Hell/Library/metadata/52/5273cf41de20842a5917d8346dffe707
+#	modified:   Bullet-Hell/Library/metadata/54/54f57e8f23e0cf344b08d9a7757992c7
+#	modified:   Bullet-Hell/Library/metadata/55/55848d59c214fc04fa8be2ff10f86461
+#	modified:   Bullet-Hell/Library/metadata/57/574d4e5bea2d7f246bf8164d1c47b6d8
+#	modified:   Bullet-Hell/Library/metadata/57/574d4e5bea2d7f246bf8164d1c47b6d8.info
+#	modified:   Bullet-Hell/Library/metadata/57/57855795a303942438ffe7b982db920a
+#	modified:   Bullet-Hell/Library/metadata/57/57dae6752ad0b7d47b1efb90ad62208c
+#	modified:   Bullet-Hell/Library/metadata/57/57dae6752ad0b7d47b1efb90ad62208c.info
+#	modified:   Bullet-Hell/Library/metadata/58/58783f051e477fd4e93b42ec7a43bb64
+#	modified:   Bullet-Hell/Library/metadata/59/591632297e74ba34fa4c65d1265d370a
+#	modified:   Bullet-Hell/Library/metadata/59/5944b82e46f1682439d20b4c3a4f029c
+#	modified:   Bullet-Hell/Library/metadata/59/594ab2f05c2833446861a2c39be33484
+#	modified:   Bullet-Hell/Library/metadata/59/596d02b7e6a264b4f85b42fe791580c2
+#	modified:   Bullet-Hell/Library/metadata/59/596d02b7e6a264b4f85b42fe791580c2.info
+#	modified:   Bullet-Hell/Library/metadata/59/59b47eb3fc62eb44cb73a329a1e6b6cb
+#	modified:   Bullet-Hell/Library/metadata/5a/5a2d025e58bff433e963d0a4cd7599ef
+#	modified:   Bullet-Hell/Library/metadata/5a/5a30de7ed04c705438cc6ddb7dbbad43
+#	modified:   Bullet-Hell/Library/metadata/5a/5acd64bdc8257dc468532f989af7322f
+#	modified:   Bullet-Hell/Library/metadata/5b/5b62d96894fd3834da4bae15eeade12e
+#	modified:   Bullet-Hell/Library/metadata/5c/5c0aec4b4a6d1b047a98e8cc213e1a36
+#	modified:   Bullet-Hell/Library/metadata/5c/5c3afc1c624179749bcdecf7b0224902
+#	modified:   Bullet-Hell/Library/metadata/5d/5d01dc4c8f278da489d7d54c83f19cb9
+#	modified:   Bullet-Hell/Library/metadata/5d/5d07628057bf34bc4aa7e37d04672b29
+#	modified:   Bullet-Hell/Library/metadata/5d/5d07628057bf34bc4aa7e37d04672b29.info
+#	modified:   Bullet-Hell/Library/metadata/5e/5e577f31e55208b4d8a1774b958e6ed5
+#	modified:   Bullet-Hell/Library/metadata/5f/5f32cd94baa94578a686d4b9d6b660f7
+#	modified:   Bullet-Hell/Library/metadata/5f/5f34d48cfe767425d8421958a93d358a
+#	modified:   Bullet-Hell/Library/metadata/5f/5f9ba405be8854d2fade944b8c9f823f
+#	modified:   Bullet-Hell/Library/metadata/60/604645a3b57179a4d873906b625ef8ec
+#	modified:   Bullet-Hell/Library/metadata/60/6097733d7073442438b919c7693c63f6
+#	modified:   Bullet-Hell/Library/metadata/61/616ddafe39e02da4081e56f7f763af3c
+#	modified:   Bullet-Hell/Library/metadata/61/61a8f246d5c514f18b5ff0a0f28693b0
+#	modified:   Bullet-Hell/Library/metadata/61/61a8f246d5c514f18b5ff0a0f28693b0.info
+#	modified:   Bullet-Hell/Library/metadata/63/63d82775d5a624048ae4d3e2135089ae
+#	modified:   Bullet-Hell/Library/metadata/63/63d82775d5a624048ae4d3e2135089ae.info
+#	modified:   Bullet-Hell/Library/metadata/64/647e7d9f49e834c51991c6bd76163b2b
+#	modified:   Bullet-Hell/Library/metadata/65/6580c9b1070dd524c940a0c402d8b153
+#	modified:   Bullet-Hell/Library/metadata/66/6616aa5ec43b64f87969bac954839e71
+#	modified:   Bullet-Hell/Library/metadata/66/6619da1897737044080bdb8bc60eff87
+#	modified:   Bullet-Hell/Library/metadata/67/67e28569f3f575a46af9f4620571afe9
+#	modified:   Bullet-Hell/Library/metadata/68/68740a702763aaa4594e8319a05ae0d3
+#	modified:   Bullet-Hell/Library/metadata/68/68850f230a2a3064197c25aca4cc890d
+#	modified:   Bullet-Hell/Library/metadata/68/68d993feda7ffe748acaea2f44dbff18
+#	modified:   Bullet-Hell/Library/metadata/69/692c47a0c60b19346afc4e6121a2ed35
+#	modified:   Bullet-Hell/Library/metadata/69/696ae4666d292c4498bc51fe6812c9e0
+#	modified:   Bullet-Hell/Library/metadata/6a/6a34f57520ed1435ba2d042e5b24d340
+#	modified:   Bullet-Hell/Library/metadata/6c/6c055f79c6e034b65be556accf6daa36
+#	modified:   Bullet-Hell/Library/metadata/6c/6c055f79c6e034b65be556accf6daa36.info
+#	modified:   Bullet-Hell/Library/metadata/6e/6e42c90cd211e40278389f82657608d2
+#	modified:   Bullet-Hell/Library/metadata/6e/6e42c90cd211e40278389f82657608d2.info
+#	modified:   Bullet-Hell/Library/metadata/6e/6e6676e3e3b24ed49ab95fa4b428723c
+#	modified:   Bullet-Hell/Library/metadata/6e/6efbc9189a79f4c6a8fd15a49bb59229
+#	modified:   Bullet-Hell/Library/metadata/6f/6febd2d5046657040b3da98b7010ee29
+#	modified:   Bullet-Hell/Library/metadata/70/70a51915b75dc324b8c73c9a6ebce46e
+#	modified:   Bullet-Hell/Library/metadata/70/70a51915b75dc324b8c73c9a6ebce46e.info
+#	modified:   Bullet-Hell/Library/metadata/70/70a9006da4cb7d84da298289ccedfb96
+#	modified:   Bullet-Hell/Library/metadata/70/70a9006da4cb7d84da298289ccedfb96.info
+#	modified:   Bullet-Hell/Library/metadata/70/70f6aa02d825f954e8285422b4f0b36b
+#	modified:   Bullet-Hell/Library/metadata/70/70f6aa02d825f954e8285422b4f0b36b.info
+#	modified:   Bullet-Hell/Library/metadata/71/713231d47408a06408a45470c967bae8
+#	modified:   Bullet-Hell/Library/metadata/72/7225a8eed8482dc4993c4a959d29f6d7
+#	modified:   Bullet-Hell/Library/metadata/73/739bbd9f364b4268874f9fd86ab3beef
+#	modified:   Bullet-Hell/Library/metadata/74/741a5ab4ed8b5944abcf85eeb8b8665b
+#	modified:   Bullet-Hell/Library/metadata/75/750cb077f2672504a88f2428d894cb2c
+#	modified:   Bullet-Hell/Library/metadata/76/76305b7830af34f949acf9d383cf2f74
+#	modified:   Bullet-Hell/Library/metadata/77/7729da83f7c08d244b5788c870a93780
+#	modified:   Bullet-Hell/Library/metadata/78/7854431fdc41b744795c7c586a2baa53
+#	modified:   Bullet-Hell/Library/metadata/79/79a10448ba009433ebaf9d089fa9242f
+#	modified:   Bullet-Hell/Library/metadata/79/79b6f9d3d49d1a2469d2d9402570c834
+#	modified:   Bullet-Hell/Library/metadata/7a/7ae2470508a854b1c9df5375d03f8f58
+#	modified:   Bullet-Hell/Library/metadata/7a/7ae9d3b4b57cae343b7ff360f9deb628
+#	modified:   Bullet-Hell/Library/metadata/7b/7b025f72e9cf3c64cbbb2bf049969363
+#	modified:   Bullet-Hell/Library/metadata/7b/7b35a237804d5eb42bd8c4e67568ae24
+#	modified:   Bullet-Hell/Library/metadata/7b/7b8ae6d18282948edb7a0ae1a97e2bd4
+#	modified:   Bullet-Hell/Library/metadata/7c/7cbab2be89b54486bbd23a6fe637d30e
+#	modified:   Bullet-Hell/Library/metadata/7e/7e212db0aa2c00b448aa511ece336f20
+#	modified:   Bullet-Hell/Library/metadata/7e/7e212db0aa2c00b448aa511ece336f20.info
+#	modified:   Bullet-Hell/Library/metadata/7e/7eda02acc7af1ff41a60d180366b6d8f
+#	modified:   Bullet-Hell/Library/metadata/7f/7f1b585d76653294caf31cf7b688c70c
+#	modified:   Bullet-Hell/Library/metadata/80/80a3616ca19596e4da0f10f14d241e9f
+#	modified:   Bullet-Hell/Library/metadata/80/80a3616ca19596e4da0f10f14d241e9f.info
+#	modified:   Bullet-Hell/Library/metadata/80/80b91644bbbc487479429368d4e8d596
+#	modified:   Bullet-Hell/Library/metadata/80/80df8ef907961e34dbcc7c89b22729b9
+#	modified:   Bullet-Hell/Library/metadata/81/819226f6e5961434087c87bab9a2e025
+#	modified:   Bullet-Hell/Library/metadata/81/819226f6e5961434087c87bab9a2e025.info
+#	modified:   Bullet-Hell/Library/metadata/82/8286221f97e94cc4083bfbf3908ff4c3
+#	modified:   Bullet-Hell/Library/metadata/82/8286221f97e94cc4083bfbf3908ff4c3.info
+#	modified:   Bullet-Hell/Library/metadata/83/83ec3ed09f8f2f34ea7483e055f6d76d
+#	modified:   Bullet-Hell/Library/metadata/84/842b770b5d21e422c8cbcfed681ebf81
+#	modified:   Bullet-Hell/Library/metadata/85/85280dad1e618c143bd3fb07a197b469
+#	modified:   Bullet-Hell/Library/metadata/85/852e56802eb941638acbb491814497b0
+#	modified:   Bullet-Hell/Library/metadata/85/8571844b0c115b84cbe8b3f67e8dec04
+#	modified:   Bullet-Hell/Library/metadata/86/861ff355146269a4abc80110ad51181e
+#	modified:   Bullet-Hell/Library/metadata/86/86a188eb0ded6834596e9f6d6f1442a8
+#	modified:   Bullet-Hell/Library/metadata/87/870353891bb340e2b2a9c8707e7419ba
+#	modified:   Bullet-Hell/Library/metadata/88/8815402339e2a3143b71aeb97cbd702f
+#	modified:   Bullet-Hell/Library/metadata/88/8815402339e2a3143b71aeb97cbd702f.info
+#	modified:   Bullet-Hell/Library/metadata/88/88603901d435b29408713a53debac8c4
+#	modified:   Bullet-Hell/Library/metadata/8b/8b837384299528446bae732abe601e67
+#	modified:   Bullet-Hell/Library/metadata/8b/8bafa54482a87ac4cbd7ff1bfd1ac93a
+#	modified:   Bullet-Hell/Library/metadata/8d/8d45a1674f5e2e04485eafef922fac41
+#	modified:   Bullet-Hell/Library/metadata/8d/8d55f43641ba3c14eaa1156abc0edabd
+#	modified:   Bullet-Hell/Library/metadata/8d/8de45c360a2d542f4be2d61da2beba10
+#	modified:   Bullet-Hell/Library/metadata/8e/8e0cd8ed44d4412cbe0642067abc9e44
+#	modified:   Bullet-Hell/Library/metadata/8e/8eb80fa98d85ce34fae7affcdfb64c6c
+#	modified:   Bullet-Hell/Library/metadata/8f/8f72bd63908224f2bb00f3844f7d1018
+#	modified:   Bullet-Hell/Library/metadata/8f/8f72bd63908224f2bb00f3844f7d1018.info
+#	modified:   Bullet-Hell/Library/metadata/90/902961c69f102f4409c29b9e54258701
+#	modified:   Bullet-Hell/Library/metadata/91/91083837e9bad4a5f8211c02db74526e
+#	modified:   Bullet-Hell/Library/metadata/91/91af0962433a92c49b37b826661eff21
+#	modified:   Bullet-Hell/Library/metadata/91/91c2f880b84384cb8981d186308bc257
+#	modified:   Bullet-Hell/Library/metadata/92/927f2d7e4f63632448b2a63d480e601a
+#	modified:   Bullet-Hell/Library/metadata/92/9281a4bfe2cca90409d58d4cb44264f3
+#	modified:   Bullet-Hell/Library/metadata/92/928be703400f4eb48af2f94d55bf3f74
+#	modified:   Bullet-Hell/Library/metadata/92/92b38897656771f409e9235955975754
+#	modified:   Bullet-Hell/Library/metadata/93/93572dd6591d1ed4b927c6b0efff59c9
+#	modified:   Bullet-Hell/Library/metadata/93/93cb45d44c16f45a4bbd5099fe096c20
+#	modified:   Bullet-Hell/Library/metadata/94/944b8af45475eb847a80e8e6de431fcf
+#	modified:   Bullet-Hell/Library/metadata/94/94b490b46463c434585a2f767abdf9d7
+#	modified:   Bullet-Hell/Library/metadata/94/94b490b46463c434585a2f767abdf9d7.info
+#	modified:   Bullet-Hell/Library/metadata/95/95c9cd9570a6fba4198b6e4f15e11e5e
+#	modified:   Bullet-Hell/Library/metadata/96/964f5f0db2c95bb41aa3dc3beba1f06b
+#	modified:   Bullet-Hell/Library/metadata/96/965609fd66e81484aafb4fc0e102d1cc
+#	modified:   Bullet-Hell/Library/metadata/96/96d8cc5dd1ca645bfaf494fe8499ee65
+#	modified:   Bullet-Hell/Library/metadata/97/97340abf816b1424fa835a4f26bbdc78
+#	modified:   Bullet-Hell/Library/metadata/97/97767d7c7ee0541cf8c1898412d39287
+#	modified:   Bullet-Hell/Library/metadata/97/97a0b576eae6a9e4c902c4ab1787b2c3
+#	modified:   Bullet-Hell/Library/metadata/97/97decbdab0634cdd991f8d23ddf0dead
+#	modified:   Bullet-Hell/Library/metadata/99/9925e158a714d46a5990141a1cd35af0
+#	modified:   Bullet-Hell/Library/metadata/9a/9a404b899ecb54ee6892c1beef12a693
+#	modified:   Bullet-Hell/Library/metadata/9a/9a83df30349614b46922f132b7e1b44f
+#	modified:   Bullet-Hell/Library/metadata/9a/9a83df30349614b46922f132b7e1b44f.info
+#	modified:   Bullet-Hell/Library/metadata/9a/9a87f1db904f1e948a2385ab9961e3aa
+#	modified:   Bullet-Hell/Library/metadata/9a/9ac961be07107124a88dcb81927143d4
+#	modified:   Bullet-Hell/Library/metadata/9a/9af8612e9c3ce8645887fb0d363d45dc
+#	modified:   Bullet-Hell/Library/metadata/9b/9be28344ea0b64065bf04ab3d63a8de0
+#	modified:   Bullet-Hell/Library/metadata/9b/9be28344ea0b64065bf04ab3d63a8de0.info
+#	modified:   Bullet-Hell/Library/metadata/9d/9d05c439cf1b74b0090725b5852c56cb
+#	modified:   Bullet-Hell/Library/metadata/9d/9d05c439cf1b74b0090725b5852c56cb.info
+#	modified:   Bullet-Hell/Library/metadata/9d/9d32c2efdb8794de3b449ab1bbc6459b
+#	modified:   Bullet-Hell/Library/metadata/9d/9d32c2efdb8794de3b449ab1bbc6459b.info
+#	modified:   Bullet-Hell/Library/metadata/9d/9d6d16a58a17940419a1dcbff3c60ca5
+#	modified:   Bullet-Hell/Library/metadata/9d/9d7c6dec62f844170bba875bf76e1dc4
+#	modified:   Bullet-Hell/Library/metadata/9d/9dc05c90e0a5da141a0ff41e787585e8
+#	modified:   Bullet-Hell/Library/metadata/9e/9e8f391e9b585c049b9d64986099b102
+#	modified:   Bullet-Hell/Library/metadata/9f/9f2ce5ef02a6e4045ab2c26ad282dea6
+#	modified:   Bullet-Hell/Library/metadata/9f/9f64a9d4ccf54440db2d1452fb040528
+#	modified:   Bullet-Hell/Library/metadata/a0/a0b9bbf8a09f3bf41a24c117f3d10f6c
+#	modified:   Bullet-Hell/Library/metadata/a1/a13fed205b1fa3942abfab7ba21463ec
+#	modified:   Bullet-Hell/Library/metadata/a1/a13fed205b1fa3942abfab7ba21463ec.info
+#	modified:   Bullet-Hell/Library/metadata/a1/a1faac4a799dd4e8bb9040d595af2ae1
+#	modified:   Bullet-Hell/Library/metadata/a2/a282309ffdd8c8e4d8e8029b2f257cca
+#	modified:   Bullet-Hell/Library/metadata/a2/a28bb39b4fb20514990895d9cb4eaea9
+#	modified:   Bullet-Hell/Library/metadata/a2/a2caba6436df568499c84c1c607ce766
+#	modified:   Bullet-Hell/Library/metadata/a3/a32fe04ca3b9bc64aa8f0db9aaa268f6
+#	modified:   Bullet-Hell/Library/metadata/a3/a3581fa3f207a8a4c9988b9f59a510d3
+#	modified:   Bullet-Hell/Library/metadata/a4/a43bd3ae495384d7e8bbb5f2e9df3fb9
+#	modified:   Bullet-Hell/Library/metadata/a4/a43bd3ae495384d7e8bbb5f2e9df3fb9.info
+#	modified:   Bullet-Hell/Library/metadata/a4/a4928c6c2b973874c8d4e6c9a69bb5b4
+#	modified:   Bullet-Hell/Library/metadata/a5/a56da7f4d8d704d38878df0a3dc25256
+#	modified:   Bullet-Hell/Library/metadata/a7/a713db190443e814f8254a5a59014ec4
+#	modified:   Bullet-Hell/Library/metadata/a7/a7a58464376c2cb4c8be8ae606afff46
+#	modified:   Bullet-Hell/Library/metadata/a8/a8244aeb156024dfbae1997ab0ee2745
+#
+# Changes not staged for commit:
+#	modified:   Bullet-Hell/Library/ProjectSettings.asset
+#	modified:   Bullet-Hell/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll
+#	modified:   Bullet-Hell/Library/ScriptAssemblies/Assembly-CSharp-Editor.dll.mdb
+#	modified:   Bullet-Hell/Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll
+#	modified:   Bullet-Hell/Library/ScriptAssemblies/Assembly-CSharp-firstpass.dll.mdb
+#	modified:   Bullet-Hell/Library/ScriptAssemblies/Assembly-CSharp.dll
+#	modified:   Bullet-Hell/Library/ScriptAssemblies/Assembly-CSharp.dll.mdb
+#	modified:   Bullet-Hell/Library/ScriptAssemblies/Assembly-UnityScript.dll
+#	modified:   Bullet-Hell/Library/ScriptAssemblies/Assembly-UnityScript.dll.mdb
+#	modified:   Bullet-Hell/Library/ScriptAssemblies/BuiltinAssemblies.stamp
+#	modified:   Bullet-Hell/Library/ScriptMapper
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.Advertisements.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.Android.Extensions.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.EditorTestsRunner.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.Graphs.dll
+#	deleted:    Bullet-Hell/Library/UnityAssemblies/UnityEditor.LinuxStandalone.Extensions.dll
+#	deleted:    Bullet-Hell/Library/UnityAssemblies/UnityEditor.LinuxStandalone.Extensions.xml
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.Networking.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.TreeEditor.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.UI.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.UI.xml
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.WebGL.Extensions.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.WindowsStandalone.Extensions.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEditor.xml
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEngine.Networking.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEngine.UI.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEngine.dll
+#	modified:   Bullet-Hell/Library/UnityAssemblies/UnityEngine.xml
+#	modified:   Bullet-Hell/Library/UnityAssemblies/version.txt
+#	modified:   Bullet-Hell/Library/metadata/a8/a8244aeb156024dfbae1997ab0ee2745.info
+#	modified:   Bullet-Hell/Library/metadata/a8/a8b92379e11501742b1badcbb08da812
+#	modified:   Bullet-Hell/Library/metadata/a9/a95aaf9c4d16d8c4b87b48b654536889
+#	modified:   Bullet-Hell/Library/metadata/a9/a9e83f3cec1dc4149b75be4a78e238cd
+#	modified:   Bullet-Hell/Library/metadata/a9/a9e83f3cec1dc4149b75be4a78e238cd.info
+#	modified:   Bullet-Hell/Library/metadata/a9/a9f3c491f4c2f9f43ac33a27c16913dd
+#	modified:   Bullet-Hell/Library/metadata/aa/aad501c968b324cf3a8d1c52eb09ca04
+#	modified:   Bullet-Hell/Library/metadata/aa/aafa838f828e29844b3712e09dc5c281
+#	modified:   Bullet-Hell/Library/metadata/ac/ac37c2bf9a65a19488746ccb82db6479
+#	modified:   Bullet-Hell/Library/metadata/ad/ade4197221f35dc44adb7649f99af2e7
+#	modified:   Bullet-Hell/Library/metadata/ad/adebbd281f1a4ef3a30be7f21937e02f
+#	modified:   Bullet-Hell/Library/metadata/b0/b07d5f1bc66f2cd45a52c218d59381a8
+#	modified:   Bullet-Hell/Library/metadata/b0/b0b7aa12d72af784bb89f2c7537512c6
+#	modified:   Bullet-Hell/Library/metadata/b0/b0b95014154ef554485afc9c0316556d
+#	modified:   Bullet-Hell/Library/metadata/b1/b1dba0b27b0864740a8720e920aa88c0
+#	modified:   Bullet-Hell/Library/metadata/b2/b27b28700d3365146808b6e082748201
+#	modified:   Bullet-Hell/Library/metadata/b3/b3a36b75a3f1da44ab762505be44e718
+#	modified:   Bullet-Hell/Library/metadata/b4/b41e893ab4c200143aa1ec8fd530617b
+#	modified:   Bullet-Hell/Library/metadata/b4/b4995756bd539804e8143ff1e730f806
+#	modified:   Bullet-Hell/Library/metadata/b6/b667956babf1f0446a76fa8b99404ab8
+#	modified:   Bullet-Hell/Library/metadata/b6/b667956babf1f0446a76fa8b99404ab8.info
+#	modified:   Bullet-Hell/Library/metadata/b6/b66d7d28b3db14f7382a2887575a3439
+#	modified:   Bullet-Hell/Library/metadata/b6/b66d7d28b3db14f7382a2887575a3439.info
+#	modified:   Bullet-Hell/Library/metadata/b6/b68b11cac1ab04f95985e32ea67b8435
+#	modified:   Bullet-Hell/Library/metadata/b6/b6adcc18389e141f68abe08051c54567
+#	modified:   Bullet-Hell/Library/metadata/b7/b7460a00d2f78cc48a5f7acbafe163e8
+#	modified:   Bullet-Hell/Library/metadata/b8/b81a279071a454c63970e678a54bf52e
+#	modified:   Bullet-Hell/Library/metadata/b8/b83200d7123c88b4d9c24f4c88f7e694
+#	modified:   Bullet-Hell/Library/metadata/b8/b8fee40279575dd48ab4685e781de6e8
+#	modified:   Bullet-Hell/Library/metadata/b9/b98fe8c3761da2d4b8cfd8bd6df7050f
+#	modified:   Bullet-Hell/Library/metadata/b9/b9b1abacf2a5046178faf10c090ffb35
+#	modified:   Bullet-Hell/Library/metadata/b9/b9f11db82afab6d4a920497d422037a0
+#	modified:   Bullet-Hell/Library/metadata/ba/ba2fdd7bbd1e51843a9ae08e7fa309ca
+#	modified:   Bullet-Hell/Library/metadata/ba/ba563644c5a6647a4aad401ce54ac8cc
+#	modified:   Bullet-Hell/Library/metadata/ba/ba563644c5a6647a4aad401ce54ac8cc.info
+#	modified:   Bullet-Hell/Library/metadata/ba/ba6d29ff684ecb04fa4215e3f42226b4
+#	modified:   Bullet-Hell/Library/metadata/ba/ba6d29ff684ecb04fa4215e3f42226b4.info
+#	modified:   Bullet-Hell/Library/metadata/bb/bb1ab980b69b4984086448e64dfea2a0
+#	modified:   Bullet-Hell/Library/metadata/bb/bb99f286fe85ce3488bf4e07a09c1dba
+#	modified:   Bullet-Hell/Library/metadata/bb/bb9e10c25f478c84f826ea85b03ec179
+#	modified:   Bullet-Hell/Library/metadata/bb/bbbd193a27920d9478c2a766a7291d72
+#	modified:   Bullet-Hell/Library/metadata/bb/bbf40922523a2483584b1c4e6b1132ea
+#	modified:   Bullet-Hell/Library/metadata/bc/bc1f526f6b3cc4adf97bae3794998cea
+#	modified:   Bullet-Hell/Library/metadata/bc/bc899741848f50147894d6159d698885
+#	modified:   Bullet-Hell/Library/metadata/c2/c2135471d096b4d9eb2c6cad707c7e9f
+#	modified:   Bullet-Hell/Library/metadata/c3/c3a7173873a52c44cbed094e5e244493
+#	modified:   Bullet-Hell/Library/metadata/c3/c3ae12cf00fcf482788b4b27e3558870
+#	modified:   Bullet-Hell/Library/metadata/c3/c3ae12cf00fcf482788b4b27e3558870.info
+#	modified:   Bullet-Hell/Library/metadata/c4/c44e9167d633ee94bb6e078238178308
+#	modified:   Bullet-Hell/Library/metadata/c5/c5dbc5f3f5b22754d968029f518b3c9b
+#	modified:   Bullet-Hell/Library/metadata/c5/c5dbc5f3f5b22754d968029f518b3c9b.info
+#	modified:   Bullet-Hell/Library/metadata/c7/c7adbe43058d54047b6109b2e66894fd
+#	modified:   Bullet-Hell/Library/metadata/c7/c7b84ff7f6b13fe46b7cbdf142faa8fb
+#	modified:   Bullet-Hell/Library/metadata/c7/c7b8685e162577f41b72736b13f8be7a
+#	modified:   Bullet-Hell/Library/metadata/c7/c7e06b04ac1b74ae9affa07bd61b2d33
+#	modified:   Bullet-Hell/Library/metadata/c8/c840b76923ca9864cae31547385c9c9e
+#	modified:   Bullet-Hell/Library/metadata/c8/c86508f389d643b40b6e1d7dcc1d4df2
+#	modified:   Bullet-Hell/Library/metadata/ca/ca159162814614f2e96f37b3192a5868
+#	modified:   Bullet-Hell/Library/metadata/ca/ca159162814614f2e96f37b3192a5868.info
+#	modified:   Bullet-Hell/Library/metadata/ca/caee08596a5965747b8edfde19e2f873
+#	modified:   Bullet-Hell/Library/metadata/ca/caeffedc34d9f4161b7694ad0d84bbd3
+#	modified:   Bullet-Hell/Library/metadata/ca/caeffedc34d9f4161b7694ad0d84bbd3.info
+#	modified:   Bullet-Hell/Library/metadata/cb/cb4bdc563f10d8548bd558752eb01f50
+#	modified:   Bullet-Hell/Library/metadata/cb/cb824de9146b42343a985aaf63beffd1
+#	modified:   Bullet-Hell/Library/metadata/cb/cbb75d1643c5a55439f8861a827f411b
+#	modified:   Bullet-Hell/Library/metadata/cc/ccc8b5039e68def429242f31cb9ff971
+#	modified:   Bullet-Hell/Library/metadata/cc/ccc8b5039e68def429242f31cb9ff971.info
+#	modified:   Bullet-Hell/Library/metadata/ce/ce89106be5bd4204388d58510e4e55da
+#	modified:   Bullet-Hell/Library/metadata/cf/cf4a628946ef5eb438b3d326eac5266b
+#	modified:   Bullet-Hell/Library/metadata/cf/cf6374f8000857c458d4902e2cfa34b3
+#	modified:   Bullet-Hell/Library/metadata/cf/cf6374f8000857c458d4902e2cfa34b3.info
+#	modified:   Bullet-Hell/Library/metadata/cf/cfccaa378af3f472ca3adcc8f939d397
+#	modified:   Bullet-Hell/Library/metadata/cf/cfccaa378af3f472ca3adcc8f939d397.info
+#	modified:   Bullet-Hell/Library/metadata/d1/d16e4419eeb3b894290e3f152e0210f2
+#	modified:   Bullet-Hell/Library/metadata/d1/d1bd32e2f0342418a81f73b582e0b4a2
+#	modified:   Bullet-Hell/Library/metadata/d1/d1e4e2c4d00b3f2469494fc0f67cdeae
+#	modified:   Bullet-Hell/Library/metadata/d1/d1f11ce43d3424aaca3d76884c778c74
+#	modified:   Bullet-Hell/Library/metadata/d3/d35b37e7667d34205b83e85449b6d6a4
+#	modified:   Bullet-Hell/Library/metadata/d3/d3fe6e8745b794a77bfeb9a10c0fdddb
+#	modified:   Bullet-Hell/Library/metadata/d4/d426f4f55fb97a248ac216fcec9cc7bf
+#	modified:   Bullet-Hell/Library/metadata/d5/d56e07707857c6f48ad24852ed4661c9
+#	modified:   Bullet-Hell/Library/metadata/d5/d56e07707857c6f48ad24852ed4661c9.info
+#	modified:   Bullet-Hell/Library/metadata/d5/d5fc3c3488db1e74689f1fc67c33944a
+#	modified:   Bullet-Hell/Library/metadata/d6/d6bc01eb564f142a1ada6ced5215636a
+#	modified:   Bullet-Hell/Library/metadata/d7/d734a9661c1c7a94c94b027d59504baf
+#	modified:   Bullet-Hell/Library/metadata/d7/d734a9661c1c7a94c94b027d59504baf.info
+#	modified:   Bullet-Hell/Library/metadata/d7/d7ab2029fbe34d0499a26f57de1f51d6
+#	modified:   Bullet-Hell/Library/metadata/d7/d7ab2029fbe34d0499a26f57de1f51d6.info
+#	modified:   Bullet-Hell/Library/metadata/d8/d8242da0607094646a24312bb13de4a0
+#	modified:   Bullet-Hell/Library/metadata/d8/d83c02fb0f220344da42a8213ed36cb5
+#	modified:   Bullet-Hell/Library/metadata/d9/d940e636fd44be84e9b7e8da46f700ef
+#	modified:   Bullet-Hell/Library/metadata/d9/d9d009e7913ac5048bf2c1e1cef07a37
+#	modified:   Bullet-Hell/Library/metadata/da/da3ca54ee4cce064989d27165f3081fb
+#	modified:   Bullet-Hell/Library/metadata/da/da4a3a521c5c1494aae123742ca5c8f5
+#	modified:   Bullet-Hell/Library/metadata/da/da7fca1c8c5d14d4d92c3d7a92db64b5
+#	modified:   Bullet-Hell/Library/metadata/da/da93545c3ab1aa043bcfb22281b1f66c
+#	modified:   Bullet-Hell/Library/metadata/de/de0f43d22fb984a41882402bdca3174a
+#	modified:   Bullet-Hell/Library/metadata/de/de0f43d22fb984a41882402bdca3174a.info
+#	modified:   Bullet-Hell/Library/metadata/de/de5c6e70ca9d046ceae3e8a5bab50c32
+#	modified:   Bullet-Hell/Library/metadata/df/df1f47a0a2effe74488d5da197295a19
+#	modified:   Bullet-Hell/Library/metadata/df/df1f47a0a2effe74488d5da197295a19.info
+#	modified:   Bullet-Hell/Library/metadata/df/df534e0918b424979a6037b4aa5a207b
+#	modified:   Bullet-Hell/Library/metadata/df/df534e0918b424979a6037b4aa5a207b.info
+#	modified:   Bullet-Hell/Library/metadata/df/df67c9bbb62a547f89e7224c115f0f12
+#	modified:   Bullet-Hell/Library/metadata/e0/e0a74726c7d9b4ee09334ab50155ea80
+#	modified:   Bullet-Hell/Library/metadata/e2/e22ba039de7077c4aa95758ef723b803
+#	modified:   Bullet-Hell/Library/metadata/e2/e28761099904678488cdddf7b6be2ceb
+#	modified:   Bullet-Hell/Library/metadata/e2/e29184b333c696f43aa93b82cf314463
+#	modified:   Bullet-Hell/Library/metadata/e2/e29236d692aa4054fb35abbfa46a2f55
+#	modified:   Bullet-Hell/Library/metadata/e2/e29236d692aa4054fb35abbfa46a2f55.info
+#	modified:   Bullet-Hell/Library/metadata/e2/e2cda9a06a2cf41a8a847fcf1331d16f
+#	modified:   Bullet-Hell/Library/metadata/e3/e364bec85c316420092937bb9d21855e
+#	modified:   Bullet-Hell/Library/metadata/e4/e43bacea4bcd4475581f17fa064b08e5
+#	modified:   Bullet-Hell/Library/metadata/e6/e6b9ef83c63a02d4a91d57114dbea0a3
+#	modified:   Bullet-Hell/Library/metadata/e7/e7a62e43c54d44bd78af31fe1202ce68
+#	modified:   Bullet-Hell/Library/metadata/e7/e7a62e43c54d44bd78af31fe1202ce68.info
+#	modified:   Bullet-Hell/Library/metadata/e8/e840c8e0c4a924e53a9125f6a35cb26d
+#	modified:   Bullet-Hell/Library/metadata/e8/e8b78b23d993c1c4b8e168f511eeba4d
+#	modified:   Bullet-Hell/Library/metadata/e8/e8bb6eae11352f44da0d6d8a8959b69e
+#	modified:   Bullet-Hell/Library/metadata/e8/e8d8fd46dd67c564a8761e0a9dbeb173
+#	modified:   Bullet-Hell/Library/metadata/e9/e95b5d9c9e1fb4049a36e3996161c177
+#	modified:   Bullet-Hell/Library/metadata/e9/e95b5d9c9e1fb4049a36e3996161c177.info
+#	modified:   Bullet-Hell/Library/metadata/e9/e964a38b856f751458d1f72a80a8566a
+#	modified:   Bullet-Hell/Library/metadata/e9/e98deddd4dda7f04abc14ad7b82f9341
+#	modified:   Bullet-Hell/Library/metadata/e9/e9bba41ace7686d4ab0c400d1e7f55b7
+#	modified:   Bullet-Hell/Library/metadata/e9/e9c49907ada66bb48976b9f5b8080943
+#	modified:   Bullet-Hell/Library/metadata/e9/e9f487a699bc54a4d9118822a0acad3a
+#	modified:   Bullet-Hell/Library/metadata/ea/ea57e39611d17f148a04d1a1c84393d4
+#	modified:   Bullet-Hell/Library/metadata/ea/ea57e39611d17f148a04d1a1c84393d4.info
+#	modified:   Bullet-Hell/Library/metadata/ea/ead423728eb8c8344a1be86bfe8f67ed
+#	modified:   Bullet-Hell/Library/metadata/eb/eb367bbc76e489443a4ebc8b0a8642f4
+#	modified:   Bullet-Hell/Library/metadata/eb/eb6e22f32d1ef42f28882da13fb49f4b
+#	modified:   Bullet-Hell/Library/metadata/eb/eb79c328f2c403b4da03425f4f33b37e
+#	modified:   Bullet-Hell/Library/metadata/eb/ebf996884992847a8bf2f4f12b04677c
+#	modified:   Bullet-Hell/Library/metadata/eb/ebf996884992847a8bf2f4f12b04677c.info
+#	modified:   Bullet-Hell/Library/metadata/ed/ed6efa9ef80ec48cba573a745bcfb023
+#	modified:   Bullet-Hell/Library/metadata/ed/edbe95fd377dc49c48b1705091597601
+#	modified:   Bullet-Hell/Library/metadata/ed/edcbdd6eb6d834846ab0bebb5387cd9b
+#	modified:   Bullet-Hell/Library/metadata/ee/ee06c696d9fc367419b6b463c296fd3e
+#	modified:   Bullet-Hell/Library/metadata/ef/ef3769ab00d50bc4fbb05a9a91c741d9
+#	modified:   Bullet-Hell/Library/metadata/ef/efab536803bd0154a8a7dc78e8767ad9
+#	modified:   Bullet-Hell/Library/metadata/f0/f0c98d0d5c7ecd54391e3bd2fa4f9be2
+#	modified:   Bullet-Hell/Library/metadata/f1/f10f8a975ed7146b8a566c2f787343a5
+#	modified:   Bullet-Hell/Library/metadata/f1/f1a5c61a06ed66e41a6ee1b5f88b5afd
+#	modified:   Bullet-Hell/Library/metadata/f2/f2fb0a761a130da4aaa15801b5687b61
+#	modified:   Bullet-Hell/Library/metadata/f4/f471ee910002c1e4f98268a2b20a2aa5
+#	modified:   Bullet-Hell/Library/metadata/f4/f4ab061d0035ee545a936bdf8f3f8620
+#	modified:   Bullet-Hell/Library/metadata/f5/f5f67c52d1564df4a8936ccd202a3bd8
+#	modified:   Bullet-Hell/Library/metadata/f6/f6bd965477d21b64aad9f2d122a2496e
+#	modified:   Bullet-Hell/Library/metadata/f6/f6dc74195aa98ef4da8901199cda4a63
+#	modified:   Bullet-Hell/Library/metadata/f7/f73f95ae19d51af47ad56044f2779aa1
+#	modified:   Bullet-Hell/Library/metadata/f8/f8136785e54fd1d459d2a3a0849fe770
+#	modified:   Bullet-Hell/Library/metadata/f8/f8136785e54fd1d459d2a3a0849fe770.info
+#	modified:   Bullet-Hell/Library/metadata/f9/f939067cafb958f4099528f2a88cfaa8
+#	modified:   Bullet-Hell/Library/metadata/f9/f97e84bb5d33542f18a19a75fc878eb5
+#	modified:   Bullet-Hell/Library/metadata/f9/f9955b9bc48103645a71b05046ce13bc
+#	modified:   Bullet-Hell/Library/metadata/f9/f9d01290883590240a1cd15dc0c1d956
+#	modified:   Bullet-Hell/Library/metadata/fb/fb5d3487c412c4fa9ad41827a46623bb
+#	modified:   Bullet-Hell/Library/metadata/fc/fc5c6aae2f25a784bba9613819bc11e0
+#	modified:   Bullet-Hell/Library/metadata/fc/fc873add0957a604fb60513588c24139
+#	modified:   Bullet-Hell/Library/metadata/fc/fcc6c17b515a14312ac72839d1212b0a
+#	modified:   Bullet-Hell/Library/metadata/fc/fcc6c17b515a14312ac72839d1212b0a.info
+#	modified:   Bullet-Hell/Library/metadata/fd/fd1cabf2c45d0a8489635607a6048621
+#	modified:   Bullet-Hell/Library/metadata/fd/fd219401e0edb4c1aafda4903ecdcb8e
+#	modified:   Bullet-Hell/Library/metadata/fe/fe6b4d68575d4ba44b1d5c5c3f0e96d3
+#	modified:   Bullet-Hell/Library/shadercompiler-UnityShaderCompiler.exe0.log
+#	modified:   Bullet-Hell/ProjectSettings/GraphicsSettings.asset
+#	modified:   Bullet-Hell/ProjectSettings/ProjectSettings.asset
+#	modified:   Bullet-Hell/ProjectSettings/ProjectVersion.txt
+#
+# Untracked files:
+#	Bullet-Hell/Library/ShaderCache/0/02590e60c907077362ee55fcc630fa38.bin
+#	Bullet-Hell/Library/ShaderCache/0/099f2f77d277a5e424c7214606451202.bin
+#	Bullet-Hell/Library/ShaderCache/0/09cbd9b9a2210059b70f74a910e99086.bin
+#	Bullet-Hell/Library/ShaderCache/0/0d0a8c8934a5963538a06531c38d056b.bin
+#	Bullet-Hell/Library/ShaderCache/1/1007980080f8992cba434c0a3720b62c.bin
+#	Bullet-Hell/Library/ShaderCache/1/15c312672f83841be3fdf70414a48733.bin
+#	Bullet-Hell/Library/ShaderCache/1/1b3023e91d0ff6a38cabeb2e4ee968ec.bin
+#	Bullet-Hell/Library/ShaderCache/2/288d2f00c72fc557e03d5ea83caccc0c.bin
+#	Bullet-Hell/Library/ShaderCache/3/3cba802743c7f88d90eeaf533aae6cdc.bin
+#	Bullet-Hell/Library/ShaderCache/3/3e5d61f0842df92012bb655efd8eb2a1.bin
+#	Bullet-Hell/Library/ShaderCache/4/42f5514e18cf7d162fd2b3e77d2e633d.bin
+#	Bullet-Hell/Library/ShaderCache/4/440d0f92856efe8afefed03fdbd562c2.bin
+#	Bullet-Hell/Library/ShaderCache/4/45737490bf67c9a4b250f8bf17c7815f.bin
+#	Bullet-Hell/Library/ShaderCache/4/46bfee345960d546cea0dd7a35563d98.bin
+#	Bullet-Hell/Library/ShaderCache/4/470e8929d886b6315a1b04bb65720574.bin
+#	Bullet-Hell/Library/ShaderCache/4/47796e8e0b92b4cbd871fa9e6bf88ff8.bin
+#	Bullet-Hell/Library/ShaderCache/4/4874660099f322a331b45a1f7be7af0e.bin
+#	Bullet-Hell/Library/ShaderCache/4/4f6ca7fd1666e47a7729fe5d028ffd3b.bin
+#	Bullet-Hell/Library/ShaderCache/4/4fe2cd64553f696a1b6008439fb577b3.bin
+#	Bullet-Hell/Library/ShaderCache/5/535fea93700c41c2b9abd9e977cb18eb.bin
+#	Bullet-Hell/Library/ShaderCache/5/542fd7a43a45c2b68efbcaaa0fc87fc7.bin
+#	Bullet-Hell/Library/ShaderCache/6/6199eadd066ea220e3f10f31e83ef7df.bin
+#	Bullet-Hell/Library/ShaderCache/6/619b9edb064fff4943386195b9caf40a.bin
+#	Bullet-Hell/Library/ShaderCache/6/6a94257d305157b39af3538d34f8e49b.bin
+#	Bullet-Hell/Library/ShaderCache/7/74ed0ae4b4642b59bd573a9cf3b0420b.bin
+#	Bullet-Hell/Library/ShaderCache/8/82a9d3a22906c43a69c8add3c33a5a14.bin
+#	Bullet-Hell/Library/ShaderCache/8/88964e46a55f041f86e44fa5ad43d0e0.bin
+#	Bullet-Hell/Library/ShaderCache/8/8d8fc3f0e37393d93eae38b8fec7b234.bin
+#	Bullet-Hell/Library/ShaderCache/9/9411db96f1d70c87cf9af98882cee4e0.bin
+#	Bullet-Hell/Library/ShaderCache/9/96d95a2f7259db08f8d9928dd559791d.bin
+#	Bullet-Hell/Library/ShaderCache/a/aaf95b7604f2a56766d2e1b7cb5b783a.bin
+#	Bullet-Hell/Library/ShaderCache/a/ad17d4832782ca56142b7abd7852736e.bin
+#	Bullet-Hell/Library/ShaderCache/a/afad35e8ac1761888c1b72ee08b951d8.bin
+#	Bullet-Hell/Library/ShaderCache/b/b0c31f944bdeaa57c70b95c522dfe368.bin
+#	Bullet-Hell/Library/ShaderCache/b/b56540cc4f5ccb22407061804433ec9e.bin
+#	Bullet-Hell/Library/ShaderCache/b/bff8b20344eb25bd072c36c3f2af4c7d.bin
+#	Bullet-Hell/Library/ShaderCache/c/c187c08bd95f35bac69cdf6f87333a29.bin
+#	Bullet-Hell/Library/ShaderCache/c/c4707e46e6ed677df48bf796ddab6c60.bin
+#	Bullet-Hell/Library/ShaderCache/d/d713b632adfd4f5f4a26b8a486224d6d.bin
+#	Bullet-Hell/Library/ShaderCache/d/df281e05b255b3eed934400874ea2bc6.bin
+#	Bullet-Hell/Library/ShaderCache/d/dfaa405ad565c429a75b5a8c647ddb36.bin
+#	Bullet-Hell/Library/ShaderCache/e/e4533e280e32fa47282dde0138ae01bc.bin
+#	Bullet-Hell/Library/ShaderCache/e/e946742cb396c4719f5a63dd2cee3aa1.bin
+#	Bullet-Hell/Library/ShaderCache/f/f0141de15a38d3e82a3377f72d8cf5bb.bin
+#	Bullet-Hell/Library/ShaderCache/f/f565899586d1ddc466d12de447fe8faf.bin
+#	Bullet-Hell/Library/ShaderCache/f/f8cc5119639be1c556dd262f06a2176c.bin
+#	Bullet-Hell/Library/ShaderCache/f/fb5e20f936182bac8fd81bfeaffccc2c.bin
+#	Bullet-Hell/Library/ShaderCache/f/fefd48a19ff3bb665ef53568528da232.bin
+#
+
