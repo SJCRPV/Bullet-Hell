@@ -12,9 +12,9 @@ public class PlayerSpawn : MonoBehaviour {
 
 	void OnGUI()
 	{
-		if(playerCharacterScript.getStaticLives() >= 0)
+		if(playerCharacterScript.canPlayerSpawn())
 		{
-			GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + playerCharacterScript.getStaticLives());
+			GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + playerCharacterScript.getLivesLeft());
 			GUI.Label(new Rect(10, 20, 100, 30), "Score: " + playerCharacterScript.getPoints());
 			GUI.Label(new Rect(10, 40, 100, 30), "Power: " + playerCharacterScript.getPower());
 		}
@@ -34,11 +34,13 @@ public class PlayerSpawn : MonoBehaviour {
 
     private void initialPlayerSpawn()
     {
+        Debug.Log("initialPlayerSpawn was run");
         playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
         playerInstance.name = "Player";
         respawnTimer = 3f;
         playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
-        Debug.Log(playerCharacterScript.getLives() + " lives left.");
+        playerCharacterScript.GetComponent<SpriteRenderer>().enabled = true;
+        Debug.Log(playerCharacterScript.getLivesLeft() + " lives left.");
         assignChild();
         if (playerCharacterScript == null)
         {
@@ -47,14 +49,14 @@ public class PlayerSpawn : MonoBehaviour {
     }
 	public void SpawnPlayer()
 	{
-        Debug.Log(playerCharacterScript.getStaticLives() + " lives left.");
-		if(playerCharacterScript.getStaticLives() >= 0)
-		{
+        Debug.Log("SpawnPlayer was run");
+        if (playerCharacterScript.canPlayerSpawn())
+        {
 			playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
             playerInstance.name = "Player";
 			respawnTimer = 3f;
             playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
-            //playerCharacterScript.setLives(playerCharacterScript.getStaticLives());
+            playerCharacterScript.GetComponent<SpriteRenderer>().enabled = true;
             playerCharacterScript.setPower(playerCharacterScript.getStaticPower());
             playerCharacterScript.setPoints(playerCharacterScript.getStaticPoints());
         }
@@ -63,7 +65,7 @@ public class PlayerSpawn : MonoBehaviour {
             Debug.Log("playerCharacterScript is empty");
         }
         assignChild();
-	}
+    }
 
 	void OnLevelWasLoaded()
 	{

@@ -6,10 +6,9 @@ public class Character_Player : Character {
 
     BlockInteraction blockInteractionScript;
 
-    private static int playerCount;
     [SerializeField]
     private int numLives;
-    private static int staticLives;
+    private static int livesLost;
     [SerializeField]
     private float numPower;
     private static float staticPower;
@@ -18,29 +17,34 @@ public class Character_Player : Character {
     private static float staticPoints;
     private float invincibilityTimeStore;
     private GameObject blockInstance;
-    //The power cap variable may be of better use in the BlockInteractionScript
-    //public float powerCap;
 
-    public void incrementLives()
+    public int getLivesLeft()
     {
-        playerCount--;
+        return numLives - livesLost;
     }
-    //public void decrementLives()
-    //{
-    //    numLives--;
-    //}
-    public void setLives(int amount)
+    public bool canPlayerSpawn()
     {
-        Debug.Log("Setting staticLives to " + amount);
-        staticLives = amount;
+        if(numLives - livesLost > 0)
+        {
+            return true;
+        }
+        return false;
+    }
+    public int getLivesLost()
+    {
+        return livesLost;
     }
     public int getLives()
     {
         return numLives;
     }
-    public int getStaticLives()
+    public void incrementLives()
     {
-        return staticLives;
+        livesLost--;
+    }
+    public void setLives(int amount)
+    {
+        numLives = amount;
     }
 
     public void increasePower(float amount)
@@ -123,12 +127,11 @@ public class Character_Player : Character {
 
         decreasePower(blockInteractionScript.powerDecrement);
         decreasePoints(blockInteractionScript.pointDecrement);
-        //decrementLives();
 
         setPower(getPower());
         setPoints(getPoints());
-        setLives(getLives());
 
+        livesLost++;
         die();
     }
 
@@ -136,7 +139,6 @@ public class Character_Player : Character {
     void Start () {
         invincibilityTimeStore = invincibilityTime;
         blockInteractionScript = GetComponent<BlockInteraction>();
-        setLives(getLives() - playerCount++);
 	}
 
     void Update()
