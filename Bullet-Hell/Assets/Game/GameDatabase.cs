@@ -32,7 +32,6 @@ public enum enemyList
 
 public class GameDatabase : MonoBehaviour {
 
-
 	public GameObject enemyBasic;
 	public GameObject enemyCone;
 	public GameObject enemyGraze;

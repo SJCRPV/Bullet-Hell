@@ -13,6 +13,8 @@ public class EnemySpawnManager : MonoBehaviour {
     public float inbetweenSpawnTimer;
 
     private GameObject enemyInstance;
+    private GameObject currentSpawnPoint1;
+    private GameObject currentSpawnPoint2;
     private int currentLevel;
     private int phaseTotal;
     private int positionInPhase;
@@ -175,6 +177,9 @@ public class EnemySpawnManager : MonoBehaviour {
             gameDatabaseScript.enemyGraze.GetComponent<Movement>().spawnPoint = tempSpawnPoint2;
             gameDatabaseScript.enemyGraze.GetComponent<Movement>().leavePoint = tempLeavePoint2;
         }
+
+        currentSpawnPoint1 = tempSpawnPoint1;
+        currentSpawnPoint2 = tempSpawnPoint2;
     }
 
     private void moveToNextPhase()
@@ -205,30 +210,26 @@ public class EnemySpawnManager : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-        if (gameDatabaseScript.getCurrentLevelPhase() != 4 || gameDatabaseScript.getCurrentLevelPhase() != 9)
+	void Update ()
+    {
+        if (gameDatabaseScript.getCurrentLevelPhase() != 3 || gameDatabaseScript.getCurrentLevelPhase() != 4 || gameDatabaseScript.getCurrentLevelPhase() != 8 || gameDatabaseScript.getCurrentLevelPhase() != 9)
         {
             newPhaseTimer -= Time.deltaTime;
         }
-        else if ( (gameDatabaseScript.getCurrentLevelPhase() == 4 && !GameObject.Find("MiniBoss1")) || (gameDatabaseScript.getCurrentLevelPhase() == 9 && !GameObject.Find("ABoss1")) )
+        else
         {
-            gameDatabaseScript.incrementCurrentLevelPhase();
+            Debug.Log(gameDatabaseScript.getCurrentLevelPhase());
+            Debug.Log(currentSpawnPoint1.transform.childCount);
+            Debug.Log(currentSpawnPoint2.transform.childCount);
+            if (currentSpawnPoint1.transform.childCount == 0 && currentSpawnPoint2.transform.childCount == 0)
+            {
+                newPhaseTimer -= Time.deltaTime;
+            }
         }
 
         if (newPhaseTimer <= 0)
         {
-            if (gameDatabaseScript.getCurrentLevelPhase() == 3 || gameDatabaseScript.getCurrentLevelPhase() == 8)
-            {
-                //if (canBossStart() == true)
-                //{
-                //    moveToNextPhase();
-                //}
-            }
-            else
-            {
-                moveToNextPhase();
-            }
-            
+            moveToNextPhase();
             positionInPhase = 0;
         }
 
