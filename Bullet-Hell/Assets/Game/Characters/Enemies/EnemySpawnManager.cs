@@ -212,21 +212,25 @@ public class EnemySpawnManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        if (gameDatabaseScript.getCurrentLevelPhase() != 3 || gameDatabaseScript.getCurrentLevelPhase() != 4 || gameDatabaseScript.getCurrentLevelPhase() != 8 || gameDatabaseScript.getCurrentLevelPhase() != 9)
+        switch(gameDatabaseScript.getCurrentLevelPhase())
         {
-            newPhaseTimer -= Time.deltaTime;
-        }
-        else
-        {
-            Debug.Log(gameDatabaseScript.getCurrentLevelPhase());
-            Debug.Log(currentSpawnPoint1.transform.childCount);
-            Debug.Log(currentSpawnPoint2.transform.childCount);
-            if (currentSpawnPoint1.transform.childCount == 0 && currentSpawnPoint2.transform.childCount == 0)
-            {
-                newPhaseTimer -= Time.deltaTime;
-            }
-        }
+            case 3:
+            case 4:
+            case 8:
+            case 9:
+                Debug.Log(gameDatabaseScript.getCurrentLevelPhase());
+                Debug.Log(currentSpawnPoint1.transform.childCount);
+                Debug.Log(currentSpawnPoint2.transform.childCount);
+                if (currentSpawnPoint1.transform.childCount == 0 && currentSpawnPoint2.transform.childCount == 0)
+                {
+                    newPhaseTimer -= Time.deltaTime;
+                }
+                break;
 
+            default:
+                newPhaseTimer -= Time.deltaTime;
+                break;
+        }
         if (newPhaseTimer <= 0)
         {
             moveToNextPhase();
