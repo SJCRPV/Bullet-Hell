@@ -38,8 +38,8 @@ public class FireBoss1 : MonoBehaviour, IFire {
 
 	// Use this for initialization
 	void Start () {
-		boss1_Pattern1Script = GetComponent<Boss1_Pattern1>();
-		boss1_Pattern2Script = GetComponent<Boss1_Pattern2>();
+		boss1_Pattern1Script = GetComponentInChildren<Boss1_Pattern1>();
+		boss1_Pattern2Script = GetComponentInChildren<Boss1_Pattern2>();
         boss1CharacterScript = GetComponent<Character_Boss1>();
         assignMovement();
 		boss1_Pattern1Script.enabled = false;
