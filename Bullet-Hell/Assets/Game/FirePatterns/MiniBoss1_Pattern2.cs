@@ -50,11 +50,11 @@ public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
 
     public void firePattern()
     {
-        if(bossMovementScript.getCurrentNodePairInUse() == 1 || bossMovementScript.getCurrentNodePairInUse() == 2 || bossMovementScript.getCurrentNodePairInUse() == 5)
+        if(bossMovementScript.getCurrentNodePairInUse() == 1 || bossMovementScript.getCurrentNodePairInUse() == 3 || bossMovementScript.getCurrentNodePairInUse() == 5)
         {
             fireLong();
         }
-        else if(bossMovementScript.getCurrentNodePairInUse() == 3 || bossMovementScript.getCurrentNodePairInUse() == 4)
+        else if(bossMovementScript.getCurrentNodePairInUse() == 2 || bossMovementScript.getCurrentNodePairInUse() == 4 || bossMovementScript.getCurrentNodePairInUse() == 6)
         {
             fireQuick();
         }

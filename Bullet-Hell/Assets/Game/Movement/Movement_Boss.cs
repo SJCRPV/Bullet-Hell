@@ -11,10 +11,10 @@ public class Movement_Boss : Movement {
 
     private Movement movementScript;
     private Vector3[] currentPath;
-    private Vector3[] currentNodePair;
-    private int currentNodePairInUse = 0;
+    private Vector3[] currentNodeTrio;
+    private int currentNodeTrioInUse = 0;
     private int currentPathNum = 0;
-    private float currentNodePairComplete = 0f;
+    private float currentNodeTrioComplete = 0f;
     private float timeUntilNextNodeStore;
 
     public int getCurrentPathNum()
@@ -23,7 +23,7 @@ public class Movement_Boss : Movement {
     }
     public int getCurrentNodePairInUse()
     {
-        return currentNodePairInUse;
+        return currentNodeTrioInUse;
     }
 
     public override void setPath()
@@ -33,7 +33,7 @@ public class Movement_Boss : Movement {
         {
             Debug.LogError("Didn't find anything for the number: " + currentPathNum);
         }
-        currentNodePair = new Vector3[] {currentPath[currentNodePairInUse++], currentPath[currentNodePairInUse]};
+        currentNodeTrio = new Vector3[] {currentPath[currentNodeTrioInUse++], currentPath[currentNodeTrioInUse++], currentPath[currentNodeTrioInUse]};
     }
     
     void preparePaths()
@@ -56,27 +56,28 @@ public class Movement_Boss : Movement {
     {
         currentPathNum++;
         Debug.Log("Moving to path " + (currentPathNum + 1));
-        currentNodePairInUse = 0;
+        currentNodeTrioInUse = 0;
         setPath();
     }
 
     void moveToNextNodePair()
     {
-        if(currentNodePairInUse + 1 >= currentPath.Length)
+        if(currentNodeTrioInUse + 1 >= currentPath.Length)
         {
-            currentNodePairInUse = 0;
+            currentNodeTrioInUse = 0;
         }
-        currentNodePair = new Vector3[] {currentPath[currentNodePairInUse++], currentPath[currentNodePairInUse]};
+        currentNodeTrio = new Vector3[] {currentPath[currentNodeTrioInUse++], currentPath[currentNodeTrioInUse++], currentPath[currentNodeTrioInUse]};
     }
 
     void move()
     {
-        currentNodePairComplete += pathPercentIncrease * Time.deltaTime;
-        iTween.PutOnPath(gameObject, currentNodePair, currentNodePairComplete);
+        currentNodeTrioComplete += pathPercentIncrease * Time.deltaTime;
+        //If you put currentPath isntead of currentNodePair, it'll traverse the entire path with the curves.
+        iTween.PutOnPath(gameObject, currentNodeTrio, currentNodeTrioComplete);
 
-        if (currentNodePairComplete >= 1f)
+        if (currentNodeTrioComplete >= 1f)
         {
-            currentNodePairComplete = 0;
+            currentNodeTrioComplete = 0;
             moveToNextNodePair();
             nextNodeTime = timeUntilNextNodeStore;
         }
