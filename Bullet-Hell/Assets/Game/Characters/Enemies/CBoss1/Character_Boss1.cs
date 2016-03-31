@@ -30,6 +30,7 @@ public class Character_Boss1 : Character_Boss {
     public override void swapPatterns()
     {
         pattern1Script.enabled = false;
+        bossMovementScript.setReturningToStart();
         pattern2Script.enabled = true;
     }
 
@@ -51,7 +52,7 @@ public class Character_Boss1 : Character_Boss {
         }
         else if (getHealth() <= 50 && bossMovementScript.getCurrentPathNum() == 0)
         {
-            moveToNextPath();
+            bossMovementScript.moveToNextPath();
             swapPatterns();
         }
     }

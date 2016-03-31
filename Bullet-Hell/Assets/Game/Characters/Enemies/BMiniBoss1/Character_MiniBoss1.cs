@@ -52,7 +52,7 @@ public class Character_MiniBoss1 : Character_Boss {
         }
         else if(getHealth() <= 50 && bossMovementScript.getCurrentPathNum() == 0)
         {
-            moveToNextPath();
+            bossMovementScript.moveToNextPath();
             swapPatterns();
         }
     }

@@ -3,11 +3,11 @@ using System.Collections;
 
 public abstract class Movement : MonoBehaviour {
 
-    public GameObject spawnPoint;
-    public GameObject leavePoint;
+    
     [HideInInspector]
     public iTweenPath path;
-    public string pathName;
+    //I don't think I need _this_ particular pathName...
+    //public string pathName;
     public float speed;
     public static float offset;
     public float timerUntilObjectLeaves;

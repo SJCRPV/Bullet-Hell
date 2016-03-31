@@ -16,6 +16,7 @@ public class Movement_Boss : Movement {
     private int currentPathNum = 0;
     private float currentNodeTrioComplete = 0f;
     private float timeUntilNextNodeStore;
+    private bool returningToStart;
 
     public int getCurrentPathNum()
     {
@@ -24,6 +25,27 @@ public class Movement_Boss : Movement {
     public int getCurrentNodePairInUse()
     {
         return currentNodeTrioInUse;
+    }
+    public bool getReturningToStart()
+    {
+        return returningToStart;
+    }
+    public void setReturningToStart()
+    {
+        returningToStart = true;
+    }
+
+    public void returnToStart()
+    {
+        if (transform.position != currentPath[0])
+        {
+            transform.position = Vector3.Lerp(transform.position, currentPath[0], Time.deltaTime * speed);
+        }
+        else
+        {
+            Debug.Log("I have returned to the starting position of " + currentPath[0]);
+            returningToStart = false;
+        }
     }
 
     public override void setPath()
@@ -51,7 +73,7 @@ public class Movement_Boss : Movement {
         }
     }
 
-    //This is supposed to be a reciever of a message coming from a Character-like script
+    //This is only supposed to be called from a class inheriting from Character_Boss
     public void moveToNextPath()
     {
         currentPathNum++;
@@ -60,7 +82,7 @@ public class Movement_Boss : Movement {
         setPath();
     }
 
-    void moveToNextNodePair()
+    void moveToNextNodeTrio()
     {
         if(currentNodeTrioInUse + 1 >= currentPath.Length)
         {
@@ -78,7 +100,7 @@ public class Movement_Boss : Movement {
         if (currentNodeTrioComplete >= 1f)
         {
             currentNodeTrioComplete = 0;
-            moveToNextNodePair();
+            moveToNextNodeTrio();
             nextNodeTime = timeUntilNextNodeStore;
         }
     }
@@ -94,7 +116,7 @@ public class Movement_Boss : Movement {
 	
 	// Update is called once per frame
 	void Update () {
-        if (movementScript.getIsMoving() == false)
+        if (movementScript.getIsMoving() == false && getIsMoving() == false)
         {
             nextNodeTime -= Time.deltaTime;
         }
@@ -103,6 +125,11 @@ public class Movement_Boss : Movement {
         {
             setIsMoving(true);
             move();
+        }
+        if(getReturningToStart())
+        {
+            setIsMoving(true);
+            returnToStart();
         }
 	}
 }

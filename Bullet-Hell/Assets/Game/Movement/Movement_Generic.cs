@@ -4,6 +4,9 @@ using System;
 
 public class Movement_Generic : Movement {
 
+    public GameObject spawnPoint;
+    public GameObject leavePoint;
+
     private void selfDestruct()
     {
         Destroy(gameObject);
