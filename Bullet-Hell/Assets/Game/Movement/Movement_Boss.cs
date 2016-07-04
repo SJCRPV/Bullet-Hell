@@ -3,12 +3,13 @@ using System.Collections.Generic;
 
 public class Movement_Boss : Movement {
 
-    public float nextNodeTime;
     public float pathPercentIncrease;
     public List<GameObject> Children;
 
     iTweenPath[] bossPaths;
 
+    [SerializeField]
+    private float nextNodeTime;
     private Movement movementScript;
     private Vector3[] currentPath;
     private Vector3[] currentNodeTrio;
@@ -34,18 +35,9 @@ public class Movement_Boss : Movement {
     {
         returningToStart = true;
     }
-
-    public void returnToStart()
+    public float getNextNodeTime()
     {
-        if (transform.position != currentPath[0])
-        {
-            transform.position = Vector3.Lerp(transform.position, currentPath[0], Time.deltaTime * speed);
-        }
-        else
-        {
-            Debug.Log("I have returned to the starting position of " + currentPath[0]);
-            returningToStart = false;
-        }
+        return nextNodeTime;
     }
 
     public override void setPath()
@@ -60,7 +52,7 @@ public class Movement_Boss : Movement {
     
     void preparePaths()
     {
-        //What you want here is for the script to gather an array with all the children GameObjects of the parent object and then iterate through said array to define both the array size and what each index reieves. This allows you flexibility in the boss phase count.
+        //What you want here is for the script to gather an array with all the children GameObjects of the parent object and then iterate through said array to define both the array size and what each index recieves. This allows you flexibility in the boss phase count.
         foreach (Transform child in transform)
         {
             Children.Add(child.gameObject);
@@ -73,7 +65,7 @@ public class Movement_Boss : Movement {
         }
     }
 
-    //This is only supposed to be called from a class inheriting from Character_Boss
+    //This is only supposed to be called, at most, from a class inheriting from Character_Boss
     public void moveToNextPath()
     {
         currentPathNum++;
@@ -105,8 +97,23 @@ public class Movement_Boss : Movement {
         }
     }
 
-	// Use this for initialization
-	void Start () {
+    public void returnToStart()
+    {
+        if (transform.position != currentPath[0])
+        {
+            transform.position = Vector3.Lerp(transform.position, currentPath[0], Time.deltaTime * speed);
+        }
+        else
+        {
+            //Debug.Log("I have returned to the starting position of " + currentPath[0]);
+            currentNodeTrioComplete = 0;
+            moveToNextPath();
+            returningToStart = false;
+        }
+    }
+
+    // Use this for initialization
+    void Start () {
         iTween.Init(gameObject);
         movementScript = GetComponent<Movement_Generic>();
         timeUntilNextNodeStore = nextNodeTime;
@@ -116,12 +123,12 @@ public class Movement_Boss : Movement {
 	
 	// Update is called once per frame
 	void Update () {
-        if (movementScript.getIsMoving() == false && getIsMoving() == false)
+        if (movementScript.getIsMoving() == false && getIsMoving() == false && getReturningToStart() == false)
         {
             nextNodeTime -= Time.deltaTime;
         }
         setIsMoving(false);
-        if(nextNodeTime <= 0)
+        if(nextNodeTime <= 0 && getReturningToStart() == false)
         {
             setIsMoving(true);
             move();
@@ -131,5 +138,5 @@ public class Movement_Boss : Movement {
             setIsMoving(true);
             returnToStart();
         }
-	}
+    }
 }

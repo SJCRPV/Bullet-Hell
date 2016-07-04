@@ -6,7 +6,7 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
 {
 
     public GameObject bulletPrefab;
-    public float cooldownTimer;
+    public bool isFiring;
     public float betweenBulletSpawnTimer;
     public int angleIncrement;
 
@@ -15,6 +15,7 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
     private Movement_Boss bossMovementScript;
     private Quaternion bulletRotation;
     private float cooldownTimerStore;
+    [SerializeField]
     private float currentAngle;
     private float betweenBulletSpawnTimerStore;
 
@@ -24,25 +25,18 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
         bulletRotation.eulerAngles = new Vector3(0, 0, angle);
         bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, bulletRotation);
         bulletInstance.gameObject.layer = 11;
-        bulletInstance.transform.parent = this.transform;
         bulletInstance.transform.parent = gameObject.transform;
     }
 
     public void firePattern()
     {
         betweenBulletSpawnTimer -= Time.deltaTime;
-        if (betweenBulletSpawnTimer <= 0 && bossMovementScript.getIsMoving() == false)
+        if (betweenBulletSpawnTimer <= 0)
         {
             fire(currentAngle);
             fire(-currentAngle);
             currentAngle += angleIncrement;
             betweenBulletSpawnTimer = betweenBulletSpawnTimerStore;
-        }
-
-        if (currentAngle >= 540)
-        {
-            currentAngle = 180;
-            cooldownTimer = cooldownTimerStore;
         }
     }
 
@@ -55,7 +49,6 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
     //Use this for initialization
     void Start()
     {
-        cooldownTimerStore = cooldownTimer;
         currentAngle = 180;
         assignMovement();
     }
@@ -63,18 +56,21 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
     // Update is called once per frame
     void Update()
     {
-        if (genericMovementScript.getIsMoving() == false)
-        {
-            cooldownTimer -= Time.deltaTime;
-        }
-
+        //Note: You probably want something that stops you from going beyond the 720 angle cycle regardless of whether the Boss still has time left before moving to the next node trio. You already have the ability of retrieving the amount of time left in said trio from the bossMovementScript
         if (bossMovementScript.getIsMoving())
         {
-            cooldownTimer = cooldownTimerStore;
+            isFiring = false;
+            currentAngle = 180;
             betweenBulletSpawnTimer = betweenBulletSpawnTimerStore;
         }
-
-        if (cooldownTimer <= 0)
+        else
+        {
+            isFiring = true;
+        }
+    }
+    void FixedUpdate()
+    {
+        if (isFiring && currentAngle < 720)
         {
             firePattern();
         }

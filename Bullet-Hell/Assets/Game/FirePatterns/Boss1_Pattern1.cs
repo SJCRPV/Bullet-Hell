@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Boss1_Pattern1 : MonoBehaviour {
+public class Boss1_Pattern1 : MonoBehaviour, IFire {
 
 	public GameObject bulletPrefab;
 	public float angleDispersion;
@@ -9,14 +9,16 @@ public class Boss1_Pattern1 : MonoBehaviour {
 	public int roundsBeforeCooldown;
 	public float innerCooldownTimer;
 
-	private float angleDispersionStore;
 	private GameObject bulletInstance;
 	private Quaternion bulletRotation;
+    private Movement_Generic genericMovementScript;
+    private Movement_Boss bossMovementScript;
+	private float angleDispersionStore;
 	private float cooldownTimerStore;
 	private float innerCooldownTimerStore;
 	private int roundsBeforeCooldownStore;
 
-	public void Fire(int extra)
+	public void fire(int extra)
 	{
 		for (angleDispersion = 111 - extra; angleDispersion <= 249 + extra; angleDispersion += angleDispersionStore) 
 		{
@@ -29,7 +31,7 @@ public class Boss1_Pattern1 : MonoBehaviour {
 		angleDispersion = angleDispersionStore;
 	}
 
-	public void Fire()
+	public void fire()
 	{
 		for (angleDispersion = 111; angleDispersion <= 249; angleDispersion += angleDispersionStore) 
 		{
@@ -41,22 +43,22 @@ public class Boss1_Pattern1 : MonoBehaviour {
 		angleDispersion = angleDispersionStore;
 	}
 
-	void FirePattern()
+	public void firePattern()
 	{
 		innerCooldownTimer -= Time.deltaTime;
 		if(innerCooldownTimer <= 0)
 		{
 			if(roundsBeforeCooldown == 2)
 			{
-				Fire(11);
+				fire(11);
 			}
 			else if(roundsBeforeCooldown == 1)
 			{
-				Fire (7);
+				fire (7);
 			}
 			else
 			{
-				Fire();
+				fire();
 			}
 			roundsBeforeCooldown--;
 			innerCooldownTimer = innerCooldownTimerStore;
@@ -67,6 +69,12 @@ public class Boss1_Pattern1 : MonoBehaviour {
 			}
 		}
 	}
+
+    public void assignMovement()
+    {
+        genericMovementScript = gameObject.GetComponentInParent<Movement_Generic>();
+        bossMovementScript = gameObject.GetComponentInParent<Movement_Boss>();
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -81,7 +89,7 @@ public class Boss1_Pattern1 : MonoBehaviour {
 		cooldownTimer -= Time.deltaTime;
 		if(cooldownTimer <= 0)
 		{
-			FirePattern();
+			firePattern();
 		}
 	}
 }
