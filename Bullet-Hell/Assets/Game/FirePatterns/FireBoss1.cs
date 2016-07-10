@@ -16,13 +16,11 @@ public class FireBoss1 : MonoBehaviour, IFire {
 		{
 			boss1_Pattern1Script.enabled = true;
 			boss1_Pattern2Script.enabled = false;
-			boss1MovementScript.enabled = false;
 		}
 		else if(boss1CharacterScript.getHealth() >= bossHP/4 && boss1CharacterScript.getHealth() < bossHP/2)
 		{
 			boss1_Pattern1Script.enabled = false;
 			boss1_Pattern2Script.enabled = true;
-			boss1MovementScript.enabled = true;
 		}
 	}
 

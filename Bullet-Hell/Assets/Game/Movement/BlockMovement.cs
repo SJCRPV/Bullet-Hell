@@ -14,7 +14,10 @@ public class BlockMovement : MonoBehaviour {
 
     public void OnBecameInvisible()
     {
-        Destroy(gameObject);
+        if(transform.position.y < playerPosition.y)
+        {
+            Destroy(gameObject);
+        }
     }
 
     void moveToPlayer()

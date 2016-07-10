@@ -5,6 +5,7 @@ using System;
 public abstract class Character_Boss : Character {
 
     protected Movement_Boss bossMovementScript;
+    protected Movement_Generic genericMovementScript;
 
     public abstract override void explode();
 

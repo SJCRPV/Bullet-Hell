@@ -15,8 +15,8 @@ public class PlayerSpawn : MonoBehaviour {
 		if(playerCharacterScript.canPlayerSpawn())
 		{
 			GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + playerCharacterScript.getLivesLeft());
-			GUI.Label(new Rect(10, 20, 100, 30), "Score: " + playerCharacterScript.getPoints());
-			GUI.Label(new Rect(10, 40, 100, 30), "Power: " + playerCharacterScript.getPower());
+			GUI.Label(new Rect(10, 20, 100, 30), "Score: " + playerCharacterScript.getStaticPoints());
+			GUI.Label(new Rect(10, 40, 100, 30), "Power: " + playerCharacterScript.getStaticPower());
 		}
 		else
 		{

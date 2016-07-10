@@ -21,14 +21,6 @@ public class EnemySpawnManager : MonoBehaviour {
     private float newPhaseTimerStore;
     private float inbetweenSpawnTimerStore;
 
-    //private bool canBossStart()
-    //{
-    //    if(gameDatabaseScript.getCurrentLevelPhase() == 3)
-    //    {
-    //        if()
-    //    }
-    //}
-
     void assignParent()
     {
         enemyInstance.transform.parent = enemyInstance.GetComponent<Movement_Generic>().spawnPoint.transform;
@@ -66,7 +58,6 @@ public class EnemySpawnManager : MonoBehaviour {
                 Debug.Log("Spawned boss1");
                 enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyBoss1, gameDatabaseScript.enemyBoss1.GetComponent<Movement_Generic>().spawnPoint.transform.position, Quaternion.identity);
                 enemyInstance.name = "Boss1";
-                this.enabled = false;
                 break;
 
             default:
@@ -84,6 +75,7 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             movementScript.resetOffset();
         }
+        Debug.Log("getSpecificContentAtIndex " + positionInPhase + " in phase " + gameDatabaseScript.getCurrentLevelPhase() + " is " + levelScript.getSpecificContentAtIndex(gameDatabaseScript.getCurrentLevelPhase(), positionInPhase));
         spawnEnemy(levelScript.getSpecificContentAtIndex(gameDatabaseScript.getCurrentLevelPhase(), positionInPhase));
     }
 
@@ -121,7 +113,8 @@ public class EnemySpawnManager : MonoBehaviour {
                 tempLeavePoint2 = GameObject.Find("EnemyEndPoint8");
                 break;
             case 4:
-                tempSpawnPoint1 = GameObject.Find("ABossSpawnPoint");
+            case 9:
+                tempSpawnPoint1 = GameObject.Find("BossSpawnPoint");
                 tempLeavePoint1 = GameObject.Find("ABossLeavePoint");
                 break;
             case 5:
@@ -148,15 +141,17 @@ public class EnemySpawnManager : MonoBehaviour {
                 tempLeavePoint1 = GameObject.Find("EnemyEndPoint6");
                 tempLeavePoint2 = GameObject.Find("EnemyEndPoint5");
                 break;
-            case 9:
-                tempSpawnPoint1 = GameObject.Find("ABossSpawnPoint");
-                tempLeavePoint1 = GameObject.Find("ABossLeavePoint");
-                break;
         }
         if (gameDatabaseScript.getCurrentLevelPhase() == 4)
         {
             gameDatabaseScript.enemyMiniBoss1.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint1;
             gameDatabaseScript.enemyMiniBoss1.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint1;
+            return;
+        }
+        if (gameDatabaseScript.getCurrentLevelPhase() == 9)
+        {
+            gameDatabaseScript.enemyBoss1.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint1;
+            gameDatabaseScript.enemyBoss1.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint1;
             return;
         }
         if (positionInPhase < phaseTotal / 2)
@@ -218,9 +213,9 @@ public class EnemySpawnManager : MonoBehaviour {
             case 4:
             case 8:
             case 9:
-                Debug.Log(gameDatabaseScript.getCurrentLevelPhase());
-                Debug.Log(currentSpawnPoint1.transform.childCount);
-                Debug.Log(currentSpawnPoint2.transform.childCount);
+                //Debug.Log("Current phase: " + gameDatabaseScript.getCurrentLevelPhase());
+                //Debug.Log("currentSpawnPoint1 child count: " + currentSpawnPoint1.transform.childCount);
+                //Debug.Log("currentSpawnPoint2 child count: " + currentSpawnPoint2.transform.childCount);
                 if (currentSpawnPoint1.transform.childCount == 0 && currentSpawnPoint2.transform.childCount == 0)
                 {
                     newPhaseTimer -= Time.deltaTime;
@@ -231,10 +226,14 @@ public class EnemySpawnManager : MonoBehaviour {
                 newPhaseTimer -= Time.deltaTime;
                 break;
         }
-        if (newPhaseTimer <= 0)
+        if (newPhaseTimer <= 0 && gameDatabaseScript.getCurrentLevelPhase() != 9)
         {
             moveToNextPhase();
             positionInPhase = 0;
+        }
+        else if (newPhaseTimer <= 0 && gameDatabaseScript.getCurrentLevelPhase() == 9)
+        {
+            GameObject.Find("Main Camera").SendMessage("loadNextLevel");
         }
 
         inbetweenSpawnTimer -= Time.deltaTime;

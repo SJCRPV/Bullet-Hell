@@ -38,6 +38,7 @@ public class Character_Boss1 : Character_Boss {
     void Start () {
         invincibilityTime = invincibilityTimeStore;
         bossMovementScript = GetComponent<Movement_Boss>();
+        genericMovementScript = GetComponent<Movement_Generic>();
         pattern1Script = GetComponentInChildren<Boss1_Pattern1>();
         pattern2Script = GetComponentInChildren<Boss1_Pattern2>();
     }
@@ -45,6 +46,11 @@ public class Character_Boss1 : Character_Boss {
 	// Update is called once per frame
 	void Update () {
         invincibilityTime -= Time.deltaTime;
+        if(genericMovementScript.isActiveAndEnabled && genericMovementScript.getIsMoving() == false)
+        {
+            bossMovementScript.enabled = true;
+            genericMovementScript.enabled = false;
+        }
         if (getHealth() <= 0)
         {
             Debug.Log(getHealth());

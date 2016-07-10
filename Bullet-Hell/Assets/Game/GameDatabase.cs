@@ -37,6 +37,7 @@ public class GameDatabase : MonoBehaviour {
 	public GameObject enemyGraze;
 	public GameObject enemyMiniBoss1;
 	public GameObject enemyBoss1;
+    // TODO: Assess if you need levelBase
     public Level levelBase;
 
     [SerializeField]
@@ -48,7 +49,6 @@ public class GameDatabase : MonoBehaviour {
     {
         return currentLevel;
     }
-
     public int getCurrentLevelPhase()
     {
         return currentLevelPhase;
@@ -108,7 +108,8 @@ public class GameDatabase : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-		currentLevel = 0;
+        levelBase = GetComponent<Level>();
+        currentLevel = levelBase.getLevelNum();
 		currentLevelPhase = -1;
 	}
 }

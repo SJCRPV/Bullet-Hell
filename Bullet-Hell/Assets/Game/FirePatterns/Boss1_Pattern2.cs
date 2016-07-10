@@ -17,6 +17,8 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
     private float cooldownTimerStore;
     [SerializeField]
     private float currentAngle;
+    [SerializeField]
+    private float maxAngle;
     private float betweenBulletSpawnTimerStore;
 
     private void fire(float angle)
@@ -70,7 +72,7 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
     }
     void FixedUpdate()
     {
-        if (isFiring && currentAngle < 720)
+        if (isFiring && currentAngle < maxAngle)
         {
             firePattern();
         }

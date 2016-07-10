@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class NewGame : MonoBehaviour {
 
@@ -10,10 +11,10 @@ public class NewGame : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		//Will load regardless of where you click
+		//FIX: This will load regardless of where you click
 		if (Input.GetMouseButton (0)) 
 		{
-			Application.LoadLevel(1);
+            SceneManager.LoadScene(1);
 		}
 	}
 }

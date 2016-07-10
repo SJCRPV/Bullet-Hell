@@ -64,7 +64,17 @@ public class Level : MonoBehaviour {
             //Debug.Log("At phase " + i + ", its length is: " + levelArray[i].Length);
             for(int j = 0; j < levelArray[i].Length; j++)
             {
-                if (j != bossPhase || j != miniBossPhase)
+                if (i == miniBossPhase)
+                {
+                    Debug.Log("Added MiniBoss1 in phase " + i + " and position " + j);
+                    levelArray[i][0] = (int)enemyList.MiniBoss1;
+                }
+                else if(i == bossPhase)
+                {
+                    //Debug.Log("Added Boss1 in phase " + i + " and position " + j);
+                    levelArray[i][0] = (int)enemyList.Boss1;
+                }
+                else if(j != bossPhase || j != miniBossPhase)
                 {
                     int k = j % 3;
                     if(k == 0)
@@ -84,18 +94,12 @@ public class Level : MonoBehaviour {
                     }
                     else
                     {
-                        Debug.LogError("I didn't find what to do with the number " + k);
+                        Debug.LogError("I didn't find what to do k is equal to " + k);
                     }
-                }
-                else if(j == miniBossPhase)
-                {
-                    //Debug.Log("Added MiniBoss1 in phase " + i + " and position " + j);
-                    levelArray[i][0] = (int)enemyList.MiniBoss1;
                 }
                 else
                 {
-                    //Debug.Log("Added Boss1 in phase " + i + " and position " + j);
-                    levelArray[i][0] = (int)enemyList.Boss1;
+                    Debug.LogError("I don't know what to do when j is equal to " + j);
                 }
             }
         }
