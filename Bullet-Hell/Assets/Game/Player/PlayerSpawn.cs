@@ -15,8 +15,8 @@ public class PlayerSpawn : MonoBehaviour {
 		if(playerCharacterScript.canPlayerSpawn())
 		{
 			GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + playerCharacterScript.getLivesLeft());
-			GUI.Label(new Rect(10, 20, 100, 30), "Score: " + playerCharacterScript.getStaticPoints());
-			GUI.Label(new Rect(10, 40, 100, 30), "Power: " + playerCharacterScript.getStaticPower());
+			GUI.Label(new Rect(10, 20, 100, 30), "Score: " + playerCharacterScript.getPoints());
+			GUI.Label(new Rect(10, 40, 100, 30), "Power: " + System.Math.Round(playerCharacterScript.getPower(), 2));
 		}
 		else
 		{
@@ -34,22 +34,24 @@ public class PlayerSpawn : MonoBehaviour {
 
     private void initialPlayerSpawn()
     {
-        Debug.Log("initialPlayerSpawn was run");
+        //Debug.Log("initialPlayerSpawn was run");
         playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
         playerInstance.name = "Player";
         respawnTimer = 3f;
         playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
         playerCharacterScript.GetComponent<SpriteRenderer>().enabled = true;
-        Debug.Log(playerCharacterScript.getLivesLeft() + " lives left.");
+        playerCharacterScript.setPower(playerCharacterScript.getStaticPower());
+        playerCharacterScript.setPoints(playerCharacterScript.getStaticPoints());
+        //Debug.Log(playerCharacterScript.getLivesLeft() + " lives left.");
         assignChild();
         if (playerCharacterScript == null)
         {
-            Debug.Log("playerCharacterScript is empty");
+            Debug.LogError("playerCharacterScript is empty");
         }
     }
 	public void SpawnPlayer()
 	{
-        Debug.Log("SpawnPlayer was run");
+        //Debug.Log("SpawnPlayer was run");
         if (playerCharacterScript.canPlayerSpawn())
         {
 			playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
@@ -57,19 +59,24 @@ public class PlayerSpawn : MonoBehaviour {
 			respawnTimer = 3f;
             playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
             playerCharacterScript.GetComponent<SpriteRenderer>().enabled = true;
+            Debug.Log("Setting the staticPower at " + playerCharacterScript.getStaticPower());
+            Debug.Log("Setting the staticPoints at " + playerCharacterScript.getStaticPoints());
             playerCharacterScript.setPower(playerCharacterScript.getStaticPower());
             playerCharacterScript.setPoints(playerCharacterScript.getStaticPoints());
         }
         if (playerCharacterScript == null)
         {
-            Debug.Log("playerCharacterScript is empty");
+            Debug.LogError("playerCharacterScript is empty");
         }
         assignChild();
     }
 
 	void OnLevelWasLoaded()
 	{
-		initialPlayerSpawn();
+        if (playerInstance == null)
+        {
+            initialPlayerSpawn();
+        }
 	}
 
 	// Update is called once per frame

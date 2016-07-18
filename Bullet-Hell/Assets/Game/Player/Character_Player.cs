@@ -64,7 +64,12 @@ public class Character_Player : Character {
     }
     public void setPower(float amount)
     {
+        numPower = amount;
+    }
+    public void setStaticPower(float amount)
+    {
         staticPower = amount;
+        Debug.Log("staticPower is now: " + staticPower);
     }
     public float getPower()
     {
@@ -92,7 +97,12 @@ public class Character_Player : Character {
     }
     public void setPoints(float amount)
     {
+        numPoints = amount;
+    }
+    public void setStaticPoints(float amount)
+    {
         staticPoints = amount;
+        Debug.Log("staticPoints is now: " + staticPoints);
     }
     public float getPoints()
     {
@@ -128,8 +138,8 @@ public class Character_Player : Character {
         decreasePower(blockInteractionScript.powerDecrement);
         decreasePoints(blockInteractionScript.pointDecrement);
 
-        setPower(getPower());
-        setPoints(getPoints());
+        setStaticPower(getPower());
+        setStaticPoints(getPoints());
 
         livesLost++;
         die();

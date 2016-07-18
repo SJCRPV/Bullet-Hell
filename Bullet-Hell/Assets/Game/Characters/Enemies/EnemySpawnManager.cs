@@ -1,5 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
+
+public class Sorter : IComparer
+{
+
+    // Calls CaseInsensitiveComparer.Compare on the monster name string.
+    int IComparer.Compare(System.Object x, System.Object y)
+    {
+        return ((new CaseInsensitiveComparer()).Compare(((GameObject)x).name, ((GameObject)y).name));
+    }
+
+}
 
 public class EnemySpawnManager : MonoBehaviour {
 
@@ -12,14 +24,97 @@ public class EnemySpawnManager : MonoBehaviour {
     public float newPhaseTimer;
     public float inbetweenSpawnTimer;
 
+    private GameObject[] spawnPoints;
+    private GameObject[] endPoints;
     private GameObject enemyInstance;
     private GameObject currentSpawnPoint1;
     private GameObject currentSpawnPoint2;
+    private Sorter sorter;
     private int currentLevel;
     private int phaseTotal;
     private int positionInPhase;
+    private int cycles;
+    private int remainder;
     private float newPhaseTimerStore;
     private float inbetweenSpawnTimerStore;
+
+    void determineRatios()
+    {
+        cycles = spawnPoints.Length / endPoints.Length;
+        remainder = spawnPoints.Length % endPoints.Length;
+    }
+
+    void setStartingPoint(GameObject spawnedEnemy)
+    {
+        //BUG: There are more phases than spawn points, so 1 + 2 * phase still needs to check if it goes beyond the spawnPoints array.
+
+        GameObject tempSpawnPoint1 = null;
+        GameObject tempSpawnPoint2 = null;
+        GameObject tempEndPoint1 = null;
+        GameObject tempEndPoint2 = null;
+
+        int phase = gameDatabaseScript.getCurrentLevelPhase();
+
+        if (phase == 4 || phase == 9)
+        {
+            spawnedEnemy.GetComponent<Movement_Generic>().spawnPoint = spawnPoints[0];
+            spawnedEnemy.GetComponent<Movement_Generic>().leavePoint = endPoints[0];
+
+            currentSpawnPoint1 = spawnPoints[0];
+            currentSpawnPoint2 = spawnPoints[0];
+            return;
+        }
+        else
+        {
+            tempSpawnPoint1 = spawnPoints[1 + 2 * phase];
+            tempSpawnPoint2 = spawnPoints[2 + 2 * phase];
+
+
+            if (cycles > 0)
+            {
+                if (2 + 2 * phase >= endPoints.Length)
+                {
+                    cycles--;
+                    int temp = 2 + 2 * phase;
+                    while (temp >= endPoints.Length)
+                    {
+                        temp = temp - endPoints.Length;
+                    }
+                    tempEndPoint1 = endPoints[temp - 1];
+                    tempEndPoint1 = endPoints[temp];
+                }
+                else
+                {
+                    tempEndPoint1 = endPoints[1 + 2 * phase];
+                    tempEndPoint2 = endPoints[2 + 2 * phase];
+                }
+            }
+            else
+            {
+                if (remainder > 0)
+                {
+                    int i = remainder - 1;
+                    tempEndPoint1 = endPoints[1 + 2 * remainder - i];
+                    tempEndPoint2 = endPoints[2 + 2 * remainder - i];
+                    i--;
+                }
+            }
+
+        }
+        if (positionInPhase < phaseTotal / 2)
+        {
+            spawnedEnemy.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint1;
+            spawnedEnemy.GetComponent<Movement_Generic>().leavePoint = tempEndPoint1;
+        }
+        else
+        {
+            spawnedEnemy.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint2;
+            spawnedEnemy.GetComponent<Movement_Generic>().leavePoint = tempEndPoint2;
+        }
+
+        currentSpawnPoint1 = tempSpawnPoint1;
+        currentSpawnPoint2 = tempSpawnPoint2;
+    }
 
     void assignParent()
     {
@@ -32,31 +127,31 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             case 0:
                 //Debug.Log("Spawned a basic!");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyBasic, gameDatabaseScript.enemyBasic.GetComponent<Movement_Generic>().spawnPoint.transform.position, Quaternion.identity);
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyBasic);
                 enemyInstance.name = "Basic";
                 break;
 
             case 1:
                 //Debug.Log ("Spawned a cone!");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyCone, gameDatabaseScript.enemyCone.GetComponent<Movement_Generic>().spawnPoint.transform.position, Quaternion.identity);
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyCone);
                 enemyInstance.name = "Cone";
                 break;
 
             case 2:
                 //Debug.Log ("Spawned a graze!");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyGraze, gameDatabaseScript.enemyGraze.GetComponent<Movement_Generic>().spawnPoint.transform.position, Quaternion.identity);
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyGraze);
                 enemyInstance.name = "Graze";
                 break;
 
             case 8:
-                Debug.Log("Spawned a miniBoss1!");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyMiniBoss1, gameDatabaseScript.enemyMiniBoss1.GetComponent<Movement_Generic>().spawnPoint.transform.position, Quaternion.identity);
+                //Debug.Log("Spawned a miniBoss1!");
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyMiniBoss1);
                 enemyInstance.name = "MiniBoss1";
                 break;
 
             case 16:
-                Debug.Log("Spawned boss1");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyBoss1, gameDatabaseScript.enemyBoss1.GetComponent<Movement_Generic>().spawnPoint.transform.position, Quaternion.identity);
+                //Debug.Log("Spawned boss1");
+                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyBoss1);
                 enemyInstance.name = "Boss1";
                 break;
 
@@ -64,6 +159,7 @@ public class EnemySpawnManager : MonoBehaviour {
                 Debug.LogError("I did not spawn anything with the number " + objectToSpawn);
                 break;
         }
+        setStartingPoint(enemyInstance);
         assignParent();
     }
 
@@ -75,106 +171,8 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             movementScript.resetOffset();
         }
-        Debug.Log("getSpecificContentAtIndex " + positionInPhase + " in phase " + gameDatabaseScript.getCurrentLevelPhase() + " is " + levelScript.getSpecificContentAtIndex(gameDatabaseScript.getCurrentLevelPhase(), positionInPhase));
+        //Debug.Log("getSpecificContentAtIndex " + positionInPhase + " in phase " + gameDatabaseScript.getCurrentLevelPhase() + " is " + levelScript.getSpecificContentAtIndex(gameDatabaseScript.getCurrentLevelPhase(), positionInPhase));
         spawnEnemy(levelScript.getSpecificContentAtIndex(gameDatabaseScript.getCurrentLevelPhase(), positionInPhase));
-    }
-
-    void setStartingPoint()
-    {
-        //This may not be future proof depending on how you design the levels. It implies you won't have more spawn points than these per level.
-        GameObject tempSpawnPoint1 = null;
-        GameObject tempSpawnPoint2 = null;
-        GameObject tempLeavePoint1 = null;
-        GameObject tempLeavePoint2 = null;
-        switch(gameDatabaseScript.getCurrentLevelPhase())
-        {
-            case 0:
-                tempSpawnPoint1 = GameObject.Find("AEnemySpawnPoint1");
-                tempSpawnPoint2 = GameObject.Find("EnemySpawnPoint2");
-                tempLeavePoint1 = GameObject.Find("EnemyEndPoint1/3");
-                tempLeavePoint2 = GameObject.Find("EnemyEndPoint2/4");
-                break;
-            case 1:
-                tempSpawnPoint1 = GameObject.Find("EnemySpawnPoint3");
-                tempSpawnPoint2 = GameObject.Find("EnemySpawnPoint4");
-                tempLeavePoint1 = GameObject.Find("EnemyEndPoint1/3");
-                tempLeavePoint2 = GameObject.Find("EnemyEndPoint2/4");
-                break;
-            case 2:
-                tempSpawnPoint1 = GameObject.Find("EnemySpawnPoint5");
-                tempSpawnPoint2 = GameObject.Find("EnemySpawnPoint6");
-                tempLeavePoint1 = GameObject.Find("EnemyEndPoint6");
-                tempLeavePoint2 = GameObject.Find("EnemyEndPoint5");
-                break;
-            case 3:
-                tempSpawnPoint1 = GameObject.Find("EnemySpawnPoint7");
-                tempSpawnPoint2 = GameObject.Find("EnemySpawnPoint8");
-                tempLeavePoint1 = GameObject.Find("EnemyEndPoint7");
-                tempLeavePoint2 = GameObject.Find("EnemyEndPoint8");
-                break;
-            case 4:
-            case 9:
-                tempSpawnPoint1 = GameObject.Find("BossSpawnPoint");
-                tempLeavePoint1 = GameObject.Find("ABossLeavePoint");
-                break;
-            case 5:
-                tempSpawnPoint1 = GameObject.Find("EnemySpawnPoint7");
-                tempSpawnPoint2 = GameObject.Find("EnemySpawnPoint8");
-                tempLeavePoint1 = GameObject.Find("EnemyEndPoint7");
-                tempLeavePoint2 = GameObject.Find("EnemyEndPoint8");
-                break;
-            case 6:
-                tempSpawnPoint1 = GameObject.Find("AEnemySpawnPoint1");
-                tempSpawnPoint2 = GameObject.Find("EnemySpawnPoint2");
-                tempLeavePoint1 = GameObject.Find("EnemyEndPoint1/3");
-                tempLeavePoint2 = GameObject.Find("EnemyEndPoint2/4");
-                break;
-            case 7:
-                tempSpawnPoint1 = GameObject.Find("EnemySpawnPoint3");
-                tempSpawnPoint2 = GameObject.Find("EnemySpawnPoint4");
-                tempLeavePoint1 = GameObject.Find("EnemyEndPoint1/3");
-                tempLeavePoint2 = GameObject.Find("EnemyEndPoint2/4");
-                break;
-            case 8:
-                tempSpawnPoint1 = GameObject.Find("EnemySpawnPoint5");
-                tempSpawnPoint2 = GameObject.Find("EnemySpawnPoint6");
-                tempLeavePoint1 = GameObject.Find("EnemyEndPoint6");
-                tempLeavePoint2 = GameObject.Find("EnemyEndPoint5");
-                break;
-        }
-        if (gameDatabaseScript.getCurrentLevelPhase() == 4)
-        {
-            gameDatabaseScript.enemyMiniBoss1.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint1;
-            gameDatabaseScript.enemyMiniBoss1.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint1;
-            return;
-        }
-        if (gameDatabaseScript.getCurrentLevelPhase() == 9)
-        {
-            gameDatabaseScript.enemyBoss1.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint1;
-            gameDatabaseScript.enemyBoss1.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint1;
-            return;
-        }
-        if (positionInPhase < phaseTotal / 2)
-        {
-            gameDatabaseScript.enemyBasic.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint1;
-            gameDatabaseScript.enemyBasic.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint1;
-            gameDatabaseScript.enemyCone.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint1;
-            gameDatabaseScript.enemyCone.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint1;
-            gameDatabaseScript.enemyGraze.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint1;
-            gameDatabaseScript.enemyGraze.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint1;
-        }
-        else
-        {
-            gameDatabaseScript.enemyBasic.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint2;
-            gameDatabaseScript.enemyBasic.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint2;
-            gameDatabaseScript.enemyCone.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint2;
-            gameDatabaseScript.enemyCone.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint2;
-            gameDatabaseScript.enemyGraze.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint2;
-            gameDatabaseScript.enemyGraze.GetComponent<Movement_Generic>().leavePoint = tempLeavePoint2;
-        }
-
-        currentSpawnPoint1 = tempSpawnPoint1;
-        currentSpawnPoint2 = tempSpawnPoint2;
     }
 
     private void moveToNextPhase()
@@ -196,13 +194,19 @@ public class EnemySpawnManager : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+        sorter = new Sorter();
         gameDatabaseScript = GetComponent<GameDatabase>();
         movementScript = gameDatabaseScript.enemyBasic.GetComponent<Movement_Generic>();
         levelScript = GetComponent<Level>();
         newPhaseTimerStore = newPhaseTimer;
         inbetweenSpawnTimerStore = inbetweenSpawnTimer;
         positionInPhase = 0;
-	}
+        spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
+        endPoints = GameObject.FindGameObjectsWithTag("EndPoint");
+        System.Array.Sort(spawnPoints, sorter);
+        System.Array.Sort(endPoints, sorter);
+        determineRatios();
+    }
 	
 	// Update is called once per frame
 	void Update ()
@@ -242,7 +246,7 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             if (inbetweenSpawnTimer <= 0)
             {
-                setStartingPoint();
+                //setStartingPoint();
                 spawnPattern();
                 positionInPhase++;
                 inbetweenSpawnTimer = inbetweenSpawnTimerStore;

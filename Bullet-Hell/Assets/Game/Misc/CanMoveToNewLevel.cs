@@ -4,9 +4,6 @@ using UnityEngine.SceneManagement;
 
 public class CanMoveToNewLevel : MonoBehaviour {
 
-    //private bool detectedBoss;
-    //private bool bossIsAlive;
-    //public float timeUntilNextLevel;
     private int currentLevel;
     private GameDatabase gameDatabaseScript;
 
@@ -14,8 +11,6 @@ public class CanMoveToNewLevel : MonoBehaviour {
     {
         currentLevel++;
         Debug.Log(currentLevel);
-        Destroy(GameObject.Find("Player"));
-        //TODO: Bring the player's power and points into the new level
         SceneManager.LoadScene(currentLevel);
     }
 

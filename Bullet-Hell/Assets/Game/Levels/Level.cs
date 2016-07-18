@@ -66,7 +66,7 @@ public class Level : MonoBehaviour {
             {
                 if (i == miniBossPhase)
                 {
-                    Debug.Log("Added MiniBoss1 in phase " + i + " and position " + j);
+                    //Debug.Log("Added MiniBoss1 in phase " + i + " and position " + j);
                     levelArray[i][0] = (int)enemyList.MiniBoss1;
                 }
                 else if(i == bossPhase)
