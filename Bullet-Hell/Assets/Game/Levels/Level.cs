@@ -17,7 +17,7 @@ public class Level : MonoBehaviour {
 
     public int getNumberOfPhases()
     {
-        return enemiesPerPhase.Length;
+        return levelArray.Length;
     }
     public int getPhaseLenght(int phaseNumber)
     {
@@ -109,10 +109,5 @@ public class Level : MonoBehaviour {
 	void Start () {
         levelDatabaseScript = GameObject.Find("SpawnManager").GetComponent<GameDatabase>();
         prepareArray();
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
 	}
 }

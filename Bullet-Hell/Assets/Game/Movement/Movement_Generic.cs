@@ -14,6 +14,7 @@ public class Movement_Generic : Movement {
 
     public override void setPath()
     {
+        //BUG: 2 enemies in the second half of all phases besides the first have too large of an offset
         //Debug.Log("Offset: " + offset);
         
         //This is how you change an iTween path node value

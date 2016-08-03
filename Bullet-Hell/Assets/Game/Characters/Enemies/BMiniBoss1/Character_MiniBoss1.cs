@@ -8,7 +8,6 @@ public class Character_MiniBoss1 : Character_Boss {
 
     public List<IFire> firePatternList;
 
-    private float invincibilityTimeStore;
     private GameObject blockInstance;
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -17,7 +16,6 @@ public class Character_MiniBoss1 : Character_Boss {
         {
             //Debug.Log("Ow! ; _ ;");
             decreaseHealth();
-            invincibilityTime = invincibilityTimeStore;
         }
     }
 
@@ -36,7 +34,6 @@ public class Character_MiniBoss1 : Character_Boss {
     // Use this for initialization
     void Start()
     {
-        invincibilityTime = invincibilityTimeStore;
         bossMovementScript = GetComponent<Movement_Boss>();
         pattern1Script = GetComponentInChildren<MiniBoss1_Pattern1>();
         pattern2Script = GetComponentInChildren<MiniBoss1_Pattern2>();

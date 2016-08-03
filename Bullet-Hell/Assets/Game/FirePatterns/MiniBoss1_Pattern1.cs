@@ -75,6 +75,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
             cooldownTimer -= Time.deltaTime;
         }
 
+        //BUG: Fires immediately upon spawning
         if (cooldownTimer <= 0)
         {
             firePattern();
