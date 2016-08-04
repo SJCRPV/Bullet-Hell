@@ -80,7 +80,6 @@ public class EnemySpawnManager : MonoBehaviour {
 
     GameObject[] determineStartingPoint(ref int cyclesRun, String whichPoints)
     {
-        //BUG: phase 8 goes OOB for the spawnPoints
         //CLEANING: See if you can find a more intuitive way of knowing which array you're talking about without increasing the number of passed variables
         GameObject[] points;
         GameObject[] tempPoints = new GameObject[2];
@@ -195,11 +194,13 @@ public class EnemySpawnManager : MonoBehaviour {
         if (positionInPhase < phaseTotal / 2)
         {
             spawnedEnemy.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint1;
+            spawnedEnemy.transform.position = tempSpawnPoint1.transform.position;
             spawnedEnemy.GetComponent<Movement_Generic>().leavePoint = tempEndPoint1;
         }
         else
         {
             spawnedEnemy.GetComponent<Movement_Generic>().spawnPoint = tempSpawnPoint2;
+            spawnedEnemy.transform.position = tempSpawnPoint2.transform.position;
             spawnedEnemy.GetComponent<Movement_Generic>().leavePoint = tempEndPoint2;
         }
 
