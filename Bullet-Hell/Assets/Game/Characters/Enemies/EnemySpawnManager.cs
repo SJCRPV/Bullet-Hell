@@ -16,6 +16,8 @@ public class Sorter : IComparer
 
 public class EnemySpawnManager : MonoBehaviour {
 
+    Dictionary<string, int> bossPhaseDictionary;
+
     [HideInInspector]
     public GameDatabase gameDatabaseScript;
     [HideInInspector]
@@ -293,9 +295,16 @@ public class EnemySpawnManager : MonoBehaviour {
         gameDatabaseScript = GetComponent<GameDatabase>();
         movementScript = gameDatabaseScript.enemyBasic.GetComponent<Movement_Generic>();
         levelScript = GetComponent<Level>();
+        bossPhaseDictionary = new Dictionary<string, int>();
+        bossPhaseDictionary.Add("BeforeMiniBoss", levelScript.getMiniBossPhase() - 1);
+        bossPhaseDictionary.Add("MiniBoss", levelScript.getMiniBossPhase());
+        bossPhaseDictionary.Add("BeforeBoss", levelScript.getBossPhase() - 1);
+        bossPhaseDictionary.Add("Boss", levelScript.getBossPhase());
+
         newPhaseTimerStore = newPhaseTimer;
         inbetweenSpawnTimerStore = inbetweenSpawnTimer;
         positionInPhase = 0;
+
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
         Debug.Log("spawnPoints.Length: " + spawnPoints.Length);
         endPoints = GameObject.FindGameObjectsWithTag("EndPoint");
@@ -304,30 +313,28 @@ public class EnemySpawnManager : MonoBehaviour {
         System.Array.Sort(spawnPoints, sorter);
         System.Array.Sort(endPoints, sorter);
         System.Array.Sort(bossPoints, sorter);
+
         determineRatios();
     }
-	
+
 	// Update is called once per frame
 	void Update ()
     {
-        switch(gameDatabaseScript.getCurrentLevelPhase())
-        {
-            case 3:
-            case 4:
-            case 8:
-            case 9:
-                //Debug.Log("Current phase: " + gameDatabaseScript.getCurrentLevelPhase());
-                //Debug.Log("currentSpawnPoint1 child count: " + currentSpawnPoint1.transform.childCount);
-                //Debug.Log("currentSpawnPoint2 child count: " + currentSpawnPoint2.transform.childCount);
-                if (currentSpawnPoint1.transform.childCount == 0 && currentSpawnPoint2.transform.childCount == 0)
-                {
-                    newPhaseTimer -= Time.deltaTime;
-                }
-                break;
+        bool isInAnyBossRelevantPhase = ((gameDatabaseScript.getCurrentLevelPhase() == levelScript.getMiniBossPhase() - 1) || (gameDatabaseScript.getCurrentLevelPhase() == levelScript.getMiniBossPhase()) || (gameDatabaseScript.getCurrentLevelPhase() == levelScript.getBossPhase() - 1) || (gameDatabaseScript.getCurrentLevelPhase() == levelScript.getBossPhase()));
 
-            default:
+        if(isInAnyBossRelevantPhase)
+        {
+            //Debug.Log("Current phase: " + gameDatabaseScript.getCurrentLevelPhase());
+            //Debug.Log("currentSpawnPoint1 child count: " + currentSpawnPoint1.transform.childCount);
+            //Debug.Log("currentSpawnPoint2 child count: " + currentSpawnPoint2.transform.childCount);
+            if (currentSpawnPoint1.transform.childCount == 0 && currentSpawnPoint2.transform.childCount == 0)
+            {
                 newPhaseTimer -= Time.deltaTime;
-                break;
+            }
+        }
+        else
+        {
+            newPhaseTimer -= Time.deltaTime;
         }
 
         if (newPhaseTimer <= 0 && gameDatabaseScript.getCurrentLevelPhase() != 9)
@@ -335,7 +342,7 @@ public class EnemySpawnManager : MonoBehaviour {
             moveToNextPhase();
             positionInPhase = 0;
         }
-        else if (newPhaseTimer <= 0 && gameDatabaseScript.getCurrentLevelPhase() == 9)
+        else if ((newPhaseTimer <= 0 && gameDatabaseScript.getCurrentLevelPhase() == 9) || Input.GetKey(KeyCode.PageUp))
         {
             GameObject.Find("Main Camera").SendMessage("loadNextLevel");
         }

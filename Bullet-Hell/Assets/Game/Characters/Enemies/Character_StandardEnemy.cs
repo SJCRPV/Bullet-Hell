@@ -40,6 +40,9 @@ public class Character_StandardEnemy : Character
                 case 8:
                     blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
                     break;
+                default:
+                    Debug.LogError("Invalid number. I don't know what block to create with this. 'Tried to resolve the case for " + i);
+                    break;
             }
             blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-100f + i * 40, 150), transform.position);
         }

@@ -14,7 +14,7 @@ public class CanMoveToNewLevel : MonoBehaviour {
         SceneManager.LoadScene(currentLevel);
     }
 
-    //// Use this for initialization
+    // Use this for initialization
     void Start()
     {
         gameDatabaseScript = GameObject.Find("SpawnManager").GetComponent<GameDatabase>();
