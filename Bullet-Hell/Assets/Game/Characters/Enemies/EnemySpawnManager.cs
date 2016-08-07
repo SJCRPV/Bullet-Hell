@@ -87,7 +87,6 @@ public class EnemySpawnManager : MonoBehaviour {
         GameObject[] tempPoints = new GameObject[2];
         int cycles;
         int remainder = adjustPhaseValue(levelScript.getNumberOfPhases() - gameDatabaseScript.getCurrentLevelPhase());
-        int phase = adjustPhaseValue(gameDatabaseScript.getCurrentLevelPhase());
         int selectGOinArrayFormulaAdjusted = -1;
 
         if (whichPoints.Equals("spawn", StringComparison.OrdinalIgnoreCase))
@@ -217,7 +216,6 @@ public class EnemySpawnManager : MonoBehaviour {
 
     void spawnEnemy(int objectToSpawn)
     {
-        //BUG: Spawning starts at (0,0) coordinates
         switch (objectToSpawn)
         {
             case 0:
@@ -295,11 +293,10 @@ public class EnemySpawnManager : MonoBehaviour {
         gameDatabaseScript = GetComponent<GameDatabase>();
         movementScript = gameDatabaseScript.enemyBasic.GetComponent<Movement_Generic>();
         levelScript = GetComponent<Level>();
-        bossPhaseDictionary = new Dictionary<string, int>();
-        bossPhaseDictionary.Add("BeforeMiniBoss", levelScript.getMiniBossPhase() - 1);
-        bossPhaseDictionary.Add("MiniBoss", levelScript.getMiniBossPhase());
-        bossPhaseDictionary.Add("BeforeBoss", levelScript.getBossPhase() - 1);
-        bossPhaseDictionary.Add("Boss", levelScript.getBossPhase());
+        if(levelScript == null)
+        {
+            Debug.LogError("levelScript is null. Could not get the compoenent!");
+        }
 
         newPhaseTimerStore = newPhaseTimer;
         inbetweenSpawnTimerStore = inbetweenSpawnTimer;

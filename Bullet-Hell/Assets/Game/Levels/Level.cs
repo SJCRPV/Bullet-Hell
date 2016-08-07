@@ -9,15 +9,16 @@ public class Level : MonoBehaviour {
     private int miniBossPhase;
     [SerializeField]
     private int bossPhase;
-    private int[][] levelArray;
     [SerializeField]
     private int[] enemiesPerPhase;
+
+    private int[][] levelArray;
     private GameDatabase levelDatabaseScript;
 
-
+    //CONSIDER: Make a get method that returns the full lenght of the 2D array
     public int getNumberOfPhases()
     {
-        return levelArray.Length;
+        return levelArray.GetLength(0);
     }
     public int getPhaseLenght(int phaseNumber)
     {

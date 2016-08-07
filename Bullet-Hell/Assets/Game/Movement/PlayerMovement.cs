@@ -2,7 +2,8 @@
 using System.Collections;
 
 public class PlayerMovement : MonoBehaviour {
-	
+	//TODO: Implement the bomb key
+    //CLEANING: Refactor this to reflect what it actually does. It's PlayerInput
 	public float speed = 5f;
 	Renderer playerRend;
 
@@ -13,6 +14,7 @@ public class PlayerMovement : MonoBehaviour {
 
 	void Movement()
 	{
+        //FIX: Movement is too snappy. Make it smoother so it can allow more precise key presses.
 		Vector3 pos = transform.position;
 
 		//If you press shift, the speed halves

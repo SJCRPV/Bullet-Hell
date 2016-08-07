@@ -11,7 +11,6 @@ public class Boss1_Pattern1 : MonoBehaviour, IFire {
 
 	private GameObject bulletInstance;
 	private Quaternion bulletRotation;
-    private Movement_Generic genericMovementScript;
     private Movement_Boss bossMovementScript;
 	private float angleDispersionStore;
 	private float cooldownTimerStore;
@@ -72,7 +71,6 @@ public class Boss1_Pattern1 : MonoBehaviour, IFire {
 
     public void assignMovement()
     {
-        genericMovementScript = gameObject.GetComponentInParent<Movement_Generic>();
         bossMovementScript = gameObject.GetComponentInParent<Movement_Boss>();
     }
 

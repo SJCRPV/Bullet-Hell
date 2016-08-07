@@ -85,7 +85,6 @@
     <Compile Include="Assets\Game\FirePatterns\Boss1_Pattern1.cs" />
     <Compile Include="Assets\Game\FirePatterns\Boss1_Pattern2.cs" />
     <Compile Include="Assets\Game\FirePatterns\FireBasic.cs" />
-    <Compile Include="Assets\Game\FirePatterns\FireBoss1.cs" />
     <Compile Include="Assets\Game\FirePatterns\FireCone.cs" />
     <Compile Include="Assets\Game\FirePatterns\FireExtraBulletSource.cs" />
     <Compile Include="Assets\Game\FirePatterns\FireGraze.cs" />

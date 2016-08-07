@@ -4,7 +4,8 @@ using System;
 
 public class Character_StandardEnemy : Character
 {
-    BlockInteraction blockInteractionScript;
+    //CONSIDER: You might not need this script
+    //BlockInteraction blockInteractionScript;
 
     private float invincibilityTimeStore;
     private GameObject blockInstance;
@@ -52,8 +53,7 @@ public class Character_StandardEnemy : Character
     // Use this for initialization
     void Start()
     {
-        invincibilityTime = invincibilityTimeStore;
-        blockInteractionScript = GetComponent<BlockInteraction>();
+        invincibilityTimeStore = invincibilityTime;
     }
 
     void Update()

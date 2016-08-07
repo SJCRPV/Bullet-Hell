@@ -63,7 +63,7 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
         {
             isFiring = false;
             currentAngle = 180;
-            betweenBulletSpawnTimer = betweenBulletSpawnTimerStore;
+            betweenBulletSpawnTimerStore = betweenBulletSpawnTimer;
         }
         else
         {

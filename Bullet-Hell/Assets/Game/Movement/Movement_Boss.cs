@@ -76,7 +76,7 @@ public class Movement_Boss : Movement {
 
     void moveToNextNodeTrio()
     {
-        if(currentNodeTrioInUse + 1 >= currentPath.Length)
+        if(currentNodeTrioInUse + 2 >= currentPath.Length)
         {
             currentNodeTrioInUse = 0;
         }

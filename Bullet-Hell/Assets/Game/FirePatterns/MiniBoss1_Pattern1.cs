@@ -3,10 +3,11 @@ using System.Collections;
 using System;
 
 public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
-
+    //CLEANING: Update the variable declarations so that you don't have unnecessary public variables. Add get and set methods as well to compensate
     public GameObject bulletPrefab;
     public GameObject explodingBulletPrefab;
     public float startingDegrees;
+    public float cooldownTimer;
     public float maxDegrees;
     public float degreeIncreasePerIteration;
     public float movingTimeBetweenBursts;
@@ -14,7 +15,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
 
     private Movement_Generic genericMovementScript;
     private Movement_Boss bossMovementScript;
-    private float cooldownTimer;
+    private float cooldownTimerStore;
     private float startingDegreesStore;
     private GameObject bulletInstance;
     private Quaternion bulletRotation;
@@ -29,7 +30,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
             bulletInstance.gameObject.layer = 11;
         }
         startingDegrees = startingDegreesStore;
-        cooldownTimer = stillTimeBetweenBursts * 6;
+        cooldownTimer = cooldownTimerStore;
     }
     void FireStill()
     {
@@ -42,7 +43,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
 
     public void firePattern()
     {
-        if(bossMovementScript.getIsMoving() == true)
+        if(bossMovementScript.getIsMoving() == true && genericMovementScript.getIsMoving() == false)
         {
             FireMoving();
             Invoke("FireMoving", movingTimeBetweenBursts);
@@ -64,6 +65,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
     void Start()
     {
         startingDegreesStore = startingDegrees;
+        cooldownTimerStore = cooldownTimer;
         assignMovement();
     }
 
@@ -75,7 +77,6 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
             cooldownTimer -= Time.deltaTime;
         }
 
-        //BUG: Fires immediately upon spawning
         if (cooldownTimer <= 0)
         {
             firePattern();

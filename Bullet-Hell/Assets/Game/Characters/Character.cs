@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 
 public abstract class Character : MonoBehaviour {
-
+    //CLEANING: Refactor this to make public variables private and make gets and sets
     public int healthPoints;
     public float invincibilityTime;
     public GameObject powerBlock;

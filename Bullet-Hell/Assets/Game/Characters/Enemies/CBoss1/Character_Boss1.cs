@@ -40,7 +40,7 @@ public class Character_Boss1 : Character_Boss {
             {
                 Debug.LogError("Invalid number. I don't know what block to create with this. 'Tried to resolve the case for " + i);
             }
-            blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-100f + i * 40, 150), transform.position);
+            blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-200f + i * 20, 150), transform.position);
         }
         die();
     }

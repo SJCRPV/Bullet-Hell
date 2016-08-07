@@ -6,11 +6,10 @@ public abstract class Movement : MonoBehaviour {
     
     [HideInInspector]
     public iTweenPath path;
-    //I don't think I need _this_ particular pathName...
+    //CONSIDER: I don't think I need _this_ particular pathName...
     //public string pathName;
     public float speed;
     public static float offset;
-    public float timerUntilObjectLeaves;
     public static int scriptCount;
 
     private bool isMoving;

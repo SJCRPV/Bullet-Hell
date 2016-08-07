@@ -24,15 +24,15 @@ public class Character_MiniBoss1 : Character_Boss
     {
         for (int i = 0; i < 20; i++)
         {
-            if((i >= 1 && i < 5) || i >= 15 )
+            if ((i >= 1 && i < 5) || i >= 15 )
             {
                 blockInstance = (GameObject)Instantiate(pointBlock, transform.position, Quaternion.identity);
             }
-            else if(i >= 5 && i < 15)
+            else if (i >= 5 && i < 15)
             {
                 blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
             }
-            else if(i == 0)
+            else if (i == 0)
             {
                 blockInstance = (GameObject)Instantiate(extraLifeBlock, transform.position, Quaternion.identity);
             }
@@ -40,7 +40,7 @@ public class Character_MiniBoss1 : Character_Boss
             {
                 Debug.LogError("Invalid number. I don't know what block to create with this. 'Tried to resolve the case for " + i);
             }
-            blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-100f + i * 40, 150), transform.position);
+            blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-200f + i * 20, 150), transform.position);
         }
         die();
     }
@@ -48,6 +48,7 @@ public class Character_MiniBoss1 : Character_Boss
     public override void swapPatterns()
     {
         pattern1Script.enabled = false;
+        bossMovementScript.setReturningToStart();
         pattern2Script.enabled = true;
     }
 
@@ -55,6 +56,7 @@ public class Character_MiniBoss1 : Character_Boss
     void Start()
     {
         bossMovementScript = GetComponent<Movement_Boss>();
+        genericMovementScript = GetComponent<Movement_Generic>();
         pattern1Script = GetComponentInChildren<MiniBoss1_Pattern1>();
         pattern2Script = GetComponentInChildren<MiniBoss1_Pattern2>();
     }
@@ -62,6 +64,11 @@ public class Character_MiniBoss1 : Character_Boss
     void Update()
     {
         invincibilityTime -= Time.deltaTime;
+        if (genericMovementScript.isActiveAndEnabled && genericMovementScript.getIsMoving() == false)
+        {
+            bossMovementScript.enabled = true;
+            genericMovementScript.enabled = false;
+        }
         if (getHealth() <= 0)
         {
             Debug.Log(getHealth());
@@ -69,7 +76,6 @@ public class Character_MiniBoss1 : Character_Boss
         }
         else if (getHealth() <= 50 && bossMovementScript.getCurrentPathNum() == 0)
         {
-            bossMovementScript.moveToNextPath();
             swapPatterns();
         }
     }
