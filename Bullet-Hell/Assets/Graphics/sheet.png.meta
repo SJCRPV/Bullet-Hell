@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1470579968
+timeCreated: 1470837282
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -30,6 +30,7 @@ TextureImporter:
     21300046: zigzagBullet
     21300048: miniBoss2
     21300050: Boss2
+    21300052: missile1
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -5590,6 +5591,17 @@ TextureImporter:
         - {x: 38.5, y: -39}
         - {x: 48.5, y: 19}
         - {x: 48.5, y: 42}
+    - name: missile1
+      rect:
+        serializedVersion: 2
+        x: 856
+        y: 385
+        width: 9
+        height: 37
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
     outline: []
   spritePackingTag: 
   userData: 

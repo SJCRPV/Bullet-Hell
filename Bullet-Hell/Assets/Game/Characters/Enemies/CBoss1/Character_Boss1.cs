@@ -7,49 +7,18 @@ public class Character_Boss1 : Character_Boss {
     Boss1_Pattern1 pattern1Script;
     Boss1_Pattern2 pattern2Script;
 
-    public List<IFire> firePatternList;
-
-    private GameObject blockInstance;
-
-    void OnTriggerEnter2D(Collider2D collider)
-    {
-        if (invincibilityTime <= 0)
-        {
-            //Debug.Log("Ow! ; _ ;");
-            decreaseHealth();
-        }
-    }
-
-    public override void explode()
-    {
-        for (int i = 0; i < 20; i++)
-        {
-            if ((i >= 1 && i < 5) || i >= 15)
-            {
-                blockInstance = (GameObject)Instantiate(pointBlock, transform.position, Quaternion.identity);
-            }
-            else if (i >= 5 && i < 15)
-            {
-                blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
-            }
-            else if (i == 0)
-            {
-                blockInstance = (GameObject)Instantiate(extraLifeBlock, transform.position, Quaternion.identity);
-            }
-            else
-            {
-                Debug.LogError("Invalid number. I don't know what block to create with this. 'Tried to resolve the case for " + i);
-            }
-            blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-200f + i * 20, 150), transform.position);
-        }
-        die();
-    }
-
     public override void swapPatterns()
     {
-        pattern1Script.enabled = false;
-        bossMovementScript.setReturningToStart();
-        pattern2Script.enabled = true;
+        if (bossMovementScript.getCurrentPathNum() == 0)
+        {
+            pattern1Script.enabled = false;
+            bossMovementScript.setReturningToStart();
+            pattern2Script.enabled = true;
+        }
+        else
+        {
+            Debug.LogError("Tried to set the pattern for the path nº " + bossMovementScript.getCurrentPathNum());
+        }
     }
 
     // Use this for initialization
@@ -68,12 +37,13 @@ public class Character_Boss1 : Character_Boss {
             bossMovementScript.enabled = true;
             genericMovementScript.enabled = false;
         }
-        if (getHealth() <= 0)
+        if (getCurrentHealth() <= 0)
         {
-            Debug.Log(getHealth());
+            Debug.Log(getCurrentHealth());
             explode();
         }
-        else if (getHealth() <= 50 && bossMovementScript.getCurrentPathNum() == 0)
+        //CLEANING: This has a hardcoded value. Determine the ratio and use that instead.
+        else if (getCurrentHealth() <= getMaxHealth() / 2 && bossMovementScript.getCurrentPathNum() == 0)
         {
             swapPatterns();
         }
