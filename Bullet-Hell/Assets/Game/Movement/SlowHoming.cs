@@ -1,15 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class SlowHoming : MonoBehaviour {
 
-    [SerializeField]
     private float rotationSpeed;
+    private Transform playerTransform;
 
-    Transform playerTransform;
-
-
-    //From the get-go, each missile will track the player's position, but have a slow enough rotation that they won't be able to keep up. After their Y coor becomes equal or lower than the player's, they'll stop tracking.
+    public void setRotationSpeed(int newRotSpeed)
+    {
+        rotationSpeed = newRotSpeed;
+    }
 
     private void facePlayer()
     {
@@ -23,16 +24,23 @@ public class SlowHoming : MonoBehaviour {
     }
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+    {
         if(playerTransform == null)
         {
-            playerTransform = GameObject.Find("APlayer01").transform;
-        }
+            try
+            {
+                playerTransform = GameObject.Find("Player").transform;
+            }
+            catch{}
 
-	    if(transform.position.y >= playerTransform.position.y)
+        }
+        else
         {
-            facePlayer();
+            if (transform.position.y >= playerTransform.position.y)
+            {
+                facePlayer();
+            }
         }
 	}
 }

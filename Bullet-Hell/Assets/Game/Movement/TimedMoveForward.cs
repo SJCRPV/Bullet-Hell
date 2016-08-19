@@ -9,15 +9,25 @@ public class TimedMoveForward : MonoBehaviour {
 	public float deathTimer;
 	public float moveTimer;
 
+    public void setBulletSpeed(float newBulletSpeed)
+    {
+        bulletSpeed = newBulletSpeed;
+    }
+
+    public void setDeathTimer(float newDeathTimer)
+    {
+        deathTimer = newDeathTimer;
+    }
+
+    public void setMoveTimer(float newMoveTimer)
+    {
+        moveTimer = newMoveTimer;
+    }
+
     public void OnBecameInvisible()
     {
         Destroy(gameObject);
     }
-
-	void Start()
-	{
-		//boss1MovementScript = GetComponent<Boss1Movement>();
-	}
 
 	// Update is called once per frame
 	void Update () {

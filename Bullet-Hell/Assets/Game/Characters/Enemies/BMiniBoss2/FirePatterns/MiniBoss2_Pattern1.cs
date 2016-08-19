@@ -4,31 +4,29 @@ using System;
 
 public class MiniBoss2_Pattern1 : MonoBehaviour, IFire {
 
+    //CLEANING: Privatize any unnecessary public variables and make the necessary getters and setters to compliment it
     public GameObject missilePrefab;
     public float cooldownTimer;
     public float betweenBulletSpawnTimer;
-    public int numOfMissiles;
+    public int startingRotationDegrees;
+    public int maxRotationDegrees;
+    public int numMissiles;
+    public int missileRotationSpeed;
 
     private GameObject bulletInstance;
+    private SlowHoming slowHomingScript;
+    private TimedMoveForward timedMoveForwardScript;
     private Movement_Boss bossMovementScript;
     private Quaternion bulletRotation;
     private float cooldownTimerStore;
-    //private float betweenBulletSpawnTimerStore;
+    private int rotationDegreeIncrement;
     private bool isFiringLeft;
 
     private void fire()
     {
-        bulletRotation = Quaternion.identity;
-        if(isFiringLeft)
-        {
-            bulletRotation.eulerAngles = new Vector3(0, 0, -180);
-        }
-        else
-        {
-            bulletRotation.eulerAngles = new Vector3(0, 0, 180);
-        }
-        isFiringLeft = !isFiringLeft;
         bulletInstance = (GameObject)Instantiate(missilePrefab, transform.parent.position, bulletRotation);
+        slowHomingScript = bulletInstance.GetComponent<SlowHoming>();
+        slowHomingScript.setRotationSpeed(missileRotationSpeed);
         bulletInstance.gameObject.layer = 11;
     }
 
@@ -39,8 +37,18 @@ public class MiniBoss2_Pattern1 : MonoBehaviour, IFire {
 
     public void firePattern()
     {
-        for(int i = 0; i < numOfMissiles; i++)
+        bulletRotation = Quaternion.identity;
+        for (int i = 0; i < numMissiles; i += rotationDegreeIncrement)
         {
+            if (isFiringLeft)
+            {
+                bulletRotation.eulerAngles = new Vector3(0, 0, -(i * rotationDegreeIncrement));
+            }
+            else
+            {
+                bulletRotation.eulerAngles = new Vector3(0, 0, (i * rotationDegreeIncrement));
+            }
+            isFiringLeft = !isFiringLeft;
             Invoke("fire", betweenBulletSpawnTimer * i);
         }
     }
@@ -50,6 +58,7 @@ public class MiniBoss2_Pattern1 : MonoBehaviour, IFire {
         cooldownTimerStore = cooldownTimer;
         bossMovementScript = GetComponent<Movement_Boss>();
         isFiringLeft = true;
+        rotationDegreeIncrement = maxRotationDegrees / numMissiles;
 	}
 	
 	// Update is called once per frame
