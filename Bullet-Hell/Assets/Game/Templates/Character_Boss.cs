@@ -49,4 +49,9 @@ public abstract class Character_Boss : Character {
     {
         SendMessage("moveToNextPath");
     }
+
+    protected new void Start()
+    {
+        base.Start();
+    }
 }

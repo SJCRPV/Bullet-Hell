@@ -31,7 +31,8 @@ public class Character_MiniBoss2 : Character_Boss
     }
 
     // Use this for initialization
-    void Start () {
+    protected new void Start () {
+        base.Start();
         bossMovementScript = GetComponent<Movement_Boss>();
         genericMovementScript = GetComponent<Movement_Generic>();
         pattern1Script = GetComponentInChildren<MiniBoss2_Pattern1>();
@@ -47,13 +48,13 @@ public class Character_MiniBoss2 : Character_Boss
             bossMovementScript.enabled = true;
             genericMovementScript.enabled = false;
         }
+
         if (getCurrentHealth() <= 0)
         {
             Debug.Log(getCurrentHealth());
             explode();
         }
-        //FIX: The ratios aren't properly set. This is just temporary
-        else if((getCurrentHealth() <= getMaxHealth() / 3 && bossMovementScript.getCurrentPathNum() == 0) || (getCurrentHealth() <= (getMaxHealth() / 3) * 2 && bossMovementScript.getCurrentPathNum() == 1))
+        else if((getCurrentHealth() <= (getMaxHealth() / 3) * 2 && bossMovementScript.getCurrentPathNum() == 0) || (getCurrentHealth() <= (getMaxHealth() / 3) && bossMovementScript.getCurrentPathNum() == 1))
         {
             swapPatterns();
         }

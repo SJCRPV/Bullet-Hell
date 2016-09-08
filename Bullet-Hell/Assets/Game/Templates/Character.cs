@@ -44,7 +44,8 @@ public abstract class Character : MonoBehaviour {
     }
 
 	// Use this for initialization
-	void Start () {
+	protected void Start () {
         maxHealth = healthPoints;
+        Debug.Log("MaxHealth is now " + maxHealth);
 	}
 }

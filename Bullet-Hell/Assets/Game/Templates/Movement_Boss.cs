@@ -23,7 +23,7 @@ public class Movement_Boss : Movement {
     {
         return currentPathNum;
     }
-    public int getCurrentNodePairInUse()
+    public int getCurrentNodeTrioInUse()
     {
         return currentNodeTrioInUse;
     }
@@ -86,7 +86,6 @@ public class Movement_Boss : Movement {
     void move()
     {
         currentNodeTrioComplete += pathPercentIncrease * Time.deltaTime;
-        //If you put currentPath isntead of currentNodePair, it'll traverse the entire path with the curves.
         iTween.PutOnPath(gameObject, currentNodeTrio, currentNodeTrioComplete);
 
         if (currentNodeTrioComplete >= 1f)

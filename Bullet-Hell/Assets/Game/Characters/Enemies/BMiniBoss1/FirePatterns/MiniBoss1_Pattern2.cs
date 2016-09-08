@@ -50,17 +50,17 @@ public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
 
     public void firePattern()
     {
-        if(bossMovementScript.getCurrentNodePairInUse() == 1 || bossMovementScript.getCurrentNodePairInUse() == 3 || bossMovementScript.getCurrentNodePairInUse() == 5)
+        if(bossMovementScript.getCurrentNodeTrioInUse() == 1 || bossMovementScript.getCurrentNodeTrioInUse() == 3 || bossMovementScript.getCurrentNodeTrioInUse() == 5)
         {
             fireLong();
         }
-        else if(bossMovementScript.getCurrentNodePairInUse() == 2 || bossMovementScript.getCurrentNodePairInUse() == 4 || bossMovementScript.getCurrentNodePairInUse() == 6)
+        else if(bossMovementScript.getCurrentNodeTrioInUse() == 2 || bossMovementScript.getCurrentNodeTrioInUse() == 4 || bossMovementScript.getCurrentNodeTrioInUse() == 6)
         {
             fireQuick();
         }
         else
         {
-            Debug.LogError("I don't know what to fire with the number " + bossMovementScript.getCurrentNodePairInUse());
+            Debug.LogError("I don't know what to fire with the number " + bossMovementScript.getCurrentNodeTrioInUse());
         }
     }
 

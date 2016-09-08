@@ -98,6 +98,7 @@
     <Compile Include="Assets\Game\Characters\Player\ShowEnlargedCollider.cs" />
     <Compile Include="Assets\Game\Characters\Player\ShowHitbox.cs" />
     <Compile Include="Assets\Game\Explode.cs" />
+    <Compile Include="Assets\Game\ExplodeDownwards.cs" />
     <Compile Include="Assets\Game\GameDatabase.cs" />
     <Compile Include="Assets\Game\Misc\CanMoveToNewLevel.cs" />
     <Compile Include="Assets\Game\Misc\DisplayText.cs" />

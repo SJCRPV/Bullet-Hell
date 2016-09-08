@@ -22,7 +22,9 @@ public class Character_Boss1 : Character_Boss {
     }
 
     // Use this for initialization
-    void Start () {
+    protected new void Start()
+    {
+        base.Start();
         bossMovementScript = GetComponent<Movement_Boss>();
         genericMovementScript = GetComponent<Movement_Generic>();
         pattern1Script = GetComponentInChildren<Boss1_Pattern1>();

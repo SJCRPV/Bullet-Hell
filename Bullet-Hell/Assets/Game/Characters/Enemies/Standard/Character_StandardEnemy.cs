@@ -51,8 +51,9 @@ public class Character_StandardEnemy : Character
     }
 
     // Use this for initialization
-    void Start()
+    protected new void Start()
     {
+        base.Start();
         invincibilityTimeStore = invincibilityTime;
     }
 

@@ -146,7 +146,9 @@ public class Character_Player : Character {
     }
 
     // Use this for initialization
-    void Start () {
+    protected new void Start()
+    {
+        base.Start();
         invincibilityTimeStore = invincibilityTime;
         blockInteractionScript = GetComponent<BlockInteraction>();
 	}
