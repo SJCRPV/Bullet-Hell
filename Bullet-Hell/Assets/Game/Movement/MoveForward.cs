@@ -3,9 +3,16 @@ using System.Collections;
 
 public class MoveForward : MonoBehaviour {
 
-	public float bulletSpeed;
-	public float deathTimer;
+    [SerializeField]
+	private float bulletSpeed;
+    [SerializeField]
+	private float deathTimer;
 	
+    public float getBulletSpeed()
+    {
+        return bulletSpeed;
+    }
+
     public void OnBecameInvisible()
     {
         Destroy(gameObject);

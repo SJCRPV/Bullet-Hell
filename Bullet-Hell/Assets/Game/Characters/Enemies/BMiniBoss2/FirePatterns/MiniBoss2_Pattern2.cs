@@ -10,18 +10,38 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
     private GameObject bulletPrefab;
     [SerializeField]
     private float cooldownTimer;
+    [SerializeField]
+    private int shotgunAngleSpread;
+    [SerializeField]
+    private float shotgunBulletSpread;
+    [SerializeField]
+    private int bulletsPerShotgunShot;
 
-    private float cooldownTimerStore;
     private GameObject bulletInstance;
     private GameObject sliceInstance;
     private iTweenPath path;
     private Movement_Generic genericMovementScript;
     private Movement_Boss bossMovementScript;
     private Vector3 firstPosition;
+    private float cooldownTimerStore;
+    private int startingShotgunAngle;
 
-    private void fireShotgun()
+    private void setBulletPath(iTweenPath path, int incrementMult)
     {
+        //Debug.Log("This is path: " + path.pathName);
+        //Debug.Log("This is incrementMult " + incrementMult);
+        //Debug.Log("This is shotgunBulletSpread " + shotgunBulletSpread);
+        path.nodes[0] = transform.position;
+        path.nodes[1] = new Vector3(transform.position.x + (shotgunBulletSpread * incrementMult), transform.position.y + (shotgunBulletSpread * incrementMult), transform.position.z);
+        Vector3[] temp = { path.nodes[0], path.nodes[1] };
+        iTween.MoveTo(bulletInstance, iTween.Hash("path", temp, "time", bulletInstance.GetComponent<MoveForward>().getBulletSpeed(), "easetype", iTween.EaseType.easeOutQuart));
+    }
 
+    private void fireShotgun(Vector3 newEulerAngles)
+    {
+        Quaternion tempRot = Quaternion.identity;
+        tempRot.eulerAngles = newEulerAngles;
+        bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, tempRot);
     }
 
     private void fireSlice(bool inverted)
@@ -39,16 +59,18 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         }
 
         sliceInstance = (GameObject)Instantiate(slicePrefab, temp, tempRot);
-        sliceInstance.transform.parent = gameObject.transform;
-        GetComponent<ExplodeDownwards>().setInverted();
+        sliceInstance.GetComponent<ExplodeDownwards>().setInverted();
     }
 
     public void firePattern()
     {
         Debug.Log(bossMovementScript.getCurrentNodeTrioInUse());
+        //If at the frontmost position
+        //FIX: As expected, this creates all 3 slices virtually instantly. Find a way to delay them enough that they're created seperately.
+        //IDEA: Have the slices *slowly* move downwards before exploding. That way you can keep instantiating the slices in front of the boss
         if(bossMovementScript.getCurrentNodeTrioInUse() == 2)
         {
-            Debug.Log("FireFireFire!");
+            //Debug.Log("FireFireFire!");
             Vector3 temp = transform.parent.position;
             fireSlice(false);
             Vector3.Lerp(temp, new Vector3(temp.x - 0.25f, temp.y), Time.deltaTime * 2);
@@ -59,7 +81,36 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         }
         else
         {
-            fireShotgun();
+            //FIX: After the first time, path values aren't properly assigned to the new bullets. Maybe it's because there might be two bullets with the same name?
+            //Debug.Log("Shotguuuuun Blast!");
+            Debug.Log("startingShotgunAngle is: " + startingShotgunAngle);
+            Debug.Log("shotgunAngleSpread is: " + shotgunAngleSpread);
+            iTweenPath[] path = new iTweenPath[30];
+            float tempSpread = shotgunBulletSpread;
+            for (int i = 0, bulletCounter = 0; i < bulletsPerShotgunShot; i++)
+            {
+                shotgunBulletSpread = tempSpread;
+
+                //Right
+                fireShotgun(new Vector3(0, 0, startingShotgunAngle));
+                path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
+                path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
+                setBulletPath(path[bulletCounter++], i);
+                shotgunBulletSpread *= -1;
+
+                //Left
+                fireShotgun(new Vector3(0, 0, startingShotgunAngle - shotgunAngleSpread));
+                path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
+                path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
+                setBulletPath(path[bulletCounter++], i);
+                shotgunBulletSpread = 0;
+                
+                //Front
+                fireShotgun(new Vector3(0, 0, shotgunBulletSpread + shotgunAngleSpread));
+                path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
+                path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
+                setBulletPath(path[bulletCounter++], i);
+            }
         }
     }
 
@@ -82,10 +133,11 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         path = gameObject.GetComponent<iTweenPath>();
         cooldownTimerStore = cooldownTimer;
         firstPosition = path.nodes[0];
-        Debug.Log(firstPosition);
         assignMovement();
+        startingShotgunAngle = 180;
 	}
 	
+    //FIX: Timers don't reset when Boss moves.
 	// Update is called once per frame
 	void Update () {
         if (genericMovementScript.getIsMoving() == false && bossMovementScript.getIsMoving() == false)
