@@ -32,9 +32,9 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         //Debug.Log("This is incrementMult " + incrementMult);
         //Debug.Log("This is shotgunBulletSpread " + shotgunBulletSpread);
         path.nodes[0] = transform.position;
-        path.nodes[1] = new Vector3(transform.position.x + (shotgunBulletSpread * incrementMult), transform.position.y + (shotgunBulletSpread * incrementMult), transform.position.z);
+        path.nodes[1] = new Vector3(transform.position.x, transform.position.y + (shotgunBulletSpread * incrementMult / 4), transform.position.z);
         Vector3[] temp = { path.nodes[0], path.nodes[1] };
-        iTween.MoveTo(bulletInstance, iTween.Hash("path", temp, "time", bulletInstance.GetComponent<MoveForward>().getBulletSpeed(), "easetype", iTween.EaseType.easeOutQuart));
+        iTween.MoveTo(bulletInstance, iTween.Hash("path", temp, "speed", bulletInstance.GetComponent<MoveForward>().getBulletSpeed() / 4, "easetype", iTween.EaseType.easeOutQuart));
     }
 
     private void fireShotgun(Vector3 newEulerAngles)
@@ -42,6 +42,37 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         Quaternion tempRot = Quaternion.identity;
         tempRot.eulerAngles = newEulerAngles;
         bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, tempRot);
+    }
+
+    private void unloadShell()
+    {
+        iTweenPath[] path = new iTweenPath[30];
+        float tempSpread = shotgunBulletSpread;
+        //Debug.Log("tempSpread is: " + tempSpread);
+        for (int i = 0, bulletCounter = 0; i < bulletsPerShotgunShot; i++)
+        {
+            //Right
+            fireShotgun(new Vector3(0, 0, startingShotgunAngle + shotgunAngleSpread));
+            path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
+            path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
+            setBulletPath(path[bulletCounter++], i);
+            //shotgunBulletSpread *= -1;
+
+            //Left
+            fireShotgun(new Vector3(0, 0, startingShotgunAngle - shotgunAngleSpread));
+            path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
+            path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
+            setBulletPath(path[bulletCounter++], i);
+            //shotgunBulletSpread = 0;
+
+            //Front
+            fireShotgun(new Vector3(0, 0, startingShotgunAngle));
+            path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
+            path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
+            setBulletPath(path[bulletCounter++], i);
+
+            shotgunBulletSpread = tempSpread;
+        }
     }
 
     private void fireSlice(bool inverted)
@@ -64,7 +95,7 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
 
     public void firePattern()
     {
-        Debug.Log(bossMovementScript.getCurrentNodeTrioInUse());
+        //Debug.Log(bossMovementScript.getCurrentNodeTrioInUse());
         //If at the frontmost position
         //FIX: As expected, this creates all 3 slices virtually instantly. Find a way to delay them enough that they're created seperately.
         //IDEA: Have the slices *slowly* move downwards before exploding. That way you can keep instantiating the slices in front of the boss
@@ -81,36 +112,16 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         }
         else
         {
-            //FIX: After the first time, path values aren't properly assigned to the new bullets. Maybe it's because there might be two bullets with the same name?
+            //FIX: It does not wait between shells
             //Debug.Log("Shotguuuuun Blast!");
-            Debug.Log("startingShotgunAngle is: " + startingShotgunAngle);
-            Debug.Log("shotgunAngleSpread is: " + shotgunAngleSpread);
-            iTweenPath[] path = new iTweenPath[30];
-            float tempSpread = shotgunBulletSpread;
-            for (int i = 0, bulletCounter = 0; i < bulletsPerShotgunShot; i++)
-            {
-                shotgunBulletSpread = tempSpread;
-
-                //Right
-                fireShotgun(new Vector3(0, 0, startingShotgunAngle));
-                path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
-                path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
-                setBulletPath(path[bulletCounter++], i);
-                shotgunBulletSpread *= -1;
-
-                //Left
-                fireShotgun(new Vector3(0, 0, startingShotgunAngle - shotgunAngleSpread));
-                path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
-                path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
-                setBulletPath(path[bulletCounter++], i);
-                shotgunBulletSpread = 0;
-                
-                //Front
-                fireShotgun(new Vector3(0, 0, shotgunBulletSpread + shotgunAngleSpread));
-                path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
-                path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
-                setBulletPath(path[bulletCounter++], i);
-            }
+            //Debug.Log("startingShotgunAngle is: " + startingShotgunAngle);
+            //Debug.Log("shotgunAngleSpread is: " + shotgunAngleSpread);
+            unloadShell();
+            startingShotgunAngle -= shotgunAngleSpread / 2;
+            unloadShell();
+            startingShotgunAngle += shotgunAngleSpread;
+            unloadShell();
+            startingShotgunAngle -= shotgunAngleSpread / 2;
         }
     }
 

@@ -22,9 +22,9 @@ public class ExplodeDownwards : MonoBehaviour {
     private void explode()
     {
         float heightInUnits = Math.Abs(spriteRenderer.bounds.max.y / spriteRenderer.bounds.min.y);
-        Debug.Log(heightInUnits);
+        //Debug.Log(heightInUnits);
         float heightRatio = Math.Abs(spriteRenderer.bounds.min.y / spriteRenderer.bounds.max.y);
-        Debug.Log(heightRatio);
+        //Debug.Log(heightRatio);
         Quaternion tempRot = Quaternion.identity;
         tempRot.eulerAngles = new Vector3(0, 0, 180);
 
