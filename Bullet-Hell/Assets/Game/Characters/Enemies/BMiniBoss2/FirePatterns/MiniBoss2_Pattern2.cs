@@ -11,9 +11,11 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
     [SerializeField]
     private float cooldownTimer;
     [SerializeField]
-    private int shotgunAngleSpread;
-    [SerializeField]
     private float shotgunBulletSpread;
+    [SerializeField]
+    private float timeBetweenShells;
+    [SerializeField]
+    private int shotgunAngleSpread;
     [SerializeField]
     private int bulletsPerShotgunShot;
 
@@ -44,53 +46,95 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, tempRot);
     }
 
-    private void unloadShell()
+    private void adjustStartingAngle(int counter)
     {
-        iTweenPath[] path = new iTweenPath[30];
-        float tempSpread = shotgunBulletSpread;
-        //Debug.Log("tempSpread is: " + tempSpread);
-        for (int i = 0, bulletCounter = 0; i < bulletsPerShotgunShot; i++)
+        switch (counter)
         {
-            //Right
-            fireShotgun(new Vector3(0, 0, startingShotgunAngle + shotgunAngleSpread));
-            path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
-            path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
-            setBulletPath(path[bulletCounter++], i);
-            //shotgunBulletSpread *= -1;
-
-            //Left
-            fireShotgun(new Vector3(0, 0, startingShotgunAngle - shotgunAngleSpread));
-            path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
-            path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
-            setBulletPath(path[bulletCounter++], i);
-            //shotgunBulletSpread = 0;
-
-            //Front
-            fireShotgun(new Vector3(0, 0, startingShotgunAngle));
-            path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
-            path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
-            setBulletPath(path[bulletCounter++], i);
-
-            shotgunBulletSpread = tempSpread;
+            case 0:
+                startingShotgunAngle -= shotgunAngleSpread;
+                break;
+            case 1:
+                startingShotgunAngle += shotgunAngleSpread * 2;
+                break;
+            case 2:
+                startingShotgunAngle -= shotgunAngleSpread;
+                break;
+            default:
+                Debug.LogError("Unexpected number. I received " + counter);
+                break;
         }
     }
 
-    private void fireSlice(bool inverted)
+    private IEnumerator unloadShell()
     {
-        Vector3 temp = transform.position;
-        temp.y -= 1;
-        Quaternion tempRot = Quaternion.identity;
-        if (inverted)
+        int counter = 0;
+        while (counter < 3)
         {
-            tempRot.eulerAngles = new Vector3(0, 0, 50);
-        }
-        else
-        {
-            tempRot.eulerAngles = new Vector3(0, 0, -50);
-        }
+            iTweenPath[] path = new iTweenPath[30];
+            float tempSpread = shotgunBulletSpread;
+            //Debug.Log("tempSpread is: " + tempSpread);
+            for (int i = 0, bulletCounter = 0; i < bulletsPerShotgunShot; i++)
+            {
+                //Right
+                fireShotgun(new Vector3(0, 0, startingShotgunAngle + shotgunAngleSpread));
+                path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
+                path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
+                setBulletPath(path[bulletCounter++], i);
 
-        sliceInstance = (GameObject)Instantiate(slicePrefab, temp, tempRot);
-        sliceInstance.GetComponent<ExplodeDownwards>().setInverted();
+                //Left
+                fireShotgun(new Vector3(0, 0, startingShotgunAngle - shotgunAngleSpread));
+                path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
+                path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
+                setBulletPath(path[bulletCounter++], i);
+
+                //Front
+                fireShotgun(new Vector3(0, 0, startingShotgunAngle));
+                path[bulletCounter] = bulletInstance.GetComponent<iTweenPath>();
+                path[bulletCounter].pathName = path[bulletCounter].pathName + bulletCounter;
+                setBulletPath(path[bulletCounter++], i);
+
+                shotgunBulletSpread = tempSpread;
+            }
+
+            adjustStartingAngle(counter++);
+            yield return new WaitForSeconds(timeBetweenShells);
+        }
+    }
+
+    private void wiggleToPos(Vector2 target)
+    {
+
+    }
+
+    private IEnumerator fireSlice(bool inverted)
+    {
+        //TODO: Make the boss wiggle left and right with each slice using the wiggleToPos function
+        int counter = 0;
+        while (counter < 3)
+        {
+            Vector3 temp = transform.position;
+            temp.y -= 1;
+            Quaternion tempRot = Quaternion.identity;
+            if (inverted)
+            {
+                tempRot.eulerAngles = new Vector3(0, 0, 50);
+            }
+            else
+            {
+                tempRot.eulerAngles = new Vector3(0, 0, -50);
+            }
+
+            sliceInstance = (GameObject)Instantiate(slicePrefab, temp, tempRot);
+            Debug.Log("inverted is: " + inverted);
+            if (inverted)
+            {
+                sliceInstance.GetComponent<ExplodeDownwards>().setInverted();
+            }
+
+            counter++;
+            inverted = !inverted;
+            yield return new WaitForSeconds(0.5f);
+        }
     }
 
     public void firePattern()
@@ -102,27 +146,25 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         if(bossMovementScript.getCurrentNodeTrioInUse() == 2)
         {
             //Debug.Log("FireFireFire!");
-            Vector3 temp = transform.parent.position;
-            fireSlice(false);
-            Vector3.Lerp(temp, new Vector3(temp.x - 0.25f, temp.y), Time.deltaTime * 2);
-            fireSlice(true);
-            Vector3.Lerp(transform.parent.position, new Vector3(temp.x + 0.25f, temp.y), Time.deltaTime * 2);
-            fireSlice(false);
-            Vector3.Lerp(transform.parent.position, temp, Time.deltaTime * 2);
+            //Vector3 temp = transform.parent.position;
+            //fireSlice(false);
+            //Vector3.Lerp(temp, new Vector3(temp.x - 0.25f, temp.y), Time.deltaTime * 2);
+            //fireSlice(true);
+            //Vector3.Lerp(transform.parent.position, new Vector3(temp.x + 0.25f, temp.y), Time.deltaTime * 2);
+            //fireSlice(false);
+            //Vector3.Lerp(transform.parent.position, temp, Time.deltaTime * 2);
+            StartCoroutine("fireSlice", false);
+            StopCoroutine("fireSlice");
         }
         else
         {
-            //FIX: It does not wait between shells
             //Debug.Log("Shotguuuuun Blast!");
             //Debug.Log("startingShotgunAngle is: " + startingShotgunAngle);
             //Debug.Log("shotgunAngleSpread is: " + shotgunAngleSpread);
-            unloadShell();
-            startingShotgunAngle -= shotgunAngleSpread / 2;
-            unloadShell();
-            startingShotgunAngle += shotgunAngleSpread;
-            unloadShell();
-            startingShotgunAngle -= shotgunAngleSpread / 2;
+            StartCoroutine("unloadShell", startingShotgunAngle);
+            StopCoroutine("unloadShell");
         }
+        bossMovementScript.setIsMoving();
     }
 
     public void assignMovement()
@@ -154,6 +196,10 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         if (genericMovementScript.getIsMoving() == false && bossMovementScript.getIsMoving() == false)
         {
             cooldownTimer -= Time.deltaTime;
+        }
+        else
+        {
+            cooldownTimer = cooldownTimerStore;
         }
 
         if (cooldownTimer <= 0)

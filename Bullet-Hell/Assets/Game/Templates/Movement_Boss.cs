@@ -121,7 +121,8 @@ public class Movement_Boss : Movement {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	void Update ()
+    {
         if (movementScript.getIsMoving() == false && getIsMoving() == false && getReturningToStart() == false)
         {
             nextNodeTime -= Time.deltaTime;
@@ -135,6 +136,25 @@ public class Movement_Boss : Movement {
         if(getReturningToStart())
         {
             setIsMoving(true);
+            returnToStart();
+        }
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        if(!getIsMoving())
+        {
+            nextNodeTime -= Time.deltaTime;
+        }
+
+        if(nextNodeTime <= 0 && getReturningToStart() == false)
+        {
+            move();
+        }
+
+        if(getReturningToStart())
+        {
             returnToStart();
         }
     }

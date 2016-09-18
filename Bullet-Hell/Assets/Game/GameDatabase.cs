@@ -84,7 +84,7 @@ public class GameDatabase : MonoBehaviour {
 		levelArray[9] = 1;*/
     }
 
-    void OnLevelWasLoaded(int level)
+    void sceneLoaded(int level)
 	{
 		switch(level)
 		{

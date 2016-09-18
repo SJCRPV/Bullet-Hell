@@ -71,7 +71,7 @@ public class PlayerSpawn : MonoBehaviour {
         assignChild();
     }
 
-	void OnLevelWasLoaded()
+	void sceneLoaded()
 	{
         if (playerInstance == null)
         {

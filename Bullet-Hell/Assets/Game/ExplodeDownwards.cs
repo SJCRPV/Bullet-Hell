@@ -12,11 +12,13 @@ public class ExplodeDownwards : MonoBehaviour {
     private GameObject explodedBulletInstance;
     private SpriteRenderer spriteRenderer;
     private Sprite objectSprite;
-    private bool isInverted;
+    private bool isInverted = true;
 
     public void setInverted()
     {
+        Debug.Log(isInverted);
         isInverted = !isInverted;
+        Debug.Log("isInverted has changed! It used to be " + !isInverted + " and it is now: " + isInverted);
     }
 
     private void explode()
@@ -65,6 +67,6 @@ public class ExplodeDownwards : MonoBehaviour {
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
         objectSprite = spriteRenderer.sprite;
-        isInverted = true;
+        //isInverted = true;
     }
 }

@@ -57,8 +57,8 @@ public class Movement_Generic : Movement {
 	}
 	
 	// Update is called once per frame
-	void Update () {
-
+	void Update ()
+    {
         if(getIsMoving() == false)
         {
             timerUntilObjectLeaves -= Time.deltaTime;
