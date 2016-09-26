@@ -6,8 +6,6 @@ public abstract class Movement : MonoBehaviour {
     
     [HideInInspector]
     public iTweenPath path;
-    //CONSIDER: I don't think I need _this_ particular pathName...
-    //public string pathName;
     public float speed;
     public static float offset;
     public static int scriptCount;
@@ -19,6 +17,7 @@ public abstract class Movement : MonoBehaviour {
     public void setIsMoving(bool state)
     {
         isMoving = state;
+        Debug.Log("isMoving is now " + isMoving);
     }
     public bool getIsMoving()
     {

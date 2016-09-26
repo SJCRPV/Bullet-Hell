@@ -31,7 +31,6 @@ public class Movement_Generic : Movement {
         temp.x -= offset;
         path.nodes[path.nodeCount - 1] = temp;
 
-        setIsMoving(true);
         if (offset > 0)
         {
             offset *= -1;

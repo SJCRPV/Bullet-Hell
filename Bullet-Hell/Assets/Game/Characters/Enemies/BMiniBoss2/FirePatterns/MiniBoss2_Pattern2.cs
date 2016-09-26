@@ -99,6 +99,7 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
             adjustStartingAngle(counter++);
             yield return new WaitForSeconds(timeBetweenShells);
         }
+        StopCoroutine("unloadShell");
     }
 
     private void wiggleToPos(Vector2 target)
@@ -135,26 +136,19 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
             inverted = !inverted;
             yield return new WaitForSeconds(0.5f);
         }
+        StopCoroutine("fireSlice");
     }
 
     public void firePattern()
     {
         //Debug.Log(bossMovementScript.getCurrentNodeTrioInUse());
+
         //If at the frontmost position
-        //FIX: As expected, this creates all 3 slices virtually instantly. Find a way to delay them enough that they're created seperately.
         //IDEA: Have the slices *slowly* move downwards before exploding. That way you can keep instantiating the slices in front of the boss
         if(bossMovementScript.getCurrentNodeTrioInUse() == 2)
         {
             //Debug.Log("FireFireFire!");
-            //Vector3 temp = transform.parent.position;
-            //fireSlice(false);
-            //Vector3.Lerp(temp, new Vector3(temp.x - 0.25f, temp.y), Time.deltaTime * 2);
-            //fireSlice(true);
-            //Vector3.Lerp(transform.parent.position, new Vector3(temp.x + 0.25f, temp.y), Time.deltaTime * 2);
-            //fireSlice(false);
-            //Vector3.Lerp(transform.parent.position, temp, Time.deltaTime * 2);
             StartCoroutine("fireSlice", false);
-            StopCoroutine("fireSlice");
         }
         else
         {
@@ -162,9 +156,7 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
             //Debug.Log("startingShotgunAngle is: " + startingShotgunAngle);
             //Debug.Log("shotgunAngleSpread is: " + shotgunAngleSpread);
             StartCoroutine("unloadShell", startingShotgunAngle);
-            StopCoroutine("unloadShell");
         }
-        bossMovementScript.setIsMoving();
     }
 
     public void assignMovement()
@@ -190,7 +182,6 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         startingShotgunAngle = 180;
 	}
 	
-    //FIX: Timers don't reset when Boss moves.
 	// Update is called once per frame
 	void Update () {
         if (genericMovementScript.getIsMoving() == false && bossMovementScript.getIsMoving() == false)

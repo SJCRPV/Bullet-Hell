@@ -4,15 +4,20 @@ using System;
 
 public class MiniBoss2_Pattern1 : MonoBehaviour, IFire {
 
-    //CLEANING: Privatize any unnecessary public variables and make the necessary getters and setters to compliment it
-    public GameObject missilePrefab;
-    public float cooldownTimer;
-    public float betweenBulletSpawnTimer;
-    public int startingRotationDegrees;
-    public int maxRotationDegrees;
-    public int numMissiles;
-    public int missileRotationSpeed;
-
+    [SerializeField]
+    private GameObject missilePrefab;
+    [SerializeField]
+    private float cooldownTimer;
+    [SerializeField]
+    private float betweenBulletSpawnTimer;
+    [SerializeField]
+    private int startingRotationDegrees;
+    [SerializeField]
+    private int maxRotationDegrees;
+    [SerializeField]
+    private int numMissiles;
+    [SerializeField]
+    private int missileRotationSpeed;
     [SerializeField]
     private int rotationDegreeIncrement;
     private GameObject bulletInstance;
@@ -43,7 +48,6 @@ public class MiniBoss2_Pattern1 : MonoBehaviour, IFire {
 
     public void firePattern()
     {
-        //FIX: Bullets don't spawn at the right angles yet. Almost.
         bulletRotation = Quaternion.identity;
         for (int i = 0, tempDegrees = 0; i < numMissiles && tempDegrees < maxRotationDegrees; i++, tempDegrees += rotationDegreeIncrement)
         {
@@ -55,11 +59,12 @@ public class MiniBoss2_Pattern1 : MonoBehaviour, IFire {
             {
                 bulletRotation.eulerAngles = new Vector3(0, 0, (tempDegrees));
             }
-            Debug.Log("bulletRotation.eulerAngles is " + bulletRotation.eulerAngles);
+            //Debug.Log("bulletRotation.eulerAngles is " + bulletRotation.eulerAngles);
             delayTimer = i * betweenBulletSpawnTimer;
             isFiringLeft = !isFiringLeft;
             fire();
         }
+        bossMovementScript.setIsMoving(false);
     }
 
     // Use this for initialization
@@ -75,6 +80,10 @@ public class MiniBoss2_Pattern1 : MonoBehaviour, IFire {
         if (genericMovementScript.getIsMoving() == false && bossMovementScript.getIsMoving() == false)
         {
             cooldownTimer -= Time.deltaTime;
+        }
+        else
+        {
+            cooldownTimer = cooldownTimerStore;
         }
 
         if (cooldownTimer <= 0)

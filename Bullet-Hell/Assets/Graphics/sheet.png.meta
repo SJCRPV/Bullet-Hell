@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 066426564ad673f42a30d1f697fbb541
-timeCreated: 1473299942
+timeCreated: 1474730100
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -39,6 +39,7 @@ TextureImporter:
     21300064: missile02_5
     21300066: slice02
     21300068: Bullet04
+    21300070: laser01
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -81,11 +82,14 @@ TextureImporter:
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spritePixelsToUnits: 100
   alphaIsTransparency: 1
+  spriteTessellationDetail: -1
   textureType: 8
   buildTargetSettings: []
   spriteSheet:
+    serializedVersion: 2
     sprites:
-    - name: Player01
+    - serializedVersion: 2
+      name: Player01
       rect:
         serializedVersion: 2
         x: 211
@@ -95,17 +99,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -11.5, y: 37.5}
-        - {x: -49.5, y: 9.5}
-        - {x: -49.5, y: -24.5}
-        - {x: -46.5, y: -28.5}
-        - {x: -26.5, y: -37.5}
-        - {x: 29.5, y: -37.5}
-        - {x: 49.5, y: -33.5}
-        - {x: 49.5, y: 14.5}
-        - {x: 11.5, y: 37.5}
-    - name: PlayerHitbox
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: PlayerHitbox
       rect:
         serializedVersion: 2
         x: 444
@@ -115,16 +112,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -21.5, y: 45.5}
-        - {x: -45.5, y: 29.5}
-        - {x: -45.5, y: -29.5}
-        - {x: -32.5, y: -45.5}
-        - {x: 24.5, y: -45.5}
-        - {x: 45.5, y: -36.5}
-        - {x: 45.5, y: 29.5}
-        - {x: 28.5, y: 45.5}
-    - name: EnemyBasic
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: EnemyBasic
       rect:
         serializedVersion: 2
         x: 120
@@ -134,16 +125,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: 41}
-        - {x: -52, y: 28}
-        - {x: -52, y: -8}
-        - {x: -41, y: -41}
-        - {x: 30, y: -41}
-        - {x: 52, y: 3}
-        - {x: 52, y: 19}
-        - {x: 21, y: 41}
-    - name: Beam02
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Beam02
       rect:
         serializedVersion: 2
         x: 858
@@ -154,7 +139,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Beam01
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Beam01
       rect:
         serializedVersion: 2
         x: 856
@@ -165,7 +152,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: EnemyCone
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: EnemyCone
       rect:
         serializedVersion: 2
         x: 143
@@ -175,16 +164,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: 41}
-        - {x: -52, y: 28}
-        - {x: -52, y: -8}
-        - {x: -41, y: -41}
-        - {x: 30, y: -41}
-        - {x: 52, y: 3}
-        - {x: 52, y: 19}
-        - {x: 21, y: 41}
-    - name: Boss1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Boss1
       rect:
         serializedVersion: 2
         x: 408
@@ -194,16 +177,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -48, y: 42}
-        - {x: -48, y: 18}
-        - {x: -34, y: -39}
-        - {x: -19, y: -42}
-        - {x: 27, y: -42}
-        - {x: 36, y: -36}
-        - {x: 48, y: 22}
-        - {x: 48, y: 42}
-    - name: Bullet01
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bullet01
       rect:
         serializedVersion: 2
         x: 835
@@ -214,7 +191,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: New Game
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: New Game
       rect:
         serializedVersion: 2
         x: 0
@@ -224,12 +203,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -110.5, y: 19.5}
-        - {x: -110.5, y: -19.5}
-        - {x: 110.5, y: -19.5}
-        - {x: 110.5, y: 19.5}
-    - name: EnemyGraze
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: EnemyGraze
       rect:
         serializedVersion: 2
         x: 120
@@ -239,16 +216,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -15, y: 41}
-        - {x: -52, y: 28}
-        - {x: -52, y: -9}
-        - {x: -42, y: -41}
-        - {x: 38, y: -41}
-        - {x: 52, y: -3}
-        - {x: 52, y: 28}
-        - {x: 26, y: 41}
-    - name: Bullet02
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bullet02
       rect:
         serializedVersion: 2
         x: 848
@@ -259,7 +230,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: spawnSprite
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: spawnSprite
       rect:
         serializedVersion: 2
         x: 434
@@ -269,16 +242,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -37.5, y: 45.5}
-        - {x: -45.5, y: 23.5}
-        - {x: -45.5, y: -29.5}
-        - {x: -24.5, y: -45.5}
-        - {x: 37.5, y: -45.5}
-        - {x: 45.5, y: -23.5}
-        - {x: 45.5, y: 30.5}
-        - {x: 28.5, y: 45.5}
-    - name: blockPoints
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: blockPoints
       rect:
         serializedVersion: 2
         x: 776
@@ -288,13 +255,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16.5, y: 16.5}
-        - {x: -16.5, y: -15.5}
-        - {x: -15.5, y: -16.5}
-        - {x: 16.5, y: -16.5}
-        - {x: 16.5, y: 16.5}
-    - name: blockPower
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: blockPower
       rect:
         serializedVersion: 2
         x: 774
@@ -304,13 +268,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16.5, y: 16.5}
-        - {x: -16.5, y: -15.5}
-        - {x: -15.5, y: -16.5}
-        - {x: 16.5, y: -16.5}
-        - {x: 16.5, y: 16.5}
-    - name: blockExtraLife
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: blockExtraLife
       rect:
         serializedVersion: 2
         x: 651
@@ -320,13 +281,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -16.5, y: 16.5}
-        - {x: -16.5, y: -15.5}
-        - {x: -15.5, y: -16.5}
-        - {x: 16.5, y: -16.5}
-        - {x: 16.5, y: 16.5}
-    - name: EnemyThrower
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: EnemyThrower
       rect:
         serializedVersion: 2
         x: 133
@@ -336,19 +294,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 52, y: -0.5}
-        - {x: 52, y: 18.5}
-        - {x: 26, y: 40.5}
-        - {x: -25, y: 40.5}
-        - {x: -52, y: 29.5}
-        - {x: -52, y: 1.5}
-        - {x: -30, y: -40.5}
-        - {x: -4, y: -40.5}
-        - {x: -4, y: -36.5}
-        - {x: 3, y: -40.5}
-        - {x: 28, y: -40.5}
-    - name: shiftColliderArea
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: shiftColliderArea
       rect:
         serializedVersion: 2
         x: 444
@@ -358,16 +307,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -37.5, y: 45.5}
-        - {x: -45.5, y: 23.5}
-        - {x: -45.5, y: -29.5}
-        - {x: -24.5, y: -45.5}
-        - {x: 37.5, y: -45.5}
-        - {x: 45.5, y: -23.5}
-        - {x: 45.5, y: 30.5}
-        - {x: 28.5, y: 45.5}
-    - name: Bullet03
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bullet03
       rect:
         serializedVersion: 2
         x: 605
@@ -378,7 +321,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: extraBulletSource
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: extraBulletSource
       rect:
         serializedVersion: 2
         x: 505
@@ -388,16 +333,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -37.5, y: 45.5}
-        - {x: -45.5, y: 23.5}
-        - {x: -45.5, y: -29.5}
-        - {x: -24.5, y: -45.5}
-        - {x: 37.5, y: -45.5}
-        - {x: 45.5, y: -23.5}
-        - {x: 45.5, y: 30.5}
-        - {x: 28.5, y: 45.5}
-    - name: Beam03
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Beam03
       rect:
         serializedVersion: 2
         x: 856
@@ -408,7 +347,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: miniBoss1
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: miniBoss1
       rect:
         serializedVersion: 2
         x: 425
@@ -418,18 +359,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: 46.5, y: 4}
-        - {x: 46.5, y: 32}
-        - {x: 42.5, y: 41}
-        - {x: -46.5, y: 41}
-        - {x: -46.5, y: -8}
-        - {x: -32.5, y: -41}
-        - {x: -13.5, y: -41}
-        - {x: -6.5, y: -37}
-        - {x: 0.5, y: -41}
-        - {x: 32.5, y: -41}
-    - name: EndPoint
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: EndPoint
       rect:
         serializedVersion: 2
         x: 327
@@ -439,35 +372,23 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -17, y: 48}
-        - {x: -49, y: 35}
-        - {x: -49, y: -19}
-        - {x: -24, y: -48}
-        - {x: 39, y: -48}
-        - {x: 49, y: -11}
-        - {x: 49, y: 30}
-        - {x: 36, y: 48}
-    - name: Bullet05
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bullet05
       rect:
         serializedVersion: 2
-        x: 195
+        x: 194
         y: 738
-        width: 47
+        width: 46
         height: 46
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -11.5, y: 23}
-        - {x: -23.5, y: 16}
-        - {x: -23.5, y: -7}
-        - {x: -11.5, y: -23}
-        - {x: 7.5, y: -23}
-        - {x: 23.5, y: -3}
-        - {x: 23.5, y: 10}
-        - {x: 13.5, y: 23}
-    - name: zigzagBullet
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: zigzagBullet
       rect:
         serializedVersion: 2
         x: 760
@@ -477,12 +398,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -18.5, y: 18}
-        - {x: -18.5, y: -18}
-        - {x: 18.5, y: -18}
-        - {x: 18.5, y: 18}
-    - name: miniBoss2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: miniBoss2
       rect:
         serializedVersion: 2
         x: 425
@@ -492,15 +411,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -39.5, y: 41.5}
-        - {x: -46.5, y: 25.5}
-        - {x: -46.5, y: -5.5}
-        - {x: -28.5, y: -41.5}
-        - {x: 38.5, y: -41.5}
-        - {x: 46.5, y: -29.5}
-        - {x: 46.5, y: 41.5}
-    - name: Boss2
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Boss2
       rect:
         serializedVersion: 2
         x: 421
@@ -510,16 +424,10 @@ TextureImporter:
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline:
-      - - {x: -48.5, y: 42}
-        - {x: -48.5, y: 21}
-        - {x: -30.5, y: -35}
-        - {x: -21.5, y: -42}
-        - {x: 19.5, y: -42}
-        - {x: 38.5, y: -39}
-        - {x: 48.5, y: 19}
-        - {x: 48.5, y: 42}
-    - name: missile1
+      outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: missile1
       rect:
         serializedVersion: 2
         x: 856
@@ -530,7 +438,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: slice01
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slice01
       rect:
         serializedVersion: 2
         x: 856
@@ -541,7 +451,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: slice02
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: slice02
       rect:
         serializedVersion: 2
         x: 873
@@ -552,7 +464,9 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-    - name: Bullet04
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: Bullet04
       rect:
         serializedVersion: 2
         x: 590
@@ -563,6 +477,20 @@ TextureImporter:
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
+      tessellationDetail: -1
+    - serializedVersion: 2
+      name: laser01
+      rect:
+        serializedVersion: 2
+        x: 869
+        y: 603
+        width: 9
+        height: 57
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      tessellationDetail: 0
     outline: []
   spritePackingTag: 
   userData: 

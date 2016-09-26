@@ -19,6 +19,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
+#pragma warning disable 0618 // SetSnapshotTarget is Obsolete. Use RecordObject instead
+
 using UnityEngine;
 using UnityEditor;
 using System.Collections;

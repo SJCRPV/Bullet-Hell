@@ -11,7 +11,6 @@ public class ExplodeDownwards : MonoBehaviour {
 
     private GameObject explodedBulletInstance;
     private SpriteRenderer spriteRenderer;
-    private Sprite objectSprite;
     private bool isInverted = true;
 
     public void setInverted()
@@ -23,8 +22,6 @@ public class ExplodeDownwards : MonoBehaviour {
 
     private void explode()
     {
-        float heightInUnits = Math.Abs(spriteRenderer.bounds.max.y / spriteRenderer.bounds.min.y);
-        //Debug.Log(heightInUnits);
         float heightRatio = Math.Abs(spriteRenderer.bounds.min.y / spriteRenderer.bounds.max.y);
         //Debug.Log(heightRatio);
         Quaternion tempRot = Quaternion.identity;
@@ -66,7 +63,6 @@ public class ExplodeDownwards : MonoBehaviour {
     void Start()
     {
         spriteRenderer = GetComponent<SpriteRenderer>();
-        objectSprite = spriteRenderer.sprite;
         //isInverted = true;
     }
 }

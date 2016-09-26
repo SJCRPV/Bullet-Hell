@@ -3,20 +3,21 @@ using System.Collections.Generic;
 
 public class Movement_Boss : Movement {
 
-    public float pathPercentIncrease;
     public List<GameObject> Children;
 
     iTweenPath[] bossPaths;
 
     [SerializeField]
+    private float pathPercentIncrease;
+    [SerializeField]
     private float nextNodeTime;
-    private Movement movementScript;
+    private float nextNodeTimeStore;
+    private Movement_Generic genericMovementScript;
     private Vector3[] currentPath;
     private Vector3[] currentNodeTrio;
     private int currentNodeTrioInUse = 0;
     private int currentPathNum = 0;
     private float currentNodeTrioComplete = 0f;
-    private float timeUntilNextNodeStore;
     private bool returningToStart;
 
     public int getCurrentPathNum()
@@ -90,9 +91,10 @@ public class Movement_Boss : Movement {
 
         if (currentNodeTrioComplete >= 1f)
         {
+            setIsMoving(false);
             currentNodeTrioComplete = 0;
             moveToNextNodeTrio();
-            nextNodeTime = timeUntilNextNodeStore;
+            nextNodeTime = nextNodeTimeStore;
         }
     }
 
@@ -114,42 +116,23 @@ public class Movement_Boss : Movement {
     // Use this for initialization
     void Start () {
         iTween.Init(gameObject);
-        movementScript = GetComponent<Movement_Generic>();
-        timeUntilNextNodeStore = nextNodeTime;
+        genericMovementScript = GetComponent<Movement_Generic>();
+        nextNodeTimeStore = nextNodeTime;
         preparePaths();
         setPath();
 	}
-	
-	// Update is called once per frame
-	void Update ()
-    {
-        if (movementScript.getIsMoving() == false && getIsMoving() == false && getReturningToStart() == false)
-        {
-            nextNodeTime -= Time.deltaTime;
-        }
-        setIsMoving(false);
-        if(nextNodeTime <= 0 && getReturningToStart() == false)
-        {
-            setIsMoving(true);
-            move();
-        }
-        if(getReturningToStart())
-        {
-            setIsMoving(true);
-            returnToStart();
-        }
-    }
 
     // Update is called once per frame
     void Update()
     {
-        if(!getIsMoving())
+        if(!getIsMoving() && !genericMovementScript.getIsMoving() && !getReturningToStart())
         {
             nextNodeTime -= Time.deltaTime;
         }
 
-        if(nextNodeTime <= 0 && getReturningToStart() == false)
+        if(nextNodeTime <= 0 && !getReturningToStart())
         {
+            setIsMoving(true);
             move();
         }
 
