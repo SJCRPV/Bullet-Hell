@@ -3,15 +3,22 @@ using System.Collections;
 using System;
 
 public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
-    //CLEANING: Update the variable declarations so that you don't have unnecessary public variables. Add get and set methods as well to compensate
-    public GameObject bulletPrefab;
-    public GameObject explodingBulletPrefab;
-    public float startingDegrees;
-    public float cooldownTimer;
-    public float maxDegrees;
-    public float degreeIncreasePerIteration;
-    public float movingTimeBetweenBursts;
-    public float stillTimeBetweenBursts;
+    [SerializeField]
+	private GameObject bulletPrefab;
+	[SerializeField]
+    private GameObject explodingBulletPrefab;
+	[SerializeField]
+    private float startingDegrees;
+	[SerializeField]
+    private float cooldownTimer;
+	[SerializeField]
+    private float maxDegrees;
+	[SerializeField]
+    private float degreeIncreasePerIteration;
+	[SerializeField]
+    private float movingTimeBetweenBursts;
+	[SerializeField]
+    private float stillTimeBetweenBursts;
 
     private Movement_Generic genericMovementScript;
     private Movement_Boss bossMovementScript;

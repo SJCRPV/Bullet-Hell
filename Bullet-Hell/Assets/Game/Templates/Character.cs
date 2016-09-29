@@ -2,21 +2,18 @@
 using System.Collections.Generic;
 
 public abstract class Character : MonoBehaviour {
-    //CLEANING: Refactor this to make public variables private and make gets and sets
-    public int healthPoints;
-    public float invincibilityTime;
-    public GameObject powerBlock;
-    public GameObject pointBlock;
-    public GameObject extraLifeBlock;
+	[SerializeField]
+    private int healthPoints;
+	[SerializeField]
+    private float invincibilityTime;
+	[SerializeField]
+    private GameObject powerBlock;
+	[SerializeField]
+    private GameObject pointBlock;
+	[SerializeField]
+    private GameObject extraLifeBlock;
 
     private int maxHealth;
-
-    //private int layer;
-
-    //public int getLayer()
-    //{
-    //    return layer;
-    //}
 
     public abstract void explode();
 

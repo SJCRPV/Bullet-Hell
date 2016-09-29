@@ -102,9 +102,21 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         StopCoroutine("unloadShell");
     }
 
-    private void wiggleToPos(Vector2 target)
+    private IEnumerator wiggleToPos(Vector2 target)
     {
-
+		iTweenPath targetPath = new iTweenPath();
+		targetPath.nodes = new Vector3[3];
+		Vector3 distance = Vector3.distance(transform.position, target);
+		targetPath.nodes[0] = transform.position;
+		targetPath.nodes[1] = transform.position + new Vector3(distance.x/2, distance.y*2, distance.z/2);
+		targetPath.nodes[2] = target;
+		float pathCompletePercent = 0;
+		while(pathCompletePercent < 1)
+		{
+			iTween.PutOnPath(gameObject, targetPath, pathCompletePercent);
+			pathCompletePercent += 0.1f;
+			yield return null;
+		}
     }
 
     private IEnumerator fireSlice(bool inverted)
@@ -134,6 +146,7 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
 
             counter++;
             inverted = !inverted;
+			StartCoroutine("wiggleToPos", );
             yield return new WaitForSeconds(0.5f);
         }
         StopCoroutine("fireSlice");

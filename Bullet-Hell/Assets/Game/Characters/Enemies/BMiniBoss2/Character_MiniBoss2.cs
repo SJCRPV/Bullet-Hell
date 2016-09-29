@@ -4,8 +4,6 @@ using System;
 
 public class Character_MiniBoss2 : Character_Boss
 {
-    //TODO: Pattern2, Pattern3, Movement
-
     MiniBoss2_Pattern1 pattern1Script;
     MiniBoss2_Pattern2 pattern2Script;
     MiniBoss2_Pattern3 pattern3Script;

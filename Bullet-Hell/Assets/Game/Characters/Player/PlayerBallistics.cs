@@ -5,14 +5,16 @@ public class PlayerBallistics : MonoBehaviour {
 	
 	Character_Player playerCharacterScript;
 
-	public GameObject bulletPrefab;
-    public float bombCooldownTimer;
-	public float cooldownTimer;
+	[SerializeField]
+	private GameObject bulletPrefab;
+	[SerializeField]
+    private float bombCooldownTimer;
+	[SerializeField]
+	private float cooldownTimer;
 
-	float cooldownTimerStore;
-	Vector3 verticalOffset = new Vector3(0, 0.5f, 0);
-	Vector3 bulletPosition;
-	
+	private float cooldownTimerStore;
+	private Vector3 verticalOffset = new Vector3(0, 0.5f, 0);
+	private Vector3 bulletPosition;
 	private GameObject bulletInstance;
 	private Transform objectParent;
 	private GameObject extraBulletSource1;
@@ -20,7 +22,7 @@ public class PlayerBallistics : MonoBehaviour {
 	private GameObject extraBulletSource3;
 	private GameObject extraBulletSource4;
 
-    void adjustPower()
+    private void adjustPower()
     {
         if (playerCharacterScript.getPower() <= 1)
         {
@@ -58,20 +60,26 @@ public class PlayerBallistics : MonoBehaviour {
             extraBulletSource4.SetActive(true);
         }
     }
+	
+	private void fireBomb()
+	{
+		GameObject.Find("bombCollider").GetComponent<CircleCollider2D>().setActive = true;
+	}
 
-	void fire()
+	private void fire()
 	{
 		bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position + verticalOffset, Quaternion.identity);
 		cooldownTimer = cooldownTimerStore;
 		bulletInstance.gameObject.layer = 10;
 	}
-	void firePattern()
+	
+	private void firePattern()
 	{
 		fire();
 	}
 
 	// Use this for initialization
-	void Start () {
+	private void Start () {
 		cooldownTimerStore = cooldownTimer;
 		playerCharacterScript = GetComponent<Character_Player>();
         extraBulletSource1 = GameObject.Find("ExtraBulletSource");
@@ -81,10 +89,10 @@ public class PlayerBallistics : MonoBehaviour {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+	private void Update () {
 		cooldownTimer -= Time.deltaTime;
 
-        //There's likely a way to have adjustPower() only run when the player collects or loses a power block
+        //FIX: There's likely a way to have adjustPower() only run when the player collects or loses a power block
         adjustPower();
 
         if (cooldownTimer <= 0 && Input.GetButton("Fire1"))
@@ -95,7 +103,7 @@ public class PlayerBallistics : MonoBehaviour {
         {
             if(playerCharacterScript.getPower() >= 1)
             {
-                //Fire the bomb
+                fireBomb();
             }
         }
 	}

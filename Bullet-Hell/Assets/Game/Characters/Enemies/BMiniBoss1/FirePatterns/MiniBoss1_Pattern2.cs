@@ -4,9 +4,12 @@ using System;
 
 public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
     //FIX: This pattern is underwhelming after seeing the first one.
-    public GameObject bulletPrefab;
-    public GameObject zigzagBulletPrefab;
-    public float timeBetweenBursts;
+	[SerializeField]
+    private GameObject bulletPrefab;
+	[SerializeField]
+    private GameObject zigzagBulletPrefab;
+	[SerializeField]
+    private float timeBetweenBursts;
 
     private GameObject bulletInstance;
     private GameObject zigzagBulletInstance;
