@@ -12,11 +12,11 @@ public class Character_StandardEnemy : Character
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (invincibilityTime <= 0)
+        if (getInvencibilityTime() <= 0)
         {
             //Debug.Log("Ow! ; _ ;");
             decreaseHealth();
-            invincibilityTime = invincibilityTimeStore;
+            setInvencibilityTime(invincibilityTimeStore);
         }
     }
 
@@ -34,12 +34,12 @@ public class Character_StandardEnemy : Character
                 case 6:
                 case 7:
                 case 9:
-                    blockInstance = (GameObject)Instantiate(pointBlock, transform.position, Quaternion.identity);
+                    blockInstance = (GameObject)Instantiate(getPointBlock(), transform.position, Quaternion.identity);
                     break;
 
                 case 1:
                 case 8:
-                    blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
+                    blockInstance = (GameObject)Instantiate(getPowerBlock(), transform.position, Quaternion.identity);
                     break;
                 default:
                     Debug.LogError("Invalid number. I don't know what block to create with this. 'Tried to resolve the case for " + i);
@@ -54,12 +54,12 @@ public class Character_StandardEnemy : Character
     protected new void Start()
     {
         base.Start();
-        invincibilityTimeStore = invincibilityTime;
+        invincibilityTimeStore = getInvencibilityTime();
     }
 
     void Update()
     {
-        invincibilityTime -= Time.deltaTime;
+        decrementInvincibilityTime(Time.deltaTime);
         if (getCurrentHealth() <= 0)
         {
             explode();

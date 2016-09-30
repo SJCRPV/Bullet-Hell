@@ -33,7 +33,6 @@ public class Character_MiniBoss1 : Character_Boss
 
     void Update()
     {
-        invincibilityTime -= Time.deltaTime;
         if (genericMovementScript.isActiveAndEnabled && genericMovementScript.getIsMoving() == false)
         {
             bossMovementScript.enabled = true;

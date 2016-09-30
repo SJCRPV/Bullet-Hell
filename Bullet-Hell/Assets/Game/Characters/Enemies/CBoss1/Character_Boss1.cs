@@ -33,7 +33,6 @@ public class Character_Boss1 : Character_Boss {
 	
 	// Update is called once per frame
 	void Update () {
-        invincibilityTime -= Time.deltaTime;
         if(genericMovementScript.isActiveAndEnabled && genericMovementScript.getIsMoving() == false)
         {
             bossMovementScript.enabled = true;

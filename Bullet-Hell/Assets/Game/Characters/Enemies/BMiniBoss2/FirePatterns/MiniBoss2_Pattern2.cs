@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using System;
 
 public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
@@ -102,14 +103,13 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
         StopCoroutine("unloadShell");
     }
 
-    private IEnumerator wiggleToPos(Vector2 target)
+    private IEnumerator wiggleToPos(Vector3 target)
     {
-		iTweenPath targetPath = new iTweenPath();
-		targetPath.nodes = new Vector3[3];
-		Vector3 distance = Vector3.distance(transform.position, target);
-		targetPath.nodes[0] = transform.position;
-		targetPath.nodes[1] = transform.position + new Vector3(distance.x/2, distance.y*2, distance.z/2);
-		targetPath.nodes[2] = target;
+		Vector3[] targetPath = new Vector3[3];
+		Vector3 distance = transform.position - target;
+		targetPath[0] = transform.position;
+		targetPath[1] = transform.position + new Vector3(distance.x/2, distance.y*2, distance.z/2);
+		targetPath[2] = target;
 		float pathCompletePercent = 0;
 		while(pathCompletePercent < 1)
 		{
@@ -142,11 +142,11 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
             if (inverted)
             {
                 sliceInstance.GetComponent<ExplodeDownwards>().setInverted();
+                //StartCoroutine("wiggleToPos", )
             }
 
             counter++;
             inverted = !inverted;
-			StartCoroutine("wiggleToPos", );
             yield return new WaitForSeconds(0.5f);
         }
         StopCoroutine("fireSlice");

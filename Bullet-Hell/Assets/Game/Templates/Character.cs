@@ -17,6 +17,32 @@ public abstract class Character : MonoBehaviour {
 
     public abstract void explode();
 
+    public GameObject getPointBlock()
+    {
+        return pointBlock;
+    }
+    public GameObject getPowerBlock()
+    {
+        return powerBlock;
+    }
+    public GameObject getExtraLifeBlock()
+    {
+        return extraLifeBlock;
+    }
+    public float getInvencibilityTime()
+    {
+        return invincibilityTime;
+    }
+
+    public void setInvencibilityTime(float newInv)
+    {
+        invincibilityTime = newInv;
+    }
+    public void decrementInvincibilityTime(float decrement)
+    {
+        invincibilityTime -= decrement;
+    }
+
     public void die()
     {
         Debug.Log("DEAD!");

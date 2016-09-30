@@ -115,7 +115,7 @@ public class Character_Player : Character {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        if (invincibilityTime <= 0 && collider.gameObject.layer != 12)
+        if (getInvencibilityTime() <= 0 && collider.gameObject.layer != 12)
         {
             //Debug.Log("Ow! ; _ ;");
             decreaseHealth();
@@ -123,7 +123,7 @@ public class Character_Player : Character {
             {
                 Debug.Log("You were killed by: " + collider.name);
             }
-            invincibilityTime = invincibilityTimeStore;
+            setInvencibilityTime(invincibilityTimeStore);
         }
     }
 
@@ -131,7 +131,7 @@ public class Character_Player : Character {
     {
         for (int i = 0; i < 5; i++)
         {
-            blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
+            blockInstance = (GameObject)Instantiate(getPowerBlock(), transform.position, Quaternion.identity);
             blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-50f + i * 20, 150), transform.position);
         }
 
@@ -149,13 +149,13 @@ public class Character_Player : Character {
     protected new void Start()
     {
         base.Start();
-        invincibilityTimeStore = invincibilityTime;
+        invincibilityTimeStore = getInvencibilityTime();
         blockInteractionScript = GetComponent<BlockInteraction>();
 	}
 
     void Update()
     {
-        invincibilityTime -= Time.deltaTime;
+        decrementInvincibilityTime(Time.deltaTime);
         if(getCurrentHealth() <= 0)
         {
             explode();

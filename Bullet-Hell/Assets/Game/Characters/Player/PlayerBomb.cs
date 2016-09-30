@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class PlayerBomb : Monobehaviour
+public class PlayerBomb : MonoBehaviour
 {
 	public void OnTriggerEnter2D(Collider2D collider)
 	{

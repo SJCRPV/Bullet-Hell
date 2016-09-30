@@ -15,15 +15,15 @@ public abstract class Character_Boss : Character {
         {
             if ((i >= 1 && i < 5) || i >= 15)
             {
-                blockInstance = (GameObject)Instantiate(pointBlock, transform.position, Quaternion.identity);
+                blockInstance = (GameObject)Instantiate(getPointBlock(), transform.position, Quaternion.identity);
             }
             else if (i >= 5 && i < 15)
             {
-                blockInstance = (GameObject)Instantiate(powerBlock, transform.position, Quaternion.identity);
+                blockInstance = (GameObject)Instantiate(getPowerBlock(), transform.position, Quaternion.identity);
             }
             else if (i == 0)
             {
-                blockInstance = (GameObject)Instantiate(extraLifeBlock, transform.position, Quaternion.identity);
+                blockInstance = (GameObject)Instantiate(getExtraLifeBlock(), transform.position, Quaternion.identity);
             }
             else
             {
@@ -38,7 +38,7 @@ public abstract class Character_Boss : Character {
 
     public void OnTriggerEnter2D(Collider2D collider)
     {
-        if (invincibilityTime <= 0)
+        if (getInvencibilityTime() <= 0)
         {
             //Debug.Log("Ow! ; _ ;");
             decreaseHealth();

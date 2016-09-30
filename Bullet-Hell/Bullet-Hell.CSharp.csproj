@@ -70,7 +70,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\ASuperSecretMurderousPattern.cs" />
-    <Compile Include="Assets\CountdownToDamage.cs" />
     <Compile Include="Assets\Game\BulletCollision.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\BMiniBoss1\Character_MiniBoss1.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\BMiniBoss1\FirePatterns\MiniBoss1_Pattern1.cs" />
@@ -90,10 +89,12 @@
     <Compile Include="Assets\Game\Characters\Player\Character_Player.cs" />
     <Compile Include="Assets\Game\Characters\Player\FireExtraBulletSource.cs" />
     <Compile Include="Assets\Game\Characters\Player\PlayerBallistics.cs" />
+    <Compile Include="Assets\Game\Characters\Player\PlayerBomb.cs" />
     <Compile Include="Assets\Game\Characters\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Game\Characters\Player\PlayerSpawn.cs" />
     <Compile Include="Assets\Game\Characters\Player\ShowEnlargedCollider.cs" />
     <Compile Include="Assets\Game\Characters\Player\ShowHitbox.cs" />
+    <Compile Include="Assets\Game\CountdownToDamage.cs" />
     <Compile Include="Assets\Game\Explode.cs" />
     <Compile Include="Assets\Game\ExplodeDownwards.cs" />
     <Compile Include="Assets\Game\GameDatabase.cs" />
