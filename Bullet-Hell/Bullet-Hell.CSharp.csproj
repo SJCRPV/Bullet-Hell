@@ -92,6 +92,7 @@
     <Compile Include="Assets\Game\Characters\Player\PlayerBomb.cs" />
     <Compile Include="Assets\Game\Characters\Player\PlayerMovement.cs" />
     <Compile Include="Assets\Game\Characters\Player\PlayerSpawn.cs" />
+    <Compile Include="Assets\Game\Characters\Player\PlayerStalk.cs" />
     <Compile Include="Assets\Game\Characters\Player\ShowEnlargedCollider.cs" />
     <Compile Include="Assets\Game\Characters\Player\ShowHitbox.cs" />
     <Compile Include="Assets\Game\CountdownToDamage.cs" />

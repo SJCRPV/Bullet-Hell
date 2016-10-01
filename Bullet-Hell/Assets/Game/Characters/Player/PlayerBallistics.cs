@@ -13,6 +13,7 @@ public class PlayerBallistics : MonoBehaviour {
 	private float cooldownTimer;
 
 	private float cooldownTimerStore;
+    private float bombCooldownTimerStore;
 	private Vector3 verticalOffset = new Vector3(0, 0.5f, 0);
 	private Vector3 bulletPosition;
 	private GameObject bulletInstance;
@@ -63,7 +64,9 @@ public class PlayerBallistics : MonoBehaviour {
 	
 	private void fireBomb()
 	{
-		GameObject.Find("bombCollider").GetComponent<CircleCollider2D>().setActive = true;
+        Debug.Log("Firing bomb!");
+		GameObject.Find("Bomb").GetComponent<CircleCollider2D>().enabled = true;
+        GameObject.Find("Bomb").GetComponent<SpriteRenderer>().enabled = true;
 	}
 
 	private void fire()
@@ -81,6 +84,7 @@ public class PlayerBallistics : MonoBehaviour {
 	// Use this for initialization
 	private void Start () {
 		cooldownTimerStore = cooldownTimer;
+        bombCooldownTimerStore = bombCooldownTimer;
 		playerCharacterScript = GetComponent<Character_Player>();
         extraBulletSource1 = GameObject.Find("ExtraBulletSource");
         extraBulletSource2 = GameObject.Find("ExtraBulletSource2");
@@ -91,6 +95,7 @@ public class PlayerBallistics : MonoBehaviour {
 	// Update is called once per frame
 	private void Update () {
 		cooldownTimer -= Time.deltaTime;
+        bombCooldownTimer -= Time.deltaTime;
 
         //FIX: There's likely a way to have adjustPower() only run when the player collects or loses a power block
         adjustPower();
@@ -99,11 +104,13 @@ public class PlayerBallistics : MonoBehaviour {
 		{
 			firePattern();
 		}
-        if(bombCooldownTimer <= 0 && Input.GetButton("Fire2"))
+        if(bombCooldownTimer <= 0 && Input.GetButton("FireBomb"))
         {
             if(playerCharacterScript.getPower() >= 1)
             {
                 fireBomb();
+                playerCharacterScript.decreasePower(1);
+                bombCooldownTimer = bombCooldownTimerStore;
             }
         }
 	}
