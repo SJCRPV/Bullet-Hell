@@ -9,8 +9,8 @@ public class ShowEnlargedCollider : MonoBehaviour {
 
     private void adjustColliderSizeTo(string objectName)
     {
-        Vector3 spriteSize = GameObject.Find(objectName).GetComponent<SpriteRenderer>().sprite.bounds.size;
-        gameObject.GetComponent<CircleCollider2D>().size = spriteSize;
+        float spriteDiameter = GameObject.Find(objectName).GetComponent<SpriteRenderer>().sprite.bounds.size.x * GameObject.Find(objectName).transform.localScale.x;
+        GameObject.Find("Player").GetComponent<CircleCollider2D>().radius = spriteDiameter / 2;
     }
 
 	// Use this for initialization
@@ -28,12 +28,14 @@ public class ShowEnlargedCollider : MonoBehaviour {
 			{
 				circleCollider.enabled = true;
 				spriteRenderer.enabled = true;
+                adjustColliderSizeTo("PlayerHitbox");
 			}
 		}
 		else
 		{
 			circleCollider.enabled = false;
 			spriteRenderer.enabled = false;
+            adjustColliderSizeTo("Player");
 		}
 	}
 }
