@@ -46,7 +46,8 @@ public class Movement_Boss : Movement {
         currentPath = bossPaths[currentPathNum].nodes.ToArray();
         if(currentPath == null)
         {
-            Debug.LogError("Didn't find anything for the number: " + currentPathNum);
+            Debug.LogError("Didn't find anything for the path number: " + currentPathNum);
+			return;
         }
         currentNodeTrio = new Vector3[] {currentPath[currentNodeTrioInUse++], currentPath[currentNodeTrioInUse++], currentPath[currentNodeTrioInUse]};
     }
