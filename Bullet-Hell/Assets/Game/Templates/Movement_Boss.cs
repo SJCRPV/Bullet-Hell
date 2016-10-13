@@ -20,6 +20,10 @@ public class Movement_Boss : Movement {
     private float currentNodeTrioComplete = 0f;
     private bool returningToStart;
 
+    public float getSpeed()
+    {
+        return pathPercentIncrease;
+    }
     public int getCurrentPathNum()
     {
         return currentPathNum;

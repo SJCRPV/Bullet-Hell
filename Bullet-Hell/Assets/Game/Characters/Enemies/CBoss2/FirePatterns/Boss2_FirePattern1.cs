@@ -1,7 +1,7 @@
 using UnityEngine;
 using System.Collections;
 
-public class Boss2_Pattern3 : MonoBehaviour, IFire 
+public class Boss2_Pattern1 : MonoBehaviour, IFire 
 {
 	[SerializeField]
 	private GameObject bulletPrefab;
