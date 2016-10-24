@@ -9,23 +9,20 @@ public class PlayerSpawn : MonoBehaviour {
     private GameObject playerInstance;
 	private Character_Player playerCharacterScript;
 	private BlockInteraction blockInteractionScript;
-    private bool isPlayerSpawned = false;
 
 	void OnGUI()
 	{
-        if (isPlayerSpawned)
+        //FIX: Starts throwing playerCharacterScriptErrors after player loses the game.
+        if (playerCharacterScript.canPlayerSpawn())
         {
-            if (playerCharacterScript.canPlayerSpawn())
-            {
-                GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + playerCharacterScript.getLivesLeft());
-                GUI.Label(new Rect(10, 20, 100, 30), "Score: " + playerCharacterScript.getPoints());
-                GUI.Label(new Rect(10, 40, 100, 30), "Power: " + System.Math.Round(playerCharacterScript.getPower(), 2));
-            }
-            else
-            {
-                GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "Game Over!");
-            } 
+            GUI.Label(new Rect(10, 0, 100, 30), "Lives: " + playerCharacterScript.getLivesLeft());
+            GUI.Label(new Rect(10, 20, 100, 30), "Score: " + playerCharacterScript.getPoints());
+            GUI.Label(new Rect(10, 40, 100, 30), "Power: " + System.Math.Round(playerCharacterScript.getPower(), 2));
         }
+        else
+        {
+            GUI.Label(new Rect(Screen.width / 2 - 50, Screen.height / 2 - 25, 100, 50), "Game Over!");
+        } 
 	}
 
 	private void assignChild()
@@ -38,7 +35,7 @@ public class PlayerSpawn : MonoBehaviour {
 
     private void initialPlayerSpawn()
     {
-        Debug.Log("initialPlayerSpawn was run");
+        //Debug.Log("initialPlayerSpawn was run");
         playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
         playerInstance.name = "Player";
         respawnTimer = 3f;
@@ -48,7 +45,6 @@ public class PlayerSpawn : MonoBehaviour {
         playerCharacterScript.setPoints(playerCharacterScript.getStaticPoints());
         //Debug.Log(playerCharacterScript.getLivesLeft() + " lives left.");
         assignChild();
-        isPlayerSpawned = true;
         if (playerCharacterScript == null)
         {
             Debug.LogError("playerCharacterScript is empty");
@@ -65,11 +61,10 @@ public class PlayerSpawn : MonoBehaviour {
 			respawnTimer = 3f;
             playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
             playerCharacterScript.GetComponent<SpriteRenderer>().enabled = true;
-            Debug.Log("Setting the staticPower at " + playerCharacterScript.getStaticPower());
-            Debug.Log("Setting the staticPoints at " + playerCharacterScript.getStaticPoints());
+            //Debug.Log("Setting the staticPower at " + playerCharacterScript.getStaticPower());
+            //Debug.Log("Setting the staticPoints at " + playerCharacterScript.getStaticPoints());
             playerCharacterScript.setPower(playerCharacterScript.getStaticPower());
             playerCharacterScript.setPoints(playerCharacterScript.getStaticPoints());
-            isPlayerSpawned = true;
         }
         if (playerCharacterScript == null)
         {
@@ -92,7 +87,6 @@ public class PlayerSpawn : MonoBehaviour {
 		if(playerInstance == null)
 		{
 			respawnTimer -= Time.deltaTime;
-            isPlayerSpawned = false;
 			if( respawnTimer <= 0)
 			{
 				SpawnPlayer();

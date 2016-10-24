@@ -12,6 +12,10 @@ public class MoveForward : MonoBehaviour {
     {
         return bulletSpeed;
     }
+    public void setSpeed(float newSpeed)
+    {
+        bulletSpeed = newSpeed;
+    }
 
     public void OnBecameInvisible()
     {

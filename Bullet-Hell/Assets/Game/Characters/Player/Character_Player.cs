@@ -150,7 +150,7 @@ public class Character_Player : Character {
     {
         base.Start();
         invincibilityTimeStore = getInvencibilityTime();
-        blockInteractionScript = GetComponent<BlockInteraction>();
+        blockInteractionScript = GetComponentInChildren<BlockInteraction>();
 	}
 
     void Update()

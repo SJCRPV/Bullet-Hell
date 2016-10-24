@@ -10,9 +10,9 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
     public float betweenBulletSpawnTimer;
     public int angleIncrement;
 
-    private GameObject bulletInstance;
-    private Movement_Generic genericMovementScript;
+    //private Movement_Generic genericMovementScript;
     private Movement_Boss bossMovementScript;
+    private GameObject bulletInstance;
     private Quaternion bulletRotation;
     private float cooldownTimerStore;
     [SerializeField]
@@ -44,7 +44,7 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
 
     public void assignMovement()
     {
-        genericMovementScript = gameObject.GetComponentInParent<Movement_Generic>();
+        //genericMovementScript = gameObject.GetComponentInParent<Movement_Generic>();
         bossMovementScript = gameObject.GetComponentInParent<Movement_Boss>();
     }
 

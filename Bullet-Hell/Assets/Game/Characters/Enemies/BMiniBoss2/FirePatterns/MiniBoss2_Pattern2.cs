@@ -22,10 +22,8 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
 
     private GameObject bulletInstance;
     private GameObject sliceInstance;
-    private iTweenPath path;
     private Movement_Generic genericMovementScript;
     private Movement_Boss bossMovementScript;
-    private Vector3 firstPosition;
     private float cooldownTimerStore;
     private int startingShotgunAngle;
 
@@ -188,9 +186,7 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
 
     // Use this for initialization
     void Start () {
-        path = gameObject.GetComponent<iTweenPath>();
         cooldownTimerStore = cooldownTimer;
-        firstPosition = path.nodes[0];
         assignMovement();
         startingShotgunAngle = 180;
 	}

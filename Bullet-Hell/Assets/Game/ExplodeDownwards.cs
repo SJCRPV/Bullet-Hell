@@ -1,8 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System;
+#pragma warning disable 0414
 
-public class ExplodeDownwards : MonoBehaviour {
+public class ExplodeDownwards : MonoBehaviour
+{
 
     [SerializeField]
     private GameObject explodedBulletPrefab;
@@ -34,7 +36,7 @@ public class ExplodeDownwards : MonoBehaviour {
                 //Debug.Log("verticalPos: " + verticalPos);
                 //Debug.Log("horizontalPos: " + horizontalPos);
                 explodedBulletInstance = (GameObject)Instantiate(explodedBulletPrefab, new Vector3(horizontalPos + 0.25f, verticalPos - 0.25f, transform.position.z), tempRot);
-            } 
+            }
         }
         else
         {
@@ -48,16 +50,16 @@ public class ExplodeDownwards : MonoBehaviour {
 
         Destroy(gameObject);
     }
-	
-	// Update is called once per frame
-	void Update ()
+
+    // Update is called once per frame
+    void Update()
     {
         timeBeforeExplosion -= Time.deltaTime;
-        if(timeBeforeExplosion <= 0)
+        if (timeBeforeExplosion <= 0)
         {
             explode();
         }
-	}
+    }
 
     // Use this for initialization
     void Start()

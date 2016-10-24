@@ -45,9 +45,9 @@ public class PlayerBomb : MonoBehaviour
 
         if(activeTime <= 0)
         {
+            activeTime = activeTimeStore;
             circleCollider.enabled = false;
             spriteRen.enabled = false;
-            activeTime = activeTimeStore;
         }
 	}
 }

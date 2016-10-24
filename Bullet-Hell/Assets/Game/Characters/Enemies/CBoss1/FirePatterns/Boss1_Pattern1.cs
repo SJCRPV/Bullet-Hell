@@ -9,9 +9,9 @@ public class Boss1_Pattern1 : MonoBehaviour, IFire {
 	public int roundsBeforeCooldown;
 	public float innerCooldownTimer;
 
+    //private Movement_Boss bossMovementScript;
 	private GameObject bulletInstance;
 	private Quaternion bulletRotation;
-    private Movement_Boss bossMovementScript;
 	private float angleDispersionStore;
 	private float cooldownTimerStore;
 	private float innerCooldownTimerStore;
@@ -71,7 +71,7 @@ public class Boss1_Pattern1 : MonoBehaviour, IFire {
 
     public void assignMovement()
     {
-        bossMovementScript = gameObject.GetComponentInParent<Movement_Boss>();
+        //bossMovementScript = gameObject.GetComponentInParent<Movement_Boss>();
     }
 
 	// Use this for initialization

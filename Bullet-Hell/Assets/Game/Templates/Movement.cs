@@ -17,7 +17,7 @@ public abstract class Movement : MonoBehaviour {
     public void setIsMoving(bool state)
     {
         isMoving = state;
-        Debug.Log("isMoving is now " + isMoving);
+        //Debug.Log("isMoving is now " + isMoving);
     }
     public bool getIsMoving()
     {

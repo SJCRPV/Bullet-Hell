@@ -52,6 +52,8 @@ public class Movement_Generic : Movement {
     // Use this for initialization
     void Start () {
         scriptCount++;
+        //CONSIDER: You may want to move this line to inside setPath(), merely for consistency with setLeavePath()
+        setIsMoving(true);
         setPath();
 	}
 	

@@ -12,6 +12,7 @@ public class BulletCollision : MonoBehaviour {
 
 	void Update()
 	{
+        //CONSIDER: This is inefficient. Find a better way to make this check. Furthermore, see if it's even needed. There was some funkiness regarding the IgnoreCollision
 		temp = GameObject.Find("WhenShiftPressedCollider");
 		if(temp != null)
 		{

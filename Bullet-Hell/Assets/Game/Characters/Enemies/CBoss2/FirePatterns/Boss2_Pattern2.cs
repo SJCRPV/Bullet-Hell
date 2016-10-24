@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Boss2_FirePattern2 : MonoBehaviour, IFire 
+public class Boss2_Pattern2 : MonoBehaviour, IFire 
 {
     [SerializeField]
     private GameObject bulletPrefab;
@@ -26,8 +26,9 @@ public class Boss2_FirePattern2 : MonoBehaviour, IFire
         for (int i = 0; i < bulletCount; i++)
         {
             bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, new Quaternion(0, 0, 180, 0));
-            bulletInstance.setSpeed(Random.Range(minSpeed, maxSpeed));
-            bulletInstance.setEulerAngle(Random.Range(180.0f, 260.0f));
+            bulletInstance.GetComponent<MoveForward>().setSpeed(Random.Range(minSpeed, maxSpeed));
+            Quaternion temp = Quaternion.Euler(0, 0, Random.Range(180.0f, 260.0f));
+            bulletInstance.transform.rotation = temp;
         }
     }
 
@@ -35,7 +36,7 @@ public class Boss2_FirePattern2 : MonoBehaviour, IFire
     {
         if(bossMovementScript.getCurrentNodeTrioInUse() % 4 == 0)
         {
-            int finalBulletCount = Random.Range(averageBulletCount - bulletCountVaration, averageBulletCount + bulletCountVariation);
+            int finalBulletCount = Random.Range(averageBulletCount - bulletCountVariation, averageBulletCount + bulletCountVariation);
             blast(finalBulletCount);
         }
     }
@@ -58,7 +59,6 @@ public class Boss2_FirePattern2 : MonoBehaviour, IFire
     void Start()
     {
         cooldownTimerStore = cooldownTimer;
-        inBetweenTimerStore = inBetweenTimer;
         assignMovement();
     }
 

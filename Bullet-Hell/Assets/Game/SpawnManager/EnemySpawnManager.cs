@@ -73,9 +73,9 @@ public class EnemySpawnManager : MonoBehaviour {
     {
         Debug.Log("Number of phases in this level = " + levelScript.getNumberOfPhases());
         phaseToSpawnCycles = levelScript.getNumberOfPhases() / spawnPoints.Length;
-        Debug.Log("phaseToSpawnCycles = " + phaseToSpawnCycles);
+        //Debug.Log("phaseToSpawnCycles = " + phaseToSpawnCycles);
         phaseToEndCycles = levelScript.getNumberOfPhases() / endPoints.Length;
-        Debug.Log("phaseToEndCycles = " + phaseToEndCycles);
+        //Debug.Log("phaseToEndCycles = " + phaseToEndCycles);
     }
 
     GameObject[] determineStartingPoint(ref int cyclesRun, String whichPoints)
@@ -118,7 +118,7 @@ public class EnemySpawnManager : MonoBehaviour {
         }
 
         selectGOinArrayFormulaAdjusted = selectGOinArrayFormula + accountForBossPhases() - (cyclesRun * points.Length);
-        Debug.Log("Set selectGOinArrayFormulaAdjusted as: " + selectGOinArrayFormulaAdjusted);
+        //Debug.Log("Set selectGOinArrayFormulaAdjusted as: " + selectGOinArrayFormulaAdjusted);
         if (cyclesRun <= cycles)
         {
             if(isAboveLength)
@@ -134,7 +134,7 @@ public class EnemySpawnManager : MonoBehaviour {
         }
         else
         {
-            Debug.Log("Remainder is at: " + remainder);
+            //Debug.Log("Remainder is at: " + remainder);
             if (remainder > 0)
             {
                 tempPoints[0] = points[selectGOinArrayFormulaAdjusted];
@@ -175,7 +175,7 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             if(phaseToSpawnCycles >= 0)
             {
-                Debug.Log("Spawn");
+                //Debug.Log("Spawn");
                 GameObject[] temp = determineStartingPoint(ref spawnLengthCyclesRun, "Spawn");
                 tempSpawnPoint1 = temp[0];
                 tempSpawnPoint2 = temp[1];
@@ -183,7 +183,7 @@ public class EnemySpawnManager : MonoBehaviour {
 
             if(phaseToEndCycles >= 0)
             {
-                Debug.Log("End");
+                //Debug.Log("End");
                 GameObject[] temp = determineStartingPoint(ref endLengthCyclesRun, "end");
                 tempEndPoint1 = temp[0];
                 tempEndPoint2 = temp[1];
@@ -272,10 +272,10 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             gameDatabaseScript.incrementCurrentLevelPhase();
             movementScript.resetOffset();
-            Debug.Log ("Loading phase: " + gameDatabaseScript.getCurrentLevelPhase());
+            //Debug.Log ("Loading phase: " + gameDatabaseScript.getCurrentLevelPhase());
             phaseTotal = levelScript.getPhaseLenght(gameDatabaseScript.getCurrentLevelPhase());
             selectGOinArrayFormula = 2 * gameDatabaseScript.getCurrentLevelPhase();
-            Debug.Log("selectGOinArrayFormula: " + selectGOinArrayFormula);
+            //Debug.Log("selectGOinArrayFormula: " + selectGOinArrayFormula);
         }
         else
         {
@@ -301,9 +301,9 @@ public class EnemySpawnManager : MonoBehaviour {
         positionInPhase = 0;
 
         spawnPoints = GameObject.FindGameObjectsWithTag("SpawnPoint");
-        Debug.Log("spawnPoints.Length: " + spawnPoints.Length);
+        //Debug.Log("spawnPoints.Length: " + spawnPoints.Length);
         endPoints = GameObject.FindGameObjectsWithTag("EndPoint");
-        Debug.Log("endPoints.Length: " + endPoints.Length);
+        //Debug.Log("endPoints.Length: " + endPoints.Length);
         bossPoints = GameObject.FindGameObjectsWithTag("BossPoint");
         System.Array.Sort(spawnPoints, sorter);
         System.Array.Sort(endPoints, sorter);

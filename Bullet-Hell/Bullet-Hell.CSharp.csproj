@@ -81,6 +81,10 @@
     <Compile Include="Assets\Game\Characters\Enemies\CBoss1\Character_Boss1.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\CBoss1\FirePatterns\Boss1_Pattern1.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\CBoss1\FirePatterns\Boss1_Pattern2.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\CBoss2\Character_Boss2.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\CBoss2\FirePatterns\Boss2_Pattern1.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\CBoss2\FirePatterns\Boss2_Pattern2.cs" />
+    <Compile Include="Assets\Game\Characters\Enemies\CBoss2\FirePatterns\Boss2_Pattern3.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\Standard\Character_StandardEnemy.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\Standard\FirePatterns\FireBasic.cs" />
     <Compile Include="Assets\Game\Characters\Enemies\Standard\FirePatterns\FireCone.cs" />

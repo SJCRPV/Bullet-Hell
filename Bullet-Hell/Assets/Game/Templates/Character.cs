@@ -45,7 +45,7 @@ public abstract class Character : MonoBehaviour {
 
     public void die()
     {
-        Debug.Log("DEAD!");
+        //Debug.Log("DEAD!");
         Destroy(gameObject);
     }
 
@@ -69,6 +69,6 @@ public abstract class Character : MonoBehaviour {
 	// Use this for initialization
 	protected void Start () {
         maxHealth = healthPoints;
-        Debug.Log("MaxHealth is now " + maxHealth);
+        //Debug.Log("MaxHealth is now " + maxHealth);
 	}
 }

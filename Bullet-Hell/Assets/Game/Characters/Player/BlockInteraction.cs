@@ -34,6 +34,6 @@ public class BlockInteraction : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        playerCharacterScript = GetComponent<Character_Player>();
+        playerCharacterScript = GetComponentInParent<Character_Player>();
 	}
 }

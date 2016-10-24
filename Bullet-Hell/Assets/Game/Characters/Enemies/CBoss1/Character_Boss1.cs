@@ -40,7 +40,7 @@ public class Character_Boss1 : Character_Boss {
         }
         if (getCurrentHealth() <= 0)
         {
-            Debug.Log(getCurrentHealth());
+            //Debug.Log(getCurrentHealth());
             explode();
         }
         //CLEANING: This has a hardcoded value. Determine the ratio and use that instead.

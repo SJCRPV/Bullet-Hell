@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class ZigZag : MonoBehaviour {
-
+    //FIX: Does not destroy itself
     static float scriptCount;
 
     public float radius;
