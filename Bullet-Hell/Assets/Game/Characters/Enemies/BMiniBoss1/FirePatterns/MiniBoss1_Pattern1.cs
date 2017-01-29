@@ -33,7 +33,7 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
         {
             bulletRotation = Quaternion.identity;
             bulletRotation.eulerAngles = new Vector3(0, 0, startingDegrees);
-            bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, bulletRotation);
+            bulletInstance = Instantiate(bulletPrefab, transform.position, bulletRotation);
             bulletInstance.gameObject.layer = 11;
         }
         startingDegrees = startingDegreesStore;
@@ -41,9 +41,9 @@ public class MiniBoss1_Pattern1 : MonoBehaviour, IFire {
     }
     void FireStill()
     {
-        bulletInstance = (GameObject)Instantiate(explodingBulletPrefab, transform.position - Vector3.up/2 - Vector3.left/2, new Quaternion(0, 0, 180, 0));
+        bulletInstance = Instantiate(explodingBulletPrefab, transform.position - Vector3.up/2 - Vector3.left/2, new Quaternion(0, 0, 180, 0));
         bulletInstance.gameObject.layer = 11;
-        bulletInstance = (GameObject)Instantiate(explodingBulletPrefab, transform.position - Vector3.up/2 - Vector3.right/2, new Quaternion(0, 0, 180, 0));
+        bulletInstance = Instantiate(explodingBulletPrefab, transform.position - Vector3.up/2 - Vector3.right/2, new Quaternion(0, 0, 180, 0));
         bulletInstance.gameObject.layer = 11;
         cooldownTimer = stillTimeBetweenBursts;
     }

@@ -12,7 +12,7 @@ public class FireExtraBulletSource : MonoBehaviour {
 
 	void fire()
 	{
-		bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, Quaternion.identity);
+		bulletInstance = Instantiate(bulletPrefab, transform.position, Quaternion.identity);
 		cooldownTimer = cooldownTimerStore;
 		bulletInstance.gameObject.layer = 10;
 	}

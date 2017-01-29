@@ -15,22 +15,22 @@ public class Boss2_Pattern1 : MonoBehaviour, IFire
 	private Movement_Boss bossMovementScript;
 	private float cooldownTimerStore;
 	private float inBetweenTimerStore;
-	
-	private IEnumerator drawStar()
-	{
-		while(bossMovementScript.getIsMoving())
-		{
-			inBetweenTimer -= Time.deltaTime;
-			if(inBetweenTimer <= 0)
-			{
-				bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, new Quaternion(0, 0, 180, 0));
-				inBetweenTimer = inBetweenTimerStore;
-			}
-			yield return null;
-		}
-		
-		StopCoroutine("drawStar");
-	}
+
+    private IEnumerator drawStar()
+    {
+        while(bossMovementScript.getIsMoving())
+        {
+            inBetweenTimer -= Time.deltaTime;
+            if(inBetweenTimer <= 0)
+            {
+                Debug.Log("Pew");
+                bulletInstance = Instantiate(bulletPrefab, transform.position, new Quaternion(0, 0, 180, 0));
+                inBetweenTimer = inBetweenTimerStore;
+            }
+            yield return null;
+        }
+        StopCoroutine("drawStar");
+    }
 	
 	public void firePattern()
 	{

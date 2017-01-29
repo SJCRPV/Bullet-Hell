@@ -218,31 +218,31 @@ public class EnemySpawnManager : MonoBehaviour {
         {
             case 0:
                 //Debug.Log("Spawned a basic!");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyBasic);
+                enemyInstance = Instantiate(gameDatabaseScript.enemyBasic);
                 enemyInstance.name = "Basic";
                 break;
 
             case 1:
                 //Debug.Log ("Spawned a cone!");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyCone);
+                enemyInstance = Instantiate(gameDatabaseScript.enemyCone);
                 enemyInstance.name = "Cone";
                 break;
 
             case 2:
                 //Debug.Log ("Spawned a graze!");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyGraze);
+                enemyInstance = Instantiate(gameDatabaseScript.enemyGraze);
                 enemyInstance.name = "Graze";
                 break;
 
             case 8:
                 //Debug.Log("Spawned a miniBoss1!");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyMiniBoss1);
+                enemyInstance = Instantiate(gameDatabaseScript.enemyMiniBoss1);
                 enemyInstance.name = "MiniBoss1";
                 break;
 
             case 16:
                 //Debug.Log("Spawned boss1");
-                enemyInstance = (GameObject)Instantiate(gameDatabaseScript.enemyBoss1);
+                enemyInstance = Instantiate(gameDatabaseScript.enemyBoss1);
                 enemyInstance.name = "Boss1";
                 break;
 

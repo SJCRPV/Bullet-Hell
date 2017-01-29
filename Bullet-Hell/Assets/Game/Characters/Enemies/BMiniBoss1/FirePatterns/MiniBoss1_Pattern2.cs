@@ -21,11 +21,11 @@ public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
     {
         //Debug.Log("Long");
         //Debug.Log("Coordinates: " + transform.position);
-        bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - Vector3.up / 2, new Quaternion(0, 0, 180, 0));
+        bulletInstance = Instantiate(bulletPrefab, transform.position - Vector3.up / 2, new Quaternion(0, 0, 180, 0));
         bulletInstance.gameObject.layer = 11;
-        zigzagBulletInstance = (GameObject)Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 3 - Vector3.left / 3, new Quaternion(0, 0, 180, 0));
+        zigzagBulletInstance = Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 3 - Vector3.left / 3, new Quaternion(0, 0, 180, 0));
         zigzagBulletInstance.gameObject.layer = 11;
-        zigzagBulletInstance = (GameObject)Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 3 - Vector3.right / 3, new Quaternion(0, 0, 180, 0));
+        zigzagBulletInstance = Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 3 - Vector3.right / 3, new Quaternion(0, 0, 180, 0));
         zigzagBulletInstance.gameObject.layer = 11;
     }
 
@@ -36,16 +36,16 @@ public class MiniBoss1_Pattern2 : MonoBehaviour, IFire {
         //Debug.Log(spawnZigZag);
         if(spawnZigZag)
         {
-            zigzagBulletInstance = (GameObject)Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 2 - Vector3.left / 2, new Quaternion(0, 0, 180, 0));
+            zigzagBulletInstance = Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 2 - Vector3.left / 2, new Quaternion(0, 0, 180, 0));
             zigzagBulletInstance.gameObject.layer = 11;
-            zigzagBulletInstance = (GameObject)Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 2 - Vector3.right / 2, new Quaternion(0, 0, 180, 0));
+            zigzagBulletInstance = Instantiate(zigzagBulletPrefab, transform.position - Vector3.up / 2 - Vector3.right / 2, new Quaternion(0, 0, 180, 0));
             zigzagBulletInstance.gameObject.layer = 11;
         }
         else
         {
-            bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - Vector3.up / 2 - Vector3.left / 2, new Quaternion(0, 0, 180, 0));
+            bulletInstance = Instantiate(bulletPrefab, transform.position - Vector3.up / 2 - Vector3.left / 2, new Quaternion(0, 0, 180, 0));
             bulletInstance.gameObject.layer = 11;
-            bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - Vector3.up / 2 - Vector3.right / 2, new Quaternion(0, 0, 180, 0));
+            bulletInstance = Instantiate(bulletPrefab, transform.position - Vector3.up / 2 - Vector3.right / 2, new Quaternion(0, 0, 180, 0));
             bulletInstance.gameObject.layer = 11;
         }
         spawnZigZag = !spawnZigZag;

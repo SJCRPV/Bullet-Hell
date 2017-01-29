@@ -21,7 +21,7 @@ public class FireGraze : MonoBehaviour, IFire {
     public void fire()
     {
 		//Debug.Log("Fire!");
-        bulletInstance = (GameObject)Instantiate(bulletPrefab, correction, new Quaternion(0, 0, 180, 0));
+        bulletInstance = Instantiate(bulletPrefab, correction, new Quaternion(0, 0, 180, 0));
 		bulletInstance.gameObject.layer = 11;
     }
 

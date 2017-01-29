@@ -131,7 +131,7 @@ public class Character_Player : Character {
     {
         for (int i = 0; i < 5; i++)
         {
-            blockInstance = (GameObject)Instantiate(getPowerBlock(), transform.position, Quaternion.identity);
+            blockInstance = Instantiate(getPowerBlock(), transform.position, Quaternion.identity);
             blockInstance.GetComponent<Rigidbody2D>().AddForceAtPosition(new Vector2(-50f + i * 20, 150), transform.position);
         }
 

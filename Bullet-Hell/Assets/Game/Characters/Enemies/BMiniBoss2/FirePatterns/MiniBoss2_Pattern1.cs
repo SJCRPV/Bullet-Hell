@@ -32,7 +32,7 @@ public class MiniBoss2_Pattern1 : MonoBehaviour, IFire {
 
     private void fire()
     {
-        bulletInstance = (GameObject)Instantiate(missilePrefab, transform.parent.position, bulletRotation);
+        bulletInstance = Instantiate(missilePrefab, transform.parent.position, bulletRotation);
         slowHomingScript = bulletInstance.GetComponent<SlowHoming>();
         slowHomingScript.setRotationSpeed(missileRotationSpeed);
         timedMoveForwardScript = bulletInstance.GetComponent<TimedMoveForward>();

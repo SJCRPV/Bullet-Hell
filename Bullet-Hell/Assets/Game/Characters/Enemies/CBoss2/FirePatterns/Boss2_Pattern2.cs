@@ -15,6 +15,10 @@ public class Boss2_Pattern2 : MonoBehaviour, IFire
     private float minSpeed;
     [SerializeField]
     private float maxSpeed;
+    [SerializeField]
+    private float minAngle = 175.0f;
+    [SerializeField]
+    private float maxAngle = 210.0f;
 
     private GameObject bulletInstance;
     private Movement_Generic genericMovementScript;
@@ -25,9 +29,9 @@ public class Boss2_Pattern2 : MonoBehaviour, IFire
     {
         for (int i = 0; i < bulletCount; i++)
         {
-            bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, new Quaternion(0, 0, 180, 0));
+            bulletInstance = Instantiate(bulletPrefab, transform.position, new Quaternion(0, 0, 180, 0));
             bulletInstance.GetComponent<MoveForward>().setSpeed(Random.Range(minSpeed, maxSpeed));
-            Quaternion temp = Quaternion.Euler(0, 0, Random.Range(180.0f, 260.0f));
+            Quaternion temp = Quaternion.Euler(0, 0, Random.Range(minAngle, maxAngle));
             bulletInstance.transform.rotation = temp;
         }
     }

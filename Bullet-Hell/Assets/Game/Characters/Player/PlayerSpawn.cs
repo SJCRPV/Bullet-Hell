@@ -36,7 +36,7 @@ public class PlayerSpawn : MonoBehaviour {
     private void initialPlayerSpawn()
     {
         //Debug.Log("initialPlayerSpawn was run");
-        playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
+        playerInstance = Instantiate(playerPrefab, transform.position, Quaternion.identity);
         playerInstance.name = "Player";
         respawnTimer = 3f;
         playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();
@@ -56,7 +56,7 @@ public class PlayerSpawn : MonoBehaviour {
         //Debug.Log("SpawnPlayer was run");
         if (playerCharacterScript.canPlayerSpawn())
         {
-			playerInstance = (GameObject)Instantiate(playerPrefab, transform.position, Quaternion.identity);
+			playerInstance = Instantiate(playerPrefab, transform.position, Quaternion.identity);
             playerInstance.name = "Player";
 			respawnTimer = 3f;
             playerCharacterScript = GameObject.Find("Player").GetComponent<Character_Player>();

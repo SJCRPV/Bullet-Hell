@@ -15,7 +15,7 @@ public class FireBasic : MonoBehaviour, IFire {
     void fire()
     {
         //Debug.Log("Dakka Dakka");
-        bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position - offset, new Quaternion(0, 0, 180, 0));
+        bulletInstance = Instantiate(bulletPrefab, transform.position - offset, new Quaternion(0, 0, 180, 0));
         cooldownTimer = cooldownTimerStore;
         bulletInstance.gameObject.layer = 11;
     }

@@ -16,7 +16,7 @@ public class Explode : MonoBehaviour {
         {
             bulletRotation = Quaternion.identity;
             bulletRotation.eulerAngles = new Vector3(0, 0, i);
-            explodeBulletInstance = (GameObject)Instantiate(explodedBullet, transform.position, bulletRotation);
+            explodeBulletInstance = Instantiate(explodedBullet, transform.position, bulletRotation);
         }
         Destroy(explodeBulletInstance, 3f);
         Destroy(gameObject);

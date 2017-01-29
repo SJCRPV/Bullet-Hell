@@ -35,7 +35,7 @@ public class ExplodeDownwards : MonoBehaviour
             {
                 //Debug.Log("verticalPos: " + verticalPos);
                 //Debug.Log("horizontalPos: " + horizontalPos);
-                explodedBulletInstance = (GameObject)Instantiate(explodedBulletPrefab, new Vector3(horizontalPos + 0.25f, verticalPos - 0.25f, transform.position.z), tempRot);
+                explodedBulletInstance = Instantiate(explodedBulletPrefab, new Vector3(horizontalPos + 0.25f, verticalPos - 0.25f, transform.position.z), tempRot);
             }
         }
         else
@@ -44,7 +44,7 @@ public class ExplodeDownwards : MonoBehaviour
             {
                 //Debug.Log("verticalPos: " + verticalPos);
                 //Debug.Log("horizontalPos: " + horizontalPos);
-                explodedBulletInstance = (GameObject)Instantiate(explodedBulletPrefab, new Vector3(horizontalPos - 0.25f, verticalPos - 0.25f, transform.position.z), tempRot);
+                explodedBulletInstance = Instantiate(explodedBulletPrefab, new Vector3(horizontalPos - 0.25f, verticalPos - 0.25f, transform.position.z), tempRot);
             }
         }
 

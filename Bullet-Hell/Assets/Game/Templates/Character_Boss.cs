@@ -15,15 +15,15 @@ public abstract class Character_Boss : Character {
         {
             if ((i >= 1 && i < 5) || i >= 15)
             {
-                blockInstance = (GameObject)Instantiate(getPointBlock(), transform.position, Quaternion.identity);
+                blockInstance = Instantiate(getPointBlock(), transform.position, Quaternion.identity);
             }
             else if (i >= 5 && i < 15)
             {
-                blockInstance = (GameObject)Instantiate(getPowerBlock(), transform.position, Quaternion.identity);
+                blockInstance = Instantiate(getPowerBlock(), transform.position, Quaternion.identity);
             }
             else if (i == 0)
             {
-                blockInstance = (GameObject)Instantiate(getExtraLifeBlock(), transform.position, Quaternion.identity);
+                blockInstance = Instantiate(getExtraLifeBlock(), transform.position, Quaternion.identity);
             }
             else
             {

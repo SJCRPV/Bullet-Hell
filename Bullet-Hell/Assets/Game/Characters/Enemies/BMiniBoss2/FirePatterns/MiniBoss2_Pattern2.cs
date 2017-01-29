@@ -42,7 +42,7 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
     {
         Quaternion tempRot = Quaternion.identity;
         tempRot.eulerAngles = newEulerAngles;
-        bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, tempRot);
+        bulletInstance = Instantiate(bulletPrefab, transform.position, tempRot);
     }
 
     private void adjustStartingAngle(int counter)
@@ -135,7 +135,7 @@ public class MiniBoss2_Pattern2 : MonoBehaviour, IFire {
                 tempRot.eulerAngles = new Vector3(0, 0, -50);
             }
 
-            sliceInstance = (GameObject)Instantiate(slicePrefab, temp, tempRot);
+            sliceInstance = Instantiate(slicePrefab, temp, tempRot);
             Debug.Log("inverted is: " + inverted);
             if (inverted)
             {

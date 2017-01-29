@@ -25,7 +25,7 @@ public class Boss1_Pattern2 : MonoBehaviour, IFire
     {
         bulletRotation = Quaternion.identity;
         bulletRotation.eulerAngles = new Vector3(0, 0, angle);
-        bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position, bulletRotation);
+        bulletInstance = Instantiate(bulletPrefab, transform.position, bulletRotation);
         bulletInstance.gameObject.layer = 11;
         bulletInstance.transform.parent = gameObject.transform;
     }

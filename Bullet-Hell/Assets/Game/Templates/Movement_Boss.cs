@@ -45,6 +45,11 @@ public class Movement_Boss : Movement {
         return nextNodeTime;
     }
 
+    public void runFirePatternOfPathX(int pathIndex)
+    {
+        gameObject.transform.GetChild(pathIndex).GetComponent<Boss2_Pattern2>().firePattern();
+    }
+
     public override void setPath()
     {
         currentPath = bossPaths[currentPathNum].nodes.ToArray();

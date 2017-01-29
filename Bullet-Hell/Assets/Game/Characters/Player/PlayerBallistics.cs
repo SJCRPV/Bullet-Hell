@@ -71,7 +71,7 @@ public class PlayerBallistics : MonoBehaviour {
 
 	private void fire()
 	{
-		bulletInstance = (GameObject)Instantiate(bulletPrefab, transform.position + verticalOffset, Quaternion.identity);
+		bulletInstance = Instantiate(bulletPrefab, transform.position + verticalOffset, Quaternion.identity);
 		cooldownTimer = cooldownTimerStore;
 		bulletInstance.gameObject.layer = 10;
 	}

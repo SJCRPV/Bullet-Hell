@@ -53,7 +53,7 @@ public class MiniBoss2_Pattern3 : MonoBehaviour, IFire {
 		for(int i = 0; i < numOfLasers; i++)
 		{
 			rotToPlayer = determineRotToPlayer();
-			laserInstance = (GameObject)Instantiate(laserPrefab, transform.position, rotToPlayer);
+			laserInstance = Instantiate(laserPrefab, transform.position, rotToPlayer);
             enlargeToPlayer();
 			yield return new WaitForSeconds(timeBetweenLasers);
 		}

@@ -34,12 +34,12 @@ public class Character_StandardEnemy : Character
                 case 6:
                 case 7:
                 case 9:
-                    blockInstance = (GameObject)Instantiate(getPointBlock(), transform.position, Quaternion.identity);
+                    blockInstance = Instantiate(getPointBlock(), transform.position, Quaternion.identity);
                     break;
 
                 case 1:
                 case 8:
-                    blockInstance = (GameObject)Instantiate(getPowerBlock(), transform.position, Quaternion.identity);
+                    blockInstance = Instantiate(getPowerBlock(), transform.position, Quaternion.identity);
                     break;
                 default:
                     Debug.LogError("Invalid number. I don't know what block to create with this. 'Tried to resolve the case for " + i);
